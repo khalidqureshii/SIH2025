@@ -1,0 +1,281 @@
+{
+	"card": {
+	  "loader_message": "بادل جمع کیے جا رہے ہیں....",
+	  "max_temp": "زیادہ سے زیادہ درجہ حرارت",
+	  "min_temp": "کم سے کم درجہ حرارت",
+	  "wind": "ہوا",
+	  "humidity": "نمی"
+	},
+		
+	"graph": {
+	  "loader_message": "آپ کے شہر کا تجزیہ ہو رہا ہے....",
+	  "no_data": "کوئی ڈیٹا دستیاب نہیں",
+	  "title": "موسم کا جائزہ",
+	  "y_axis_left_label": "°C درجہ حرارت",
+	  "y_axis_right_label": "بارش mm",
+	  "data_keys": {
+	    "date": "تاریخ",
+	    "avg_temp": "اوسط درجہ حرارت",
+	    "rain": "بارش"
+	  }
+	},
+	
+	"navbar": {
+	  "title": "سمارٹ فصل رہنمائی",
+	  "lang_label": "زبان",
+	  "logout_label": "لاگ آؤٹ",
+	  "login_label": "لاگ اِن",
+	  "register_label": "رجسٹر کریں"
+	},
+	
+	"popover": {
+	  "loader_message": "دانش حاصل کی جا رہی ہے....",
+	  "title": "🌾 کسانوں کے لیے AI موسمی دانش 🌦️",
+	  "date_locale": "en-US",
+	  "weekdays": {
+	    "long": ["اتوار", "پیر", "منگل", "بدھ", "جمعرات", "جمعہ", "ہفتہ"],
+	    "short": ["اتوار", "پیر", "منگل", "بدھ", "جمع", "جمعہ", "ہفت"]
+	  },
+	  "months": {
+	    "long": ["جنوری", "فروری", "مارچ", "اپریل", "مئی", "جون", "جولائی", "اگست", "ستمبر", "اکتوبر", "نومبر", "دسمبر"],
+	    "short": ["جن", "فر", "مارچ", "اپر", "مئی", "جون", "جول", "اگ", "ستم", "اکت", "نوم", "دسم"]
+	  }
+	},
+	
+	"timeline": {
+	  "loader_message": "آپ کے دنوں کی پیش گوئی ہو رہی ہے....",
+	  "day_format_label": {
+	    "today": "آج",
+	    "tomorrow": "کل"
+	  },
+	  "risk_labels": {
+	    "high_winds": "تیز ہوائیں",
+	    "thunderstorm": "آندھی طوفان",
+	    "no_warnings": "کوئی انتباہ نہیں"
+	  },
+	  "rain_label": "% بارش",
+	  "humidity_label": "نمی: ",
+	  "weekdays": {
+	    "long": ["اتوار", "پیر", "منگل", "بدھ", "جمعرات", "جمعہ", "ہفتہ"],
+	    "short": ["اتوار", "پیر", "منگل", "بدھ", "جمع", "جمعہ", "ہفت"]
+	  },
+	  "months": {
+	    "long": ["جنوری", "فروری", "مارچ", "اپریل", "مئی", "جون", "جولائی", "اگست", "ستمبر", "اکتوبر", "نومبر", "دسمبر"],
+	    "short": ["جن", "فر", "مارچ", "اپر", "مئی", "جون", "جول", "اگ", "ستم", "اکت", "نوم", "دسم"]
+	  }
+	},
+	
+	"dashboard": {
+	  "city": "شہر: ",
+	  "placeholder": "شہر درج کریں",
+	  "detect": "پتہ لگائیں",
+	  "submit": "جمع کریں",
+	  "alerts": {
+	    "geolocation": "آپ کے براؤزر میں جغرافیائی مقام کی سہولت دستیاب نہیں۔",
+	    "detect_failed1": "آپ کی لوکیشن سے شہر معلوم نہیں کیا جا سکا۔",
+	    "detect_failed2": "آپ کی لوکیشن سے شہر معلوم کرنے میں ناکامی۔",
+	    "detect_failed3": "آپ کا مقام معلوم نہیں ہو سکا۔ براہ کرم دستی طور پر درج کریں۔"
+	  }
+	},
+	
+	"home": {
+	  "header_title": "🌾 سمارٹ فصل رہنمائی",
+	  "subheader": "کسانوں کو بہتر فیصلے کرنے میں مدد فراہم کرنا",
+	  "location_title": "📍 مقام کی رسائی",
+	  "allow_gps": "GPS کی اجازت دیں",
+	  "manual_button": "مقام دستی طور پر درج کریں",
+	  "shortcut_labels": {
+	    "soil": "مٹی کی رہنمائی",
+	    "weather": "موسم",
+	    "disease": "بیماری کی شناخت"
+	  }
+	},
+	
+	"weather": {
+	  "loader_message": "آپ کی لوکیشن معلوم کی جا رہی ہے....",
+	  "form_header": "براہ کرم شہر کا نام درج کریں تاکہ اس کا موسمی حال معلوم ہو سکے",
+	  "placeholder": "شہر درج کریں",
+	  "submit": "جمع کریں"
+	},
+	
+	"advisory_result": {
+	  "no_results": "⏳ ابھی کوئی نتیجہ نہیں۔ براہ کرم رپورٹ دیکھنے کے لیے جمع کریں۔",
+	  "report_title": "🌱 زرعی تجزیہ رپورٹ",
+	  "tabs": {
+	    "weather": "موسم",
+	    "satellite": "سیٹلائٹ",
+	    "nutrients": "غذائی اجزاء",
+	    "recommendations": "سفارشات",
+	    "ai_insights": "AI بصیرت"
+	  },
+	  "weather": {
+	    "temperature": {
+	      "button": "درجہ حرارت🌡️",
+	      "title": "درجہ حرارت",
+	      "description": "فصل کی بڑھوتری اور ضیائی تالیف کی کارکردگی پر اثر انداز ہوتا ہے"
+	    },
+	    "humidity": {
+	      "button": "نمی💧",
+	      "title": "نمی",
+	      "description": "زیادہ نمی پانی کے ضیاع کو کم کرتی ہے لیکن بیماریوں کے خطرے کو بڑھا سکتی ہے"
+	    },
+	    "rainfall": {
+	      "button": "بارش🌦️",
+	      "title": "بارش",
+	      "description": "قدرتی آبپاشی فراہم کرتی ہے؛ زیادہ یا کم بارش پیداوار پر اثر ڈالتی ہے",
+	      "unit": "mm/دن"
+	    },
+	    "season": {
+	      "button": "موسم🌱",
+	      "title": "موسم",
+	      "description": "فصل کے چکر اور موزوں فصلوں کا تعین کرتا ہے"
+	    }
+	  },
+	  "satellite": {
+	    "ndvi": {
+	      "button": "NDVI (پودوں کی صحت)",
+	      "title": "NDVI (Normalized Difference Vegetation Index)",
+	      "description": "پودوں کی صحت اور ہریالی ظاہر کرتا ہے"
+	    },
+	    "ndwi": {
+	      "button": "NDWI (پانی کا اشاریہ)",
+	      "title": "NDWI (Normalized Difference Water Index)",
+	      "description": "فصل یا مٹی میں پانی کے مواد کی عکاسی کرتا ہے"
+	    },
+	    "soil_moisture": {
+	      "button": "مٹی کی نمی",
+	      "title": "مٹی کی نمی",
+	      "description": "بیج اگنے اور غذائی اجزاء جذب کرنے کے لیے اہم ہے"
+	    },
+	    "soil_ph": {
+	      "button": "مٹی کا pH",
+	      "title": "مٹی کا pH",
+	      "description": "مٹی کی تیزابیت یا الکلائن سطح ناپتا ہے، جو غذائی اجزاء کی دستیابی پر اثر ڈالتی ہے"
+	    }
+	  },
+	  "nutrients": {
+	    "labels": {
+	      "nitrogen": "نائٹروجن (N)",
+	      "phosphorus": "فاسفورس (P)",
+	      "potassium": "پوٹاشیم (K)"
+	    },
+	    "confidence": "اعتماد"
+	  },
+	  "recommendations": {
+	    "title": "🌱 سب سے زیادہ تجویز کردہ فصلیں",
+	    "crop_insights": "فصل کی بصیرت",
+	    "fields": {
+	      "confidence": "🌟 اعتماد:",
+	      "expected_yield": "🌾 متوقع پیداوار:",
+	      "suitability": "✅ موزونیت:",
+	      "seasonal_match": "📅 موسمی مطابقت:",
+	      "overall_score": "📊 مجموعی درجہ:"
+	    }
+	  },
+	  "ai_insights": {
+	    "title": "🤖 جدید AI بصیرت",
+	    "diagnostics": "کھیت کی تشخیص"
+	  }
+	},
+	
+	"farm_input": {
+	  "label": "کھیت کا رقبہ",
+	  "placeholder": "کھیت کا رقبہ ایکڑ میں درج کریں"
+	},
+	
+	"location_input": {
+	  "labels": {
+	    "latitude": "عرض بلد",
+	    "longitude": "طول بلد"
+	  },
+	  "placeholders": {
+	    "latitude": "عرض بلد درج کریں",
+	    "longitude": "طول بلد درج کریں"
+	  }
+	},
+	
+	"water_selector": {
+	  "labels": {
+	    "waterSource": "پانی کا ذریعہ"
+	  },
+	  "placeholders": {
+	    "chooseWaterSource": "پانی کا ذریعہ منتخب کریں"
+	  },
+	  "options": {
+	    "canal": "نہر",
+	    "borewell": "بورویل",
+	    "rainfall": "بارش"
+	  }
+	},
+	
+	"auth_page": {
+	  "leftPanel": {
+	    "imageAlt": "کھیت کا پس منظر",
+	    "title": "سمارٹ فصل رہنمائی",
+	    "description": "چھوٹے اور کمزور کسانوں کو سمارٹ فصل کے فیصلوں، موسمی معلومات اور بیماریوں کی شناخت کے ساتھ بہتر پیداوار کے لیے مدد فراہم کرنا۔ 🌱"
+	  },
+	  "rightPanel": {
+	    "headings": {
+	      "login": "خوش آمدید 👋",
+	      "register": "اپنا اکاؤنٹ بنائیں 🌱"
+	    },
+	    "placeholders": {
+	      "username": "پورا نام",
+	      "location": "مقام / گاؤں",
+	      "email": "ای میل",
+	      "password": "پاس ورڈ"
+	    },
+	    "buttons": {
+	      "login": "لاگ اِن",
+	      "register": "رجسٹر کریں"
+	    },
+	    "switchAuth": {
+	      "noAccount": "اکاؤنٹ نہیں ہے؟",
+	      "hasAccount": "پہلے سے اکاؤنٹ ہے؟",
+	      "register": "رجسٹر کریں",
+	      "login": "لاگ اِن"
+	    }
+	  },
+	  "errors": {
+	    "alert": "تصدیق ناکام ہوگئی"
+	  }
+	},
+	
+	"disease_page": {
+	  "header": {
+	    "title": "بیماری کی شناخت",
+	    "description": "اپنی فصل کے پتے کی تصویر اپ لوڈ یا کیپچر کریں 🌿۔ ہمارا نظام ممکنہ بیماریوں کو پہچان کر آسان زبان میں علاج تجویز کرے گا۔"
+	  },
+	  "uploadSection": {
+	    "tapToUpload": "اپ لوڈ کرنے یا پتے کی تصویر لینے کے لیے ٹیپ کریں"
+	  },
+	  "previewSection": {
+	    "altPreview": "پیش منظر",
+	    "analyzing": "تجزیہ کیا جا رہا ہے...",
+	    "detectDisease": "بیماری کی شناخت کریں"
+	  },
+	  "errors": {
+	    "alertDetectionFailed": "بیماری کی شناخت کے دوران کچھ غلط ہو گیا!"
+	  },
+	  "resultSection": {
+	    "diseaseLabel": "بیماری:",
+	    "causesTitle": "📌 ممکنہ وجوہات",
+	    "recommendationsTitle": "✅ سفارشات",
+	    "listenToAdvice": "مشورہ سنیں"
+	  }
+	},
+	
+	"soil_page": {
+	  "headings": {
+	    "title": "🌱 فصل رہنمائی",
+	    "subtitle": "اپنے مقام، پانی کے ذریعہ اور کھیت کے رقبہ کی بنیاد پر حسب ضرورت رہنمائی حاصل کریں"
+	  },
+	  "buttons": {
+	    "getAdvisory": "رہنمائی حاصل کریں"
+	  },
+	  "alerts": {
+	    "noRecommendations": "کوئی سفارشات نہیں ملی۔",
+	    "fetchError": "سفارشات حاصل کرنے میں ناکامی۔ دوبارہ کوشش کریں۔"
+	  }
+	}
+}
