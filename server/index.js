@@ -17,8 +17,9 @@ app.use("/api/auth", router);
 app.use("/api/weather", weatherRoutes);
 app.use(errorMiddleware);
 
-connectDB().then( () => {
-    app.listen(PORT, ()=> {
-        console.log(`Server is running at Port ${PORT}`);
-    })
+connectDB().catch((err) => {
+  console.error("DB connection failed:", err);
 });
+
+// 👇 Export instead of listen()
+export default app;

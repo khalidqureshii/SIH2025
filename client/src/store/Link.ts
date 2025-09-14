@@ -1,2 +1,2 @@
-const LINK = "http://localhost:5000";
+const LINK = "https://sih-2025-backend-two.vercel.app";
 export default LINK;
