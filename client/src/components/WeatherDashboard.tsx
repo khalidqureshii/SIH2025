@@ -224,6 +224,8 @@ const WeatherDashboard: React.FC<WeatherDashboardProp> = ({
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
+  if (data && error && loading)    console.log("nothing")
+
   useEffect(() => {
     const fetchWeather = async () => {
       if (!city) return;
