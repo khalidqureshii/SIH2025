@@ -15,17 +15,6 @@ function App() {
       {/* <DirectionHandler /> */}
       <BrowserRouter>
         <Routes>
-          <Route path="/soil" element={
-            <>
-              <Navbar />
-              <SoilAdvisoryPage />
-            </>
-            }
-          />
-        </Routes>
-      </BrowserRouter>
-      <BrowserRouter>
-        <Routes>
           <Route
             path="/"
             element={
