@@ -74,7 +74,8 @@ const AuthPage = () => {
           <div className="flex items-center gap-3 mb-6">
             <img src="plant.png" className="w-20 h-20" />
             <h1 className="text-3xl font-bold tracking-wide">
-              {t("auth_page.leftPanel.title")}
+              {/* {t("auth_page.leftPanel.title")} */}
+              Bhoomiबंधु
             </h1>
           </div>
           <p className="text-lg  leading-relaxed max-w-md">

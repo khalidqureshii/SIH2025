@@ -77,7 +77,8 @@ const Home = () => {
     <div className="min-h-screen relative flex flex-col items-center p-6 overflow-hidden">
       <div className="relative z-10 flex flex-col items-center w-full mt-8">
         <h1 className="text-5xl font-bold text-green-800 mb-2 text-center">
-          {t("home.header_title")}
+          {/* {t("home.header_title")} */}
+          Bhoomiबंधु
         </h1>
         <p className="text-gray-700 text-xl mb-6 text-center">
           {t("home.subheader")}
