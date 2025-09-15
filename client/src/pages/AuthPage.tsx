@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Sprout, Leaf } from "lucide-react";
+import { Leaf } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useTranslation } from "react-i18next";
@@ -72,7 +72,7 @@ const AuthPage = () => {
         />
         <div className="relative z-10 flex flex-col items-center text-center">
           <div className="flex items-center gap-3 mb-6">
-            <Sprout className="w-10 h-10" />
+            <img src="plant.png" className="w-20 h-20" />
             <h1 className="text-3xl font-bold tracking-wide">
               {t("auth_page.leftPanel.title")}
             </h1>
