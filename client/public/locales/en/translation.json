@@ -79,17 +79,22 @@
 	},
 	
 	"home": {
-	  "header_title": "🌾 Smart Crop Advisory",
-	  "subheader": "Helping Farmers with Smarter Decisions",
-	  "location_title": "📍 Location Access",
-	  "allow_gps": "Allow GPS",
-	  "manual_button": "Enter Location Manually",
-	  "shortcut_labels": {
-	    "soil": "Soil Advisory",
-	    "weather": "Weather",
-	    "disease": "Disease Detection"
-	  }
-	},
+    "header_title": "🌾 Smart Crop Advisory",
+    "subheader": "Helping Farmers with Smarter Decisions",
+    "location_title": "📍 Location Access",
+    "allow_gps": "Allow GPS",
+    "manual_button": "Enter Location Manually",
+    "shortcut_labels": {
+      "crop": "Crop Advisory",
+      "weather": "Weather",
+      "disease": "Disease Detection"
+    },
+    "descriptions": {
+      "crop": "Personalized recommendations on crop selection and best farming practices to maximize yield and sustainability",
+      "weather": "Accurate forecasts and timely alerts to help you plan irrigation, harvesting, and protect crops from extreme conditions.",
+      "disease": "Early identification of crop diseases with AI-powered analysis, enabling quick action and healthier harvests"
+    }
+  },
 	
 	"weather": {
 	  "loader_message": "Detecting your Location....",

@@ -7,7 +7,7 @@ import Card from "./Card";
 import Timeline from "./Timeline";
 import Graphs from "./Graphs";
 import PopOver from "./PopOver";
-import {LINK} from "@/store/Link";
+import { LINK } from "@/store/Link";
 
 interface WeatherApiResponse {
   location: {
@@ -38,7 +38,10 @@ interface WeatherDashboardProp {
   cityChanged: (newCity: string) => void;
 }
 
-const WeatherDashboard: React.FC<WeatherDashboardProp> = ({ city, cityChanged }) => {
+const WeatherDashboard: React.FC<WeatherDashboardProp> = ({
+  city,
+  cityChanged,
+}) => {
   const { t, i18n } = useTranslation();
 
   const [newCity, setNewCity] = useState(city);
@@ -46,33 +49,34 @@ const WeatherDashboard: React.FC<WeatherDashboardProp> = ({ city, cityChanged })
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-    useEffect(() => {
-        const fetchWeather = async () => {
-            if(!city) return;
-            setLoading(true);
-            setError(null);
-            try{
-                // const response = await fetch(`http://localhost:3000/api/weather/advisory?q=${city}`);
-                const response = await fetch(`${LINK}/api/weather/advisory?q=${city}&lang=${i18n.language}`);
-                if(!response.ok) throw new Error("Failed to fetch weather data");
-                const result = await response.json();
-                // console.log("API Response:", result);
+  useEffect(() => {
+    const fetchWeather = async () => {
+      if (!city) return;
+      setLoading(true);
+      setError(null);
+      try {
+        // const response = await fetch(`http://localhost:3000/api/weather/advisory?q=${city}`);
+        const response = await fetch(
+          `${LINK}/api/weather/advisory?q=${city}&lang=${i18n.language}`
+        );
+        if (!response.ok) throw new Error("Failed to fetch weather data");
+        const result = await response.json();
+        // console.log("API Response:", result);
 
         if (result && Array.isArray(result.forecast)) {
-            const transformedForecast = result.forecast.map((day: any) => {
-                const { hour, ...restOfDay } = day;
-                return restOfDay;
-            });
+          const transformedForecast = result.forecast.map((day: any) => {
+            const { hour, ...restOfDay } = day;
+            return restOfDay;
+          });
 
-            const transformedData = {
-                ...result,
-                forecast: transformedForecast,
-            };
-            setData(transformedData);
+          const transformedData = {
+            ...result,
+            forecast: transformedForecast,
+          };
+          setData(transformedData);
         } else {
-            setData(result);
+          setData(result);
         }
-
       } catch (err: any) {
         setError(err.message);
       } finally {
@@ -82,7 +86,7 @@ const WeatherDashboard: React.FC<WeatherDashboardProp> = ({ city, cityChanged })
 
     fetchWeather();
   }, [city, i18n.language]);
-  
+
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     cityChanged(newCity);
@@ -136,7 +140,9 @@ const WeatherDashboard: React.FC<WeatherDashboardProp> = ({ city, cityChanged })
               placeHolder={t("dashboard.placeholder")}
               id="city-entry"
               value={newCity}
-              onChange={(e: ChangeEvent<HTMLInputElement>) => setNewCity(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setNewCity(e.target.value)
+              }
             />
             <Button
               type="button"
