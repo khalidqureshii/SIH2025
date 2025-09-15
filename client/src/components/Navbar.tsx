@@ -63,7 +63,7 @@
 // export default Navbar;
 
 import { useNavigate } from "react-router-dom";
-import { LogOut, Sprout } from "lucide-react";
+import { LogOut, MenuIcon, X } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import LanguageSelector from "@/components/LanguageSelector";
 import { logoutUser } from "@/store/features/authSlice";
