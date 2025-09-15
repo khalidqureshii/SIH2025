@@ -178,10 +178,10 @@ import { useTranslation } from "react-i18next";
 import InputField from "../components/InputField";
 import Label from "../components/Label";
 import Button from "../components/Button";
-// import Card from "./Card";
-// import Timeline from "./Timeline";
-// import Graphs from "./Graphs";
-// import PopOver from "./PopOver";
+import Card from "./Card";
+import Timeline from "./Timeline";
+import Graphs from "./Graphs";
+import PopOver from "./PopOver";
 import { LINK } from "@/store/Link";
 
 interface WeatherApiResponse {
@@ -223,8 +223,6 @@ const WeatherDashboard: React.FC<WeatherDashboardProp> = ({
   const [data, setData] = useState<WeatherApiResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-
-  if (data && error && loading)    console.log("nothing")
 
   useEffect(() => {
     const fetchWeather = async () => {
@@ -340,7 +338,7 @@ const WeatherDashboard: React.FC<WeatherDashboardProp> = ({
           </div>
         </div>
 
-        {/* <div className="p-2 bg-yellow-50 rounded shadow flex justify-center items-center">
+        <div className="p-2 bg-yellow-50 rounded shadow flex justify-center items-center">
           <Card loading={loading} error={error} data={data} />
         </div>
         <div className="p-2 bg-red-50 rounded shadow">
@@ -351,7 +349,7 @@ const WeatherDashboard: React.FC<WeatherDashboardProp> = ({
         </div>
         <div className="md:col-span-2 p-2 bg-sky-50 rounded">
           <PopOver data={data} loading={loading} error={error} />
-        </div> */}
+        </div>
       </form>
     </div>
   );
