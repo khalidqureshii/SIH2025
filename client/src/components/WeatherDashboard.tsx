@@ -172,6 +172,8 @@ import Card from "./Card";
 import Timeline from "./Timeline";
 import Graphs from "./Graphs";
 import PopOver from "./PopOver";
+import { useTranslation } from "react-i18next";
+import LINK from "@/store/Link";
 
 interface WeatherApiResponse {
   location: {
@@ -210,23 +212,17 @@ const WeatherDashboard: React.FC<WeatherDashboardProp> = ({ city, cityChanged })
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const fetchWeather = async () => {
-      if (!city) return;
-
-      setLoading(true);
-      setError(null);
-
-      try {
-        const response = await fetch(
-          `http://localhost:5000/api/weather/advisory?q=${city}&lang=${i18n.language}`
-        );
-
-        if (!response.ok) {
-          throw new Error("Failed to fetch weather data");
-        }
-
-        const result = await response.json();
+    useEffect(() => {
+        const fetchWeather = async () => {
+            if(!city) return;
+            setLoading(true);
+            setError(null);
+            try{
+                // const response = await fetch(`http://localhost:3000/api/weather/advisory?q=${city}`);
+                const response = await fetch(`${LINK}/weather/advisory?q=${city}&lang=${i18n.language}`);
+                if(!response.ok) throw new Error("Failed to fetch weather data");
+                const result = await response.json();
+                // console.log("API Response:", result);
 
         if (result && Array.isArray(result.forecast)) {
             const transformedForecast = result.forecast.map((day: any) => {

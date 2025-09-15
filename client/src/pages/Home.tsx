@@ -65,7 +65,6 @@
 
 // export default Home;
 
-
 import { CloudSun, Leaf, ShieldAlert } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -80,9 +79,7 @@ const Home = () => {
         <h1 className="text-3xl font-bold text-green-800 mb-2 text-center">
           {t("home.header_title")}
         </h1>
-        <p className="text-gray-700 mb-6 text-center">
-          {t("home.subheader")}
-        </p>
+        <p className="text-gray-700 mb-6 text-center">{t("home.subheader")}</p>
 
         <div
           className="rounded-xl shadow-md p-4 w-full max-w-md mb-6 
@@ -106,20 +103,22 @@ const Home = () => {
           className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-md"
         >
           <div
+           
             className="rounded-xl shadow-md p-4 flex flex-col items-center backdrop-blur-md hover:shadow-xl transition cursor-pointer"
-            onClick={() => navigate("/soil")}
+              onClick={() => navigate("/soil")}
+          
           >
-            <Leaf className="text-green-600 w-10 h-10 mb-2" />
+             <Leaf className="text-green-600 w-10 h-10 mb-2" />
             <p className="text-sm font-medium text-gray-800 text-center">
               {t("home.shortcut_labels.soil")}
             </p>
           </div>
           <div
-            className="rounded-xl shadow-md p-4 flex flex-col items-center backdrop-blur-md hover:shadow-xl transition cursor-pointer"
+            className=" rounded-xl shadow-md p-4 flex flex-col backdrop-blur-md items-center hover:shadow-xl transition cursor-pointer"
             onClick={() => navigate("/weather")}
           >
             <CloudSun className="text-yellow-500 w-10 h-10 mb-2" />
-            <p className="text-sm font-medium text-gray-800 text-center">
+            <p className="text-sm font-medium text-gray-800">
               {t("home.shortcut_labels.weather")}
             </p>
           </div>
@@ -128,7 +127,7 @@ const Home = () => {
             onClick={() => navigate("/disease")}
           >
             <ShieldAlert className="text-red-500 w-10 h-10 mb-2" />
-            <p className="text-sm font-medium text-gray-800 text-center">
+            <p className="text-sm text-center font-medium text-gray-800">
               {t("home.shortcut_labels.disease")}
             </p>
           </div>

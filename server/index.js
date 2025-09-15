@@ -13,6 +13,11 @@ const PORT = 5000;
 
 app.use(cors());
 app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.status(200).send("🚀 Server is running successfully!");
+});
+
 app.use("/api/auth", router);
 app.use("/api/weather", weatherRoutes);
 app.use(errorMiddleware);

@@ -182,7 +182,7 @@ const Weather: React.FC = () => {
   return (
     <>
       {!citySubmitted ? (
-        <div className="flex justify-center items-center mx-auto px-4 min-h-screen w-full bg-[url('./images/seasons_comp.jpg')] bg-cover bg-no-repeat bg-center">
+        <div className="flex justify-center items-center mx-auto px-4 min-h-screen w-full bg-[url('/images/seasons_comp.jpg')] bg-cover bg-no-repeat bg-center">
           <form
             onSubmit={handleSubmit}
             className="flex flex-col items-center p-6 rounded-2xl shadow-md w-72 sm:w-80 md:w-96 lg:w-[28rem] min-h-80 sm:min-h-96 md:h-[26rem] lg:h-[30rem] bg-white/30 backdrop-blur"
