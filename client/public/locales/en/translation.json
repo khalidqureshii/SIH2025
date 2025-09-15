@@ -277,5 +277,9 @@
 	    "noRecommendations": "No recommendations found.",
 	    "fetchError": "Failed to fetch recommendations. Please try again."
 	  }
+	},
+
+	"carousel":{
+		"listen": "Listen"
 	}
 }
