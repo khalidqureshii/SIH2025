@@ -11,7 +11,6 @@ import { AdvisoryResult } from "@/components/soil/AdvisoryResult";
 import axios from "axios";
 
 export default function SoilAdvisoryPage() {
-
   const { t } = useTranslation();
 
   const [waterSource, setWaterSource] = useState<string>("");

@@ -1,8 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { use } from "i18next";
 import { Loader2, Upload, Volume2, Leaf } from "lucide-react";
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 const useVoices = () => {
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
@@ -33,6 +35,7 @@ type DetectionResult = {
 };
 
 const DiseaseDetectionPage = () => {
+  const navigate = useNavigate();
   const {t} = useTranslation();
   const [image, setImage] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
@@ -119,7 +122,7 @@ const DiseaseDetectionPage = () => {
   return (
     <div className="min-h-screen flex flex-col items-center p-6">
       {/* Header */}
-      <h1 className="text-3xl font-bold text-green-800 mb-4 flex items-center gap-2">
+      <h1 className="text-3xl font-bold text-green-800 mb-4 flex items-center gap-2" onClick={()=>navigate("/")}>
         <Leaf className="w-8 h-8 text-green-600" /> {t("disease_page.header.title")}
       </h1>
       <p className="text-black mb-6 text-center max-w-md">
