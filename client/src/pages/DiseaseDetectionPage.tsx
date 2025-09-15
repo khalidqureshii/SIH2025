@@ -33,8 +33,8 @@ type DetectionResult = {
 };
 
 const DiseaseDetectionPage = () => {
-
-  const { t } = useTranslation();
+  const {t, i18n} = useTranslation();
+  const lang = i18n.language;
 
   const [image, setImage] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
@@ -57,7 +57,7 @@ const DiseaseDetectionPage = () => {
     try {
       const formData = new FormData();
       formData.append("file", image );
-      formData.append("language", "English");
+      formData.append("language", lang);
 
       //POST request code :
       const res = await fetch(
