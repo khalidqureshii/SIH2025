@@ -151,8 +151,6 @@ import axios from "axios";
 import {LINK2} from "@/store/Link";
 
 export default function SoilAdvisoryPage() {
-  const { t } = useTranslation();
-
   const [waterSource, setWaterSource] = useState<string>("");
   const [farmSize, setFarmSize] = useState<string>("");
   // const [season, setSeason] = useState<string>("");
@@ -160,6 +158,8 @@ export default function SoilAdvisoryPage() {
   const [latitude, setLatitude] = useState<string>("");
   const [longitude, setLongitude] = useState<string>("");
   const [result, setResult] = useState<any>(null);
+  const {t, i18n} = useTranslation();
+  const lang = i18n.language
 
   const handleSubmit = async () => {
     setLoading(true);
@@ -168,6 +168,7 @@ export default function SoilAdvisoryPage() {
       const response = await axios.post(`${LINK2}/analyze`, {
         latitude: latitude,
         longitude: longitude,
+        language: lang
         // manual_inputs: {
         //   waterSource: waterSource,
         //   farmSize: farmSize
