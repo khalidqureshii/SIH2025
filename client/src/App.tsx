@@ -35,12 +35,8 @@ function App() {
             element={
               <ProtectedRoute>
                 <>
-                  <div className="min-h-screen bg-[url('/images/weather.jpg')] bg-cover bg-center bg-no-repeat">
-                    <div className="min-h-screen bg-white/30 backdrop-blur-sm">
-                      <Navbar />
-                      <Weather />
-                    </div>
-                  </div>
+                  <Navbar />
+                  <Weather />
                 </>
               </ProtectedRoute>
             }
@@ -52,9 +48,11 @@ function App() {
               <>
                 <ProtectedRoute>
                   <div className="min-h-screen bg-[url('/images/bg-diseasedetect.jpg')] bg-cover bg-center bg-no-repeat bg-fixed">
-                    <div className="min-h-screen bg-white/30 backdrop-blur-sm">
+                    <div className="flex flex-col min-h-screen bg-white/30 backdrop-blur-sm overflow-hidden">
                       <Navbar />
-                      <DiseaseDetectionPage />
+                      <div className="flex-1">
+                        <DiseaseDetectionPage />
+                      </div>
                     </div>
                   </div>
                 </ProtectedRoute>

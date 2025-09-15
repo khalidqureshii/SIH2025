@@ -178,10 +178,10 @@ import { useTranslation } from "react-i18next";
 import InputField from "../components/InputField";
 import Label from "../components/Label";
 import Button from "../components/Button";
-import Card from "./Card";
-import Timeline from "./Timeline";
-import Graphs from "./Graphs";
-import PopOver from "./PopOver";
+// import Card from "./Card";
+// import Timeline from "./Timeline";
+// import Graphs from "./Graphs";
+// import PopOver from "./PopOver";
 import { LINK } from "@/store/Link";
 
 interface WeatherApiResponse {
