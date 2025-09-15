@@ -10,7 +10,6 @@ import LINK from "@/store/Link";
 import { useNavigate } from "react-router-dom";
 
 const AuthPage = () => {
-
   const { t } = useTranslation();
 
   const [isLogin, setIsLogin] = useState(false);
@@ -89,7 +88,9 @@ const AuthPage = () => {
       <div className="flex flex-col justify-center items-center w-full md:w-1/2 bg-white px-8">
         <div className="w-full max-w-md">
           <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
-            {isLogin ? t("auth_page.rightPanel.headings.login") : t("auth_page.rightPanel.headings.register")}
+            {isLogin
+              ? t("auth_page.rightPanel.headings.login")
+              : t("auth_page.rightPanel.headings.register")}
           </h2>
 
           <form className="space-y-4" onSubmit={handleSubmit}>
@@ -132,7 +133,9 @@ const AuthPage = () => {
               type="submit"
               className="w-full bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg shadow"
             >
-              {isLogin ? t("auth_page.rightPanel.buttons.login") : t("auth_page.rightPanel.buttons.register")}
+              {isLogin
+                ? t("auth_page.rightPanel.buttons.login")
+                : t("auth_page.rightPanel.buttons.register")}
             </Button>
           </form>
 

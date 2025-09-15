@@ -21,7 +21,7 @@
 //                 <Navbar />
 //                 <Weather />
 //               </>
-//             } 
+//             }
 //           />
 //           <Route path='/register' element={<><DummyHeader /><Register /></>} />
 //           <Route path='/logout' element={<><Header /><Logout /></>} />
@@ -33,14 +33,13 @@
 
 // export default App
 
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Suspense } from "react";
 
 // import Login from './pages/Login';
 // import Register from './pages/Register';
 // import Logout from './pages/Logout';
-import Home from './pages/Home';
+import Home from "./pages/Home";
 // import Header from "./components/Header";
 // import DummyHeader from "./components/DummyHeader";
 import Weather from "./pages/Weather";
@@ -48,6 +47,7 @@ import Navbar from "./components/Navbar";
 import SoilAdvisoryPage from "./pages/SoilAdvisoryPage";
 import DiseaseDetectionPage from "./pages/DiseaseDetectionPage";
 import AuthPage from "./pages/AuthPage";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -79,41 +79,57 @@ function App() {
       </BrowserRouter> */}
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={
-            <>
-              <div className="min-h-screen bg-[url('/images/bg-homepage.jpg')] bg-cover bg-center bg-no-repeat" >
-                <div className="min-h-screen bg-white/30 backdrop-blur-sm">
-                  <Navbar />
-                  <Home />
-                </div>
-              </div>
-            </>
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <>
+                  <div className="min-h-screen bg-[url('/images/bg-homepage.jpg')] bg-cover bg-center bg-no-repeat">
+                    <div className="min-h-screen bg-white/30 backdrop-blur-sm">
+                      <Navbar />
+                      <Home />
+                    </div>
+                  </div>
+                </>
+              </ProtectedRoute>
             }
           />
-          <Route path="/weather" element={
-              <>
-                <Navbar />
-                <Weather />
-              </>
-            } 
+          <Route
+            path="/weather"
+            element={
+              <ProtectedRoute>
+                <>
+                  <Navbar />
+                  <Weather />
+                </>
+              </ProtectedRoute>
+            }
           />
           <Route path="/auth" element={<AuthPage />} />
-          <Route path="/disease" element={
-            <>
-              <div className="min-h-screen bg-[url('/images/bg-diseasedetect.jpg')] bg-cover bg-center bg-no-repeat bg-fixed">
-                <div className="min-h-screen bg-white/30 backdrop-blur-sm">
-                  <Navbar />
-                  <DiseaseDetectionPage />
-                </div>
-              </div>
-            </>
+          <Route
+            path="/disease"
+            element={
+              <>
+                <ProtectedRoute>
+                  <div className="min-h-screen bg-[url('/images/bg-diseasedetect.jpg')] bg-cover bg-center bg-no-repeat bg-fixed">
+                    <div className="min-h-screen bg-white/30 backdrop-blur-sm">
+                      <Navbar />
+                      <DiseaseDetectionPage />
+                    </div>
+                  </div>
+                </ProtectedRoute>
+              </>
             }
           />
-          <Route path="/soil" element={
-            <>
-              <Navbar />
-              <SoilAdvisoryPage />
-            </>
+          <Route
+            path="/soil"
+            element={
+              <ProtectedRoute>
+                <>
+                  <Navbar />
+                  <SoilAdvisoryPage />
+                </>
+              </ProtectedRoute>
             }
           />
         </Routes>
