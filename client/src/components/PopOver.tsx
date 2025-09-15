@@ -111,7 +111,7 @@ const PopOver: React.FC<PopoverProps> = (props) => {
                 {t("popover.title")}
             </h2>
 
-            <div className="relative w-full min-h-[65vh] flex items-center justify-center p-4">
+            <div className="relative w-full min-h-[35vh] flex items-center justify-center p-4">
                 <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-8 place-items-center">
 
                 {helperVar.map((adv: Advisory, index: number) => {
@@ -140,8 +140,8 @@ const PopOver: React.FC<PopoverProps> = (props) => {
                                 shadow-md hover:scale-105 text-center w-36 h-36 sm:w-40 sm:h-40 md:w-44 md:h-44
                                 ${
                                     selectedIndex === index
-                                    ? "bg-gradient-to-br from-amber-300 via-orange-400 to-yellow-500 text-white border-yellow-600 ring-2 ring-yellow-400 shadow-2xl"
-                                    : "bg-gradient-to-br from-green-50 via-lime-100 to-emerald-100 text-gray-800 border-gray-300 hover:shadow-lg"
+                                    ? "bg-gradient-to-br from-sky-300 via-blue-400 to-blue-600 text-white border-blue-600 ring-2 ring-blue-400 shadow-2xl"
+                                    : "bg-gradient-to-br from-green-50 via-sky-100 to-blue-100 text-gray-800 border-gray-300 hover:shadow-lg"
                                 }`}
                             >
                             <p
@@ -172,7 +172,7 @@ const PopOver: React.FC<PopoverProps> = (props) => {
                         <PopoverContent
                   side="bottom"
                   align="center"
-                  className="w-80 p-6 bg-gradient-to-br from-white via-yellow-50 to-orange-50 rounded-3xl shadow-xl border border-gray-200"
+                  className="w-80 p-6 bg-gradient-to-br from-white via-sky-50 to-blue-50 rounded-3xl shadow-xl border border-gray-200"
                 >
                   <div className="flex flex-col gap-4">
                     <p className="text-gray-800 text-lg leading-relaxed font-medium">
@@ -180,10 +180,10 @@ const PopOver: React.FC<PopoverProps> = (props) => {
                     </p>
                     <button
                       onClick={() => speakText(adv.advice, "hi-IN")}
-                      className="flex items-center justify-center gap-2 px-4 py-2 bg-gradient-to-r from-yellow-100 to-orange-200 text-gray-800 font-medium rounded-2xl shadow-md hover:from-yellow-200 hover:to-orange-300 transition"
+                      className="flex items-center justify-center gap-2 px-4 py-2 bg-gradient-to-r from-sky-100 to-blue-200 text-gray-800 font-medium rounded-2xl shadow-md hover:from-sky-200 hover:to-blue-300 transition"
                     >
                       <Volume2 className="w-5 h-5" />
-                      Listen
+                      {t("carousel.listen")}
                     </button>
                   </div>
                 </PopoverContent>
