@@ -85,7 +85,7 @@
     "allow_gps": "GPS অনুমতি দিয়ক",
     "manual_button": "হাতেৰে অৱস্থান লিখক",
     "shortcut_labels": {
-      "soil": "মাটি পৰামৰ্শ",
+      "crop": "মাটি পৰামৰ্শ",
       "weather": "বতৰ",
       "disease": "ৰোগ চিনাক্তকৰণ"
     }

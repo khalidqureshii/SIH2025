@@ -85,7 +85,7 @@
     "allow_gps": "GPS सुरू करा",
     "manual_button": "स्थान हाताने प्रविष्ट करा",
     "shortcut_labels": {
-      "soil": "माती सल्ला",
+      "crop": "माती सल्ला",
       "weather": "हवामान",
       "disease": "रोग ओळख"
     }

@@ -85,7 +85,7 @@
     "allow_gps": "GPS अनुमति दें",
     "manual_button": "स्थान मैन्युअली दर्ज करें",
     "shortcut_labels": {
-      "soil": "मृदा सलाह",
+      "crop": "मृदा सलाह",
       "weather": "मौसम",
       "disease": "रोग पहचान"
     }

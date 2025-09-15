@@ -85,7 +85,7 @@
     "allow_gps": "GPS મંજૂરી આપો",
     "manual_button": "સ્થાન હાથથી દાખલ કરો",
     "shortcut_labels": {
-      "soil": "માટી સલાહ",
+      "crop": "માટી સલાહ",
       "weather": "હવામાન",
       "disease": "રોગ શોધ"
     }

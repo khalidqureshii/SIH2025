@@ -85,7 +85,7 @@
 	  "allow_gps": "GPS परवानगी दिय",
 	  "manual_button": "हातान जागो दाख",
 	  "shortcut_labels": {
-	    "soil": "माती सल्लो",
+	    "crop": "माती सल्लो",
 	    "weather": "हावामान",
 	    "disease": "रोग ओळख"
 	  }

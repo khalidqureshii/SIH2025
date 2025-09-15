@@ -85,7 +85,7 @@
 	  "allow_gps": "Allow GPS",
 	  "manual_button": "Enter Location Manually",
 	  "shortcut_labels": {
-	    "soil": "Soil Advisory",
+	    "crop": "Soil Advisory",
 	    "weather": "Weather",
 	    "disease": "Disease Detection"
 	  }

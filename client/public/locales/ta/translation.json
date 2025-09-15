@@ -85,7 +85,7 @@
 	  "allow_gps": "GPS அனுமதி",
 	  "manual_button": "இருப்பிடத்தை கையேடு முறையில் உள்ளிடுக",
 	  "shortcut_labels": {
-	    "soil": "மண் ஆலோசனை",
+	    "crop": "மண் ஆலோசனை",
 	    "weather": "வானிலை",
 	    "disease": "நோய் கண்டறிதல்"
 	  }

@@ -85,7 +85,7 @@
 	  "allow_gps": "GPS അനുവദിക്കുക",
 	  "manual_button": "സ്ഥലം കൈമാറി നൽകുക",
 	  "shortcut_labels": {
-	    "soil": "മണ്ണ് നിർദ്ദേശം",
+	    "crop": "മണ്ണ് നിർദ്ദേശം",
 	    "weather": "കാലാവസ്ഥ",
 	    "disease": "രോഗ നിർണയം"
 	  }

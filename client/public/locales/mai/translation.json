@@ -85,7 +85,7 @@
 	  "allow_gps": "GPS अनुमति दिअ",
 	  "manual_button": "स्थान हाथे दर्ज करु",
 	  "shortcut_labels": {
-	    "soil": "माटिक सलाह",
+	    "crop": "माटिक सलाह",
 	    "weather": "मौसम",
 	    "disease": "रोग पहचान"
 	  }

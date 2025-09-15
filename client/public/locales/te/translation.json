@@ -85,7 +85,7 @@
 	  "allow_gps": "GPS అనుమతించు",
 	  "manual_button": "స్థానాన్ని చేతితో నమోదు చేయండి",
 	  "shortcut_labels": {
-	    "soil": "మట్టి సలహా",
+	    "crop": "మట్టి సలహా",
 	    "weather": "వాతావరణం",
 	    "disease": "వ్యాధి గుర్తింపు"
 	  }

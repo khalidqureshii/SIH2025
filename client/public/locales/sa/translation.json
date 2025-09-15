@@ -85,7 +85,7 @@
 	  "allow_gps": "GPS अनुमन्यताम्",
 	  "manual_button": "स्थानं स्वहस्तेन प्रविशतु",
 	  "shortcut_labels": {
-	    "soil": "मृदा-उपदेशः",
+	    "crop": "मृदा-उपदेशः",
 	    "weather": "वातावरणम्",
 	    "disease": "रोग-परिचयः"
 	  }

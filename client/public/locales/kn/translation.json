@@ -85,7 +85,7 @@
     "allow_gps": "GPS ಅನ್ನು ಅನುಮತಿಸಿ",
     "manual_button": "ಸ್ಥಳವನ್ನು ಕೈಯಿಂದ ನಮೂದಿಸಿ",
     "shortcut_labels": {
-      "soil": "ಮಣ್ಣಿನ ಸಲಹೆ",
+      "crop": "ಮಣ್ಣಿನ ಸಲಹೆ",
       "weather": "ಹವಾಮಾನ",
       "disease": "ರೋಗ ಪತ್ತೆ"
     }

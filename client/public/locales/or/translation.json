@@ -85,7 +85,7 @@
     "allow_gps": "GPS ଅନୁମତି ଦିଅନ୍ତୁ",
     "manual_button": "ହାତରେ ଅବସ୍ଥାନ ପ୍ରବେଶ କରନ୍ତୁ",
     "shortcut_labels": {
-      "soil": "ମାଟି ପରାମର୍ଶ",
+      "crop": "ମାଟି ପରାମର୍ଶ",
       "weather": "ଆବହା",
       "disease": "ରୋଗ ଚିହ୍ନଟ"
     }
