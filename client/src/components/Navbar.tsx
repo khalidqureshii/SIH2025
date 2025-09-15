@@ -91,7 +91,7 @@ function Navbar() {
     // >
     <header
       className="flex justify-between items-center 
-                 px-6 py-4 bg-white/30 backdrop-blur-md border-b border-white/40 
+                 px-6 py-4 bg-white border-b border-white/40 
                  shadow-md sticky top-0 z-50"
     >
       {/* Logo + Title */}

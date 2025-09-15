@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Loader2, Upload, Volume2, Leaf } from "lucide-react";
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import {LINK2} from "@/store/Link";
+import { LINK2 } from "@/store/Link";
 
 const useVoices = () => {
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
@@ -62,13 +62,10 @@ const DiseaseDetectionPage = () => {
       console.log("Submitting image for with language:", lang);
 
       //POST request code :
-      const res = await fetch(
-        `${LINK2}/analyze-crops`,
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const res = await fetch(`${LINK2}/analyze-crops`, {
+        method: "POST",
+        body: formData,
+      });
 
       if (!res.ok) {
         throw new Error("Failed to upload image!");
