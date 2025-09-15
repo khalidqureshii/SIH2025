@@ -5,13 +5,11 @@ import { useTranslation } from "react-i18next";
 const languages = [
   { code: "as", displayLabel: "Assamese (অসমীয়া)", englishLabel: "Assamese" },
   { code: "bn", displayLabel: "Bengali (বাংলা)", englishLabel: "Bengali" },
-  { code: "brx", displayLabel: "Bodo (बड़ो)", englishLabel: "Bodo" },
   { code: "doi", displayLabel: "Dogri (डोगरी)", englishLabel: "Dogri" },
   { code: "en", displayLabel: "English", englishLabel: "English" },
   { code: "gu", displayLabel: "Gujarati (ગુજરાતી)", englishLabel: "Gujarati" },
   { code: "hi", displayLabel: "Hindi (हिन्दी)", englishLabel: "Hindi" },
   { code: "kn", displayLabel: "Kannada (ಕನ್ನಡ)", englishLabel: "Kannada" },
-  { code: "ks", displayLabel: "Kashmiri (كشميري)", englishLabel: "Kashmiri" },
   { code: "kok", displayLabel: "Konkani (कोंकणी)", englishLabel: "Konkani" },
   { code: "mai", displayLabel: "Maithili (मैथिली)", englishLabel: "Maithili" },
   { code: "ml", displayLabel: "Malayalam (മലയാളം)", englishLabel: "Malayalam" },
@@ -19,15 +17,9 @@ const languages = [
   { code: "ne", displayLabel: "Nepali (नेपाली)", englishLabel: "Nepali" },
   { code: "or", displayLabel: "Odia (ଓଡ଼ିଆ)", englishLabel: "Odia" },
   { code: "pa", displayLabel: "Punjabi (ਪੰਜਾਬੀ)", englishLabel: "Punjabi" },
-  {
-    code: "sa",
-    displayLabel: "Sanskrit (संस्कृतम्)",
-    englishLabel: "Sanskrit",
-  },
-  { code: "sd", displayLabel: "Sindhi (سنڌي)", englishLabel: "Sindhi" },
+  { code: "sa", displayLabel: "Sanskrit (संस्कृतम्)", englishLabel: "Sanskrit" },
   { code: "ta", displayLabel: "Tamil (தமிழ்)", englishLabel: "Tamil" },
   { code: "te", displayLabel: "Telugu (తెలుగు)", englishLabel: "Telugu" },
-  { code: "ur", displayLabel: "Urdu (اردو)", englishLabel: "Urdu" },
 ];
 
 // function LanguageSelector() {
