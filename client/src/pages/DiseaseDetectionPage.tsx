@@ -36,7 +36,8 @@ type DetectionResult = {
 
 const DiseaseDetectionPage = () => {
   const navigate = useNavigate();
-  const {t} = useTranslation();
+  const {t, i18n} = useTranslation();
+  const lang = i18n.language;
   const [image, setImage] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -56,8 +57,6 @@ const DiseaseDetectionPage = () => {
     setLoading(true);
 
     try {
-      const {i18n} = useTranslation();
-      const lang = i18n.language;
       const formData = new FormData();
       formData.append("file", image);
       formData.append("language", lang);
