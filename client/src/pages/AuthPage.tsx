@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import type { AppDispatch } from "@/store/Store";
 import { storeToken, authenticateUser } from "@/store/features/authSlice";
-import LINK from "@/store/Link";
+import {LINK} from "@/store/Link";
 import { useNavigate } from "react-router-dom";
 
 const AuthPage = () => {

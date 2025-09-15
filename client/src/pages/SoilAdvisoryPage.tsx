@@ -9,6 +9,7 @@ import { FarmSizeInput } from "@/components/soil/FarmSizeInput";
 // import { SeasonDetector } from "@/components/soil/SeasonDetector";
 import { AdvisoryResult } from "@/components/soil/AdvisoryResult";
 import axios from "axios";
+import {LINK2} from "@/store/Link";
 
 export default function SoilAdvisoryPage() {
   const { t } = useTranslation();
@@ -25,7 +26,7 @@ export default function SoilAdvisoryPage() {
     setLoading(true);
     // Replace this with actual backend API call later
     try {
-      const response = await axios.post("http://127.0.0.1:8000/analyze", {
+      const response = await axios.post(`${LINK2}/analyze`, {
         latitude: latitude,
         longitude: longitude,
         // manual_inputs: {

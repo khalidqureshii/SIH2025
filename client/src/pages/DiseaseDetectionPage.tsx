@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Loader2, Upload, Volume2, Leaf } from "lucide-react";
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import {LINK2} from "@/store/Link";
 
 const useVoices = () => {
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
@@ -62,7 +63,7 @@ const DiseaseDetectionPage = () => {
 
       //POST request code :
       const res = await fetch(
-        "https://crop-disease-prediction-v863.onrender.com/analyze-crops",
+        `${LINK2}/analyze-crops`,
         {
           method: "POST",
           body: formData,

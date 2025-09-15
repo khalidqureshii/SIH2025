@@ -1,13 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Suspense } from "react";
-import Home from './pages/Home';
-
-// import Login from './pages/Login';
-// import Register from './pages/Register';
-// import Logout from './pages/Logout';
 import Home from "./pages/Home";
-// import Header from "./components/Header";
-// import DummyHeader from "./components/DummyHeader";
 import Weather from "./pages/Weather";
 import Navbar from "./components/Navbar";
 import SoilAdvisoryPage from "./pages/SoilAdvisoryPage";
@@ -22,17 +15,6 @@ function App() {
       {/* <DirectionHandler /> */}
       <BrowserRouter>
         <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <Navbar />
-                <Weather />
-              </>
-            }
-          />
-          <Route path='/register' element={<><DummyHeader /><Register /></>} />
-          <Route path='/logout' element={<><Header /><Logout /></>} />
           <Route path="/soil" element={
             <>
               <Navbar />
@@ -41,7 +23,7 @@ function App() {
             }
           />
         </Routes>
-      </BrowserRouter> */}
+      </BrowserRouter>
       <BrowserRouter>
         <Routes>
           <Route

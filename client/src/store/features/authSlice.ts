@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { UserType } from "../Types";
 import TOKENNAME from "../Token";
-import LINK from "../Link";
+import {LINK} from "../Link";
 
 export interface AuthState {
   isLoggedIn: boolean;
