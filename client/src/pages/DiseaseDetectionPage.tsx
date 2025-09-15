@@ -58,6 +58,7 @@ const DiseaseDetectionPage = () => {
       const formData = new FormData();
       formData.append("file", image );
       formData.append("language", lang);
+      console.log("Submitting image for with language:", lang);
 
       //POST request code :
       const res = await fetch(
