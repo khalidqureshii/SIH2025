@@ -126,8 +126,12 @@ function App() {
             element={
               <ProtectedRoute>
                 <>
-                  <Navbar />
-                  <SoilAdvisoryPage />
+                  <div className="min-h-screen bg-[url('/images/soil-advisory.jpg')] bg-cover bg-center bg-no-repeat bg-fixed">
+                    <div className="min-h-screen bg-white/30 backdrop-blur-sm">
+                      <Navbar />
+                      <SoilAdvisoryPage />
+                    </div>
+                  </div>
                 </>
               </ProtectedRoute>
             }

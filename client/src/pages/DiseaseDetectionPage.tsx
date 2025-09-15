@@ -4,7 +4,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Loader2, Upload, Volume2, Leaf } from "lucide-react";
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 
 const useVoices = () => {
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
@@ -35,8 +34,7 @@ type DetectionResult = {
 };
 
 const DiseaseDetectionPage = () => {
-  const navigate = useNavigate();
-  const {t, i18n} = useTranslation();
+  const { t, i18n } = useTranslation();
   const lang = i18n.language;
   const [image, setImage] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
@@ -93,16 +91,16 @@ const DiseaseDetectionPage = () => {
     }
   };
 
-//   const playVoice = () => {
-//     if (result?.voiceUrl) {
-//       const audio = new Audio(result.voiceUrl);
-//       audio.play();
-//     }
-//   };
+  //   const playVoice = () => {
+  //     if (result?.voiceUrl) {
+  //       const audio = new Audio(result.voiceUrl);
+  //       audio.play();
+  //     }
+  //   };
 
-   const voices = useVoices(); // ✅ safe now
+  const voices = useVoices(); // ✅ safe now
 
-    const speakText = (text: string, lang = "en-IN") => {
+  const speakText = (text: string, lang = "en-IN") => {
     if ("speechSynthesis" in window) {
       const utterance = new SpeechSynthesisUtterance(text);
       const selectedVoice = voices.find((v) => v.lang === lang);
@@ -121,20 +119,23 @@ const DiseaseDetectionPage = () => {
   return (
     <div className="min-h-screen flex flex-col items-center p-6">
       {/* Header */}
-      <h1 className="text-3xl font-bold text-green-800 mb-4 flex items-center gap-2" onClick={()=>navigate("/")}>
-        <Leaf className="w-8 h-8 text-green-600" /> {t("disease_page.header.title")}
-      </h1>
-      <p className="text-black mb-6 text-center max-w-md">
-        {t("disease_page.header.description")}
-      </p>
 
       {/* Card */}
       <Card
         className={`w-full ${
           result ? "max-w-5xl" : "max-w-md"
         }  shadow-lg rounded-2xl border border-white/20 
-     bg-white/30 backdrop-blur-md transition-all duration-500`}
+        bg-white/30 backdrop-blur-md transition-all duration-500`}
       >
+        <div className="flex flex-col items-center pt-4">
+          <h1 className="text-3xl font-bold mb-4 flex items-center gap-2">
+            <Leaf className="w-8 h-8 text-green-600" />{" "}
+            {t("disease_page.header.title")}
+          </h1>
+          <p className=" mb-6 text-center max-w-md">
+            {t("disease_page.header.description")}
+          </p>
+        </div>
         <CardContent className="flex flex-col items-center gap-6 p-6">
           {/* Upload & Preview section (as you have) */}
           {/* Upload Section */}{" "}
@@ -220,8 +221,8 @@ const DiseaseDetectionPage = () => {
                   </div>
                 )}
               </div>
-            
-            <Button
+
+              <Button
                 onClick={() => {
                   speakText(result.causes, "hi-IN");
                   speakText(result.recommendations, "hi-IN");
