@@ -1,82 +1,17 @@
-// import { BrowserRouter, Routes, Route } from "react-router-dom"
-// import Login from './pages/Login'
-// import Register from './pages/Register'
-// import Logout from './pages/Logout'
-// import Home from './pages/Home'
-// import Header from "./components/Header"
-// import DummyHeader from "./components/DummyHeader"
-// import Weather from "./pages/Weather"
-// import Navbar from "./components/Navbar"
-
-// function App() {
-//   return (
-//     <>
-//       <BrowserRouter>
-//         <Routes>
-//           <Route path='/' element={<><Header /><Login /></>} />
-//           <Route path='/home' element={<><Header /><Home /></>} />
-//           <Route path='/login' element={<><DummyHeader /><Login /></>} />
-//            <Route path="/weather" element={
-//               <>
-//                 <Navbar />
-//                 <Weather />
-//               </>
-//             } 
-//           />
-//           <Route path='/register' element={<><DummyHeader /><Register /></>} />
-//           <Route path='/logout' element={<><Header /><Logout /></>} />
-//         </Routes>
-//       </BrowserRouter>
-//     </>
-//   )
-// }
-
-// export default App
-
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Suspense } from "react";
-
-// import Login from './pages/Login';
-// import Register from './pages/Register';
-// import Logout from './pages/Logout';
 import Home from './pages/Home';
-// import Header from "./components/Header";
-// import DummyHeader from "./components/DummyHeader";
 import Weather from "./pages/Weather";
 import Navbar from "./components/Navbar";
 import SoilAdvisoryPage from "./pages/SoilAdvisoryPage";
 import DiseaseDetectionPage from "./pages/DiseaseDetectionPage";
 import AuthPage from "./pages/AuthPage";
+// import DirectionHandler from "./components/DirectionHandler";
 
 function App() {
   return (
     <Suspense fallback={<div>Loading translations...</div>}>
-      {/* <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<><Header /><Login /></>} />
-          <Route path='/home' element={<><Header /><Home /></>} />
-          <Route path='/login' element={<><DummyHeader /><Login /></>} />
-          <Route
-            path="/weather"
-            element={
-              <>
-                <Navbar />
-                <Weather />
-              </>
-            }
-          />
-          <Route path='/register' element={<><DummyHeader /><Register /></>} />
-          <Route path='/logout' element={<><Header /><Logout /></>} />
-          <Route path="/soil" element={
-            <>
-              <Navbar />
-              <SoilAdvisoryPage />
-            </>
-            }
-          />
-        </Routes>
-      </BrowserRouter> */}
+      {/* <DirectionHandler /> */}
       <BrowserRouter>
         <Routes>
           <Route path="/" element={

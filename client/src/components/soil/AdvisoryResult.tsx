@@ -407,7 +407,7 @@ export function AdvisoryResult({ result }: AdvisoryResultProps) {
 
       <div className="w-full max-w-3xl bg-white rounded-2xl shadow-lg border border-green-200 overflow-hidden">
         <div className="bg-gradient-to-r from-green-500 to-emerald-600 px-6 py-3">
-          <h3 className="text-lg font-semibold text-white">{t("advisory_result.ai_insights.diagonstics")}</h3>
+          <h3 className="text-lg font-semibold text-white">{t("advisory_result.ai_insights.diagnostics")}</h3>
         </div>
 
         <div className="p-6 space-y-3 text-gray-700">
