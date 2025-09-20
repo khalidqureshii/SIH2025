@@ -1,6 +1,6 @@
 // import { CloudSun, Leaf, ShieldAlert } from "lucide-react";
 // import { useNavigate } from "react-router-dom";
-// import { useTranslation } from "react-i18next";  
+// import { useTranslation } from "react-i18next";
 
 // const Home = () => {
 //   const navigate = useNavigate();
@@ -198,11 +198,33 @@ const Home = () => {
               />
             </div>
             <div className="flex flex-col flex-1 px-4 py-4">
-              <h3 className="text-lg font-bold text-orange-600 mb-2">
+              <h3 className="text-lg font-bold text-purple-900 mb-2">
                 {t("home.shortcut_labels.market")}
               </h3>
               <p className="text-sm text-gray-600">
                 {t("home.descriptions.market")}
+              </p>
+            </div>
+          </div>
+          <div
+            onClick={() => navigate("/feedback")}
+            className="rounded-xl shadow-lg bg-white/70 backdrop-blur-md 
+               flex flex-col overflow-hidden hover:shadow-2xl hover:scale-[1.02] 
+               transition cursor-pointer"
+          >
+            <div>
+              <img
+                src="/images/feedback.jpg"
+                alt="Market Price"
+                className="w-full h-36 object-cover"
+              />
+            </div>
+            <div className="flex flex-col flex-1 px-4 py-4">
+              <h3 className="text-lg font-bold text-red-900 mb-2">
+                {t("home.shortcut_labels.feedback")}
+              </h3>
+              <p className="text-sm text-gray-600">
+                {t("home.descriptions.feedback")}
               </p>
             </div>
           </div>
