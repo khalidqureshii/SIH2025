@@ -5,6 +5,7 @@ import Weather from "./pages/Weather";
 import Navbar from "./components/Navbar";
 import SoilAdvisoryPage from "./pages/SoilAdvisoryPage";
 import DiseaseDetectionPage from "./pages/DiseaseDetectionPage";
+import MarketPage from "./pages/MarketPage";
 import AuthPage from "./pages/AuthPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 // import DirectionHandler from "./components/DirectionHandler";
@@ -72,6 +73,21 @@ function App() {
                     <div className="min-h-screen bg-white/30 backdrop-blur-sm">
                       <Navbar />
                       <SoilAdvisoryPage />
+                    </div>
+                  </div>
+                </>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/market"
+            element={
+              <ProtectedRoute>
+                <>
+                  <div className="min-h-screen bg-[url('/images/soil-advisory.jpg')] bg-cover bg-center bg-no-repeat bg-fixed">
+                    <div className="min-h-screen bg-white/30 backdrop-blur-sm">
+                      <Navbar />
+                      <MarketPage />
                     </div>
                   </div>
                 </>
