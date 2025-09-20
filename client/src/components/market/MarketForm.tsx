@@ -81,7 +81,7 @@ const MarketForm: React.FC<FormProps> = ({ onSubmit }) => {
           />
           <Button
             type="submit"
-            className="w-full mx-auto block  bg-[#4caf50] hover:bg-[#43a047] text-white rounded-lg py-2 shadow transition"
+            className="w-full mx-auto block   bg-green-600 hover:bg-green-700 text-white rounded-lg py-2 shadow transition"
           >
             Search Markets
           </Button>
