@@ -2,12 +2,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Suspense } from "react";
 import Home from "./pages/Home";
 import Weather from "./pages/Weather";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/common/Navbar";
 import SoilAdvisoryPage from "./pages/SoilAdvisoryPage";
 import DiseaseDetectionPage from "./pages/DiseaseDetectionPage";
 import MarketPage from "./pages/MarketPage";
 import AuthPage from "./pages/AuthPage";
-import ProtectedRoute from "./components/ProtectedRoute";
+import ProtectedRoute from "./components/common/ProtectedRoute";
 // import DirectionHandler from "./components/DirectionHandler";
 
 function App() {

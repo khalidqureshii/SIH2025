@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import i18n from "i18next";
-import { rtlLanguages } from "../rtlLanguages";
+import { rtlLanguages } from "../../rtlLanguages";
 
 const DirectionHandler = () => {
   useEffect(() => {

@@ -174,7 +174,7 @@
 
 
 import React from "react";
-import Loader from "./Loader";
+import Loader from "../common/Loader";
 import { parseISO } from "date-fns";
 import { useTranslation } from "react-i18next";
 

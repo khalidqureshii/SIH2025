@@ -1,5 +1,5 @@
 import React from "react";
-import Loader from "./Loader";
+import Loader from "../common/Loader";
 import { useTranslation } from "react-i18next";
 
 interface CardInterface {

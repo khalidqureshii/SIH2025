@@ -6,7 +6,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import Loader from "./Loader";
+import Loader from "../common/Loader";
 import { useTranslation } from "react-i18next";
 import { Volume2, Thermometer, ArrowDown, Wind, Droplet } from "lucide-react";
 

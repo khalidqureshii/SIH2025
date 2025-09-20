@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react"
 import { Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover"
-import Loader from "./Loader";
+import Loader from "../common/Loader";
 import { useTranslation } from "react-i18next";
 import { Volume2 } from "lucide-react";
 

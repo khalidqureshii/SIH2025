@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import InputField from "../components/InputField";
-import Button from "../components/Button";
+import InputField from "../components/weather/InputField";
+import Button from "../components/weather/Button";
 // import WeatherDashboard1 from "../components/WeatherDashboard";
-import WeatherDashboard from "../components/WeatherDashboard";
-import Loader from "@/components/Loader";
+import WeatherDashboard from "../components/weather/WeatherDashboard";
+import Loader from "@/components/common/Loader";
 import { useTranslation } from "react-i18next";
 
 const Weather: React.FC = () => {

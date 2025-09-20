@@ -159,6 +159,8 @@ export const getWeatherAdvisory = async (req, res) => {
   try {
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
     const WEATHER_API_KEY = process.env.WEATHER_API_KEY;
+    console.log("Hi Weather");
+    console.log(WEATHER_API_KEY);
 
     const { q, lat, lon, lang } = req.query;
     const query = q ? q : `${lat},${lon}`;

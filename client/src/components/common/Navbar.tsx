@@ -65,7 +65,7 @@
 import { useNavigate } from "react-router-dom";
 import { LogOut, MenuIcon, X } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import LanguageSelector from "@/components/LanguageSelector";
+import LanguageSelector from "@/components/common/LanguageSelector";
 import { logoutUser } from "@/store/features/authSlice";
 import { useDispatch } from "react-redux";
 import type { AppDispatch } from "@/store/Store";

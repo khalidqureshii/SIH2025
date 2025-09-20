@@ -10,7 +10,7 @@ import {
   Bar,
   Line,
 } from "recharts";
-import Loader from "./Loader";
+import Loader from "../common/Loader";
 import { useTranslation } from "react-i18next";
 
 interface GraphsProps {

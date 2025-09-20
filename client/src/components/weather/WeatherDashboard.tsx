@@ -7,7 +7,7 @@ import Card from "./Card";
 import Timeline from "./Timeline";
 import Graphs from "./Graphs";
 import PopOver from "./PopOver";
-import { LINK } from "@/store/Link";
+import { LINK, LOCAL_LINK } from "@/store/Link";
 
 interface WeatherApiResponse {
   location: {
@@ -57,8 +57,11 @@ const WeatherDashboard: React.FC<WeatherDashboardProp> = ({
       try {
         // const response = await fetch(`http://localhost:3000/api/weather/advisory?q=${city}`);
         const response = await fetch(
-          `${LINK}/api/weather/advisory?q=${city}&lang=${i18n.language}`
+          `${LOCAL_LINK}/api/weather/advisory?q=${city}&lang=${i18n.language}`
         );
+        // const response = await fetch(
+        //   `${LINK}/api/weather/advisory?q=${city}&lang=${i18n.language}`
+        // );
         if (!response.ok) throw new Error("Failed to fetch weather data");
         const result = await response.json();
         // console.log("API Response:", result);
