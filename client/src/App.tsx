@@ -85,7 +85,7 @@ function App() {
             element={
               <ProtectedRoute>
                 <>
-                  <div className="min-h-screen bg-[url('/images/market.jpg')] bg-cover bg-center bg-no-repeat bg-fixed">
+                  <div className="min-h-screen bg-[url('/images/market1.jpg')] bg-cover bg-center bg-no-repeat bg-fixed">
                     <div className="min-h-screen bg-white/30 backdrop-blur-sm">
                       <Navbar />
                       <MarketPage />

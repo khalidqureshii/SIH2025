@@ -192,7 +192,7 @@ const Home = () => {
           >
             <div>
               <img
-                src="/images/market.jpg"
+                src="/images/market1.jpg"
                 alt="Market Price"
                 className="w-full h-36 object-cover"
               />
