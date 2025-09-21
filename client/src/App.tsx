@@ -41,7 +41,7 @@ function App() {
             element={
               <ProtectedRoute>
                 <>
-                  <div className="min-h-screen bg-[url('/images/thunder.jpg')] bg-cover bg-center bg-no-repeat">
+                  <div className="min-h-screen bg-[url('/images/weather.jpg')] bg-cover bg-center bg-no-repeat">
                     <div className="min-h-screen bg-white/30 backdrop-blur-sm">
                       <Weather />
                     </div>
