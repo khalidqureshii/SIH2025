@@ -6,6 +6,7 @@ import Navbar from "./components/common/Navbar";
 import SoilAdvisoryPage from "./pages/SoilAdvisoryPage";
 import DiseaseDetectionPage from "./pages/DiseaseDetectionPage";
 import MarketPage from "./pages/MarketPage";
+import CropTimeline from "./pages/CropTimeline";
 import AuthPage from "./pages/AuthPage";
 import ProtectedRoute from "./components/common/ProtectedRoute";
 import Feedback from "./pages/Feedback";
@@ -94,6 +95,22 @@ function App() {
               </ProtectedRoute>
             }
           />
+
+          <Route
+            path="/timeline"
+            element={
+              <ProtectedRoute>
+                <>
+                  <div className="min-h-screen bg-[url('/images/timeline_bg.jpg')] bg-cover bg-center bg-no-repeat bg-fixed">
+                    <div className="min-h-screen bg-white/30 backdrop-blur-sm">
+                      <CropTimeline />
+                    </div>
+                  </div>
+                </>
+              </ProtectedRoute>
+            }
+          />
+
           <Route
             path="/feedback"
             element={

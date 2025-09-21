@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import InputField from "../components/weather/InputField";
 import Button from "../components/weather/Button";
-// import WeatherDashboard1 from "../components/WeatherDashboard";
 import WeatherDashboard from "../components/weather/WeatherDashboard";
 import Loader from "@/components/common/Loader";
 import { useTranslation } from "react-i18next";
@@ -14,7 +13,7 @@ const Weather: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    let isMounted = true; // prevent state updates if component unmounts
+    let isMounted = true;
 
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(
@@ -56,7 +55,7 @@ const Weather: React.FC = () => {
     }
 
     return () => {
-      isMounted = false; // cleanup flag
+      isMounted = false;
     };
   }, []);
 

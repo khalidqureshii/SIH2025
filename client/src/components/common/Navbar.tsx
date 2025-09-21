@@ -92,7 +92,7 @@ function Navbar() {
     <header
       className="flex justify-between items-center 
                  px-6 py-4 bg-white border-b border-white/40 
-                 shadow-md sticky top-0 z-50"
+                 shadow-md sticky top-0 z-50 h-16"
     >
       {/* Logo + Title */}
       <button

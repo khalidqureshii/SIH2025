@@ -156,15 +156,19 @@
       "crop": "Crop Advisory",
       "weather": "Weather",
       "disease": "Disease Detection",
+      "feedback": "Feedback",
       "market": "Market Price",
-      "plant-identifier": "Plant Identifier"
+      "plant-identifier": "Plant Identifier",
+      "timeline": "Crop Growth Timeline"
     },
     "descriptions": {
       "crop": "Personalized recommendations on crop selection and best farming practices to maximize yield and sustainability",
-      "weather": "Accurate forecasts and timely alerts to help you plan irrigation, harvesting, and protect crops from extreme conditions.",
+      "weather": "Accurate forecasts and timely alerts to help you plan irrigation, harvesting, and protect crops from extreme conditions",
       "disease": "Early identification of crop diseases with AI-powered analysis, enabling quick action and healthier harvests",
       "market": "Aggregated daily price data for a wide range of commodities, sourced directly from markets across every state in India.",
-      "plant-identifier": "Identify plants instantly by uploading a photo and get quick insights about them."
+      "plant-identifier": "Identify plants instantly by uploading a photo and get quick insights about them.",
+      "feedback": "Share your thoughts and help us improve! Submit feedback, report issues, or suggest new features — we value every opinion",
+      "timeline": "Shows each stage of development with its duration, resource needs, and ideal conditions for healthy growth"
     }
   },
 
@@ -376,6 +380,33 @@
     "alerts": {
       "noRecommendations": "No recommendations found.",
       "fetchError": "Failed to fetch recommendations. Please try again."
+    }
+  },
+
+  "timeline_page": {
+    "headings": {
+      "title": "🌿Crop Growth Timeline",
+      "subtitle": "This timeline illustrates the key stages of crop growth, highlighting optimal conditions and resources required at each phase."
+    },
+    "form": {
+      "searchLabel": "Search Crop:",
+      "searchPlaceholder": "Type to search...",
+      "areaLabel": "Farm Area:",
+      "areaPlaceholder": "Enter area",
+      "unitLabel": "Unit:",
+      "selectUnitPlaceholder": "Select unit",
+      "noCropsFound": "No crops found",
+      "unitOptions": {
+        "acre": "Acre",
+        "hectare": "Hectare"
+      }
+    },
+    "messages": {
+      "growthTimeline": "Growth Timeline for ",
+      "noCropSelected": "Please search a crop to view its growth timeline 🌱",
+      "optimalTemperature": "Optimal Temperature",
+      "resourcesNeeded": "Resources Needed:",
+      "processToFollow": "Process to Follow:"
     }
   },
 
