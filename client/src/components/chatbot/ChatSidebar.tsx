@@ -9,6 +9,7 @@ import {
 import { Loader2, Send } from "lucide-react";
 import { LINK2 } from "@/store/Link";
 import ReactMarkdownType from "react-markdown";
+import { useTranslation } from "react-i18next";
 
 const ReactMarkdown = ReactMarkdownType as unknown as React.FC<{ children: string }>;
 
@@ -18,6 +19,8 @@ interface Message {
 }
 
 const ChatSidebar = () => {
+  const {i18n} = useTranslation();
+  const lang = i18n.language || 'en';
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     { sender: "bot", text: "Hello I am Bhoomiबंधु, how can I help you?" },
@@ -37,7 +40,7 @@ const ChatSidebar = () => {
       const response = await fetch(`${LINK2}/chatbot`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: userMessage.text }),
+        body: JSON.stringify({ message: userMessage.text, language: lang}),
       });
 
       const data = await response.json();
@@ -60,27 +63,20 @@ const ChatSidebar = () => {
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
-      {/* Trigger button */}
       <SheetTrigger asChild>
         <button className="fixed bottom-6 right-6 bg-green-600 hover:bg-green-700 text-white p-4 rounded-full shadow-lg z-50">
           🌱
         </button>
       </SheetTrigger>
 
-      {/* Slide-over sidebar */}
       <SheetContent
         side="right"
         className="flex flex-col gap-0 h-full bg-white/95 backdrop-blur-md p-0 w-full max-w-[100%] sm:max-w-[80%] md:max-w-[60%] xl:max-w-[30%] "
       >
-        {/* Header */}
-        {/* <SheetHeader className="flex items-center justify-center bg-green-600 text-white px-4 py-2 h-20 ">
-          <SheetTitle className="font-semibold text-3xl">🌱 Bhoomiबंधु</SheetTitle>
-        </SheetHeader> */}
 
         <SheetHeader className="relative bg-green-600 text-white h-20 flex items-center justify-center px-4">
         <SheetTitle className="font-semibold text-3xl text-white mr-12">🌱 Bhoomiबंधु</SheetTitle>
 
-        {/* Custom close button on the right */}
         <button
           onClick={() => setOpen(false)}
           className="absolute right-4 top-8 -translate-y-1/2 text-white text-3xl hover:text-gray-200"
@@ -108,7 +104,6 @@ const ChatSidebar = () => {
             </div>
           ))}
 
-          {/* Loader */}
           {loading && (
             <div className="flex justify-start">
               <div className="flex items-center gap-2 text-green-600">
@@ -119,7 +114,6 @@ const ChatSidebar = () => {
           )}
         </div>
 
-        {/* Input */}
         <div className="flex items-center border-t border-gray-300 bg-green-200 pt-3 px-0 md:px-4 md:py-6">
           <input
             type="text"
