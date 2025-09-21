@@ -1,11 +1,14 @@
 import React, { useEffect, useState, FormEvent, ChangeEvent } from "react";
 import { useTranslation } from "react-i18next";
 import InputField from "./InputField";
-import { LINK } from "@/store/Link";
-import CarouselWeather from "./CarouselWeather";
+import Label from "./Label";
+import Button from "./Button";
+import Card from "./Card";
+import Timeline from "./Timeline";
 import Graphs from "./Graphs";
-import { Button } from "@/components/ui/button";
-import { MapPin, Send } from "lucide-react";
+import PopOver from "./PopOver";
+import { LINK } from "@/store/Link";
+// import { LOCAL_LINK } from "@/store/Link";
 
 interface WeatherApiResponse {
   location: {
@@ -36,7 +39,7 @@ interface WeatherDashboardProp {
   cityChanged: (newCity: string) => void;
 }
 
-const WeatherDashboard: React.FC<WeatherDashboardProp> = ({
+const WeatherDashboard1: React.FC<WeatherDashboardProp> = ({
   city,
   cityChanged,
 }) => {
@@ -53,11 +56,16 @@ const WeatherDashboard: React.FC<WeatherDashboardProp> = ({
       setLoading(true);
       setError(null);
       try {
+        // const response = await fetch(`http://localhost:3000/api/weather/advisory?q=${city}`);
+        // const response = await fetch(
+        //   `${LOCAL_LINK}/api/weather/advisory?q=${city}&lang=${i18n.language}`
+        // );
         const response = await fetch(
           `${LINK}/api/weather/advisory?q=${city}&lang=${i18n.language}`
         );
         if (!response.ok) throw new Error("Failed to fetch weather data");
         const result = await response.json();
+        // console.log("API Response:", result);
 
         if (result && Array.isArray(result.forecast)) {
           const transformedForecast = result.forecast.map((day: any) => {
@@ -128,61 +136,49 @@ const WeatherDashboard: React.FC<WeatherDashboardProp> = ({
 
   return (
     <div className="w-full px-2 md:px-4">
-      <form onSubmit={handleSubmit} className="flex flex-col gap-8 w-full">
-        <div className="w-full">
-          <div className="rounded-lg border border-slate-700/40 bg-gradient-to-b from-white/3 to-white/2 p-3">
-            <div className="flex flex-wrap items-center gap-2 justify-center">
-              <div className="flex-1 min-w-[120px] max-w-[300px]">
-                <InputField
-                  placeHolder={t("dashboard.placeholder")}
-                  id="city-entry"
-                  value={newCity}
-                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                    setNewCity(e.target.value)
-                  }
-                  className="w-full h-12"
-                />
-              </div>
-
-              <div className="flex-none w-[90px] sm:w-[110px]">
-                <Button
-                  type="submit"
-                  className="w-full h-10 bg-blue-700 text-white flex items-center justify-center gap-2 whitespace-nowrap hover:bg-blue-600 hover:scale-105 transition-transform duration-200"
-                >
-                  <Send className="h-5 w-5" />
-                  <span className="hidden sm:inline">{t("dashboard.submit")}</span>
-                </Button>
-              </div>
-
-              <div className="flex-none w-[90px] sm:w-[110px]">
-                <Button
-                  type="button"
-                  onClick={handleDetectLocation}
-                  className="w-full h-10 bg-blue-700 text-white flex items-center justify-center gap-2 whitespace-nowrap hover:bg-blue-600 hover:scale-105 transition-transform duration-200"
-                  aria-label={t("dashboard.detect") as string}
-                >
-                  <MapPin className="h-5 w-5" />
-                  <span className="hidden sm:inline">{t("dashboard.detect")}</span>
-                </Button>
-              </div>
-            </div>
+      <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-2 w-full">
+        <div className="flex flex-row justify-between items-center md:col-span-2 p-2 bg-transparent rounded">
+          <div className="flex items-center gap-4">
+            <Label htmlFor="city-entry" labelName={t("dashboard.city")} />
+            <InputField
+              placeHolder={t("dashboard.placeholder")}
+              id="city-entry"
+              value={newCity}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setNewCity(e.target.value)
+              }
+            />
+            <Button
+              type="button"
+              name={t("dashboard.detect")}
+              className="bg-red-700 hover:bg-red-600 whitespace-nowrap"
+              onClick={handleDetectLocation}
+            />
+          </div>
+          <div>
+            <Button
+              type="submit"
+              name={t("dashboard.submit")}
+              className="bg-emerald-600 hover:bg-green-500 whitespace-nowrap"
+            />
           </div>
         </div>
 
-        <div className="flex justify-center items-center p-5">
-          <CarouselWeather loading={loading} error={error} data={data} />
+        <div className="p-2 bg-transparent border-0 rounded shadow flex justify-center items-center">
+          <Card loading={loading} error={error} data={data} />
         </div>
-        <div className="flex justify-center items-center px-5 pb-5">
-          <Graphs
-            loading={loading}
-            error={error}
-            data={data}
-            className="w-full max-w-4xl"
-          />
+        <div className="p-2 bg-transparent rounded shadow">
+          <Graphs data={data} loading={loading} error={error} />
+        </div>
+        <div className="md:col-span-2 p-2 bg-transparent rounded flex justify-center items-center">
+          <Timeline loading={loading} error={error} forecast={data?.forecast || []} />
+        </div>
+        <div className="md:col-span-2 p-2 mt-8 bg-transparent rounded">
+          <PopOver data={data} loading={loading} error={error} />
         </div>
       </form>
     </div>
   );
 };
 
-export default WeatherDashboard;
+export default WeatherDashboard1;
