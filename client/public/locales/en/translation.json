@@ -157,15 +157,16 @@
       "weather": "Weather",
       "disease": "Disease Detection",
       "feedback": "Feedback",
-	  "market": "Market Price",
-	  "timeline": "Crop Growth Timeline"
+      "market": "Market Price",
+      "timeline": "Crop Growth Timeline"
     },
     "descriptions": {
       "crop": "Personalized recommendations on crop selection and best farming practices to maximize yield and sustainability",
-      "weather": "Accurate forecasts and timely alerts to help you plan irrigation, harvesting, and protect crops from extreme conditions.",
+      "weather": "Accurate forecasts and timely alerts to help you plan irrigation, harvesting, and protect crops from extreme conditions",
       "disease": "Early identification of crop diseases with AI-powered analysis, enabling quick action and healthier harvests",
-      "market": "Aggregated daily price data for a wide range of commodities, sourced directly from markets across every state in India.",
-      "feedback": "Share your thoughts and help us improve! Submit feedback, report issues, or suggest new features — we value every opinion."
+      "market": "Aggregated daily price data for a wide range of commodities, sourced directly from markets across every state in India",
+      "feedback": "Share your thoughts and help us improve! Submit feedback, report issues, or suggest new features — we value every opinion",
+      "timeline": "Shows each stage of development with its duration, resource needs, and ideal conditions for healthy growth"
     }
   },
 

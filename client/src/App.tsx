@@ -102,7 +102,6 @@ function App() {
                 <>
                   <div className="min-h-screen bg-[url('/images/timeline_bg.jpg')] bg-cover bg-center bg-no-repeat bg-fixed">
                     <div className="min-h-screen bg-white/30 backdrop-blur-sm">
-                      <Navbar />
                       <CropTimeline />
                     </div>
                   </div>

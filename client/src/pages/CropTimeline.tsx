@@ -371,7 +371,7 @@ const CropTimeline: React.FC = () => {
                 </div>
 
                 <h4 className="font-medium text-lime-700 mb-2">
-                  {t("timeline_page.messages.resourcesNeeded")}:
+                  {t("timeline_page.messages.resourcesNeeded")}
                 </h4>
                 <ul className="space-y-2">
                   {Object.entries(stage.resources).map(([key, value]) => (
@@ -390,7 +390,7 @@ const CropTimeline: React.FC = () => {
                   ))}
                 </ul>
                 <h4 className="font-medium text-green-700 mb-2 mt-4">
-                  {t("timeline_page.messages.processToFollow")}:
+                  {t("timeline_page.messages.processToFollow")}
                 </h4>
                 <p className="ml-7 text-gray-700">{stage.description}</p>
               </div>
