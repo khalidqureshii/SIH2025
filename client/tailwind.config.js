@@ -89,6 +89,7 @@
 /** @type {import('tailwindcss').Config} */
 import tailwindcssAnimate from 'tailwindcss-animate';
 import tailwindcssRtl from 'tailwindcss-rtl';
+import typography from "@tailwindcss/typography";
 
 export default {
     darkMode: ["class"],
@@ -172,6 +173,7 @@ export default {
     },
     plugins: [
         tailwindcssAnimate,
-        tailwindcssRtl
+        tailwindcssRtl,
+        typography
     ],
 }
