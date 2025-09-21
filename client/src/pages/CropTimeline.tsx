@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import cropData from "@/components/cropTimeLine/timeline";
+import type { CropInfo, CropStage } from "@/components/cropTimeLine/types";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -11,28 +12,6 @@ import {
 } from "@/components/ui/select";
 import { useTranslation } from "react-i18next";
 
-interface ScalableResources {
-  [key: string]: [number, number];
-}
-
-interface StageResource {
-  [key: string]: string;
-}
-
-interface CropStage {
-  stage: string;
-  duration: string;
-  resources: StageResource;
-  scalableResources: ScalableResources;
-  temperature: string;
-  description: string | undefined;
-}
-
-interface CropInfo {
-  name: string;
-  growthPeriod: string;
-  timeline: CropStage[];
-}
 
 const CropTimeline: React.FC = () => {
   const [selectedCrop, setSelectedCrop] = useState<string | null>(null);
@@ -46,7 +25,8 @@ const CropTimeline: React.FC = () => {
     acre: 1,
     hectare: 2.47105,
   };
-  const currentCrop: CropInfo | null = selectedCrop ? cropData[selectedCrop] : null;
+  const currentCrop: CropInfo | null =
+  selectedCrop && cropData[selectedCrop] ? cropData[selectedCrop] : null;
 
   const handleCropChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedCrop(e.target.value);

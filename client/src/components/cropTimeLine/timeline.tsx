@@ -1,29 +1,4 @@
-interface ScalableResources {
-  [key: string]: [number, number];
-}
-
-interface StageResource {
-  [key: string]: string;
-}
-
-interface CropStage {
-  stage: string;
-  duration: string;
-  resources: StageResource;
-  scalableResources: ScalableResources;
-  temperature: string;
-  description?: string; // Added optional description property
-}
-
-interface CropInfo {
-  name: string;
-  growthPeriod: string;
-  timeline: CropStage[];
-}
-
-interface CropDataType {
-  [key: string]: CropInfo;
-}
+import type { CropDataType } from "@/components/cropTimeLine/types";
 
 const cropData: CropDataType = {
     maize: {
