@@ -12,6 +12,7 @@ import ProtectedRoute from "./components/common/ProtectedRoute";
 import Feedback from "./pages/Feedback";
 import ChatSidebar from "./components/chatbot/ChatSidebar";
 import Footer from "./components/common/Footer";
+import PlantIdentifier from "./pages/PlantIdentifier";
 // import DirectionHandler from "./components/DirectionHandler";
 
 function App() {
@@ -118,6 +119,20 @@ function App() {
                   <div className="min-h-screen bg-[url('/images/feedback.jpg')] bg-cover bg-center bg-no-repeat bg-fixed">
                     <div className="min-h-screen backdrop-blur-sm">
                       <Feedback />
+                    </div>
+                  </div>
+                </>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/plant-identifier"
+            element={
+              <ProtectedRoute>
+                <>
+                  <div className="min-h-screen bg-[url('/images/plant-identifier.jpeg')] bg-cover bg-center bg-no-repeat bg-fixed">
+                    <div className="min-h-screen backdrop-blur-sm">
+                      <PlantIdentifier />
                     </div>
                   </div>
                 </>
