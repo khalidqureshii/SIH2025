@@ -46,7 +46,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { I18nextProvider } from "react-i18next";
 import i18n from "./i18n"; // your config
 // import { registerServiceWorker } from "./pwaRegister";
-import UpdateToast from "./components/UpdateToast";
+import UpdateToast from "./components/common/UpdateToast.js";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <Provider store={store}>

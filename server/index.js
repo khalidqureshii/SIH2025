@@ -5,11 +5,10 @@ import router from "./router/auth-router.js";
 import {connectDB} from "./utils/db.js"
 import errorMiddleware from "./middlewares/error-middleware.js";
 import cors from "cors";
-
 import weatherRoutes from "./router/weather.js";
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT;
 
 app.use(cors());
 app.use(express.json());

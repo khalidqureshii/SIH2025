@@ -1,84 +1,152 @@
 {
-	"card": {
-	  "loader_message": "Gathering the Clouds....",
-	  "max_temp": "Max Temp",
-	  "min_temp": "Min Temp",
-	  "wind": "Wind",
-	  "humidity": "Humidity"
-	},
-		
-	"graph": {
-	  "loader_message": "Analyzing your City....",
-	  "no_data": "No data available",
-	  "title": "Weather Overview",
-	  "y_axis_left_label": "Temp °C",
-	  "y_axis_right_label": "Rain mm",
-	  "data_keys": {
-	    "date": "Date",
-	    "avg_temp": "Avg Temp",
-	    "rain": "Rain"
-	  }
-	},
-	
-	"navbar": {
-	  "title": "Smart Crop Advisory",
-	  "lang_label": "Language",
-	  "logout_label": "Logout",
-	  "login_label": "Login",
-	  "register_label": "Register"
-	},
-	
-	"popover": {
-	  "loader_message": "Attaining Wisdom....",
-	  "title": "🌾 AI Farmer's Weather Wisdom 🌦️",
-	  "date_locale": "en-US",
-	  "weekdays": {
-	    "long": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-	    "short": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
-	  },
-	  "months": {
-	    "long": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-	    "short": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-	  }
-	},
-	
-	"timeline": {
-	  "loader_message": "Forecasting your days....",
-	  "day_format_label": {
-	    "today": "Today",
-	    "tomorrow": "Tomorrow"
-	  },
-	  "risk_labels": {
-	    "high_winds": "High winds",
-	    "thunderstorm": "Thunderstorm",
-	    "no_warnings": "No Warnings"
-	  },
-	  "rain_label": "% rain",
-	  "humidity_label": "Humidity: ",
-	  "weekdays": {
-	    "long": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-	    "short": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
-	  },
-	  "months": {
-	    "long": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-	    "short": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-	  }
-	},
-	
-	"dashboard": {
-	  "city": "City: ",
-	  "placeholder": "Enter City",
-	  "detect": "Detect",
-	  "submit": "Submit",
-	  "alerts": {
-	    "geolocation": "Geolocation is not supported by your browser.",
-	    "detect_failed1": "Could not detect city from your location.",
-	    "detect_failed2": "Failed to detect city from your location.",
-	    "detect_failed3": "Could not detect your location. Please enter manually."
-	  }
-	},
-	
-	"home": {
+  "card": {
+    "loader_message": "Gathering the Clouds....",
+    "max_temp": "Max Temp",
+    "min_temp": "Min Temp",
+    "wind": "Wind",
+    "humidity": "Humidity"
+  },
+
+  "graph": {
+    "loader_message": "Analyzing your City....",
+    "no_data": "No data available",
+    "title": "Weather Overview",
+    "y_axis_left_label": "Temp °C",
+    "y_axis_right_label": "Rain mm",
+    "data_keys": {
+      "date": "Date",
+      "avg_temp": "Avg Temp",
+      "rain": "Rain"
+    }
+  },
+
+  "navbar": {
+    "title": "Smart Crop Advisory",
+    "lang_label": "Language",
+    "logout_label": "Logout",
+    "login_label": "Login",
+    "register_label": "Register"
+  },
+
+  "popover": {
+    "loader_message": "Attaining Wisdom....",
+    "title": "🌾 AI Farmer's Weather Wisdom 🌦️",
+    "date_locale": "en-US",
+    "weekdays": {
+      "long": [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+      "short": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+    },
+    "months": {
+      "long": [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+      ],
+      "short": [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec"
+      ]
+    }
+  },
+
+  "timeline": {
+    "loader_message": "Forecasting your days....",
+    "day_format_label": {
+      "today": "Today",
+      "tomorrow": "Tomorrow"
+    },
+    "risk_labels": {
+      "high_winds": "High winds",
+      "thunderstorm": "Thunderstorm",
+      "no_warnings": "No Warnings"
+    },
+    "rain_label": "% rain",
+    "humidity_label": "Humidity: ",
+    "weekdays": {
+      "long": [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+      "short": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+    },
+    "months": {
+      "long": [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+      ],
+      "short": [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec"
+      ]
+    }
+  },
+
+  "dashboard": {
+    "city": "City: ",
+    "placeholder": "Enter City",
+    "detect": "Detect",
+    "submit": "Submit",
+    "alerts": {
+      "geolocation": "Geolocation is not supported by your browser.",
+      "detect_failed1": "Could not detect city from your location.",
+      "detect_failed2": "Failed to detect city from your location.",
+      "detect_failed3": "Could not detect your location. Please enter manually."
+    }
+  },
+
+  "home": {
     "header_title": "🌾 Smart Crop Advisory",
     "subheader": "Helping Farmers with Smarter Decisions",
     "location_title": "📍 Location Access",
@@ -88,205 +156,239 @@
       "crop": "Crop Advisory",
       "weather": "Weather",
       "disease": "Disease Detection",
-	  "market": "Market Price"
+      "feedback": "Feedback",
+      "market": "Market Price",
+      "timeline": "Crop Growth Timeline"
     },
     "descriptions": {
       "crop": "Personalized recommendations on crop selection and best farming practices to maximize yield and sustainability",
-      "weather": "Accurate forecasts and timely alerts to help you plan irrigation, harvesting, and protect crops from extreme conditions.",
+      "weather": "Accurate forecasts and timely alerts to help you plan irrigation, harvesting, and protect crops from extreme conditions",
       "disease": "Early identification of crop diseases with AI-powered analysis, enabling quick action and healthier harvests",
-	  "market": "Aggregated daily price data for a wide range of commodities, sourced directly from markets across every state in India."
+      "market": "Aggregated daily price data for a wide range of commodities, sourced directly from markets across every state in India",
+      "feedback": "Share your thoughts and help us improve! Submit feedback, report issues, or suggest new features — we value every opinion",
+      "timeline": "Shows each stage of development with its duration, resource needs, and ideal conditions for healthy growth"
     }
-  	},
-	
-	"weather": {
-	  "loader_message": "Detecting your Location....",
-	  "form_header": "Please Enter the City Name to fetch its Weather Details",
-	  "placeholder": "Enter City",
-	  "submit": "Submit"
-	},
-	
-	"advisory_result": {
-	  "no_results": "⏳ No results yet. Please submit to see the report.",
-	  "report_title": "🌱 Farm Analysis Report",
-	  "tabs": {
-	    "weather": "Weather",
-	    "satellite": "Satellite",
-	    "nutrients": "Nutrients",
-	    "recommendations": "Recommendations",
-	    "ai_insights": "AI-Insights"
-	  },
-	  "weather": {
-	    "temperature": {
-	      "button": "Temperature🌡️",
-	      "title": "Temperature",
-	      "description": "Affects crop growth rate and photosynthesis efficiency"
-	    },
-	    "humidity": {
-	      "button": "Humidity💧",
-	      "title": "Humidity",
-	      "description": "Higher humidity reduces water loss but may increase disease risk"
-	    },
-	    "rainfall": {
-	      "button": "Rainfall🌦️",
-	      "title": "Rainfall",
-	      "description": "Provides natural irrigation; excess or deficit impacts yield",
-	      "unit": "mm/day"
-	    },
-	    "season": {
-	      "button": "Season🌱",
-	      "title": "Season",
-	      "description": "Determines the crop cycle and which crops are most suitable"
-	    }
-	  },
-	  "satellite": {
-	    "ndvi": {
-	      "button": "NDVI (Vegetation Health)",
-	      "title": "NDVI (Normalized Difference Vegetation Index)",
-	      "description": "Indicates plant health and greenness"
-	    },
-	    "ndwi": {
-	      "button": "NDWI (Water Index)",
-	      "title": "NDWI (Normalized Difference Water Index)",
-	      "description": "Reflects water content in crops/soil"
-	    },
-	    "soil_moisture": {
-	      "button": "Soil Moisture",
-	      "title": "Soil Moisture",
-	      "description": "Key for seed germination and nutrient absorption"
-	    },
-	    "soil_ph": {
-	      "button": "Soil pH",
-	      "title": "Soil pH",
-	      "description": "Measures soil acidity/alkalinity, which affects nutrient availability"
-	    }
-	  },
-	  "nutrients": {
-	    "labels": {
-	      "nitrogen": "Nitrogen (N)",
-	      "phosphorus": "Phosphorus (P)",
-	      "potassium": "Potassium (K)"
-	    },
-	    "confidence": "Confidence"
-	  },
-	  "recommendations": {
-	    "title": "🌱 Top Recommended Crops",
-	    "crop_insights": "Crop Insights",
-	    "fields": {
-	      "confidence": "🌟 Confidence:",
-	      "expected_yield": "🌾 Expected Yield:",
-	      "suitability": "✅ Suitability:",
-	      "seasonal_match": "📅 Seasonal Match:",
-	      "overall_score": "📊 Overall Score:"
-	    }
-	  },
-	  "ai_insights": {
-	    "title": "🤖 Advanced AI Insights",
-	    "diagnostics": "Field Diagnostics"
-	  }
-	},
-	
-	"farm_input": {
-	  "label": "Farm Size",
-	  "placeholder": "Enter Farm Size in Acres"
-	},
-	
-	"location_input": {
-	  "labels": {
-	    "latitude": "Latitude",
-	    "longitude": "Longitude"
-	  },
-	  "placeholders": {
-	    "latitude": "Enter Latitude",
-	    "longitude": "Enter Longitude"
-	  }
-	},
-	
-	"water_selector": {
-	  "labels": {
-	    "waterSource": "Water Source"
-	  },
-	  "placeholders": {
-	    "chooseWaterSource": "Choose Water Source"
-	  },
-	  "options": {
-	    "canal": "Canal",
-	    "borewell": "Borewell",
-	    "rainfall": "Rainfall"
-	  }
-	},
-	
-	"auth_page": {
-	  "leftPanel": {
-	    "imageAlt": "Farm background",
-	    "title": "Smart Crop Advisory",
-	    "description": "Helping small & marginal farmers with smart crop decisions, weather insights, and disease detection for better yields. 🌱"
-	  },
-	  "rightPanel": {
-	    "headings": {
-	      "login": "Welcome Back 👋",
-	      "register": "Create Your Account 🌱"
-	    },
-	    "placeholders": {
-	      "username": "Full Name",
-	      "location": "Location / Village",
-	      "email": "Email",
-	      "password": "Password"
-	    },
-	    "buttons": {
-		  "login": "Login",
-		  "register": "Register"
-	    },
-	    "switchAuth": {
-	      "noAccount": "Don't have an account?",
-	      "hasAccount": "Already have an account?",
-	      "register": "Register",
-	      "login": "Login"
-	    }
-	  },
-	  "errors": {
-	    "alert": "Authentication failed"
-	  }
-	},
-	
-	"disease_page": {
-	  "header": {
-	    "title": "Disease Detection",
-	    "description": "Upload or capture a photo of your crop leaf 🌿. Our system will detect possible diseases and suggest remedies in simple language."
-	  },
-	  "uploadSection": {
-	    "tapToUpload": "Tap to upload or capture a crop leaf"
-	  },
-	  "previewSection": {
-	    "altPreview": "Preview",
-	    "analyzing": "Analyzing...",
-	    "detectDisease": "Detect Disease"
-	  },
-	  "errors": {
-	    "alertDetectionFailed": "Something went wrong while detecting the disease!"
-	  },
-	  "resultSection": {
-	    "diseaseLabel": "Disease:",
-	    "causesTitle": "📌 Possible Causes",
-	    "recommendationsTitle": "✅ Recommendations",
-	    "listenToAdvice": "Listen to Advice"
-	  }
-	},
-	
-	"soil_page": {
-	  "headings": {
-	    "title": "🌱 Crop Advisory",
-	    "subtitle": "Get tailored farming guidance by analyzing your location, water source and farm size"
-	  },
-	  "buttons": {
-	    "getAdvisory": "Get Advisory"
-	  },
-	  "alerts": {
-	    "noRecommendations": "No recommendations found.",
-	    "fetchError": "Failed to fetch recommendations. Please try again."
-	  }
-	},
+  },
 
-	"carousel":{
-		"listen": "Listen"
-	}
+  "weather": {
+    "loader_message": "Detecting your Location....",
+    "form_header": "Please Enter the City Name to fetch its Weather Details",
+    "placeholder": "Enter City",
+    "submit": "Submit"
+  },
+
+  "advisory_result": {
+    "no_results": "⏳ No results yet. Please submit to see the report.",
+    "report_title": "🌱 Farm Analysis Report",
+    "tabs": {
+      "weather": "Weather",
+      "satellite": "Satellite",
+      "nutrients": "Nutrients",
+      "recommendations": "Recommendations",
+      "ai_insights": "AI-Insights"
+    },
+    "weather": {
+      "temperature": {
+        "button": "Temperature🌡️",
+        "title": "Temperature",
+        "description": "Affects crop growth rate and photosynthesis efficiency"
+      },
+      "humidity": {
+        "button": "Humidity💧",
+        "title": "Humidity",
+        "description": "Higher humidity reduces water loss but may increase disease risk"
+      },
+      "rainfall": {
+        "button": "Rainfall🌦️",
+        "title": "Rainfall",
+        "description": "Provides natural irrigation; excess or deficit impacts yield",
+        "unit": "mm/day"
+      },
+      "season": {
+        "button": "Season🌱",
+        "title": "Season",
+        "description": "Determines the crop cycle and which crops are most suitable"
+      }
+    },
+    "satellite": {
+      "ndvi": {
+        "button": "NDVI (Vegetation Health)",
+        "title": "NDVI (Normalized Difference Vegetation Index)",
+        "description": "Indicates plant health and greenness"
+      },
+      "ndwi": {
+        "button": "NDWI (Water Index)",
+        "title": "NDWI (Normalized Difference Water Index)",
+        "description": "Reflects water content in crops/soil"
+      },
+      "soil_moisture": {
+        "button": "Soil Moisture",
+        "title": "Soil Moisture",
+        "description": "Key for seed germination and nutrient absorption"
+      },
+      "soil_ph": {
+        "button": "Soil pH",
+        "title": "Soil pH",
+        "description": "Measures soil acidity/alkalinity, which affects nutrient availability"
+      }
+    },
+    "nutrients": {
+      "labels": {
+        "nitrogen": "Nitrogen (N)",
+        "phosphorus": "Phosphorus (P)",
+        "potassium": "Potassium (K)"
+      },
+      "confidence": "Confidence"
+    },
+    "recommendations": {
+      "title": "🌱 Top Recommended Crops",
+      "crop_insights": "Crop Insights",
+      "fields": {
+        "confidence": "🌟 Confidence:",
+        "expected_yield": "🌾 Expected Yield:",
+        "suitability": "✅ Suitability:",
+        "seasonal_match": "📅 Seasonal Match:",
+        "overall_score": "📊 Overall Score:"
+      }
+    },
+    "ai_insights": {
+      "title": "🤖 Advanced AI Insights",
+      "diagnostics": "Field Diagnostics"
+    }
+  },
+
+  "farm_input": {
+    "label": "Farm Size",
+    "placeholder": "Enter Farm Size in Acres"
+  },
+
+  "location_input": {
+    "labels": {
+      "latitude": "Latitude",
+      "longitude": "Longitude"
+    },
+    "placeholders": {
+      "latitude": "Enter Latitude",
+      "longitude": "Enter Longitude"
+    }
+  },
+
+  "water_selector": {
+    "labels": {
+      "waterSource": "Water Source"
+    },
+    "placeholders": {
+      "chooseWaterSource": "Choose Water Source"
+    },
+    "options": {
+      "canal": "Canal",
+      "borewell": "Borewell",
+      "rainfall": "Rainfall"
+    }
+  },
+
+  "auth_page": {
+    "leftPanel": {
+      "imageAlt": "Farm background",
+      "title": "Smart Crop Advisory",
+      "description": "Helping small & marginal farmers with smart crop decisions, weather insights, and disease detection for better yields. 🌱"
+    },
+    "rightPanel": {
+      "headings": {
+        "login": "Welcome Back 👋",
+        "register": "Create Your Account 🌱"
+      },
+      "placeholders": {
+        "username": "Full Name",
+        "location": "Location / Village",
+        "email": "Email",
+        "password": "Password"
+      },
+      "buttons": {
+        "login": "Login",
+        "register": "Register"
+      },
+      "switchAuth": {
+        "noAccount": "Don't have an account?",
+        "hasAccount": "Already have an account?",
+        "register": "Register",
+        "login": "Login"
+      }
+    },
+    "errors": {
+      "alert": "Authentication failed"
+    }
+  },
+
+  "disease_page": {
+    "header": {
+      "title": "Disease Detection",
+      "description": "Upload or capture a photo of your crop leaf 🌿. Our system will detect possible diseases and suggest remedies in simple language."
+    },
+    "uploadSection": {
+      "tapToUpload": "Tap to upload or capture a crop leaf"
+    },
+    "previewSection": {
+      "altPreview": "Preview",
+      "analyzing": "Analyzing...",
+      "detectDisease": "Detect Disease"
+    },
+    "errors": {
+      "alertDetectionFailed": "Something went wrong while detecting the disease!"
+    },
+    "resultSection": {
+      "diseaseLabel": "Disease:",
+      "causesTitle": "📌 Possible Causes",
+      "recommendationsTitle": "✅ Recommendations",
+      "listenToAdvice": "Listen to Advice"
+    }
+  },
+
+  "soil_page": {
+    "headings": {
+      "title": "🌱 Crop Advisory",
+      "subtitle": "Get tailored farming guidance by analyzing your location, water source and farm size"
+    },
+    "buttons": {
+      "getAdvisory": "Get Advisory"
+    },
+    "alerts": {
+      "noRecommendations": "No recommendations found.",
+      "fetchError": "Failed to fetch recommendations. Please try again."
+    }
+  },
+
+	"timeline_page": {
+		"headings": {
+		"title": "🌿Crop Growth Timeline",
+		"subtitle":
+			"This timeline illustrates the key stages of crop growth, highlighting optimal conditions and resources required at each phase."
+		},
+		"form": {
+			"searchLabel": "Search Crop:",
+			"searchPlaceholder": "Type to search...",
+			"areaLabel": "Farm Area:",
+			"areaPlaceholder": "Enter area",
+			"unitLabel": "Unit:",
+			"selectUnitPlaceholder": "Select unit",
+			"noCropsFound": "No crops found",
+			"unitOptions": {
+				"acre": "Acre",
+				"hectare": "Hectare"
+			}
+
+		},
+		"messages": {
+			"growthTimeline": "Growth Timeline for ",
+			"noCropSelected": "Please search a crop to view its growth timeline 🌱",
+			"optimalTemperature": "Optimal Temperature",
+			"resourcesNeeded": "Resources Needed:",
+			"processToFollow": "Process to Follow:"
+		}
+	},
+	
+  "carousel": {
+    "listen": "Listen"
+  }
+
 }

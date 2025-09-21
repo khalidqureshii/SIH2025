@@ -2,12 +2,16 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Suspense } from "react";
 import Home from "./pages/Home";
 import Weather from "./pages/Weather";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/common/Navbar";
 import SoilAdvisoryPage from "./pages/SoilAdvisoryPage";
 import DiseaseDetectionPage from "./pages/DiseaseDetectionPage";
 import MarketPage from "./pages/MarketPage";
+import CropTimeline from "./pages/CropTimeline";
 import AuthPage from "./pages/AuthPage";
-import ProtectedRoute from "./components/ProtectedRoute";
+import ProtectedRoute from "./components/common/ProtectedRoute";
+import Feedback from "./pages/Feedback";
+import ChatSidebar from "./components/chatbot/ChatSidebar";
+import Footer from "./components/common/Footer";
 // import DirectionHandler from "./components/DirectionHandler";
 
 function App() {
@@ -15,6 +19,7 @@ function App() {
     <Suspense fallback={<div>Loading translations...</div>}>
       {/* <DirectionHandler /> */}
       <BrowserRouter>
+        <Navbar />
         <Routes>
           <Route
             path="/"
@@ -23,7 +28,6 @@ function App() {
                 <>
                   <div className="min-h-screen bg-[url('/images/bg-homepage.jpg')] bg-cover bg-center bg-no-repeat">
                     <div className="min-h-screen bg-white/30 backdrop-blur-sm">
-                      <Navbar />
                       <Home />
                     </div>
                   </div>
@@ -38,7 +42,6 @@ function App() {
                 <>
                   <div className="min-h-screen bg-[url('/images/thunder.jpg')] bg-cover bg-center bg-no-repeat">
                     <div className="min-h-screen bg-white/30 backdrop-blur-sm">
-                      <Navbar />
                       <Weather />
                     </div>
                   </div>
@@ -54,7 +57,6 @@ function App() {
                 <ProtectedRoute>
                   <div className="min-h-screen bg-[url('/images/bg-diseasedetect.jpg')] bg-cover bg-center bg-no-repeat bg-fixed">
                     <div className="flex flex-col min-h-screen bg-white/30 backdrop-blur-sm overflow-hidden">
-                      <Navbar />
                       <div className="flex-1">
                         <DiseaseDetectionPage />
                       </div>
@@ -71,7 +73,6 @@ function App() {
                 <>
                   <div className="min-h-screen bg-[url('/images/soil-advisory.jpg')] bg-cover bg-center bg-no-repeat bg-fixed">
                     <div className="min-h-screen bg-white/30 backdrop-blur-sm">
-                      <Navbar />
                       <SoilAdvisoryPage />
                     </div>
                   </div>
@@ -84,9 +85,8 @@ function App() {
             element={
               <ProtectedRoute>
                 <>
-                  <div className="min-h-screen bg-[url('/images/soil-advisory.jpg')] bg-cover bg-center bg-no-repeat bg-fixed">
+                  <div className="min-h-screen bg-[url('/images/market1.jpg')] bg-cover bg-center bg-no-repeat bg-fixed">
                     <div className="min-h-screen bg-white/30 backdrop-blur-sm">
-                      <Navbar />
                       <MarketPage />
                     </div>
                   </div>
@@ -94,7 +94,39 @@ function App() {
               </ProtectedRoute>
             }
           />
+
+          <Route
+            path="/timeline"
+            element={
+              <ProtectedRoute>
+                <>
+                  <div className="min-h-screen bg-[url('/images/timeline_bg.jpg')] bg-cover bg-center bg-no-repeat bg-fixed">
+                    <div className="min-h-screen bg-white/30 backdrop-blur-sm">
+                      <CropTimeline />
+                    </div>
+                  </div>
+                </>
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/feedback"
+            element={
+              <ProtectedRoute>
+                <>
+                  <div className="min-h-screen bg-[url('/images/feedback.jpg')] bg-cover bg-center bg-no-repeat bg-fixed">
+                    <div className="min-h-screen backdrop-blur-sm">
+                      <Feedback />
+                    </div>
+                  </div>
+                </>
+              </ProtectedRoute>
+            }
+          />
         </Routes>
+        <ChatSidebar />
+        <Footer />
       </BrowserRouter>
     </Suspense>
   );
