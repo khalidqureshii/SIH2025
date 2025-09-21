@@ -6,7 +6,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Loader2 } from "lucide-react";
+import { Loader2, Send } from "lucide-react";
 import { LINK2 } from "@/store/Link";
 import ReactMarkdownType from "react-markdown";
 
@@ -90,7 +90,7 @@ const ChatSidebar = () => {
       </SheetHeader>
 
         {/* Messages */}
-        <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3 bg-green-50">
+        <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3 bg-green-200">
           {messages.map((msg, idx) => (
             <div
               key={idx}
@@ -120,20 +120,20 @@ const ChatSidebar = () => {
         </div>
 
         {/* Input */}
-        <div className="flex items-center border-t border-gray-300 px-4 py-6">
+        <div className="flex items-center border-t border-gray-300 bg-green-200 pt-3 px-0 md:px-4 md:py-6">
           <input
             type="text"
             placeholder="Ask BhoomiBandhu..."
-            className="flex-1 px-3 py-2 focus:outline-none border rounded-l-lg"
+            className="flex-1 px-3 py-2 focus:outline-none border rounded-none md:rounded-l-lg h-14"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && sendMessage()}
           />
           <button
             onClick={sendMessage}
-            className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-r-lg"
+            className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-none md:rounded-r-lg h-14"
           >
-            Send
+            <Send size={24} />
           </button>
         </div>
       </SheetContent>
