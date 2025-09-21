@@ -206,7 +206,32 @@ const Home = () => {
               </p>
             </div>
           </div>
+
+          <div
+            onClick={() => navigate("/timeline")}
+            className="rounded-xl shadow-lg bg-white/70 backdrop-blur-md 
+               flex flex-col overflow-hidden hover:shadow-2xl hover:scale-[1.02] 
+               transition cursor-pointer"
+          >
+            <div>
+              <img
+                src="/images/timeline.jpg"
+                alt="Crop Growth Timeline"
+                className="w-full h-36 object-cover"
+              />
+            </div>
+            <div className="flex flex-col flex-1 px-4 py-4">
+              <h3 className="text-lg font-bold text-[rgb(150,75,0)] mb-2">
+                {t("home.shortcut_labels.timeline")}
+              </h3>
+              <p className="text-sm text-gray-600">
+                {t("home.descriptions.timeline")}
+              </p>
+            </div>
+          </div>
+
         </div>
+
 
         {/* <div
           dir="ltr"
