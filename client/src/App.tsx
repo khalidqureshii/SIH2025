@@ -13,11 +13,16 @@ import Feedback from "./pages/Feedback";
 import ChatSidebar from "./components/chatbot/ChatSidebar";
 import Footer from "./components/common/Footer";
 import PlantIdentifier from "./pages/PlantIdentifier";
+import Loader from "./components/common/Loader";
 // import DirectionHandler from "./components/DirectionHandler";
 
 function App() {
   return (
-    <Suspense fallback={<div>Loading translations...</div>}>
+    <Suspense fallback={
+      <div>
+        <Loader src="https://lottie.host/bdccc051-2094-4d92-981a-6d6a9c7ef85d/EcgjRlUVTm.lottie" className="w-[300px] h-[300px]"/>
+      </div>
+    }>
       {/* <DirectionHandler /> */}
       <BrowserRouter>
         <Navbar />
