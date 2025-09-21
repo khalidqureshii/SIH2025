@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import cropData from "@/components/cropTimeLine/timeline";
-import type { CropInfo, CropStage } from "@/components/cropTimeLine/types";
+import type { CropInfo} from "@/components/cropTimeLine/types";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -18,8 +18,7 @@ const CropTimeline: React.FC = () => {
   const [landArea, setLandArea] = useState<number>(1);
   const [areaUnit, setAreaUnit] = useState<string>("acre");
   const [selectedStage, setSelectedStage] = useState<number | null>(null);
-  const {t, i18n} = useTranslation();
-  const lang = i18n.language; 
+  const {t} = useTranslation();
 
   const unitConversions: { [key: string]: number } = {
     acre: 1,
@@ -28,10 +27,10 @@ const CropTimeline: React.FC = () => {
   const currentCrop: CropInfo | null =
   selectedCrop && cropData[selectedCrop] ? cropData[selectedCrop] : null;
 
-  const handleCropChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedCrop(e.target.value);
-    setSelectedStage(null);
-  };
+  // const handleCropChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  //   setSelectedCrop(e.target.value);
+  //   setSelectedStage(null);
+  // };
 
   const handleLandAreaChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = Number.parseFloat(e.target.value);
