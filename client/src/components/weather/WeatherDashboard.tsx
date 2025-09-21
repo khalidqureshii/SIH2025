@@ -7,7 +7,7 @@ import Card from "./Card";
 import Timeline from "./Timeline";
 import Graphs from "./Graphs";
 import PopOver from "./PopOver";
-import { LINK, LOCAL_LINK } from "@/store/Link";
+import { LOCAL_LINK } from "@/store/Link";
 
 interface WeatherApiResponse {
   location: {
@@ -135,7 +135,10 @@ const WeatherDashboard: React.FC<WeatherDashboardProp> = ({
 
   return (
     <div className="w-full px-2 md:px-4">
-      <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-2 w-full">
+      <form
+        onSubmit={handleSubmit}
+        className="grid grid-cols-1 md:grid-cols-2 gap-2 w-full"
+      >
         <div className="flex flex-row justify-between items-center md:col-span-2 p-2 bg-transparent rounded">
           <div className="flex items-center gap-4">
             <Label htmlFor="city-entry" labelName={t("dashboard.city")} />
@@ -170,7 +173,11 @@ const WeatherDashboard: React.FC<WeatherDashboardProp> = ({
           <Graphs data={data} loading={loading} error={error} />
         </div>
         <div className="md:col-span-2 p-2 bg-transparent rounded flex justify-center items-center">
-          <Timeline loading={loading} error={error} forecast={data?.forecast || []} />
+          <Timeline
+            loading={loading}
+            error={error}
+            forecast={data?.forecast || []}
+          />
         </div>
         <div className="md:col-span-2 p-2 mt-8 bg-transparent rounded">
           <PopOver data={data} loading={loading} error={error} />
