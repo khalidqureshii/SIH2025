@@ -57,7 +57,7 @@ const ChatWindow = ({ onClose }: ChatWindowProps) => {
 
   return (
     <div
-      className="fixed bottom-20 right-6 w-[90%] sm:w-[40%] h-[70%] sm:h-[50%] bg-white border-2 border-green-600 rounded-2xl shadow-xl flex flex-col z-50"
+      className="bg-white border-2 border-green-600 rounded-2xl shadow-xl flex flex-col z-50"
     >
       {/* Header */}
       <div className="flex justify-between items-center bg-green-600 text-white px-4 py-2 rounded-t-2xl">

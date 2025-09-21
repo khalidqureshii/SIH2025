@@ -8,8 +8,8 @@ import DiseaseDetectionPage from "./pages/DiseaseDetectionPage";
 import MarketPage from "./pages/MarketPage";
 import AuthPage from "./pages/AuthPage";
 import ProtectedRoute from "./components/common/ProtectedRoute";
-import ChatWidget from "./components/chatbot/ChatWidget";
 import Feedback from "./pages/Feedback";
+import ChatSidebar from "./components/chatbot/ChatSidebar";
 // import DirectionHandler from "./components/DirectionHandler";
 
 function App() {
@@ -112,7 +112,7 @@ function App() {
             }
           />
         </Routes>
-        <ChatWidget />
+        <ChatSidebar />
       </BrowserRouter>
     </Suspense>
   );
