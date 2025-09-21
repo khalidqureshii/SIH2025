@@ -101,13 +101,13 @@ const Footer = () => {
               <Twitter size={18} />
             </a>
           </div>
-          <p>Email: support@trackease.com</p>
+          <p>Email: support@bb.com</p>
         </div>
       </div>
 
       {/* Bottom strip */}
       <div className="border-t border-green-600 mt-6 pt-4 text-center text-xs text-gray-300">
-        © {new Date().getFullYear()} Trackease. All Rights Reserved.
+        © {new Date().getFullYear()} Bhoomiबंधु. All Rights Reserved.
       </div>
     </footer>
   );
