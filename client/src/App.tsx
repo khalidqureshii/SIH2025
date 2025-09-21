@@ -8,6 +8,7 @@ import DiseaseDetectionPage from "./pages/DiseaseDetectionPage";
 import MarketPage from "./pages/MarketPage";
 import AuthPage from "./pages/AuthPage";
 import ProtectedRoute from "./components/common/ProtectedRoute";
+import ChatWidget from "./components/chatbot/ChatWidget";
 // import DirectionHandler from "./components/DirectionHandler";
 
 function App() {
@@ -95,6 +96,7 @@ function App() {
             }
           />
         </Routes>
+        <ChatWidget />
       </BrowserRouter>
     </Suspense>
   );
