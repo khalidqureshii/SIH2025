@@ -389,6 +389,22 @@
 	
   "carousel": {
     "listen": "Listen"
-  }
+  },
+
+  "market":{
+		"results":{
+			"header": "Showing results for",
+			"in": "in"
+		},
+		"form":{
+			"title": "Market Price Finder",
+			"search": "Search Markets",
+			"placeholders":{
+				"state": "Enter State",
+				"district": "Enter District",
+				"commodity": "Enter Commodity"
+			}
+		}
+	}
 
 }
