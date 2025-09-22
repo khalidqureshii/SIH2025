@@ -146,34 +146,6 @@
     }
   },
 
-  "home": {
-    "header_title": "🌾 Smart Crop Advisory",
-    "subheader": "Helping Farmers with Smarter Decisions",
-    "location_title": "📍 Location Access",
-    "allow_gps": "Allow GPS",
-    "manual_button": "Enter Location Manually",
-    "shortcut_labels": {
-      "crop": "Crop Advisory",
-      "weather": "Weather",
-      "disease": "Disease Detection",
-      "feedback": "Feedback",
-      "market": "Market Price",
-      "plant-identifier": "Plant Identifier",
-      "timeline": "Crop Growth Timeline",
-      "scheme": "Explore Government Schemes"
-    },
-    "descriptions": {
-      "crop": "Personalized recommendations on crop selection and best farming practices to maximize yield and sustainability",
-      "weather": "Accurate forecasts and timely alerts to help you plan irrigation, harvesting, and protect crops from extreme conditions",
-      "disease": "Early identification of crop diseases with AI-powered analysis, enabling quick action and healthier harvests",
-      "market": "Aggregated daily price data for a wide range of commodities, sourced directly from markets across every state in India.",
-      "plant-identifier": "Identify plants instantly by uploading a photo and get quick insights about them.",
-      "feedback": "Share your thoughts and help us improve! Submit feedback, report issues, or suggest new features — we value every opinion",
-      "timeline": "Shows each stage of development with its duration, resource needs, and ideal conditions for healthy growth",
-      "scheme": "Stay informed about the latest government initiatives, their benefits, and deadlines to maximize the support available for your farm or rural project"
-    }
-  },
-
   "weather": {
     "loader_message": "Detecting your Location....",
     "form_header": "Please Enter the City Name to fetch its Weather Details",
@@ -349,6 +321,24 @@
     }
   },
 
+  "soil_page": {
+    "headings": {
+      "title": "🌱 Crop Advisory",
+      "subtitle": "Get tailored farming guidance by analyzing your location, water source and farm size"
+    },
+    "buttons": {
+      "getAdvisory": "Get Advisory"
+    },
+    "alerts": {
+      "noRecommendations": "No recommendations found.",
+      "fetchError": "Failed to fetch recommendations. Please try again."
+    }
+  },
+
+  "carousel": {
+    "listen": "Listen"
+  },
+
   "plant-identifier-page": {
     "header": {
       "title": "Identify Plant",
@@ -368,20 +358,6 @@
     "resultSection": {
       "plantIdentify": "This looks like a",
       "uploadAnotherImage": "Upload Another Image"
-    }
-  },
-
-  "soil_page": {
-    "headings": {
-      "title": "🌱 Crop Advisory",
-      "subtitle": "Get tailored farming guidance by analyzing your location, water source and farm size"
-    },
-    "buttons": {
-      "getAdvisory": "Get Advisory"
-    },
-    "alerts": {
-      "noRecommendations": "No recommendations found.",
-      "fetchError": "Failed to fetch recommendations. Please try again."
     }
   },
 
@@ -412,10 +388,6 @@
     }
   },
 
-  "carousel": {
-    "listen": "Listen"
-  },
-
   "market":{
 		"results":{
 			"header": "Showing results for",
@@ -430,5 +402,37 @@
 				"commodity": "Enter Commodity"
 			}
 		}
-	}
+	},
+
+  "chat_sidebar":{
+    "thinking": "Thinking..."
+  },
+
+  "home": {
+    "header_title": "🌾 Smart Crop Advisory",
+    "subheader": "Helping Farmers with Smarter Decisions",
+    "location_title": "📍 Location Access",
+    "allow_gps": "Allow GPS",
+    "manual_button": "Enter Location Manually",
+    "shortcut_labels": {
+      "crop": "Crop Advisory",
+      "weather": "Weather",
+      "disease": "Disease Detection",
+      "feedback": "Feedback",
+      "market": "Market Price",
+      "plant-identifier": "Plant Identifier",
+      "timeline": "Crop Growth Timeline",
+      "scheme": "Explore Government Schemes"
+    },
+    "descriptions": {
+      "crop": "Personalized recommendations on crop selection and best farming practices to maximize yield and sustainability",
+      "weather": "Accurate forecasts and timely alerts to help you plan irrigation, harvesting, and protect crops from extreme conditions",
+      "disease": "Early identification of crop diseases with AI-powered analysis, enabling quick action and healthier harvests",
+      "market": "Aggregated daily price data for a wide range of commodities, sourced directly from markets across every state in India.",
+      "plant-identifier": "Identify plants instantly by uploading a photo and get quick insights about them.",
+      "feedback": "Share your thoughts and help us improve! Submit feedback, report issues, or suggest new features — we value every opinion",
+      "timeline": "Shows each stage of development with its duration, resource needs, and ideal conditions for healthy growth",
+      "scheme": "Stay informed about the latest government initiatives, their benefits, and deadlines to maximize the support available for your farm or rural project"
+    }
+  }
 }

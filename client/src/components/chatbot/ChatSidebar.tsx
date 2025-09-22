@@ -19,7 +19,7 @@ interface Message {
 }
 
 const ChatSidebar = () => {
-  const {i18n} = useTranslation();
+  const {t, i18n} = useTranslation();
   const lang = i18n.language || 'en';
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
@@ -108,7 +108,7 @@ const ChatSidebar = () => {
             <div className="flex justify-start">
               <div className="flex items-center gap-2 text-green-600">
                 <Loader2 className="animate-spin" size={20} />
-                <span>Thinking...</span>
+                <span>{t("chat_sidebar.thinking")}</span>
               </div>
             </div>
           )}
