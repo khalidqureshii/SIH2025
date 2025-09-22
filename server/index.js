@@ -2,10 +2,11 @@ import dotenv from "dotenv";
 dotenv.config();
 import express from "express";
 import router from "./router/auth-router.js";
-import {connectDB} from "./utils/db.js"
+import { connectDB } from "./utils/db.js";
 import errorMiddleware from "./middlewares/error-middleware.js";
 import cors from "cors";
 import weatherRoutes from "./router/weather.js";
+import schemeRoutes from "./router/scheme.js";
 
 const app = express();
 const PORT = process.env.PORT;
@@ -19,10 +20,11 @@ app.get("/", (req, res) => {
 
 app.use("/api/auth", router);
 app.use("/api/weather", weatherRoutes);
+app.use("/api/scheme", schemeRoutes);
 app.use(errorMiddleware);
 
-connectDB().then( () => {
-    app.listen(PORT, ()=> {
-        console.log(`Server is running at Port ${PORT}`);
-    })
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log(`Server is running at Port ${PORT}`);
+  });
 });
