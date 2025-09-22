@@ -143,7 +143,7 @@ const Home = () => {
           >
             <div>
               <img
-                src="/images/thunder.jpg"
+                src="/images/weather.jpg"
                 alt="Weather"
                 className="w-full h-36 object-cover"
               />
@@ -184,7 +184,6 @@ const Home = () => {
             </div>
           </div>
 
-          {/* Market Analysis Card */}
           <div
             onClick={() => navigate("/market")}
             className="rounded-xl shadow-lg bg-white/70 backdrop-blur-md 
@@ -204,29 +203,6 @@ const Home = () => {
               </h3>
               <p className="text-sm text-gray-600">
                 {t("home.descriptions.market")}
-              </p>
-            </div>
-          </div>
-
-          <div
-            onClick={() => navigate("/plant-identifier")}
-            className="rounded-xl shadow-lg bg-white/70 backdrop-blur-md 
-               flex flex-col overflow-hidden hover:shadow-2xl hover:scale-[1.02] 
-               transition cursor-pointer"
-          >
-            <div>
-              <img
-                src="/images/plant-identifier.jpeg"
-                alt="Market Price"
-                className="w-full h-36 object-cover"
-              />
-            </div>
-            <div className="flex flex-col flex-1 px-4 py-4">
-              <h3 className="text-lg font-bold text-blue-900 mb-2">
-                {t("home.shortcut_labels.plant-identifier")}
-              </h3>
-              <p className="text-sm text-gray-600">
-                {t("home.descriptions.plant-identifier")}
               </p>
             </div>
           </div>
