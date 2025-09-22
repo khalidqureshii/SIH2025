@@ -449,6 +449,35 @@
     "farm_center": "✓ Farm center coordinates:"
   },
 
+  "feedback_page":{
+    "alert": "Feedback submitted successfully!",
+    "title": "Feedback Form",
+    "labels":{
+      "issue_type": "Issue Type",
+      "subject": "Subject",
+      "description": "Description"
+    },
+    "options":{
+      "title": "-- Select Issue Type --",
+      "feature_request": "Feature Request",
+      "complaint": "Complaint",
+      "general": "General"
+    },
+    "placeholders":{
+      "subject": "Enter subject",
+      "description": "Enter detailed description"
+    },
+    "buttons":{
+      "submit": "Submit"
+    },
+    "list":{
+      "title": "Feedback:",
+      "type": "Type:",
+      "subject": "Subject:",
+      "description": "Description:"
+    }
+  },
+
   "home": {
     "header_title": "🌾 Smart Crop Advisory",
     "subheader": "Helping Farmers with Smarter Decisions",

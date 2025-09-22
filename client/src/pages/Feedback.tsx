@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { FaSpinner } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 const Feedback = () => {
   const [loading, setLoading] = useState(true);
@@ -9,6 +10,8 @@ const Feedback = () => {
     subject: "",
     description: "",
   });
+
+  const {t} = useTranslation();
 
   useEffect(() => {
     setTimeout(() => {
@@ -38,7 +41,7 @@ const Feedback = () => {
       setFeedbackData([...feedbackData, formData]);
       setFormData({ issueType: "", subject: "", description: "" });
       setLoading(false);
-      alert("Feedback submitted successfully!");
+      alert(t("feedback_page.alert"));
     }, 2000);
   };
 
@@ -55,14 +58,14 @@ const Feedback = () => {
       <div className="bg-white shadow-lg rounded-xl w-full max-w-3xl mt-6 p-6">
         {/* increased width */}
         <h2 className="text-2xl font-bold text-green-700 mb-4 text-center">
-          Feedback Form
+          {t("feedback_page.title")}
         </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Issue Type + Subject */}
           <div className="grid grid-cols-12 gap-4">
             <div className="col-span-12 md:col-span-4">
               <label className="block text-sm font-medium text-gray-700">
-                Issue Type
+                {t("feedback_page.labels.issue_type")}
               </label>
               <select
                 name="issueType"
@@ -71,24 +74,24 @@ const Feedback = () => {
                 className="mt-1 w-full border border-green-400 bg-green-50 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
               >
                 <option value="" disabled>
-                  -- Select Issue Type --
+                  {t("feedback_page.options.title")}
                 </option>
-                <option value="feature request">Feature Request</option>
-                <option value="complaint">Complaint</option>
-                <option value="general">General</option>
+                <option value="feature request">{t("feedback_page.options.feature_request")}</option>
+                <option value="complaint">{t("feedback_page.options.complaint")}</option>
+                <option value="general">{t("feedback_page.options.general")}</option>
               </select>
             </div>
 
             <div className="col-span-12 md:col-span-8">
               <label className="block text-sm font-medium text-gray-700">
-                Subject
+                {t("feedback_page.labels.subject")}
               </label>
               <input
                 type="text"
                 name="subject"
                 value={formData.subject}
                 onChange={handleChange}
-                placeholder="Enter subject"
+                placeholder={t("feedback_page.placeholders.subject")}
                 className="mt-1 w-full border border-green-400 bg-green-50 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
               />
             </div>
@@ -97,13 +100,13 @@ const Feedback = () => {
           {/* Description */}
           <div>
             <label className="block text-sm font-medium text-gray-700">
-              Description
+              {t("feedback_page.labels.description")}
             </label>
             <textarea
               name="description"
               value={formData.description}
               onChange={handleChange}
-              placeholder="Enter detailed description"
+              placeholder={t("feedback_page.placeholders.description")}
               className="mt-1 w-full border border-green-400 bg-green-50 rounded-lg p-2 h-24 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
             />
           </div>
@@ -113,7 +116,7 @@ const Feedback = () => {
             type="submit"
             className="w-full bg-green-600 text-white py-2 rounded-lg shadow hover:bg-green-700 transition"
           >
-            Submit
+            {t("feedback_page.buttons.submit")}
           </button>
         </form>
         {/* Feedback List */}
@@ -125,16 +128,16 @@ const Feedback = () => {
                 className="bg-green-50 border border-green-200 p-4 rounded-lg"
               >
                 <h3 className="font-semibold text-green-700 mb-2">
-                  Feedback: {i + 1}
+                  {t("feedback_page.list.title")} {i + 1}
                 </h3>
                 <p>
-                  <strong>Type:</strong> {feedback.issueType}
+                  <strong>{t("feedback_page.list.type")}</strong> {feedback.issueType}
                 </p>
                 <p>
-                  <strong>Subject:</strong> {feedback.subject}
+                  <strong>{t("feedback_page.list.subject")}</strong> {feedback.subject}
                 </p>
                 <p>
-                  <strong>Description:</strong> {feedback.description}
+                  <strong>{t("feedback_page.list.description")}</strong> {feedback.description}
                 </p>
               </div>
             ))}
