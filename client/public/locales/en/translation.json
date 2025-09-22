@@ -389,42 +389,42 @@
     }
   },
 
-  "market":{
-		"results":{
-			"header": "Showing results for",
-			"in": "in"
-		},
-		"form":{
+  "market": {
+    "results": {
+      "header": "Showing results for",
+      "in": "in"
+    },
+    "form": {
       "title": "Market Price Finder",
-			"search": "Search Markets",
-			"placeholders":{
-				"state": "Enter State",
-				"district": "Enter District",
-				"commodity": "Enter Commodity"
-			}
-		}
-	},
+      "search": "Search Markets",
+      "placeholders": {
+        "state": "Enter State",
+        "district": "Enter District",
+        "commodity": "Enter Commodity"
+      }
+    }
+  },
 
-  "chat_sidebar":{
+  "chat_sidebar": {
     "thinking": "Thinking..."
   },
 
-  "footer":{
+  "footer": {
     "description": "Simplifying Farming with Smart Insights",
-    "links":{
+    "links": {
       "feedback": "Feedback",
       "about_us": "About Us",
       "terms_conditions": "Terms & Conditions",
       "privacy_policy": "Privacy Policy"
     },
-    "connect":{
+    "connect": {
       "title": "Connect with us",
       "email": "Email:"
     },
     "copyright": "All Rights Reserved."
   },
 
-  "map_location":{
+  "map_location": {
     "alert": "Please select at least 3 points to create a polygon",
     "labels": {
       "latitude": "Latitude",
@@ -433,9 +433,9 @@
     "placeholder": "e.g.",
     "coordinates": "Coordinates:",
     "loading": "Loading Map...",
-    "buttons":{
+    "buttons": {
       "manual": "Use Manual Input",
-      "map": "Use Map", 
+      "map": "Use Map",
       "manual_input": "Manual Input",
       "drawing": "Drawing...",
       "start_draw": "Start Drawing Area",
@@ -450,28 +450,28 @@
     "farm_center": "✓ Farm center coordinates:"
   },
 
-  "feedback_page":{
+  "feedback_page": {
     "alert": "Feedback submitted successfully!",
     "title": "Feedback Form",
-    "labels":{
+    "labels": {
       "issue_type": "Issue Type",
       "subject": "Subject",
       "description": "Description"
     },
-    "options":{
+    "options": {
       "title": "-- Select Issue Type --",
       "feature_request": "Feature Request",
       "complaint": "Complaint",
       "general": "General"
     },
-    "placeholders":{
+    "placeholders": {
       "subject": "Enter subject",
       "description": "Enter detailed description"
     },
-    "buttons":{
+    "buttons": {
       "submit": "Submit"
     },
-    "list":{
+    "list": {
       "title": "Feedback:",
       "type": "Type:",
       "subject": "Subject:",
@@ -479,8 +479,8 @@
     }
   },
 
-  "scheme":{
-    "states":{
+  "scheme": {
+    "states": {
       "all": "All",
       "andhraPradesh": "Andhra Pradesh",
       "karnataka": "Karnataka",
@@ -489,25 +489,25 @@
     },
     "days_left": "days left",
     "deadline": "Deadline passed",
-    "title":{
+    "title": {
       "government": "Government",
       "scheme": "Scheme"
     },
-    "decription": "Discover government initiatives designed to empower farmers and support agricultural development across India",
+    "description": "Discover government initiatives designed to empower farmers and support agricultural development across India",
     "pan_india": "🌍 Pan India Coverage",
     "daily_update": "🔄 Updated Daily",
-    "filters":{
+    "filters": {
       "title": "Filter Schemes",
       "description": "Find schemes relevant to your state",
       "label": "Select State:"
     },
-    "list":{
+    "list": {
       "loading": "Loading Schemes...",
       "fetching": "Fetching the latest government schemes for you",
       "no_schemes": "No Schemes Found",
       "no_scheme_msg": "We couldn't find any schemes for",
       "deadline": "⏰ Deadline:",
-      "info_row":{
+      "info_row": {
         "scheme_for": "Scheme For:",
         "nodal_ministry": "Nodal Ministry:",
         "beneficiary_states": "Beneficiary States:"
