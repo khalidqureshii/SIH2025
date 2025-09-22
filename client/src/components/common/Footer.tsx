@@ -44,8 +44,12 @@
 
 // import { a } from "react-router-dom";
 import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
+
+  const {t} = useTranslation();
+
   return (
     <footer className="bg-gradient-to-r from-green-600 to-green-900 text-white py-8">
       <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -53,7 +57,7 @@ const Footer = () => {
         <div className="flex flex-col items-start gap-2">
           <h2 className="text-xl font-bold tracking-wide">Bhoomiबंधु</h2>
           <p className="text-sm text-gray-200">
-            Simplifying Farming with Smart Insights
+            {t("footer.description")}
           </p>
         </div>
 
@@ -64,29 +68,29 @@ const Footer = () => {
               href="/feedback"
               className="hover:underline font-semibold text-green-200"
             >
-              Feedback
+              {t("footer.links.feedback")}
             </a>
           </span>
           <span>
             <a href="/about" className="hover:underline">
-              About Us
+              {t("footer.links.about_us")}
             </a>
           </span>
           <span>
             <a href="/terms" className="hover:underline">
-              Terms & Conditions
+              {t("footer.links.terms_conditions")}
             </a>
           </span>
           <span>
             <a href="/privacy" className="hover:underline">
-              Privacy Policy
+              {t("footer.links.privacy_policy")}
             </a>
           </span>
         </div>
 
         {/* Social + Contact */}
         <div className="flex flex-col gap-3 text-sm">
-          <p className="font-semibold">Connect with us</p>
+          <p className="font-semibold">{t("footer.connect.title")}</p>
           <div className="flex gap-3">
             <a href="#" className="hover:text-green-300">
               <Facebook size={18} />
@@ -101,13 +105,13 @@ const Footer = () => {
               <Twitter size={18} />
             </a>
           </div>
-          <p>Email: support@bb.com</p>
+          <p>{t("footer.connect.email")} support@bb.com</p>
         </div>
       </div>
 
       {/* Bottom strip */}
       <div className="border-t border-green-600 mt-6 pt-4 text-center text-xs text-gray-300">
-        © {new Date().getFullYear()} Bhoomiबंधु. All Rights Reserved.
+        © {new Date().getFullYear()} Bhoomiबंधु. {t("footer.copyright")}
       </div>
     </footer>
   );

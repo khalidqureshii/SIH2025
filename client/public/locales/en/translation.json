@@ -408,6 +408,21 @@
     "thinking": "Thinking..."
   },
 
+  "footer":{
+    "description": "Simplifying Farming with Smart Insights",
+    "links":{
+      "feedback": "Feedback",
+      "about_us": "About Us",
+      "terms_conditions": "Terms & Conditions",
+      "privacy_policy": "Privacy Policy"
+    },
+    "connect":{
+      "title": "Connect with us",
+      "email": "Email:"
+    },
+    "copyright": "All Rights Reserved."
+  },
+
   "home": {
     "header_title": "🌾 Smart Crop Advisory",
     "subheader": "Helping Farmers with Smarter Decisions",
