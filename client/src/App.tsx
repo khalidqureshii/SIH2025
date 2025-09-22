@@ -13,11 +13,22 @@ import Feedback from "./pages/Feedback";
 import ChatSidebar from "./components/chatbot/ChatSidebar";
 import Footer from "./components/common/Footer";
 import Scheme from "./pages/Scheme";
+import PlantIdentifier from "./pages/PlantIdentifier";
+import Loader from "./components/common/Loader";
 // import DirectionHandler from "./components/DirectionHandler";
 
 function App() {
   return (
-    <Suspense fallback={<div>Loading translations...</div>}>
+    <Suspense
+      fallback={
+        <div>
+          <Loader
+            src="https://lottie.host/bdccc051-2094-4d92-981a-6d6a9c7ef85d/EcgjRlUVTm.lottie"
+            className="w-[300px] h-[300px]"
+          />
+        </div>
+      }
+    >
       {/* <DirectionHandler /> */}
       <BrowserRouter>
         <Navbar />
@@ -41,7 +52,7 @@ function App() {
             element={
               <ProtectedRoute>
                 <>
-                  <div className="min-h-screen bg-[url('/images/thunder.jpg')] bg-cover bg-center bg-no-repeat">
+                  <div className="min-h-screen bg-[url('/images/weather_new.jpg')] bg-cover bg-center bg-no-repeat">
                     <div className="min-h-screen bg-white/30 backdrop-blur-sm">
                       <Weather />
                     </div>
@@ -133,6 +144,20 @@ function App() {
                   <div className="min-h-screen bg-[url('/images/feedback.jpg')] bg-cover bg-center bg-no-repeat bg-fixed">
                     <div className="min-h-screen backdrop-blur-sm">
                       <Scheme />
+                    </div>
+                  </div>
+                </>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/plant-identifier"
+            element={
+              <ProtectedRoute>
+                <>
+                  <div className="min-h-screen bg-[url('/images/plant-identifier.jpeg')] bg-cover bg-center bg-no-repeat bg-fixed">
+                    <div className="min-h-screen backdrop-blur-sm">
+                      <PlantIdentifier />
                     </div>
                   </div>
                 </>

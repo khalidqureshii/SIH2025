@@ -245,63 +245,63 @@ const MapLocationInput: React.FC<MapLocationInputProps> = ({
     </div>
   );
 
-  const MapInterface = () => (
-    <div className="space-y-4">
-      <div className="flex gap-2 flex-wrap">
-        <Button
-          onClick={startDrawing}
-          disabled={drawing}
-          className="bg-blue-600 hover:bg-blue-700"
-          size="sm"
-        >
-          {drawing ? "Drawing..." : "Start Drawing Area"}
-        </Button>
-        {drawing && points.length >= 3 && (
-          <Button
-            onClick={finishDrawing}
-            className="bg-green-600 hover:bg-green-700"
-            size="sm"
-          >
-            Finish Area ({points.length} points)
-          </Button>
-        )}
-        {latitude && longitude && (
-          <Button
-            onClick={clearArea}
-            variant="outline"
-            size="sm"
-            className="text-red-600 hover:text-red-700"
-          >
-            <Trash2 className="h-4 w-4 mr-1" />
-            Clear
-          </Button>
-        )}
-      </div>
+  // const MapInterface = () => (
+  //   <div className="space-y-4">
+  //     <div className="flex gap-2 flex-wrap">
+  //       <Button
+  //         onClick={startDrawing}
+  //         disabled={drawing}
+  //         className="bg-blue-600 hover:bg-blue-700"
+  //         size="sm"
+  //       >
+  //         {drawing ? "Drawing..." : "Start Drawing Area"}
+  //       </Button>
+  //       {drawing && points.length >= 3 && (
+  //         <Button
+  //           onClick={finishDrawing}
+  //           className="bg-green-600 hover:bg-green-700"
+  //           size="sm"
+  //         >
+  //           Finish Area ({points.length} points)
+  //         </Button>
+  //       )}
+  //       {latitude && longitude && (
+  //         <Button
+  //           onClick={clearArea}
+  //           variant="outline"
+  //           size="sm"
+  //           className="text-red-600 hover:text-red-700"
+  //         >
+  //           <Trash2 className="h-4 w-4 mr-1" />
+  //           Clear
+  //         </Button>
+  //       )}
+  //     </div>
 
-      <div
-        ref={mapRef}
-        className="w-full h-80 rounded-lg border-2 border-gray-300"
-        style={{ minHeight: "320px" }}
-      />
+  //     <div
+  //       ref={mapRef}
+  //       className="w-full h-80 rounded-lg border-2 border-gray-300"
+  //       style={{ minHeight: "320px" }}
+  //     />
 
-      {drawing && (
-        <div className="p-3 bg-blue-50 rounded-lg text-sm text-blue-700">
-          Click on the map to mark your farm boundaries. You need at least 3
-          points.
-          {points.length > 0 && ` Points added: ${points.length}`}
-        </div>
-      )}
+  //     {drawing && (
+  //       <div className="p-3 bg-blue-50 rounded-lg text-sm text-blue-700">
+  //         Click on the map to mark your farm boundaries. You need at least 3
+  //         points.
+  //         {points.length > 0 && ` Points added: ${points.length}`}
+  //       </div>
+  //     )}
 
-      {latitude && longitude && (
-        <div className="p-3 bg-green-50 rounded-lg">
-          <p className="text-sm text-green-700">
-            ✓ Farm center coordinates: {parseFloat(latitude).toFixed(6)},{" "}
-            {parseFloat(longitude).toFixed(6)}
-          </p>
-        </div>
-      )}
-    </div>
-  );
+  //     {latitude && longitude && (
+  //       <div className="p-3 bg-green-50 rounded-lg">
+  //         <p className="text-sm text-green-700">
+  //           ✓ Farm center coordinates: {parseFloat(latitude).toFixed(6)},{" "}
+  //           {parseFloat(longitude).toFixed(6)}
+  //         </p>
+  //       </div>
+  //     )}
+  //   </div>
+  // );
 
   const MapPlaceholder = () => (
     <div className="w-full h-80 bg-gray-200 rounded-lg border-2 border-dashed border-gray-400 flex flex-col items-center justify-center">

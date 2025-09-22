@@ -190,6 +190,18 @@ const DiseaseDetectionPage = () => {
                 {t("disease_page.resultSection.diseaseLabel")} {result.disease}
               </p>
 
+              {/* New Button */}
+              <Button
+                onClick={() => {
+                  setImage(null);
+                  setPreview(null);
+                  setResult(null);
+                }}
+                className="my-4 w-56 border-2 border-green-800 text-green-800 bg-white hover:bg-green-100 hover:text-green-900 transition"
+              >
+                {t("disease_page.resultSection.uploadAnotherImage")}
+              </Button>
+
               {/* Causes + Recommendations */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-h-[400px] overflow-y-auto pr-2">
                 {result.causes && (
@@ -364,7 +376,7 @@ export default DiseaseDetectionPage;
 //       <Card
 //         className={`w-full ${
 //           result ? "max-w-5xl" : "max-w-md"
-//         }  shadow-lg rounded-2xl border border-white/20 
+//         }  shadow-lg rounded-2xl border border-white/20
 //         bg-white/30 backdrop-blur-md transition-all duration-500`}
 //       >
 //         <div className="flex flex-col items-center pt-4">

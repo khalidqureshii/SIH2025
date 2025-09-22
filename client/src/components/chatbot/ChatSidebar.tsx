@@ -74,12 +74,12 @@ const ChatSidebar = () => {
         className="flex flex-col gap-0 h-full bg-white/95 backdrop-blur-md p-0 w-full max-w-[100%] sm:max-w-[80%] md:max-w-[60%] xl:max-w-[30%] "
       >
 
-        <SheetHeader className="relative bg-green-600 text-white h-20 flex items-center justify-center px-4">
+        <SheetHeader className="relative bg-green-600 text-white h-16 flex items-center justify-center px-4">
         <SheetTitle className="font-semibold text-3xl text-white mr-12">🌱 Bhoomiबंधु</SheetTitle>
 
         <button
           onClick={() => setOpen(false)}
-          className="absolute right-4 top-8 -translate-y-1/2 text-white text-3xl hover:text-gray-200"
+          className="absolute right-4 top-6 -translate-y-1/2 text-white text-3xl hover:text-gray-200"
         >
           ✖
         </button>
@@ -114,7 +114,7 @@ const ChatSidebar = () => {
           )}
         </div>
 
-        <div className="flex items-center border-t border-gray-300 bg-green-200 pt-3 px-0 md:px-4 md:py-6">
+        <div className="flex items-center border-t border-gray-300 bg-green-200 pt-3 px-0 md:p-4">
           <input
             type="text"
             placeholder="Ask BhoomiBandhu..."

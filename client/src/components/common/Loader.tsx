@@ -31,7 +31,7 @@ import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 interface LoaderProp{
     src: string;
-    message: string;
+    message?: string;
     className?: string;
     animationClassName?: string;
 }
@@ -55,6 +55,8 @@ const Loader: React.FC<LoaderProp> = (props) => {
                                 // src='https://lottie.host/01848d62-d139-4d8a-9604-2c12b27a4812/86nGzKRHDL.lottie'
                                 // World
                                 // src='https://lottie.host/28849d46-6262-42ec-be27-deea2d9ae9a0/ZgKbMCHk1g.lottie'
+                                // Infinity
+                                // src='https://lottie.host/bdccc051-2094-4d92-981a-6d6a9c7ef85d/EcgjRlUVTm.lottie'
                                 src={src}
                                 loop
                                 autoplay
