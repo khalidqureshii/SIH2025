@@ -340,6 +340,7 @@
   },
 
   "plant-identifier-page": {
+    "alert": "Failed to identify the plant. Please try again!",
     "header": {
       "title": "Identify Plant",
       "description": "Upload a clear image of a plant to identify its species."

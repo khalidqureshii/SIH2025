@@ -51,7 +51,7 @@ const PlantIdentifier: React.FC = () => {
       });
     } catch (e) {
       console.log("Error while uploading the file", e);
-      alert("Failed to identify the plant. Please try again!");
+      alert(t("plant-identifier-page.alert"));
     } finally {
       setLoading(false);
     }
