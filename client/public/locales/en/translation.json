@@ -423,6 +423,32 @@
     "copyright": "All Rights Reserved."
   },
 
+  "map_location":{
+    "alert": "Please select at least 3 points to create a polygon",
+    "labels": {
+      "latitude": "Latitude",
+      "longitude": "Longitude"
+    },
+    "placeholder": "e.g.",
+    "coordinates": "Coordinates:",
+    "loading": "Loading Map...",
+    "buttons":{
+      "manual": "Use Manual Input",
+      "map": "Use Map", 
+      "manual_input": "Manual Input",
+      "drawing": "Drawing...",
+      "start_draw": "Start Drawing Area",
+      "finish_area": "Finish Area",
+      "points": "points",
+      "clear": "Clear"
+    },
+    "farm_location": "Farm Location",
+    "map_no_load": "Map could not be loaded",
+    "draw_instruction": "Click on the map to mark your farm boundaries. You need at least 3 points.",
+    "points_added": " Point(s) added:",
+    "farm_center": "✓ Farm center coordinates:"
+  },
+
   "home": {
     "header_title": "🌾 Smart Crop Advisory",
     "subheader": "Helping Farmers with Smarter Decisions",
