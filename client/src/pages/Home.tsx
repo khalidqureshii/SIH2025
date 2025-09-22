@@ -143,7 +143,7 @@ const Home = () => {
           >
             <div>
               <img
-                src="/images/weather.jpg"
+                src="/images/thunder.jpg"
                 alt="Weather"
                 className="w-full h-36 object-cover"
               />
