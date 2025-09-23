@@ -1,5 +1,5 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Suspense } from "react";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { Suspense, useEffect } from "react";
 import Home from "./pages/Home";
 import Weather from "./pages/Weather";
 import Navbar from "./components/common/Navbar";
@@ -17,6 +17,16 @@ import PlantIdentifier from "./pages/PlantIdentifier";
 import Loader from "./components/common/Loader";
 import Alternate from "./pages/Alternate";
 // import DirectionHandler from "./components/DirectionHandler";
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null; // nothing to render
+}
 
 function App() {
   return (
@@ -184,6 +194,7 @@ function App() {
         </Routes>
         <ChatSidebar />
         <Footer />
+        <ScrollToTop />
       </BrowserRouter>
     </Suspense>
   );
