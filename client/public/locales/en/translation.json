@@ -146,34 +146,6 @@
     }
   },
 
-  "home": {
-    "header_title": "🌾 Smart Crop Advisory",
-    "subheader": "Helping Farmers with Smarter Decisions",
-    "location_title": "📍 Location Access",
-    "allow_gps": "Allow GPS",
-    "manual_button": "Enter Location Manually",
-    "shortcut_labels": {
-      "crop": "Crop Advisory",
-      "weather": "Weather",
-      "disease": "Disease Detection",
-      "feedback": "Feedback",
-      "market": "Market Price",
-      "plant-identifier": "Plant Identifier",
-      "timeline": "Crop Growth Timeline",
-      "scheme": "Explore Government Schemes"
-    },
-    "descriptions": {
-      "crop": "Personalized recommendations on crop selection and best farming practices to maximize yield and sustainability",
-      "weather": "Accurate forecasts and timely alerts to help you plan irrigation, harvesting, and protect crops from extreme conditions",
-      "disease": "Early identification of crop diseases with AI-powered analysis, enabling quick action and healthier harvests",
-      "market": "Aggregated daily price data for a wide range of commodities, sourced directly from markets across every state in India.",
-      "plant-identifier": "Identify plants instantly by uploading a photo and get quick insights about them.",
-      "feedback": "Share your thoughts and help us improve! Submit feedback, report issues, or suggest new features — we value every opinion",
-      "timeline": "Shows each stage of development with its duration, resource needs, and ideal conditions for healthy growth",
-      "scheme": "Stay informed about the latest government initiatives, their benefits, and deadlines to maximize the support available for your farm or rural project"
-    }
-  },
-
   "weather": {
     "loader_message": "Detecting your Location....",
     "form_header": "Please Enter the City Name to fetch its Weather Details",
@@ -349,7 +321,26 @@
     }
   },
 
+  "soil_page": {
+    "headings": {
+      "title": "🌱 Crop Advisory",
+      "subtitle": "Get tailored farming guidance by analyzing your location, water source and farm size"
+    },
+    "buttons": {
+      "getAdvisory": "Get Advisory"
+    },
+    "alerts": {
+      "noRecommendations": "No recommendations found.",
+      "fetchError": "Failed to fetch recommendations. Please try again."
+    }
+  },
+
+  "carousel": {
+    "listen": "Listen"
+  },
+
   "plant-identifier-page": {
+    "alert": "Failed to identify the plant. Please try again!",
     "header": {
       "title": "Identify Plant",
       "description": "Upload a clear image of a plant to identify its species."
@@ -368,20 +359,6 @@
     "resultSection": {
       "plantIdentify": "This looks like a",
       "uploadAnotherImage": "Upload Another Image"
-    }
-  },
-
-  "soil_page": {
-    "headings": {
-      "title": "🌱 Crop Advisory",
-      "subtitle": "Get tailored farming guidance by analyzing your location, water source and farm size"
-    },
-    "buttons": {
-      "getAdvisory": "Get Advisory"
-    },
-    "alerts": {
-      "noRecommendations": "No recommendations found.",
-      "fetchError": "Failed to fetch recommendations. Please try again."
     }
   },
 
@@ -412,7 +389,157 @@
     }
   },
 
-  "carousel": {
-    "listen": "Listen"
+  "market": {
+    "results": {
+      "header": "Showing results for",
+      "in": "in"
+    },
+    "form": {
+      "title": "Market Price Finder",
+      "search": "Search Markets",
+      "placeholders": {
+        "state": "Enter State",
+        "district": "Enter District",
+        "commodity": "Enter Commodity"
+      }
+    }
+  },
+
+  "chat_sidebar": {
+    "thinking": "Thinking..."
+  },
+
+  "footer": {
+    "description": "Simplifying Farming with Smart Insights",
+    "links": {
+      "feedback": "Feedback",
+      "about_us": "About Us",
+      "terms_conditions": "Terms & Conditions",
+      "privacy_policy": "Privacy Policy"
+    },
+    "connect": {
+      "title": "Connect with us",
+      "email": "Email:"
+    },
+    "copyright": "All Rights Reserved."
+  },
+
+  "map_location": {
+    "alert": "Please select at least 3 points to create a polygon",
+    "labels": {
+      "latitude": "Latitude",
+      "longitude": "Longitude"
+    },
+    "placeholder": "e.g.",
+    "coordinates": "Coordinates:",
+    "loading": "Loading Map...",
+    "buttons": {
+      "manual": "Use Manual Input",
+      "map": "Use Map",
+      "manual_input": "Manual Input",
+      "drawing": "Drawing...",
+      "start_draw": "Start Drawing Area",
+      "finish_area": "Finish Area",
+      "points": "points",
+      "clear": "Clear"
+    },
+    "farm_location": "Farm Location",
+    "map_no_load": "Map could not be loaded",
+    "draw_instruction": "Click on the map to mark your farm boundaries. You need at least 3 points.",
+    "points_added": " Point(s) added:",
+    "farm_center": "✓ Farm center coordinates:"
+  },
+
+  "feedback_page": {
+    "alert": "Feedback submitted successfully!",
+    "title": "Feedback Form",
+    "labels": {
+      "issue_type": "Issue Type",
+      "subject": "Subject",
+      "description": "Description"
+    },
+    "options": {
+      "title": "-- Select Issue Type --",
+      "feature_request": "Feature Request",
+      "complaint": "Complaint",
+      "general": "General"
+    },
+    "placeholders": {
+      "subject": "Enter subject",
+      "description": "Enter detailed description"
+    },
+    "buttons": {
+      "submit": "Submit"
+    },
+    "list": {
+      "title": "Feedback:",
+      "type": "Type:",
+      "subject": "Subject:",
+      "description": "Description:"
+    }
+  },
+
+  "scheme": {
+    "states": {
+      "all": "All",
+      "andhraPradesh": "Andhra Pradesh",
+      "karnataka": "Karnataka",
+      "maharashtra": "Maharashtra",
+      "tamilNadu": "Tamil Nadu"
+    },
+    "days_left": "days left",
+    "deadline": "Deadline passed",
+    "title": {
+      "government": "Government",
+      "scheme": "Scheme"
+    },
+    "description": "Discover government initiatives designed to empower farmers and support agricultural development across India",
+    "pan_india": "🌍 Pan India Coverage",
+    "daily_update": "🔄 Updated Daily",
+    "filters": {
+      "title": "Filter Schemes",
+      "description": "Find schemes relevant to your state",
+      "label": "Select State:"
+    },
+    "list": {
+      "loading": "Loading Schemes...",
+      "fetching": "Fetching the latest government schemes for you",
+      "no_schemes": "No Schemes Found",
+      "no_scheme_msg": "We couldn't find any schemes for",
+      "deadline": "⏰ Deadline:",
+      "info_row": {
+        "scheme_for": "Scheme For:",
+        "nodal_ministry": "Nodal Ministry:",
+        "beneficiary_states": "Beneficiary States:"
+      }
+    }
+  },
+
+  "home": {
+    "header_title": "🌾 Smart Crop Advisory",
+    "subheader": "Helping Farmers with Smarter Decisions",
+    "location_title": "📍 Location Access",
+    "allow_gps": "Allow GPS",
+    "manual_button": "Enter Location Manually",
+    "shortcut_labels": {
+      "crop": "Crop Advisory",
+      "weather": "Weather",
+      "disease": "Disease Detection",
+      "feedback": "Feedback",
+      "market": "Market Price",
+      "plant-identifier": "Plant Identifier",
+      "timeline": "Crop Growth Timeline",
+      "scheme": "Explore Government Schemes"
+    },
+    "descriptions": {
+      "crop": "Personalized recommendations on crop selection and best farming practices to maximize yield and sustainability",
+      "weather": "Accurate forecasts and timely alerts to help you plan irrigation, harvesting, and protect crops from extreme conditions",
+      "disease": "Early identification of crop diseases with AI-powered analysis, enabling quick action and healthier harvests",
+      "market": "Aggregated daily price data for a wide range of commodities, sourced directly from markets across every state in India.",
+      "plant-identifier": "Identify plants instantly by uploading a photo and get quick insights about them.",
+      "feedback": "Share your thoughts and help us improve! Submit feedback, report issues, or suggest new features — we value every opinion",
+      "timeline": "Shows each stage of development with its duration, resource needs, and ideal conditions for healthy growth",
+      "scheme": "Stay informed about the latest government initiatives, their benefits, and deadlines to maximize the support available for your farm or rural project"
+    }
   }
 }

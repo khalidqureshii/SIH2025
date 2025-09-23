@@ -62,10 +62,10 @@ const useVoices = () => {
     const loadVoices = () => {
       const voicesList = window.speechSynthesis.getVoices();
       setVoices(voicesList);
-      console.log("Available voices:");
-      voicesList.forEach((v, i) =>
-        console.log(`${i + 1}. ${v.name} — ${v.lang}`)
-      );
+      // console.log("Available voices:");
+      // voicesList.forEach((v, i) =>
+      //   console.log(`${i + 1}. ${v.name} — ${v.lang}`)
+      // );
     };
 
     loadVoices();

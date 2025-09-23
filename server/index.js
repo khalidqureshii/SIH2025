@@ -7,6 +7,8 @@ import errorMiddleware from "./middlewares/error-middleware.js";
 import cors from "cors";
 import weatherRoutes from "./router/weather.js";
 import schemeRoutes from "./router/scheme.js";
+import priceRoutes from "./router/price.js";
+import translateRoutes from "./router/translate.js"
 
 const app = express();
 const PORT = process.env.PORT;
@@ -21,6 +23,8 @@ app.get("/", (req, res) => {
 app.use("/api/auth", router);
 app.use("/api/weather", weatherRoutes);
 app.use("/api/scheme", schemeRoutes);
+app.use("/api/price", priceRoutes);
+app.use("/api/utils", translateRoutes);
 app.use(errorMiddleware);
 
 connectDB().then(() => {

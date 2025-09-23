@@ -1,6 +1,7 @@
 import { LINK } from "@/store/Link";
 import { useState, useEffect } from "react";
 import { FaLeaf, FaSeedling, FaWater, FaLayerGroup } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 // --- INTERFACES ---
 interface Scheme {
@@ -19,13 +20,23 @@ interface Scheme {
 }
 
 // --- STATES ---
-const states: string[] = [
-  "All",
-  "Andhra Pradesh",
-  "Maharashtra",
-  "Karnataka",
-  "Tamil Nadu",
+// Keys for translations
+const stateKeys: string[] = [
+  "scheme.states.all",
+  "scheme.states.andhraPradesh",
+  "scheme.states.maharashtra",
+  "scheme.states.karnataka",
+  "scheme.states.tamilNadu",
 ];
+
+// Map keys → backend API values
+const stateApiMap: Record<string, string> = {
+  "scheme.states.all": "All",
+  "scheme.states.andhraPradesh": "Andhra Pradesh",
+  "scheme.states.maharashtra": "Maharashtra",
+  "scheme.states.karnataka": "Karnataka",
+  "scheme.states.tamilNadu": "Tamil Nadu",
+};
 
 // Map categories to icons
 const categoryIcons: Record<string, JSX.Element> = {
@@ -34,16 +45,7 @@ const categoryIcons: Record<string, JSX.Element> = {
   Water: <FaWater />,
 };
 
-// --- HELPER FUNCTIONS ---
-const getDaysLeft = (deadline: string) => {
-  const now = new Date();
-  const end = new Date(deadline);
-  const diff = Math.ceil(
-    (end.getTime() - now.getTime()) / (1000 * 60 * 60 * 24)
-  );
-  return diff > 0 ? `${diff} days left` : "Deadline passed";
-};
-
+// --- HELPER FUNCTION ---
 const formatDeadline = (deadline: string) => {
   const date = new Date(deadline);
   return date.toLocaleDateString("en-IN", {
@@ -55,15 +57,28 @@ const formatDeadline = (deadline: string) => {
 
 // --- MAIN COMPONENT ---
 export default function Scheme() {
-  const [selectedState, setSelectedState] = useState<string>("All");
+  const [selectedState, setSelectedState] = useState<string>("states.all");
   const [schemes, setSchemes] = useState<Scheme[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
+  const { t } = useTranslation();
+
+  const getDaysLeft = (deadline: string) => {
+    const now = new Date();
+    const end = new Date(deadline);
+    const diff = Math.ceil(
+      (end.getTime() - now.getTime()) / (1000 * 60 * 60 * 24)
+    );
+    return diff > 0 ? `${diff} ${t("scheme.days_left")}` : t("scheme.deadline");
+  };
+
   useEffect(() => {
-    const fetchSchemes = async (state: string) => {
+    const fetchSchemes = async (stateKey: string) => {
       setLoading(true);
       try {
-        const res = await fetch(`${LINK}/api/scheme/getScheme?state=${state}`);
+        const apiValue = stateApiMap[stateKey] || "All";
+
+        const res = await fetch(`${LINK}/api/scheme/getScheme?state=${apiValue}`);
         if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
         const json = await res.json();
         const schemesData: Scheme[] = json.data.hits.items.map(
@@ -106,18 +121,17 @@ export default function Scheme() {
         {/* Hero Section */}
         <div className="bg-gradient-to-r from-green-600 to-lime-500 text-white rounded-3xl shadow-lg p-8 md:p-10 mb-12 text-center">
           <h1 className="text-3xl md:text-5xl font-extrabold mb-4 drop-shadow-lg">
-            Government <span className="text-yellow-300">Schemes</span>
+            {t("scheme.title.government")} <span className="text-yellow-300">{t("scheme.title.scheme")}</span>
           </h1>
           <p className="text-base md:text-xl max-w-2xl mx-auto mb-6 drop-shadow-md">
-            Discover government initiatives designed to empower farmers and
-            support agricultural development across India
+            {t("scheme.description")}
           </p>
           <div className="flex flex-wrap justify-center gap-3 md:gap-4">
             <span className="bg-white text-green-700 px-4 py-2 rounded-full font-semibold shadow text-sm md:text-base">
-              🌍 Pan India Coverage
+              {t("scheme.pan_india")}
             </span>
             <span className="bg-white text-green-700 px-4 py-2 rounded-full font-semibold shadow text-sm md:text-base">
-              🔄 Updated Daily
+              {t("scheme.daily_update")}
             </span>
           </div>
         </div>
@@ -130,26 +144,26 @@ export default function Scheme() {
             </div>
             <div>
               <h2 className="text-xl md:text-2xl font-bold text-gray-800">
-                Filter Schemes
+                {t("scheme.filters.title")}
               </h2>
               <p className="text-gray-500 text-sm md:text-base">
-                Find schemes relevant to your state
+                {t("scheme.filters.description")}
               </p>
             </div>
           </div>
 
           <div className="flex items-center gap-2 bg-gray-50 p-2 rounded-2xl w-full md:w-auto">
             <label className="text-gray-700 font-semibold whitespace-nowrap px-2">
-              Select State:
+              {t("scheme.filters.label")}
             </label>
             <select
               value={selectedState}
               onChange={(e) => setSelectedState(e.target.value)}
               className="w-full px-4 py-2 bg-white rounded-xl border-2 border-gray-200 shadow-sm focus:ring-4 focus:ring-green-100 focus:border-green-400 focus:outline-none transition-all duration-200 font-medium text-gray-700"
             >
-              {states.map((state) => (
-                <option key={state} value={state}>
-                  {state}
+              {stateKeys.map((key) => (
+                <option key={key} value={key}>
+                  {t(key)}
                 </option>
               ))}
             </select>
@@ -162,10 +176,10 @@ export default function Scheme() {
             <div className="w-20 h-20 border-4 border-green-200 border-t-green-600 rounded-full animate-spin"></div>
             <div className="mt-6 text-center">
               <h3 className="text-xl font-semibold text-gray-700 mb-2">
-                Loading Schemes...
+                {t("scheme.list.loading")}
               </h3>
               <p className="text-gray-500">
-                Fetching the latest government schemes for you
+                {t("scheme.list.fetching")}
               </p>
             </div>
           </div>
@@ -176,11 +190,11 @@ export default function Scheme() {
                 <FaLayerGroup className="text-4xl text-gray-400" />
               </div>
               <h3 className="text-2xl font-bold text-gray-800 mb-4">
-                No Schemes Found
+                {t("scheme.list.no_schemes")}
               </h3>
               <p className="text-gray-500 mb-6">
-                We couldn't find any schemes for{" "}
-                <strong>{selectedState}</strong>.
+                {t("scheme.list.no_scheme_msg")}{" "}
+                <strong>{t(selectedState)}</strong>.
               </p>
             </div>
           </div>
@@ -217,7 +231,7 @@ export default function Scheme() {
                 {scheme.deadline && (
                   <div className="mb-3">
                     <span className="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-semibold border border-red-200">
-                      ⏰ Deadline: {formatDeadline(scheme.deadline)} (
+                      {t("scheme.list.deadline")} {formatDeadline(scheme.deadline)} (
                       {getDaysLeft(scheme.deadline)})
                     </span>
                   </div>
@@ -238,13 +252,13 @@ export default function Scheme() {
                 {/* Info Row */}
                 <div className="flex flex-wrap gap-6 text-sm text-gray-700 mt-auto">
                   <p>
-                    <strong>Scheme For:</strong> {scheme.schemeFor}
+                    <strong>{t("scheme.list.info_row.scheme_for")}</strong> {scheme.schemeFor}
                   </p>
                   <p>
-                    <strong>Nodal Ministry:</strong> {scheme.nodalMinistryName}
+                    <strong>{t("scheme.list.info_row.nodal_ministry")}</strong> {scheme.nodalMinistryName}
                   </p>
                   <p>
-                    <strong>Beneficiary States:</strong>{" "}
+                    <strong>{t("scheme.list.info_row.beneficiary_states")}</strong>{" "}
                     {scheme.beneficiaryState.join(", ")}
                   </p>
                 </div>

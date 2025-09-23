@@ -7,6 +7,9 @@ interface MarketCardProps {
   variants: string[];
 }
 
+// const test: string = "Test";
+// console.log(test);
+
 const MarketCard: React.FC<MarketCardProps> = ({ market, price, variants }) => {
   return (
     <Card className="shadow-md hover:shadow-xl transition-all duration-300 rounded-2xl">
