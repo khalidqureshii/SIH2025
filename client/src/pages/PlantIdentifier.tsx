@@ -67,7 +67,7 @@ const PlantIdentifier: React.FC = () => {
       >
         <div className="flex flex-col items-center pt-4">
           <h1 className="text-3xl font-bold mb-4 flex items-center gap-2">
-            <Sprout className="w-8 h-8 text-green-600" />
+            <Sprout className="w-8 h-8 text-green-700" />
             {t("plant-identifier-page.header.title")}
           </h1>
           <p className=" mb-6 text-center max-w-md">
