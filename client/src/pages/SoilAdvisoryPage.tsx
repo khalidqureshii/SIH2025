@@ -106,7 +106,7 @@ export default function SoilAdvisoryPage() {
       const response = await axios.post<ApiResponse>(`${LINK2}/analyze`, {
         latitude: latitude,
         longitude: longitude,
-        language: lang
+        language: lang,
         // manual_inputs: {
         //   waterSource: waterSource,
         //   farmSize: farmSize
@@ -138,12 +138,16 @@ export default function SoilAdvisoryPage() {
           recommendations: {
             confidence: Math.round(
               backendResult.crop_recommendations.reduce(
-                (acc: number, crop: CropRecommendation) => acc + crop.confidence,
+                (acc: number, crop: CropRecommendation) =>
+                  acc + crop.confidence,
                 0
               ) / backendResult.crop_recommendations.length
             ), // average confidence
             crops: backendResult.crop_recommendations.reduce(
-              (acc: { [cropName: string]: ProcessedCrop }, crop: CropRecommendation) => {
+              (
+                acc: { [cropName: string]: ProcessedCrop },
+                crop: CropRecommendation
+              ) => {
                 acc[crop.crop] = {
                   Confidence: crop.confidence,
                   "Expected Yield": crop.expected_yield,
@@ -156,9 +160,9 @@ export default function SoilAdvisoryPage() {
               {}
             ),
           },
-          advanced_insights: Array.isArray(backendResult.advanced_insights) 
-          ? backendResult.advanced_insights // Keep as array if it's already an array
-          : [backendResult.advanced_insights], // Convert string to single-item array
+          advanced_insights: Array.isArray(backendResult.advanced_insights)
+            ? backendResult.advanced_insights // Keep as array if it's already an array
+            : [backendResult.advanced_insights], // Convert string to single-item array
         });
       } else {
         setResult(null);
@@ -174,7 +178,7 @@ export default function SoilAdvisoryPage() {
   };
 
   return (
-    <div className="flex flex-col items-center mt-10">
+    <div className="flex flex-col items-center">
       <div className="min-h-screen w-full flex flex-col items-center">
         <Card className="w-full max-w-2xl bg-white shadow-lg bg-white/60 backdrop-blur-md p-6 mt-0 mb-0 sm:mt-4 sm:mb-4 rounded-none sm:rounded-2xl">
           <h1 className="text-3xl font-semibold text-center p-4">

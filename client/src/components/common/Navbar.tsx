@@ -62,7 +62,7 @@
 
 // export default Navbar;
 
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { LogOut, MenuIcon, X } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import LanguageSelector from "@/components/common/LanguageSelector";
@@ -75,6 +75,7 @@ function Navbar() {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
+  const { pathname } = useLocation();
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -82,6 +83,8 @@ function Navbar() {
     dispatch(logoutUser());
     navigate("/auth");
   };
+
+  if (pathname === "/auth") return null;
 
   return (
     // <header
@@ -104,7 +107,6 @@ function Navbar() {
         <h1 className="text-xl md:text-2xl font-bold tracking-wide rtl:order-1">
           {/* {t("navbar.title")} */}
           Bhoomiबंधु
-
         </h1>
       </button>
 
