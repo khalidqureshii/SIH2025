@@ -14,7 +14,7 @@ const Feedback = () => {
     setTimeout(() => {
       setFeedbackData([
         {
-          issueType: "complaint",
+          issueType: "Complaint",
           subject: "App crashes sometimes",
           description: "Whenever I open the weather section, the app freezes.",
         },

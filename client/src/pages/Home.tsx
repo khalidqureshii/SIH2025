@@ -244,7 +244,7 @@ const Home = () => {
               />
             </div>
             <div className="flex flex-col flex-1 px-4 py-4">
-              <h3 className="text-lg font-bold text-[rgb(150,75,0)] mb-2">
+              <h3 className="text-lg font-bold text-[rgb(84,10,88)] mb-2">
                 {t("home.shortcut_labels.scheme")}
               </h3>
               <p className="text-sm text-gray-600">
@@ -267,7 +267,7 @@ const Home = () => {
               />
             </div>
             <div className="flex flex-col flex-1 px-4 py-4">
-              <h3 className="text-lg font-bold text-[rgb(150,75,0)] mb-2">
+              <h3 className="text-lg font-bold text-[rgb(184,20,20)] mb-2">
                 {t("home.shortcut_labels.plant-identifier")}
               </h3>
               <p className="text-sm text-gray-600">
