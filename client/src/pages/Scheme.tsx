@@ -108,13 +108,13 @@ export default function Scheme() {
 
   return (
     <div
-      className="min-h-screen overflow-x-hidden bg-contain bg-center relative"
-      style={{
-        backgroundImage: "url('/images/soil-advisory.jpg')",
-      }}
+      className="min-h-screen overflow-x-hidden relative"
+      // style={{
+      //   backgroundImage: "url('/images/soil-advisory.jpg')",
+      // }}
     >
       {/* Overlay */}
-      <div className="absolute inset-0 bg-white/30 backdrop-blur-sm"></div>
+      {/* <div className="absolute inset-0 bg-white/30 backdrop-blur-sm"></div> */}
 
       {/* Content */}
       <div className="relative container mx-auto px-4 md:px-6 py-12">
