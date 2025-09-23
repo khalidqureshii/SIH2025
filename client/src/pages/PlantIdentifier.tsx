@@ -63,14 +63,14 @@ const PlantIdentifier: React.FC = () => {
         className={`w-full ${
           result ? "max-w-4xl" : "max-w-md"
         } shadow-lg rounded-2xl border border-white/20 
-        bg-gradient-to-tr from-blue-50 to-blue-100 backdrop-blur-md transition-all duration-500 m-7`}
+        bg-gradient-to-tr from-green-50 to-green-100 backdrop-blur-md transition-all duration-500 m-7`}
       >
         <div className="flex flex-col items-center pt-4">
           <h1 className="text-3xl font-bold mb-4 flex items-center gap-2">
-            <Sprout className="w-8 h-8 text-blue-600" />
+            <Sprout className="w-8 h-8 text-green-700" />
             {t("plant-identifier-page.header.title")}
           </h1>
-          <p className=" mb-6 text-center max-w-md text-blue-700">
+          <p className=" mb-6 text-center max-w-md">
             {t("plant-identifier-page.header.description")}
           </p>
         </div>
@@ -78,9 +78,9 @@ const PlantIdentifier: React.FC = () => {
         <CardContent className="p-6 flex flex-col items-center gap-6">
           {/* Upload Section */}
           {!preview && (
-            <label className="cursor-pointer flex flex-col items-center justify-center border-2 border-dashed border-blue-400 bg-blue-50 p-8 rounded-xl w-full hover:bg-blue-100 transition">
-              <Upload className="h-12 w-12 mb-3 text-blue-600" />
-              <p className="text-sm text-blue-600 font-medium">
+            <label className="cursor-pointer flex flex-col items-center justify-center border-2 border-dashed border-green-400 bg-green-50 p-8 rounded-xl w-full hover:bg-green-100 transition">
+              <Upload className="h-12 w-12 mb-3 " />
+              <p className="text-sm font-medium">
                 {t("plant-identifier-page.uploadSection.tapToUpload")}
               </p>
               <input
@@ -98,12 +98,12 @@ const PlantIdentifier: React.FC = () => {
               <img
                 src={preview}
                 alt={t("plant-identifier-page.previewSection.altPreview")}
-                className="w-56 h-56 object-cover rounded-xl border-2 border-blue-300 shadow-md"
+                className="w-56 h-56 object-cover rounded-xl border-2 border-green-300 shadow-md"
               />
               <Button
                 onClick={handleSubmit}
                 disabled={loading}
-                className="w-56 bg-blue-600 hover:bg-blue-700 text-white"
+                className="w-56 bg-green-600 hover:bg-green-700 text-white"
               >
                 {loading ? (
                   <>
@@ -119,11 +119,9 @@ const PlantIdentifier: React.FC = () => {
 
           {/* Result Section */}
           {result && !loading && (
-            <div className="mt-4 w-full text-center bg-blue-50 border rounded-xl border-blue-200 p-6 shadow-inner">
-              <h2 className="text-2xl font-bold text-blue-800 mb-2">
-                🌱 {result.crop}
-              </h2>
-              <p className="text-blue-700">
+            <div className="mt-4 w-full text-center bg-green-50 border rounded-xl border-green-200 p-6 shadow-inner">
+              <h2 className="text-2xl font-bold mb-2">🌱 {result.crop}</h2>
+              <p>
                 {/* This looks like a{" "}changehere */}
                 {t("plant-identifier-page.resultSection.plantIdentify")}{" "}
                 <span className="font-semibold">{result.crop}</span>.
@@ -136,7 +134,7 @@ const PlantIdentifier: React.FC = () => {
                   setPreview(null);
                   setResult(null);
                 }}
-                className="mt-4 w-56 border-2 border-blue-800 text-blue-800 bg-white hover:bg-blue-100 hover:text-blue-900 transition"
+                className="mt-4 w-56 border-2 border-green-800 bg-white hover:bg-green-100 transition"
               >
                 {t("plant-identifier-page.resultSection.uploadAnotherImage")}
               </Button>
@@ -144,11 +142,11 @@ const PlantIdentifier: React.FC = () => {
           )}
 
           {/* {result && !loading && (
-            <div className="mt-4 w-full text-center bg-blue-50 border rounded-xl border-blue-200 p-6 shadow-inner">
-              <h2 className="text-2xl font-bold text-blue-800 mb-2">
+            <div className="mt-4 w-full text-center bg-green-50 border rounded-xl border-green-200 p-6 shadow-inner">
+              <h2 className="text-2xl font-bold text-green-800 mb-2">
                 🌱 {result.crop}
               </h2>
-              <p className="text-blue-700">
+              <p className="text-green-700">
                 This looks like a{" "}
                 <span className="font-semibold">{result.crop}</span>.
               </p>
