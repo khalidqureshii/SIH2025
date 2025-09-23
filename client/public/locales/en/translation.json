@@ -1,4 +1,20 @@
 {
+  "soil_selector": {
+    "options": {
+      "clay": "Clay",
+      "sandy": "Sandy",
+      "loamy": "Loamy",
+      "silty": "Silty",
+      "peaty": "Peaty",
+      "chalky": "Chalky"
+    },
+    "placeholders": {
+      "chooseSoilType": "Choose Soil Type"
+    },
+    "labels": {
+      "soilSource": "Soil Source"
+    }
+  },
   "card": {
     "loader_message": "Gathering the Clouds....",
     "max_temp": "Max Temp",

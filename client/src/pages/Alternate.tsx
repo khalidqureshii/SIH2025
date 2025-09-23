@@ -153,7 +153,7 @@
 //               {}
 //             ),
 //           },
-//           advanced_insights: Array.isArray(backendResult.advanced_insights) 
+//           advanced_insights: Array.isArray(backendResult.advanced_insights)
 //           ? backendResult.advanced_insights // Keep as array if it's already an array
 //           : [backendResult.advanced_insights], // Convert string to single-item array
 //         });
@@ -170,7 +170,7 @@
 //     }
 //     };
 
-//     const [useSensor, setUseSensor] = useState(false); 
+//     const [useSensor, setUseSensor] = useState(false);
 
 //     return (
 //     <div className="flex flex-col items-center mt-10">
@@ -178,10 +178,10 @@
 //         <Card className="w-full max-w-2xl bg-white shadow-lg bg-white/60 backdrop-blur-md p-6 mt-0 mb-0 sm:mt-4 sm:mb-4 rounded-none sm:rounded-2xl">
 //           <div className="flex flex-col sm:flex-row justify-between items-center">
 //             <h1 className="text-3xl font-semibold text-center p-4">
-//                 {t("soil_page.headings.title")} 
+//                 {t("soil_page.headings.title")}
 //             </h1>
 //           </div>
-          
+
 //           <h3 className="text-md mb-4 text-center p-2 pb-4">
 //             {t("soil_page.headings.subtitle")}
 //           </h3>
@@ -200,7 +200,7 @@
 
 //             {useSensor && (
 //                 <div>
-                    
+
 //                 </div>
 //             )}
 
@@ -240,7 +240,13 @@ import { LINK2 } from "@/store/Link";
 import { Switch } from "@/components/ui/switch";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { SoilSelector } from "@/components/soil/SoilSelector";
 
 interface SensorData {
@@ -330,14 +336,11 @@ export default function Alternate() {
       num = max;
     }
     setSensorData((prev) => ({ ...prev, [field]: num }));
+
+    console.log(sensorData);
   };
 
   const handleSubmit = async (): Promise<void> => {
-    if (useSensor) {
-      await handleSubmit2();
-      return;
-    }
-
     setLoading(true);
     try {
       const response = await axios.post<ApiResponse>(`${LINK2}/analyze`, {
@@ -350,26 +353,80 @@ export default function Alternate() {
 
       if (response.data.success) {
         const backendResult = response.data.data;
-        setResult({
-          weather: {
-            temperature: backendResult.weather_data.temperature,
-            humidity: backendResult.weather_data.humidity,
-            rainfall: backendResult.weather_data.rainfall,
-            season: backendResult.weather_data.season,
-          },
-          satellite: {
-            ndvi: backendResult.satellite_data.ndvi,
-            ndwi: backendResult.satellite_data.ndwi,
-            soilMoisture: backendResult.satellite_data.soil_moisture,
-            ph: backendResult.satellite_data.soil_ph,
-          },
-          nutrients: {
-            n: backendResult.npk_estimates.nitrogen,
-            p: backendResult.npk_estimates.phosphorus,
-            k: backendResult.npk_estimates.potassium,
-            confidence: backendResult.npk_estimates.confidence,
-          },
-        });
+        // Replace the if (useSensor) { ... } block with this:
+        if (useSensor) {
+          // helper: return a number if value is numeric, otherwise return "" to match SensorData type
+          const parseNumOrEmpty = (v: any): number | "" => {
+            if (v === null || v === undefined || v === "") return "";
+            const n = Number(v);
+            return Number.isFinite(n) ? n : "";
+          };
+
+          // Map backend fields into SensorData shape (only fields present)
+          const backendMapped: Partial<SensorData> = {};
+          const w = backendResult?.weather_data;
+          if (w?.temperature !== undefined && w.temperature !== null) {
+            backendMapped.temperature = parseNumOrEmpty(w.temperature);
+          }
+          if (w?.humidity !== undefined && w.humidity !== null) {
+            backendMapped.humidity = parseNumOrEmpty(w.humidity);
+          }
+          if (w?.rainfall !== undefined && w.rainfall !== null) {
+            backendMapped.rainfall = parseNumOrEmpty(w.rainfall);
+          }
+
+          const s = backendResult?.satellite_data;
+          if (s?.soil_moisture !== undefined && s.soil_moisture !== null) {
+            backendMapped.soilMoisture = parseNumOrEmpty(s.soil_moisture);
+          }
+          if (s?.soil_ph !== undefined && s.soil_ph !== null) {
+            backendMapped.pH = parseNumOrEmpty(s.soil_ph);
+          }
+
+          const nVals = backendResult?.npk_estimates;
+          if (nVals?.nitrogen !== undefined && nVals.nitrogen !== null) {
+            backendMapped.n = parseNumOrEmpty(nVals.nitrogen);
+          }
+          if (nVals?.phosphorus !== undefined && nVals.phosphorus !== null) {
+            backendMapped.p = parseNumOrEmpty(nVals.phosphorus);
+          }
+          if (nVals?.potassium !== undefined && nVals.potassium !== null) {
+            backendMapped.k = parseNumOrEmpty(nVals.potassium);
+          }
+
+          // Merge so user-entered values in current state override backend values
+          const mergedSensor: SensorData = {
+            ...backendMapped,
+            ...sensorData,
+          } as SensorData;
+
+          // Update UI and immediately send merged data to handleSubmit2 (no stale-state)
+          setSensorData(mergedSensor);
+
+          await handleSubmit2(mergedSensor);
+          return;
+        } else {
+          setResult({
+            weather: {
+              temperature: backendResult.weather_data.temperature,
+              humidity: backendResult.weather_data.humidity,
+              rainfall: backendResult.weather_data.rainfall,
+              season: backendResult.weather_data.season,
+            },
+            satellite: {
+              ndvi: backendResult.satellite_data.ndvi,
+              ndwi: backendResult.satellite_data.ndwi,
+              soilMoisture: backendResult.satellite_data.soil_moisture,
+              ph: backendResult.satellite_data.soil_ph,
+            },
+            nutrients: {
+              n: backendResult.npk_estimates.nitrogen,
+              p: backendResult.npk_estimates.phosphorus,
+              k: backendResult.npk_estimates.potassium,
+              confidence: backendResult.npk_estimates.confidence,
+            },
+          });
+        }
       } else {
         setResult(null);
         alert(t("soil_page.alerts.noRecommendations"));
@@ -383,21 +440,27 @@ export default function Alternate() {
     }
   };
 
-  const handleSubmit2 = async () => {
+  // Replace your handleSubmit2 with this version (accepts optional payload)
+  // paste this in your component (replace existing handleSubmit2)
+  const handleSubmit2 = async (
+    overrideSensorData?: SensorData
+  ): Promise<void> => {
     setLoading(true);
     try {
-      // Send sensor data to your Gemini-connected endpoint
+      // prefer overrideSensorData when provided to avoid stale-state issues
+      const payloadSensor: SensorData = overrideSensorData ?? sensorData;
+
       const response = await axios.post(`${LINK2}/sensor-analyze`, {
-        ...sensorData,
-        latitude,
-        longitude,
+        ...payloadSensor,
+        latitude: latitude !== "" ? Number(latitude) : undefined,
+        longitude: longitude !== "" ? Number(longitude) : undefined,
         waterSource,
         farmSize,
         language: lang,
       });
 
       console.log("Gemini response:", response.data);
-      setGeminiResponse(response.data.message); // expected { message: string }
+      setGeminiResponse(response.data.message || JSON.stringify(response.data));
     } catch (err) {
       console.error("Error with Gemini fetch:", err);
       setGeminiResponse("An error occurred while fetching Gemini response.");
@@ -448,22 +511,28 @@ export default function Alternate() {
           setWaterSource={setWaterSource}
         />
 
-        <SoilSelector
-          soilType={soilType}
-          setSoilType={setSoilType}
-        />
+        <SoilSelector soilType={soilType} setSoilType={setSoilType} />
 
         <FarmSizeInput farmSize={farmSize} setFarmSize={setFarmSize} />
-
 
         {/* Extra inputs only if using sensor data */}
         {useSensor && (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
             {[
-              { field: "temperature", label: "Temperature (°C)", min: -50, max: 60 },
+              {
+                field: "temperature",
+                label: "Temperature (°C)",
+                min: -50,
+                max: 60,
+              },
               { field: "humidity", label: "Humidity (%)", min: 0, max: 100 },
               { field: "rainfall", label: "Rainfall (mm)", min: 0, max: 500 },
-              { field: "soilMoisture", label: "Soil Moisture (%)", min: 0, max: 100 },
+              {
+                field: "soilMoisture",
+                label: "Soil Moisture (%)",
+                min: 0,
+                max: 100,
+              },
               { field: "pH", label: "pH", min: 0, max: 14 },
               { field: "n", label: "Nitrogen (N)", min: 0, max: 200 },
               { field: "p", label: "Phosphorus (P)", min: 0, max: 200 },
