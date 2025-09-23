@@ -7,6 +7,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Loader2, Send } from "lucide-react";
+import { Link } from "react-router-dom";
 import { LINK2 } from "@/store/Link";
 import ReactMarkdownType from "react-markdown";
 import { useTranslation } from "react-i18next";
