@@ -45,7 +45,6 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { I18nextProvider } from "react-i18next";
 import i18n from "./i18n"; // your config
-// import { registerServiceWorker } from "./pwaRegister";
 import UpdateToast from "./components/common/UpdateToast.js";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
@@ -76,15 +75,3 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     </PersistGate>
   </Provider>
 );
-
-// // Register SW (must have vite-plugin-pwa + src/pwaRegister.ts implemented)
-// registerServiceWorker(
-//   () => {
-//     // onNeedRefresh callback (optional)
-//     console.log("Service worker reports: need refresh");
-//   },
-//   () => {
-//     // onOfflineReady callback (optional)
-//     console.log("Service worker reports: offline ready");
-//   }
-// );
