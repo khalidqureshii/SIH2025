@@ -134,7 +134,7 @@ const ChatSidebar = () => {
           />
           <button
             onClick={sendMessage}
-            className="bg-green-600 hover:bg-green-700 text-white flex items-center justify-center w-12 sm:w-16 h-12 rounded-r-md"
+            className="bg-green-600 hover:bg-green-700 text-white flex items-center justify-center w-12 sm:w-16 h-12 rounded-none md:rounded-r-lg"
           >
             <Send size={20} className="sm:w-6 sm:h-6" />
           </button>
