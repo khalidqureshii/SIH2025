@@ -45,10 +45,13 @@
 // import { a } from "react-router-dom";
 import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { useLocation } from "react-router-dom";
 
 const Footer = () => {
+  const { pathname } = useLocation();
+  const { t } = useTranslation();
 
-  const {t} = useTranslation();
+  if (pathname === "/auth") return null;
 
   return (
     <footer className="bg-gradient-to-r from-green-600 to-green-900 text-white py-8">
@@ -56,9 +59,7 @@ const Footer = () => {
         {/* Logo & Branding */}
         <div className="flex flex-col items-start gap-2">
           <h2 className="text-xl font-bold tracking-wide">Bhoomiबंधु</h2>
-          <p className="text-sm text-gray-200">
-            {t("footer.description")}
-          </p>
+          <p className="text-sm text-gray-200">{t("footer.description")}</p>
         </div>
 
         {/* Links */}

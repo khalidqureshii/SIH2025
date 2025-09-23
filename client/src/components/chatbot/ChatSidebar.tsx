@@ -10,6 +10,7 @@ import { Loader2, Send } from "lucide-react";
 import { LINK2 } from "@/store/Link";
 import ReactMarkdownType from "react-markdown";
 import { useTranslation } from "react-i18next";
+import { useLocation } from "react-router-dom";
 
 const ReactMarkdown = ReactMarkdownType as unknown as React.FC<{
   children: string;
@@ -29,6 +30,7 @@ const ChatSidebar = () => {
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+  const { pathname } = useLocation();
 
   const sendMessage = async () => {
     if (!input.trim()) return;
@@ -62,6 +64,8 @@ const ChatSidebar = () => {
       setLoading(false);
     }
   };
+
+  if (pathname === "/auth") return null;
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
