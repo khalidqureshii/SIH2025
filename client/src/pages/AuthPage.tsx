@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import type { AppDispatch } from "@/store/Store";
 import { storeToken, authenticateUser } from "@/store/features/authSlice";
-import {LINK} from "@/store/Link";
+import { LINK } from "@/store/Link";
 import { useNavigate } from "react-router-dom";
 
 const AuthPage = () => {
@@ -64,7 +64,7 @@ const AuthPage = () => {
   return (
     <div className="flex h-screen w-screen bg-white">
       {/* Left Panel */}
-      <div className="hidden md:flex relative flex-col justify-center items-center w-1/2 text-white p-10 overflow-hidden bg-gradient-to-br from-green-700 to-green-500 rounded-r-3xl shadow-4xl shadow-green-800">
+      <div className="hidden md:flex relative flex-col justify-center items-center w-1/2 text-white p-10 overflow-hidden bg-gradient-to-br from-green-700 to-green-500 ">
         <img
           src="/images/auth-side-image.jpg"
           alt={t("auth_page.leftPanel.imageAlt")}
@@ -75,7 +75,9 @@ const AuthPage = () => {
             <img src="plant.png" className="w-20 h-20" />
             <h1 className="text-3xl font-bold tracking-wide">
               {/* {t("auth_page.leftPanel.title")} */}
-              Bhoomiबंधु
+              <span className="text-[#69320a]">Bhoomi</span>
+              <span className="text-green-700">बंधु</span>
+              {/* Bhoomiबंधु */}
             </h1>
           </div>
           <p className="text-lg  leading-relaxed max-w-md">

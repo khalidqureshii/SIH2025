@@ -348,6 +348,17 @@
     "alerts": {
       "noRecommendations": "No recommendations found.",
       "fetchError": "Failed to fetch recommendations. Please try again."
+    },
+    "labels":{
+      "temperature": "Temperature (°C)",
+      "rainfall": "Rainfall (mm)",
+      "humidity": "Humidity (%)",
+      "moisture": "Soil Moisture",
+      "p":"Phosphorus (P)",
+      "k":"Potassium (K)",
+      "n":"Nitrogen (N)",
+      "ph":"Soil pH",
+      "useSensor": "Use Sensor Data"
     }
   },
 
@@ -533,14 +544,14 @@
 
   "home": {
     "header_title": "🌾 Smart Crop Advisory",
-    "subheader": "Helping Farmers with Smarter Decisions",
+    "subheader": "Your trusted friend for smarter farming!",
     "location_title": "📍 Location Access",
     "allow_gps": "Allow GPS",
     "manual_button": "Enter Location Manually",
     "shortcut_labels": {
       "crop": "Crop Advisory",
       "weather": "Weather",
-      "disease": "Disease Detection",
+      "crop_and_disease": "Crop Identification & Disease Detection",
       "feedback": "Feedback",
       "market": "Market Price",
       "plant-identifier": "Plant Identifier",
@@ -550,7 +561,7 @@
     "descriptions": {
       "crop": "Personalized recommendations on crop selection and best farming practices to maximize yield and sustainability",
       "weather": "Accurate forecasts and timely alerts to help you plan irrigation, harvesting, and protect crops from extreme conditions",
-      "disease": "Early identification of crop diseases with AI-powered analysis, enabling quick action and healthier harvests",
+      "crop_and_disease": "Identify crops instantly by uploading an image and early detection of crop diseases with AI-powered analysis",
       "market": "Aggregated daily price data for a wide range of commodities, sourced directly from markets across every state in India.",
       "plant-identifier": "Identify plants instantly by uploading a photo and get quick insights about them.",
       "feedback": "Share your thoughts and help us improve! Submit feedback, report issues, or suggest new features — we value every opinion",

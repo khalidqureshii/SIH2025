@@ -82,11 +82,11 @@ const Footer = () => {
               {t("footer.links.terms_conditions")}
             </a>
           </span>
-          <span>
+          {/* <span>
             <a href="/privacy" className="hover:underline">
               {t("footer.links.privacy_policy")}
             </a>
-          </span>
+          </span> */}
         </div>
 
         {/* Social + Contact */}

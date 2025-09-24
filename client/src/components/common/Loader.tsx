@@ -57,6 +57,8 @@ const Loader: React.FC<LoaderProp> = (props) => {
                                 // src='https://lottie.host/28849d46-6262-42ec-be27-deea2d9ae9a0/ZgKbMCHk1g.lottie'
                                 // Infinity
                                 // src='https://lottie.host/bdccc051-2094-4d92-981a-6d6a9c7ef85d/EcgjRlUVTm.lottie'
+                                // Vegetables
+                                // src='https://lottie.host/51bf7e3a-7e4d-4666-9528-180a22e144a0/ePlh0H1Vu8.lottie'
                                 src={src}
                                 loop
                                 autoplay
