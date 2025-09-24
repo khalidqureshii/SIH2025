@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
 import MarketCard from "@/components/market/MarketCard";
-import { useTranslation } from "react-i18next";
+// import { useTranslation } from "react-i18next";
 import { LINK } from "@/store/Link";
 import Loader from "../common/Loader";
 
