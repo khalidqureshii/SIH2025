@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import cropData from "@/components/cropTimeLine/timeline";
 import type { CropInfo } from "@/components/cropTimeLine/types";
 import { Input } from "@/components/ui/input";
+import { ChevronDown, ChevronUp } from "lucide-react";
+
 import {
   Select,
   SelectTrigger,
@@ -47,20 +49,26 @@ const CropTimeline: React.FC = () => {
   const normalizedArea: number = landArea * unitConversions[areaUnit];
 
   const getScaledResource = (
-    resource: string,
-    range: [number, number]
-  ): string => {
-    if (!range || range.length !== 2) return resource;
+  resource: string,
+  range: [number, number]
+): string => {
+  if (!range || range.length !== 2) return resource;
 
-    if (Array.isArray(range)) {
-      const [min, max] = range;
-      return `${Math.round(min * normalizedArea)}-${Math.round(
-        max * normalizedArea
-      )} ${resource.split(" ").slice(2).join(" ")}`;
-    }
+  // Find the first number/number-range + unit (e.g., "5-10 kg" or "20-25 kg")
+  const match = resource.match(/(\d+\s*-\s*\d+|\d+)\s*[a-zA-Z]+/);
+  if (!match) return resource;
 
-    return resource;
-  };
+  const [min, max] = range;
+  // Extract the unit from the matched string
+  const unitMatch = match[0].match(/[a-zA-Z]+/);
+  const unit = unitMatch ? unitMatch[0] : "";
+
+  // Build the scaled string
+  const scaled = `${Math.round(min * normalizedArea)}-${Math.round(max * normalizedArea)} ${unit}`;
+
+  // Replace only the matched part with the scaled value
+  return resource.replace(match[0], scaled);
+};
 
   const getResourceIcon = (resourceType: string): JSX.Element => {
     switch (resourceType.toLowerCase()) {
@@ -331,85 +339,131 @@ const CropTimeline: React.FC = () => {
                 {currentCrop.timeline.map((stage, index) => (
                   <div key={index} className="relative">
                     <div
-                      className={`flex items-start cursor-pointer ${
-                        selectedStage === index ? "mb-4" : ""
-                      }`}
-                      onClick={() => handleStageClick(index)}
-                    >
-                      <div
-                        className={`z-10 flex items-center justify-center w-8 h-8 rounded-full border-2 ${
-                          selectedStage === index
-                            ? "bg-lime-500 border-lime-600"
-                            : "bg-white border-lime-400"
-                        }`}
-                      >
-                        <span className="text-sm font-medium">{index + 1}</span>
-                      </div>
-                      <div className="ml-4">
-                        <h3 className="text-lg font-medium text-lime-800">
-                          {stage.stage}
-                        </h3>
-                        <p className="text-sm text-lime-600">
-                          {stage.duration}
-                        </p>
-                      </div>
-                    </div>
+                className={`flex items-start cursor-pointer ${
+                  selectedStage === index ? "mb-4" : ""
+                }`}
+                onClick={() => handleStageClick(index)}
+              >
+                {/* Arrow icon instead of numbers */}
+                <div
+                  className={`z-10 flex items-center justify-center w-8 h-8 rounded-full border-2 transition-colors duration-300 ${
+                  selectedStage === index
+                    ? "bg-lime-500 border-lime-600 text-white"
+                    : "bg-white border-lime-400 text-lime-600"
+                }`}
+              >
+                {selectedStage === index ? (
+                  <ChevronUp className="w-5 h-5" />
+                ) : (
+                  <ChevronDown className="w-5 h-5" />
+                )}
+                </div>
 
-                    {selectedStage === index && (
-                      <div className="ml-12 p-4 bg-white/70 rounded-lg border border-lime-200 shadow-sm">
-                        <div className="mb-3">
-                          <div className="flex items-center text-sm text-amber-600 mb-1">
-                            {/* icon */}
-                            {t("timeline_page.messages.optimalTemperature")}
-                          </div>
-                          <p className="ml-7 text-gray-700">
-                            {stage.temperature}
-                          </p>
-                        </div>
-
-                        <h4 className="font-medium text-lime-700 mb-2">
-                          {t("timeline_page.messages.resourcesNeeded")}
-                        </h4>
-                        <ul className="space-y-2">
-                          {Object.entries(stage.resources).map(
-                            ([key, value]) => (
-                              <li key={key} className="flex items-center">
-                                {getResourceIcon(key)}
-                                <span className="text-gray-700">
-                                  <span className="font-medium">{key}: </span>
-                                  {stage.scalableResources &&
-                                  stage.scalableResources[key]
-                                    ? getScaledResource(
-                                        value,
-                                        stage.scalableResources[key]
-                                      )
-                                    : value}
-                                </span>
-                              </li>
-                            )
-                          )}
-                        </ul>
-                        <h4 className="font-medium text-green-700 mb-2 mt-4">
-                          {t("timeline_page.messages.processToFollow")}
-                        </h4>
-                        <p className="ml-7 text-gray-700">
-                          {stage.description}
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                ))}
+                {/* Stage title + duration */}
+                <div className="ml-4">
+                  <h3 className="text-lg font-medium text-lime-800">{stage.stage}</h3>
+                  <p className="text-sm text-lime-600">{stage.duration}</p>
+                </div>
               </div>
+
+            {selectedStage === index && (
+            <div className="ml-12 p-4 bg-white/70 rounded-lg border border-lime-200 shadow-sm space-y-4">
+              {/* Temperature */}
+              <div>
+                <div className="flex items-center text-sm text-amber-600 mb-1">
+                  {t("timeline_page.messages.optimalTemperature")}
+                </div>
+                <p className="ml-7 text-gray-700">{stage.temperature}</p>
+              </div>
+
+              {/* Resources */}
+              <div>
+                <h4 className="font-medium text-lime-700 mb-2">
+                  {t("timeline_page.messages.resourcesNeeded")}
+                </h4>
+                <ul className="space-y-2">
+                    {Object.entries(stage.resources).map(([key, value]) => (
+                      <li key={key} className="flex items-center">
+                        {getResourceIcon(key)}
+                        <span className="text-gray-700">
+                          <span className="font-medium">
+                            {key.charAt(0).toUpperCase() + key.slice(1)}:{" "}
+                          </span>
+                          {stage.scalableResources && stage.scalableResources[key]
+                            ? getScaledResource(value, stage.scalableResources[key])
+                            : value}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Process to follow */}
+              {/* <div>
+                <h4 className="font-medium text-green-700 mb-2">
+                  🪜{t("timeline_page.messages.processToFollow")}
+                </h4>
+                <p className="ml-7 text-gray-700">{stage.description}</p>
+              </div> */}
+
+              {/* ✅ What to do */}
+              <div className="bg-gradient-to-br from-green-200  to-lime-100 rounded-lg shadow-lg p-3">
+                <h4 className="font-medium text-blue-700 mb-2">✅ What to do</h4>
+                <p className="ml-7 text-gray-700">{stage.what_to_do}</p>
+              </div>
+
+              {/* 💡 Tips */}
+              <div className="bg-gradient-to-br from-green-200  to-lime-100 rounded-lg shadow-lg p-3">
+                <h4 className="font-medium text-purple-700 mb-2">💡 Tips</h4>
+                <p className="ml-7 text-gray-700">{stage.tips}</p>
+              </div>
+
+              {/* 🔎 Indicators */}
+              <div className="bg-gradient-to-br from-green-200  to-lime-100 rounded-lg shadow-lg p-3">
+                <h4 className="font-medium text-orange-700 mb-2">🔎 Indicators</h4>
+                <p className="ml-7 text-gray-700">{stage.indicators}</p>
+              </div>
+
+              {/* 🐛 Pests & Diseases */}
+              {stage.pests_and_diseases && stage.pests_and_diseases.length > 0 && (
+                <div className="bg-gradient-to-br from-green-200  to-lime-100 rounded-lg shadow-lg p-3">
+                  <h4 className="font-medium text-red-700 mb-2">🐛 Pests & Diseases</h4>
+                  <ul className="list-disc ml-7 space-y-1 text-gray-700">
+                    {stage.pests_and_diseases.map((pd, i) => (
+                      <li key={i}>
+                        <span className="font-medium">{pd.name}:</span> {pd.control}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              </div>
+              {/* 🌾 Harvest Notes */}
+              {stage.harvest_notes && (
+                <div>
+                  <h4 className="font-medium text-emerald-700 mb-2">🌾 Harvest Notes</h4>
+                  <p className="ml-7 text-gray-700">{stage.harvest_notes}</p>
+                </div>
+              )}
             </div>
+          )}
           </div>
-        ) : (
-          <p className="mt-6 text-gray-500 text-center">
-            {t("timeline_page.messages.noCropSelected")}
-          </p>
-        )}
+        ))}
       </div>
+    </div>
+  </div>
+) : (
+  <p className="mt-6 text-gray-500 text-center">
+    {t("timeline_page.messages.noCropSelected")}
+  </p>
+)}
+
+      
+    </div>
     </div>
   );
 };
 
 export default CropTimeline;
+
+

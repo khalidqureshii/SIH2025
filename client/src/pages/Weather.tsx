@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import InputField from "../components/weather/InputField";
 import Button from "../components/weather/Button";
 import WeatherDashboard from "../components/weather/WeatherDashboard";
 import Loader from "@/components/common/Loader";
 import { useTranslation } from "react-i18next";
+import { Input } from "@/components/ui/input";
 
 const Weather: React.FC = () => {
   const { t } = useTranslation();
@@ -83,15 +83,16 @@ const Weather: React.FC = () => {
         <div className="flex justify-center items-center mx-auto px-4 min-h-screen w-full">
           <form
             onSubmit={handleSubmit}
-            className="flex flex-col items-center p-6 rounded-2xl shadow-md w-72 sm:w-80 md:w-96 lg:w-[28rem] min-h-80 sm:min-h-96 md:h-[26rem] lg:h-[30rem] bg-white/30 backdrop-blur"
+            className="flex flex-col items-center p-6 rounded-2xl shadow-md w-72 sm:w-80 md:w-96 lg:w-[28rem] min-h-60 sm:min-h-80 md:h-[20rem] lg:h-[26rem] bg-white/60 backdrop-blur"
           >
-            <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-center text-white [text-shadow:2px_2px_4px_#7f1d1d]">
-              {t("weather.form_header")}
+            <h1 className="text-2xl font-semibold text-center p-4 mt-6">
+              🌦️ {t("weather.form_header")}
             </h1>
             <div className="flex-grow flex flex-col justify-center items-center gap-10 w-full">
-              <InputField
+              <Input
                 id="city"
-                placeHolder={t("weather.placeholder")}
+                className="w-[80%]"
+                placeholder={t("weather.placeholder")}
                 value={city}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setCity(e.target.value)
@@ -100,7 +101,7 @@ const Weather: React.FC = () => {
               <Button
                 type="submit"
                 name={t("weather.submit")}
-                className="bg-emerald-600 hover:bg-green-500"
+                className="mt-4 w-56 bg-green-600 hover:bg-green-700 text-white"
               />
             </div>
           </form>

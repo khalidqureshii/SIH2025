@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
 import MarketCard from "@/components/market/MarketCard";
-import { useTranslation } from "react-i18next";
+// import { useTranslation } from "react-i18next";
 import { LINK } from "@/store/Link";
 import Loader from "../common/Loader";
 
@@ -32,7 +32,7 @@ interface Props {
 type Status = "idle" | "pending" | "success" | "error";
 
 const MarketResults: React.FC<Props> = ({ filters }) => {
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
   const [records, setRecords] = useState<PriceRecord[]>([]);
   const [error, setError] = useState<string | null>(null);
 
@@ -94,7 +94,7 @@ const MarketResults: React.FC<Props> = ({ filters }) => {
 
   return (
     <div className="mt-8 w-full max-w-5xl">
-      <div className="flex justify-center items-center p-3 bg-white rounded-lg shadow-md">
+      {/* <div className="flex justify-center items-center p-3 bg-white rounded-lg shadow-md">
         <h2 className="text-2xl font-semibold text-gray-800 text-center">
           {t("market.results.header")}{" "}
           <span className="font-bold text-red-600 italic">
@@ -102,10 +102,10 @@ const MarketResults: React.FC<Props> = ({ filters }) => {
           </span>{" "}
           {t("market.results.in")} {filters.district}, {filters.state}
         </h2>
-      </div>
+      </div> */}
 
       {status === "idle" && (
-        <div className="py-8 text-gray-500 text-center">
+        <div className="py-8 text-black text-center">
           Please choose filters and click Search to see prices.
         </div>
       )}
@@ -123,7 +123,7 @@ const MarketResults: React.FC<Props> = ({ filters }) => {
       )}
 
       {status === "success" && records.length === 0 && (
-        <div className="py-8 text-gray-600 text-center">
+        <div className="py-8 text-black text-center">
           No price data found for the selected filters.
         </div>
       )}
