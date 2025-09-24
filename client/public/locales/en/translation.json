@@ -357,7 +357,8 @@
       "p":"Phosphorus (P)",
       "k":"Potassium (K)",
       "n":"Nitrogen (N)",
-      "ph":"Soil pH"
+      "ph":"Soil pH",
+      "useSensor": "Use Sensor Data"
     }
   },
 

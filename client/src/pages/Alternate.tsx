@@ -472,11 +472,6 @@ export default function Alternate() {
             {t("soil_page.headings.title")}
           </h1>
           <div className="flex items-center space-x-3">
-            <span
-              className={`${!useSensor ? "text-gray-900" : "text-gray-400"}`}
-            >
-              No Sensor Data
-            </span>
             <Switch
               checked={useSensor}
               onCheckedChange={setUseSensor}
@@ -485,7 +480,7 @@ export default function Alternate() {
             <span
               className={`${useSensor ? "text-gray-900" : "text-gray-400"}`}
             >
-              Use Sensor Data
+              {t("soil_page.labels.useSensor")}
             </span>
           </div>
         </div>
