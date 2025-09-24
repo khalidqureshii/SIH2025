@@ -55,6 +55,8 @@
 //     res.status(500).json({ error: "Internal server error" });
 //   }
 // };
+
+
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 export const getCommodityPrice = async (req, res) => {
@@ -96,7 +98,7 @@ export const getCommodityPrice = async (req, res) => {
     const targetLanguage = languageMap[language] || "English";
 
     const prompt = `
-You are an agricultural data assistant.
+                    You are an agricultural data assistant.
 
 Generate daily market price records for the following filters:
 - State: ${state}
