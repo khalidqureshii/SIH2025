@@ -57,7 +57,7 @@ const CarouselWeather: React.FC<CarouselWeatherProps> = (props) => {
   };
 
   return (
-    <div className="w-full py-6">
+    <div className="w-full">
       <Carousel className="relative w-full max-w-6xl mx-auto group">
         <CarouselContent>
           {data.forecast.map((forecastItem: any, index: number) => {
