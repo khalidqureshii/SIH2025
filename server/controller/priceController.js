@@ -98,12 +98,12 @@ export const getCommodityPrice = async (req, res) => {
     const prompt = `
 You are an agricultural data assistant.
 
-Generate mock market price records for the following filters:
+Generate daily market price records for the following filters:
 - State: ${state}
 - District: ${district}
 - Commodity: ${commodity}
 
-⚠️ Output rules:
+⚠ Output rules:
 - Respond strictly in JSON array format only, with no extra text or explanation.
 - All keys MUST remain in English exactly as shown.
 - All values (except numbers and dates) MUST be translated into ${targetLanguage}.
@@ -125,8 +125,8 @@ Example of required structure:
     "modal_price": 1500
   }
 ]
-
-Now generate the JSON for the given inputs.
+Note: Give me the price of the commodity per quintal
+Now generate the JSON for the given inputs. Keep in mind that the data is accurate, and if not close to accurate, but it should be of the present day
 `;
 
     const model = genAI.getGenerativeModel({ model: "gemma-3-27b-it" });
