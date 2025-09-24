@@ -76,7 +76,7 @@ const CropTimeline: React.FC = () => {
         return (
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 mr-2"
+            className="h-6 w-6 mr-2 sm:h-5 sm:w-5"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -94,7 +94,7 @@ const CropTimeline: React.FC = () => {
         return (
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 mr-2"
+            className="h-6 w-6 mr-2 sm:h-5 sm:w-5"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -109,7 +109,7 @@ const CropTimeline: React.FC = () => {
         return (
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 mr-2"
+            className="h-6 w-6 mr-2 sm:h-5 sm:w-5"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -124,7 +124,7 @@ const CropTimeline: React.FC = () => {
         return (
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 mr-2"
+            className="h-6 w-6 mr-2 sm:h-5 sm:w-5"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -334,7 +334,11 @@ const CropTimeline: React.FC = () => {
             </h2>
 
             <div className="relative">
-              <div className="absolute top-0 bottom-0 left-[15px] w-0.5 bg-lime-300"></div>
+              <div
+                className={`absolute top-0 bottom-0 left-[15px] w-0.5 bg-lime-300
+                  ${selectedStage !== null ? "sm:block invisible" : ""}
+                  `}
+              ></div>
               <div className="space-y-6">
                 {currentCrop.timeline.map((stage, index) => (
                   <div key={index} className="relative">
@@ -367,7 +371,25 @@ const CropTimeline: React.FC = () => {
               </div>
 
             {selectedStage === index && (
-            <div className="ml-12 p-4 bg-white/70 rounded-lg border border-lime-200 shadow-sm space-y-4">
+            <div
+                className="
+                  w-full
+                  max-w-full
+                  ml-0
+                  sm:ml-12
+                  sm:w-auto
+                  sm:max-w-none
+                  p-4
+                  bg-white/70
+                  rounded-lg
+                  border
+                  border-lime-200
+                  shadow-sm
+                  space-y-4
+                  transition-all
+                  duration-300
+                "
+              >
               {/* Temperature */}
               <div>
                 <div className="flex items-center text-sm text-amber-600 mb-1">
@@ -382,20 +404,21 @@ const CropTimeline: React.FC = () => {
                   {t("timeline_page.messages.resourcesNeeded")}
                 </h4>
                 <ul className="space-y-2">
-                    {Object.entries(stage.resources).map(([key, value]) => (
-                      <li key={key} className="flex items-center">
-                        {getResourceIcon(key)}
-                        <span className="text-gray-700">
-                          <span className="font-medium">
-                            {key.charAt(0).toUpperCase() + key.slice(1)}:{" "}
-                          </span>
-                          {stage.scalableResources && stage.scalableResources[key]
-                            ? getScaledResource(value, stage.scalableResources[key])
-                            : value}
+                  {Object.entries(stage.resources).map(([key, value]) => (
+                    <li key={key} className="flex items-start gap-2">
+                      <div className="flex-shrink-0">{getResourceIcon(key)}</div>
+                      <span className="text-gray-700 leading-snug">
+                        <span className="font-medium">
+                          {key.charAt(0).toUpperCase() + key.slice(1)}:{" "}
                         </span>
-                      </li>
-                    ))}
-                  </ul>
+                        {stage.scalableResources && stage.scalableResources[key]
+                          ? getScaledResource(value, stage.scalableResources[key])
+                          : value}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* Process to follow */}
