@@ -16,6 +16,8 @@ import Scheme from "./pages/Scheme";
 import PlantIdentifier from "./pages/PlantIdentifier";
 import Loader from "./components/common/Loader";
 import Alternate from "./pages/Alternate";
+import TermsAndConditions from "./pages/TermsAndConditions";
+import AboutUs from "./pages/AboutUs";
 // import DirectionHandler from "./components/DirectionHandler";
 
 function ScrollToTop() {
@@ -185,6 +187,34 @@ function App() {
                   <div className="min-h-screen bg-[url('/images/plant-identifier.jpeg')] bg-cover bg-center bg-no-repeat bg-fixed">
                     <div className="min-h-screen backdrop-blur-sm">
                       <PlantIdentifier />
+                    </div>
+                  </div>
+                </>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/terms"
+            element={
+              <ProtectedRoute>
+                <>
+                  <div className="min-h-screen bg-[url('/images/bg-homepage.jpg')] bg-cover bg-center bg-no-repeat bg-fixed">
+                    <div className="min-h-screen backdrop-blur-sm">
+                      <TermsAndConditions />
+                    </div>
+                  </div>
+                </>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/about"
+            element={
+              <ProtectedRoute>
+                <>
+                  <div className="min-h-screen bg-[url('/images/bg-homepage.jpg')] bg-cover bg-center bg-no-repeat bg-fixed">
+                    <div className="min-h-screen backdrop-blur-sm">
+                      <AboutUs />
                     </div>
                   </div>
                 </>

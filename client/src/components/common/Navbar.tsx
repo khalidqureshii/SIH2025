@@ -106,7 +106,8 @@ function Navbar() {
         <img src="plant.png" className="w-7 h-7 rtl:ml-2 rtl:order-1" />
         <h1 className="text-xl md:text-2xl font-bold tracking-wide rtl:order-1">
           {/* {t("navbar.title")} */}
-          Bhoomiबंधु
+          <span className="text-[#69320a]">Bhoomi</span>
+          <span className="text-green-700">बंधु</span>
         </h1>
       </button>
 
