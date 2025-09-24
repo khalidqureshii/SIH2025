@@ -48,6 +48,7 @@ interface BackendResult {
   npk_estimates: NPKEstimates;
   crop_recommendations: CropRecommendation[];
   advanced_insights: string;
+  fertilizer_guidance?: string[] | string;
 }
 
 interface ApiResponse {
@@ -87,6 +88,7 @@ interface ProcessedResult {
     crops: { [cropName: string]: ProcessedCrop };
   };
   advanced_insights: string[];
+  fertilizer_guidance?: string[];
 }
 
 export default function SoilAdvisoryPage() {
@@ -163,6 +165,11 @@ export default function SoilAdvisoryPage() {
           advanced_insights: Array.isArray(backendResult.advanced_insights)
             ? backendResult.advanced_insights // Keep as array if it's already an array
             : [backendResult.advanced_insights], // Convert string to single-item array
+          fertilizer_guidance: Array.isArray(backendResult.fertilizer_guidance)
+            ? backendResult.fertilizer_guidance
+            : backendResult.fertilizer_guidance
+            ? [backendResult.fertilizer_guidance]
+            : undefined,
         });
       } else {
         setResult(null);

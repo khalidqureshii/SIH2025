@@ -78,7 +78,9 @@ const Home = () => {
       <div className="relative z-10 flex flex-col items-center w-full mt-8">
         <h1 className="text-5xl font-bold text-green-800 mb-2 text-center">
           {/* {t("home.header_title")} */}
-          Bhoomiबंधु
+          {/* Bhoomiबंधु */}
+          <span className="text-[#69320a]">Bhoomi</span>
+          <span className="text-green-700">बंधु</span>
         </h1>
         <p className="text-gray-700 text-xl mb-6 text-center">
           {t("home.subheader")}
