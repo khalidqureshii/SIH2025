@@ -11,6 +11,7 @@ import { LINK2 } from "@/store/Link";
 import ReactMarkdownType from "react-markdown";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
+import VoiceInput from "./VoiceInput";
 
 const ReactMarkdown = ReactMarkdownType as unknown as React.FC<{
   children: string;
@@ -31,11 +32,11 @@ const ChatSidebar = () => {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const { pathname } = useLocation();
+  const sendMessage = async (inp: string) => {
+    console.log("Here");
+    // if (!input.trim()) return;
 
-  const sendMessage = async () => {
-    if (!input.trim()) return;
-
-    const userMessage: Message = { sender: "user", text: input };
+    const userMessage: Message = { sender: "user", text: inp };
     setMessages((prev) => [...prev, userMessage]);
     setInput("");
     setLoading(true);
@@ -128,16 +129,26 @@ const ChatSidebar = () => {
         </div>
 
         <div className="flex items-center border-t border-gray-300 bg-green-200 pt-3 px-0 md:p-4">
+          <VoiceInput
+            onTranscribe={(text) => {
+              setInput(text);
+              sendMessage(text);
+            }}
+          />
           <input
             type="text"
             placeholder="Ask BhoomiBandhu..."
-            className="flex-1 px-3 py-2 focus:outline-none border rounded-l-md h-12 text-sm sm:text-base"
+            className="flex-1 px-3 py-2 focus:outline-none border h-12 text-sm sm:text-base"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+            onKeyDown={(e) =>
+              e.key === "Enter" && sendMessage(e.currentTarget.value)
+            }
           />
           <button
-            onClick={sendMessage}
+            onClick={() => {
+              sendMessage(input);
+            }}
             className="bg-green-600 hover:bg-green-700 text-white flex items-center justify-center w-12 sm:w-16 h-12 rounded-none md:rounded-r-lg"
           >
             <Send size={20} className="sm:w-6 sm:h-6" />
