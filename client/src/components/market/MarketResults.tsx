@@ -32,7 +32,7 @@ interface Props {
 type Status = "idle" | "pending" | "success" | "error";
 
 const MarketResults: React.FC<Props> = ({ filters }) => {
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
   const [records, setRecords] = useState<PriceRecord[]>([]);
   const [error, setError] = useState<string | null>(null);
 
