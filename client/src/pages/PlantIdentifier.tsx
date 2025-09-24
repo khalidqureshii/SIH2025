@@ -62,15 +62,16 @@ const PlantIdentifier: React.FC = () => {
       <Card
         className={`w-full ${
           result ? "max-w-5xl" : "max-w-md"
-        }  shadow-lg rounded-2xl border border-white/20 
-        bg-white/60 backdrop-blur-md transition-all duration-500 m-7`}
+        } shadow-lg border border-white/20 
+        bg-white/60 backdrop-blur-md transition-all duration-500 mx-2 sm:mx-7 mt-0 
+        rounded-none sm:rounded-2xl`}
       >
         <div className="flex flex-col items-center pt-4">
           <h1 className="text-2xl font-semibold mb-4 flex items-center gap-2">
             <Sprout className="w-6 h-6 text-green-700" />
             {t("plant-identifier-page.header.title")}
           </h1>
-          <p className=" mb-6 text-center max-w-md">
+          <p className=" mb-6 text-center max-w-md px-5">
             {t("plant-identifier-page.header.description")}
           </p>
         </div>
@@ -79,8 +80,8 @@ const PlantIdentifier: React.FC = () => {
           {/* Upload Section */}
           {!preview && (
             <label className="cursor-pointer flex flex-col items-center justify-center border-2 border-dashed border-green-400 bg-green-50 p-8 rounded-xl w-full hover:bg-green-100 transition">
-              <Upload className="h-12 w-12 mb-3 text-green-600" />
-              <p className="text-sm text-gray-600 font-medium">
+              <Upload className="h-12 w-12 mb-3 text-green-600 text-center" />
+              <p className="text-sm text-gray-600 font-medium text-center">
                 {t("plant-identifier-page.uploadSection.tapToUpload")}
               </p>
               <input
@@ -141,17 +142,6 @@ const PlantIdentifier: React.FC = () => {
             </div>
           )}
 
-          {/* {result && !loading && (
-            <div className="mt-4 w-full text-center bg-green-50 border rounded-xl border-green-200 p-6 shadow-inner">
-              <h2 className="text-2xl font-bold text-green-800 mb-2">
-                🌱 {result.crop}
-              </h2>
-              <p className="text-green-700">
-                This looks like a{" "}
-                <span className="font-semibold">{result.crop}</span>.
-              </p>
-            </div>
-          )} */}
         </CardContent>
       </Card>
     </div>
