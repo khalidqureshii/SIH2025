@@ -164,7 +164,7 @@
 
   "weather": {
     "loader_message": "Detecting your Location....",
-    "form_header": "Please Enter the City Name to fetch its Weather Details",
+    "form_header": "Fetch Weather Details for...",
     "placeholder": "Enter City",
     "submit": "Submit"
   },
