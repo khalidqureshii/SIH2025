@@ -519,18 +519,18 @@ export default function Alternate() {
                 min: -50,
                 max: 60,
               },
-              { field: "humidity", label: "Humidity (%)", min: 0, max: 100 },
-              { field: "rainfall", label: "Rainfall (mm)", min: 0, max: 500 },
+              { field: "humidity", label: t("soil_page.labels.humidity"), min: 0, max: 100 },
+              { field: "rainfall", label: t("soil_page.labels.rainfall"), min: 0, max: 500 },
               {
                 field: "soilMoisture",
-                label: "Soil Moisture (%)",
+                label: t("soil_page.labels.moisture"),
                 min: 0,
                 max: 100,
               },
-              { field: "pH", label: "pH", min: 0, max: 14 },
-              { field: "n", label: "Nitrogen (N)", min: 0, max: 200 },
-              { field: "p", label: "Phosphorus (P)", min: 0, max: 200 },
-              { field: "k", label: "Potassium (K)", min: 0, max: 200 },
+              { field: "pH", label: t("soil_page.labels.ph"), min: 0, max: 14 },
+              { field: "n", label: t("soil_page.labels.n"), min: 0, max: 200 },
+              { field: "p", label: t("soil_page.labels.p"), min: 0, max: 200 },
+              { field: "k", label: t("soil_page.labels.k"), min: 0, max: 200 },
             ].map(({ field, label, min, max }) => (
               <div key={field}>
                 <Label>{label}</Label>
@@ -570,7 +570,6 @@ export default function Alternate() {
         {/* Gemini response block */}
         {geminiResponse && (
           <div className="mt-6 p-4 border rounded-lg bg-gray-50">
-            <h4 className="font-semibold mb-2">Gemini Advisory</h4>
             {/* <p className="whitespace-pre-line">{geminiResponse}</p> */}
             <ReactMarkdown className="prose prose-lg max-w-none">
               {geminiResponse}

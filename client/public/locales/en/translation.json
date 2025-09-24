@@ -348,6 +348,16 @@
     "alerts": {
       "noRecommendations": "No recommendations found.",
       "fetchError": "Failed to fetch recommendations. Please try again."
+    },
+    "labels":{
+      "temperature": "Temperature (°C)",
+      "rainfall": "Rainfall (mm)",
+      "humidity": "Humidity (%)",
+      "moisture": "Soil Moisture",
+      "p":"Phosphorus (P)",
+      "k":"Potassium (K)",
+      "n":"Nitrogen (N)",
+      "ph":"Soil pH"
     }
   },
 
