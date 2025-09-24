@@ -1,4 +1,4 @@
-import { LINK } from "@/store/Link";
+// import { LINK } from "@/store/Link";
 import { useState, useEffect } from "react";
 import { FaLeaf, FaSeedling, FaWater, FaLayerGroup } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
@@ -60,8 +60,8 @@ export default function Scheme() {
   const [selectedState, setSelectedState] = useState<string>("states.all");
   const [schemes, setSchemes] = useState<Scheme[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
-
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language;
 
   const getDaysLeft = (deadline: string) => {
     const now = new Date();
@@ -78,12 +78,14 @@ export default function Scheme() {
       try {
         const apiValue = stateApiMap[stateKey] || "All";
 
-        const res = await fetch(`${LINK}/api/scheme/getScheme?state=${apiValue}`);
+        const res = await fetch(
+          `http://localhost:3000/api/scheme/getScheme?state=${apiValue}&language=${lang}`
+          // `${LINK}/api/scheme/getScheme?state=${apiValue}&language=${lang}`
+        );
         if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
         const json = await res.json();
-        const schemesData: Scheme[] = json.data.hits.items.map(
-          (item: any) => item.fields
-        );
+        console.log(json);
+        const schemesData: Scheme[] = json.schemes.map((item: any) => item);
         setSchemes(schemesData);
       } catch (error) {
         console.error(error);
@@ -108,20 +110,21 @@ export default function Scheme() {
 
   return (
     <div
-      className="min-h-screen overflow-x-hidden bg-contain bg-center relative"
-      style={{
-        backgroundImage: "url('/images/soil-advisory.jpg')",
-      }}
+      className="min-h-screen overflow-x-hidden relative"
+      // style={{
+      //   backgroundImage: "url('/images/soil-advisory.jpg')",
+      // }}
     >
       {/* Overlay */}
-      <div className="absolute inset-0 bg-white/30 backdrop-blur-sm"></div>
+      {/* <div className="absolute inset-0 bg-white/30 backdrop-blur-sm"></div> */}
 
       {/* Content */}
       <div className="relative container mx-auto px-4 md:px-6 py-12">
         {/* Hero Section */}
         <div className="bg-gradient-to-r from-green-600 to-lime-500 text-white rounded-3xl shadow-lg p-8 md:p-10 mb-12 text-center">
           <h1 className="text-3xl md:text-5xl font-extrabold mb-4 drop-shadow-lg">
-            {t("scheme.title.government")} <span className="text-yellow-300">{t("scheme.title.scheme")}</span>
+            {t("scheme.title.government")}{" "}
+            <span className="text-yellow-300">{t("scheme.title.scheme")}</span>
           </h1>
           <p className="text-base md:text-xl max-w-2xl mx-auto mb-6 drop-shadow-md">
             {t("scheme.description")}
@@ -178,9 +181,7 @@ export default function Scheme() {
               <h3 className="text-xl font-semibold text-gray-700 mb-2">
                 {t("scheme.list.loading")}
               </h3>
-              <p className="text-gray-500">
-                {t("scheme.list.fetching")}
-              </p>
+              <p className="text-gray-500">{t("scheme.list.fetching")}</p>
             </div>
           </div>
         ) : schemes.length === 0 ? (
@@ -208,7 +209,12 @@ export default function Scheme() {
                 {/* Icon + Level */}
                 <div className="flex items-center gap-3 mb-4">
                   <div className="p-3 bg-green-100 rounded-2xl text-green-700 text-2xl">
-                    {categoryIcons[scheme.schemeCategory[0]] || (
+                    {scheme.schemeCategory &&
+                    scheme.schemeCategory.length > 0 ? (
+                      categoryIcons[scheme.schemeCategory[0]] || (
+                        <FaLayerGroup />
+                      )
+                    ) : (
                       <FaLayerGroup />
                     )}
                   </div>
@@ -231,7 +237,8 @@ export default function Scheme() {
                 {scheme.deadline && (
                   <div className="mb-3">
                     <span className="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-semibold border border-red-200">
-                      {t("scheme.list.deadline")} {formatDeadline(scheme.deadline)} (
+                      {t("scheme.list.deadline")}{" "}
+                      {formatDeadline(scheme.deadline)} (
                       {getDaysLeft(scheme.deadline)})
                     </span>
                   </div>
@@ -252,13 +259,17 @@ export default function Scheme() {
                 {/* Info Row */}
                 <div className="flex flex-wrap gap-6 text-sm text-gray-700 mt-auto">
                   <p>
-                    <strong>{t("scheme.list.info_row.scheme_for")}</strong> {scheme.schemeFor}
+                    <strong>{t("scheme.list.info_row.scheme_for")}</strong>{" "}
+                    {scheme.schemeFor}
                   </p>
                   <p>
-                    <strong>{t("scheme.list.info_row.nodal_ministry")}</strong> {scheme.nodalMinistryName}
+                    <strong>{t("scheme.list.info_row.nodal_ministry")}</strong>{" "}
+                    {scheme.nodalMinistryName}
                   </p>
                   <p>
-                    <strong>{t("scheme.list.info_row.beneficiary_states")}</strong>{" "}
+                    <strong>
+                      {t("scheme.list.info_row.beneficiary_states")}
+                    </strong>{" "}
                     {scheme.beneficiaryState.join(", ")}
                   </p>
                 </div>

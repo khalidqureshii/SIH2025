@@ -1,4 +1,20 @@
 {
+  "soil_selector": {
+    "options": {
+      "clay": "Clay",
+      "sandy": "Sandy",
+      "loamy": "Loamy",
+      "silty": "Silty",
+      "peaty": "Peaty",
+      "chalky": "Chalky"
+    },
+    "placeholders": {
+      "chooseSoilType": "Choose Soil Type"
+    },
+    "labels": {
+      "soilSource": "Soil Source"
+    }
+  },
   "card": {
     "loader_message": "Gathering the Clouds....",
     "max_temp": "Max Temp",
@@ -340,18 +356,18 @@
   },
 
   "plant-identifier-page": {
-    "alert": "Failed to identify the plant. Please try again!",
+    "alert": "Failed to identify the crop. Please try again!",
     "header": {
-      "title": "Identify Plant",
-      "description": "Upload a clear image of a plant to identify its species."
+      "title": "Crop Identification",
+      "description": "Upload a clear image of a crop to identify its species."
     },
     "uploadSection": {
-      "tapToUpload": "Tap to upload plant image"
+      "tapToUpload": "Tap to upload crop image"
     },
     "previewSection": {
       "altPreview": "Uploaded preview",
       "analyzing": "Identifying...",
-      "identifyPlant": "Identify Plant"
+      "identifyPlant": "Identify Crop"
     },
     "errors": {
       "alertDetectionFailed": "Something went wrong while detecting the disease!"
@@ -396,7 +412,7 @@
     },
     "form": {
       "title": "Market Price Finder",
-      "search": "Search Markets",
+      "search": "Fetch Market Prices",
       "placeholders": {
         "state": "Enter State",
         "district": "Enter District",

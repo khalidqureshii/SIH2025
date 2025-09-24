@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import cropData from "@/components/cropTimeLine/timeline";
-import type { CropInfo} from "@/components/cropTimeLine/types";
+import type { CropInfo } from "@/components/cropTimeLine/types";
 import { Input } from "@/components/ui/input";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
@@ -10,24 +10,23 @@ import {
   SelectTrigger,
   SelectValue,
   SelectContent,
-  SelectItem
+  SelectItem,
 } from "@/components/ui/select";
 import { useTranslation } from "react-i18next";
-
 
 const CropTimeline: React.FC = () => {
   const [selectedCrop, setSelectedCrop] = useState<string | null>(null);
   const [landArea, setLandArea] = useState<number>(1);
   const [areaUnit, setAreaUnit] = useState<string>("acre");
   const [selectedStage, setSelectedStage] = useState<number | null>(null);
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   const unitConversions: { [key: string]: number } = {
     acre: 1,
     hectare: 2.47105,
   };
   const currentCrop: CropInfo | null =
-  selectedCrop && cropData[selectedCrop] ? cropData[selectedCrop] : null;
+    selectedCrop && cropData[selectedCrop] ? cropData[selectedCrop] : null;
 
   // const handleCropChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
   //   setSelectedCrop(e.target.value);
@@ -49,7 +48,10 @@ const CropTimeline: React.FC = () => {
 
   const normalizedArea: number = landArea * unitConversions[areaUnit];
 
-  const getScaledResource = (resource: string, range: [number, number]): string => {
+  const getScaledResource = (
+    resource: string,
+    range: [number, number]
+  ): string => {
     if (!range || range.length !== 2) return resource;
 
     if (Array.isArray(range)) {
@@ -219,99 +221,111 @@ const CropTimeline: React.FC = () => {
 
   return (
     <div className="min-h-screen flex justify-center items-center">
-    <div className="w-full max-w-3xl bg-white shadow-lg bg-white/60 backdrop-blur-md p-6 sm:mt-4 sm:mb-4 rounded-none sm:rounded-2xl mt-5 mb-5">
+      <div className="w-full max-w-3xl bg-white shadow-lg bg-white/60 backdrop-blur-md p-6 sm:mt-4 sm:mb-4 rounded-none sm:rounded-2xl mt-5 mb-5">
+        <h1 className="text-3xl font-semibold mb-6 text-center">
+          {t("timeline_page.headings.title")}
+        </h1>
 
-      <h1 className="text-3xl font-semibold mb-6 text-center">
-        {t("timeline_page.headings.title")}
-      </h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          {/* Search Crop */}
+          <div className="bg-white/60  p-4 rounded-lg shadow-sm border border-lime-200 relative">
+            <label
+              htmlFor="crop-search"
+              className="block text-sm font-medium text-lime-900 mb-2"
+            >
+              {t("timeline_page.form.searchLabel")}
+            </label>
+            <Input
+              id="crop-search"
+              type="text"
+              value={query}
+              onChange={(e) => {
+                setQuery(e.target.value);
+                setShowResults(true);
+              }}
+              onFocus={() => setShowResults(true)}
+              placeholder={t("timeline_page.form.searchPlaceholder")}
+            />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-        {/* Search Crop */}
-        <div className="bg-white/60  p-4 rounded-lg shadow-sm border border-lime-200 relative">
-          <label
-            htmlFor="crop-search"
-            className="block text-sm font-medium text-lime-900 mb-2"
-          >
-            {t("timeline_page.form.searchLabel")}
-          </label>
-          <Input
-            id="crop-search"
-            type="text"
-            value={query}
-            onChange={(e) => {
-              setQuery(e.target.value);
-              setShowResults(true);
-            }}
-            onFocus={() => setShowResults(true)}
-            placeholder={t("timeline_page.form.searchPlaceholder")}
-          />
-
-          {showResults && query && (
-            <ul className="absolute z-10 w-[90%] bg-white border border-lime-300 rounded-md mt-1 max-h-40 overflow-y-auto shadow-lg">
-              {filteredCrops.length > 0 ? (
-                filteredCrops.map((cropKey) => (
-                  <li
-                    key={cropKey}
-                    onClick={() => handleSelect(cropKey)}
-                    className="px-4 py-2 cursor-pointer hover:bg-lime-100"
-                  >
-                    {cropData[cropKey].name}
+            {showResults && query && (
+              <ul className="absolute z-10 w-[90%] bg-white border border-lime-300 rounded-md mt-1 max-h-40 overflow-y-auto shadow-lg">
+                {filteredCrops.length > 0 ? (
+                  filteredCrops.map((cropKey) => (
+                    <li
+                      key={cropKey}
+                      onClick={() => handleSelect(cropKey)}
+                      className="px-4 py-2 cursor-pointer hover:bg-lime-100"
+                    >
+                      {cropData[cropKey].name}
+                    </li>
+                  ))
+                ) : (
+                  <li className="px-4 py-2 text-gray-500">
+                    {t("timeline_page.form.noCropsFound")}
                   </li>
-                ))
-              ) : (
-                <li className="px-4 py-2 text-gray-500">{t("timeline_page.form.noCropsFound")}</li>
-              )}
-            </ul>
-          )}
-        </div>
+                )}
+              </ul>
+            )}
+          </div>
 
-        {/* Land Area + Unit */}
-        <div className="bg-white/60 p-4 rounded-lg shadow-sm border border-lime-200">
-          <div className="flex space-x-4">
-            <div className="flex-1">
-              <label
-                htmlFor="land-area"
-                className="block text-sm font-medium text-lime-900 mb-2"
-              >
-                {t("timeline_page.form.areaLabel")}
-              </label>
-              <Input
-                id="land-area"
-                type="number"
-                min="0.1"
-                step="0.1"
-                value={landArea}
-                onChange={handleLandAreaChange}
-              />
-            </div>
+          {/* Land Area + Unit */}
+          <div className="bg-white/60 p-4 rounded-lg shadow-sm border border-lime-200">
+            <div className="flex space-x-4">
+              <div className="flex-1">
+                <label
+                  htmlFor="land-area"
+                  className="block text-sm font-medium text-lime-900 mb-2"
+                >
+                  {t("timeline_page.form.areaLabel")}
+                </label>
+                <Input
+                  id="land-area"
+                  type="number"
+                  min="0.1"
+                  step="0.1"
+                  value={landArea}
+                  onChange={handleLandAreaChange}
+                />
+              </div>
 
               <div className="w-1/3">
-              <label
-                htmlFor="area-unit"
-                className="block text-sm font-medium text-lime-900 mb-2"
-              >
-                {t("timeline_page.form.unitLabel")}:
-              </label>
+                <label
+                  htmlFor="area-unit"
+                  className="block text-sm font-medium text-lime-900 mb-2"
+                >
+                  {t("timeline_page.form.unitLabel")}:
+                </label>
 
-              <Select value={areaUnit} onValueChange={(value) => handleAreaUnitChange(value)}>
-                <SelectTrigger id="area-unit">
-                  <SelectValue placeholder={t("timeline_page.form.selectUnitPlaceholder")} />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="acre">{t("timeline_page.form.unitOptions.acre")}</SelectItem>
-                  <SelectItem value="hectare">{t("timeline_page.form.unitOptions.hectare")}</SelectItem>
-                </SelectContent>
-              </Select>
+                <Select
+                  value={areaUnit}
+                  onValueChange={(value) => handleAreaUnitChange(value)}
+                >
+                  <SelectTrigger id="area-unit">
+                    <SelectValue
+                      placeholder={t(
+                        "timeline_page.form.selectUnitPlaceholder"
+                      )}
+                    />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="acre">
+                      {t("timeline_page.form.unitOptions.acre")}
+                    </SelectItem>
+                    <SelectItem value="hectare">
+                      {t("timeline_page.form.unitOptions.hectare")}
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      {currentCrop ? (
-  <div className="mt-6">
-    <h2 className="text-xl font-semibold text-lime-800 mb-4">
-      {t("timeline_page.messages.growthTimeline")} {currentCrop.name}
-    </h2>
+        {currentCrop ? (
+          <div className="mt-6">
+            <h2 className="text-xl font-semibold text-lime-800 mb-4">
+              {t("timeline_page.messages.growthTimeline")} {currentCrop.name}
+            </h2>
 
     <div className="relative">
       <div className="absolute top-0 bottom-0 left-[15px] w-0.5 bg-lime-300"></div>
@@ -319,112 +333,110 @@ const CropTimeline: React.FC = () => {
         {currentCrop.timeline.map((stage, index) => (
           <div key={index} className="relative">
             <div
-  className={`flex items-start cursor-pointer ${
-    selectedStage === index ? "mb-4" : ""
-  }`}
-  onClick={() => handleStageClick(index)}
->
-  {/* Arrow icon instead of numbers */}
-  <div
-     className={`z-10 flex items-center justify-center w-8 h-8 rounded-full border-2 transition-colors duration-300 ${
-    selectedStage === index
-      ? "bg-lime-500 border-lime-600 text-white"
-      : "bg-white border-lime-400 text-lime-600"
-  }`}
->
-  {selectedStage === index ? (
-    <ChevronUp className="w-5 h-5" />
-  ) : (
-    <ChevronDown className="w-5 h-5" />
-  )}
-  </div>
+        className={`flex items-start cursor-pointer ${
+          selectedStage === index ? "mb-4" : ""
+        }`}
+        onClick={() => handleStageClick(index)}
+      >
+        {/* Arrow icon instead of numbers */}
+        <div
+          className={`z-10 flex items-center justify-center w-8 h-8 rounded-full border-2 transition-colors duration-300 ${
+          selectedStage === index
+            ? "bg-lime-500 border-lime-600 text-white"
+            : "bg-white border-lime-400 text-lime-600"
+        }`}
+      >
+        {selectedStage === index ? (
+          <ChevronUp className="w-5 h-5" />
+        ) : (
+          <ChevronDown className="w-5 h-5" />
+        )}
+        </div>
 
-  {/* Stage title + duration */}
-  <div className="ml-4">
-    <h3 className="text-lg font-medium text-lime-800">{stage.stage}</h3>
-    <p className="text-sm text-lime-600">{stage.duration}</p>
-  </div>
-</div>
+        {/* Stage title + duration */}
+        <div className="ml-4">
+          <h3 className="text-lg font-medium text-lime-800">{stage.stage}</h3>
+          <p className="text-sm text-lime-600">{stage.duration}</p>
+        </div>
+      </div>
 
             {selectedStage === index && (
-  <div className="ml-12 p-4 bg-white/70 rounded-lg border border-lime-200 shadow-sm space-y-4">
-    {/* Temperature */}
-    <div>
-      <div className="flex items-center text-sm text-amber-600 mb-1">
-        {t("timeline_page.messages.optimalTemperature")}
-      </div>
-      <p className="ml-7 text-gray-700">{stage.temperature}</p>
-    </div>
+            <div className="ml-12 p-4 bg-white/70 rounded-lg border border-lime-200 shadow-sm space-y-4">
+              {/* Temperature */}
+              <div>
+                <div className="flex items-center text-sm text-amber-600 mb-1">
+                  {t("timeline_page.messages.optimalTemperature")}
+                </div>
+                <p className="ml-7 text-gray-700">{stage.temperature}</p>
+              </div>
 
-    {/* Resources */}
-    <div>
-      <h4 className="font-medium text-lime-700 mb-2">
-        {t("timeline_page.messages.resourcesNeeded")}
-      </h4>
-      <ul className="space-y-2">
-        {Object.entries(stage.resources).map(([key, value]) => (
-          <li key={key} className="flex items-center">
-            {getResourceIcon(key)}
-            <span className="text-gray-700">
-              <span className="font-medium">{key.charAt(0).toUpperCase() + key.slice(1)}: </span>
-              {stage.scalableResources && stage.scalableResources[key]
-                ? getScaledResource(value, stage.scalableResources[key])
-                : value}
-            </span>
-          </li>
-        ))}
-      </ul>
-    </div>
+              {/* Resources */}
+              <div>
+                <h4 className="font-medium text-lime-700 mb-2">
+                  {t("timeline_page.messages.resourcesNeeded")}
+                </h4>
+                <ul className="space-y-2">
+                  {Object.entries(stage.resources).map(([key, value]) => (
+                    <li key={key} className="flex items-center">
+                      {getResourceIcon(key)}
+                      <span className="text-gray-700">
+                        <span className="font-medium">{key.charAt(0).toUpperCase() + key.slice(1)}: </span>
+                        {value}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Process to follow */}
+              {/* <div>
+                <h4 className="font-medium text-green-700 mb-2">
+                  🪜{t("timeline_page.messages.processToFollow")}
+                </h4>
+                <p className="ml-7 text-gray-700">{stage.description}</p>
+              </div> */}
 
-    {/* Process to follow */}
-    <div>
-      <h4 className="font-medium text-green-700 mb-2">
-        🪜{t("timeline_page.messages.processToFollow")}
-      </h4>
-      <p className="ml-7 text-gray-700">{stage.description}</p>
-    </div>
+              {/* ✅ What to do */}
+              <div className="bg-gradient-to-br from-green-200  to-lime-100 rounded-lg shadow-lg p-3">
+                <h4 className="font-medium text-blue-700 mb-2">✅ What to do</h4>
+                <p className="ml-7 text-gray-700">{stage.what_to_do}</p>
+              </div>
 
-    {/* ✅ What to do */}
-    <div>
-      <h4 className="font-medium text-blue-700 mb-2">✅ What to do</h4>
-      <p className="ml-7 text-gray-700">{stage.what_to_do}</p>
-    </div>
+              {/* 💡 Tips */}
+              <div className="bg-gradient-to-br from-green-200  to-lime-100 rounded-lg shadow-lg p-3">
+                <h4 className="font-medium text-purple-700 mb-2">💡 Tips</h4>
+                <p className="ml-7 text-gray-700">{stage.tips}</p>
+              </div>
 
-    {/* 💡 Tips */}
-    <div>
-      <h4 className="font-medium text-purple-700 mb-2">💡 Tips</h4>
-      <p className="ml-7 text-gray-700">{stage.tips}</p>
-    </div>
+              {/* 🔎 Indicators */}
+              <div className="bg-gradient-to-br from-green-200  to-lime-100 rounded-lg shadow-lg p-3">
+                <h4 className="font-medium text-orange-700 mb-2">🔎 Indicators</h4>
+                <p className="ml-7 text-gray-700">{stage.indicators}</p>
+              </div>
 
-    {/* 🔎 Indicators */}
-    <div>
-      <h4 className="font-medium text-orange-700 mb-2">🔎 Indicators</h4>
-      <p className="ml-7 text-gray-700">{stage.indicators}</p>
-    </div>
-
-    {/* 🐛 Pests & Diseases */}
-    {stage.pests_and_diseases && stage.pests_and_diseases.length > 0 && (
-      <div>
-        <h4 className="font-medium text-red-700 mb-2">🐛 Pests & Diseases</h4>
-        <ul className="list-disc ml-7 space-y-1 text-gray-700">
-          {stage.pests_and_diseases.map((pd, i) => (
-            <li key={i}>
-              <span className="font-medium">{pd.name}:</span> {pd.control}
-            </li>
-          ))}
-        </ul>
-      </div>
-    )}
-
-    {/* 🌾 Harvest Notes */}
-    {stage.harvest_notes && (
-      <div>
-        <h4 className="font-medium text-emerald-700 mb-2">🌾 Harvest Notes</h4>
-        <p className="ml-7 text-gray-700">{stage.harvest_notes}</p>
-      </div>
-    )}
-  </div>
-)}
+              {/* 🐛 Pests & Diseases */}
+              {stage.pests_and_diseases && stage.pests_and_diseases.length > 0 && (
+                <div className="bg-gradient-to-br from-green-200  to-lime-100 rounded-lg shadow-lg p-3">
+                  <h4 className="font-medium text-red-700 mb-2">🐛 Pests & Diseases</h4>
+                  <ul className="list-disc ml-7 space-y-1 text-gray-700">
+                    {stage.pests_and_diseases.map((pd, i) => (
+                      <li key={i}>
+                        <span className="font-medium">{pd.name}:</span> {pd.control}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              </div>
+              {/* 🌾 Harvest Notes */}
+              {stage.harvest_notes && (
+                <div>
+                  <h4 className="font-medium text-emerald-700 mb-2">🌾 Harvest Notes</h4>
+                  <p className="ml-7 text-gray-700">{stage.harvest_notes}</p>
+                </div>
+              )}
+            </div>
+          )}
           </div>
         ))}
       </div>

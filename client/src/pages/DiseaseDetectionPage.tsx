@@ -123,11 +123,11 @@ const DiseaseDetectionPage = () => {
         className={`w-full ${
           result ? "max-w-5xl" : "max-w-md"
         }  shadow-lg rounded-2xl border border-white/20 
-        bg-white/30 backdrop-blur-md transition-all duration-500 m-7`}
+        bg-white/60 backdrop-blur-md transition-all duration-500 m-7`}
       >
         <div className="flex flex-col items-center pt-4">
-          <h1 className="text-3xl font-bold mb-4 flex items-center gap-2">
-            <Leaf className="w-8 h-8 text-green-600" />{" "}
+          <h1 className="text-2xl font-semibold mb-4 flex items-center gap-2">
+            <Leaf className="w-6 h-6 text-green-600" />{" "}
             {t("disease_page.header.title")}
           </h1>
           <p className=" mb-6 text-center max-w-md">
@@ -138,7 +138,7 @@ const DiseaseDetectionPage = () => {
           {/* Upload & Preview section (as you have) */}
           {/* Upload Section */}{" "}
           {!preview && (
-            <label className="cursor-pointer flex flex-col items-center justify-center border-2 border-dashed border-green-400 bg-yellow-50 p-8 rounded-xl w-full hover:bg-yellow-100 transition">
+            <label className="cursor-pointer flex flex-col items-center justify-center border-2 border-dashed border-green-400 bg-green-50 p-8 rounded-xl w-full hover:bg-green-100 transition">
               {" "}
               <Upload className="h-12 w-12 mb-3 text-green-600" />{" "}
               <p className="text-sm text-gray-600 font-medium">
@@ -197,7 +197,7 @@ const DiseaseDetectionPage = () => {
                   setPreview(null);
                   setResult(null);
                 }}
-                className="my-4 w-56 border-2 border-green-800 text-green-800 bg-white hover:bg-green-100 hover:text-green-900 transition"
+                className="mt-2 w-56 bg-green-600 hover:bg-green-700 text-white mb-4"
               >
                 {t("disease_page.resultSection.uploadAnotherImage")}
               </Button>

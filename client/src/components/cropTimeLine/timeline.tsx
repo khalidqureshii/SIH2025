@@ -1,605 +1,3 @@
-// import type { CropDataType } from "@/components/cropTimeLine/types";
-
-// const cropData: CropDataType = {
-//     maize: {
-//       name: "Maize",
-//       growthPeriod: "90-120 days",
-//       timeline: [
-//         {
-//           stage: "Soil Preparation",
-//           duration: "10-15 days",
-//           resources: {
-//             labor: "1-2 workers per acre",
-//             water: "Minimal",
-//             equipment: "Plow, harrow, tractor",
-//             fertilizer: "15-20 kg NPK per acre",
-//           },
-//           scalableResources: { labor: [1, 2], fertilizer: [15, 20] },
-//           temperature: "15-25°C",
-//           description: "Prepare the soil by plowing and harrowing to create a fine seedbed."
-//         },
-//         {
-//           stage: "Emergence",
-//           duration: "4-10 days",
-//           resources: {
-//             labor: "1 worker per acre",
-//             water: "Moderate irrigation",
-//             equipment: "Planter",
-//             fertilizer: "5-10 kg N per acre",
-//           },
-//           scalableResources: { labor: [1, 1], fertilizer: [5, 10] },
-//           temperature: "20-30°C",
-//           description: "Ensure consistent moisture for seed germination and early growth."
-//         },
-//         {
-//           stage: "Weaning (4-5 leaf)",
-//           duration: "14-21 days",
-//           resources: {
-//             labor: "1-2 workers",
-//             water: "Regular irrigation",
-//             equipment: "Sprayers",
-//             fertilizer: "10-15 kg P per acre",
-//           },
-//           scalableResources: { labor: [1, 2], fertilizer: [10, 15] },
-//           temperature: "25-35°C",
-//           description: "Maintain soil moisture and apply phosphorus to support root development."
-//         },
-//         {
-//           stage: "Tassel Visible",
-//           duration: "7-10 days",
-//           resources: {
-//             labor: "2 workers",
-//             water: "Heavy irrigation",
-//             equipment: "Fertilizer applicator",
-//             fertilizer: "20-25 kg N per acre",
-//           },
-//           scalableResources: { labor: [2, 2], fertilizer: [20, 25] },
-//           temperature: "25-30°C",
-//           description: "Increase nitrogen application to support rapid vegetative growth."
-//         },
-//         {
-//           stage: "Grain Maturation",
-//           duration: "30-40 days",
-//           resources: {
-//             labor: "1 worker",
-//             water: "Reduced irrigation",
-//             equipment: "Moisture meter",
-//             fertilizer: "5-10 kg K per acre",
-//           },
-//           scalableResources: { labor: [1, 1], fertilizer: [5, 10] },
-//           temperature: "20-25°C",
-//           description: "Gradually reduce irrigation to allow grains to mature and harden."
-//         },
-//       ],
-//     },
-//     potatoes: {
-//       name: "Potatoes",
-//       growthPeriod: "80-100 days",
-//       timeline: [
-//         {
-//           stage: "Sprout Development",
-//           duration: "2-6 weeks",
-//           resources: {
-//             labor: "2-3 workers",
-//             water: "Moderate",
-//             equipment: "Planter",
-//             fertilizer: "10-15 kg/acre",
-//           },
-//           scalableResources: { labor: [2, 3], fertilizer: [10, 15] },
-//           temperature: "15-20°C",
-//           description: "Ensure soil temperature is optimal for sprout emergence."
-//         },
-//         {
-//           stage: "Vegetative Growth",
-//           duration: "4-5 weeks",
-//           resources: {
-//             labor: "2 workers",
-//             water: "Regular irrigation",
-//             equipment: "Cultivator",
-//             fertilizer: "15-20 kg NPK",
-//           },
-//           scalableResources: { labor: [2, 2], fertilizer: [15, 20] },
-//           temperature: "18-25°C",
-//           description: "Maintain consistent moisture and nutrient levels for healthy foliage development."
-//         },
-//         {
-//           stage: "Tuber Formation",
-//           duration: "5-6 weeks",
-//           resources: {
-//             labor: "3 workers",
-//             water: "Heavy irrigation",
-//             equipment: "Hillers",
-//             fertilizer: "20-25 kg K per acre",
-//           },
-//           scalableResources: { labor: [3, 3], fertilizer: [20, 25] },
-//           temperature: "15-20°C",
-//           description: "Increase potassium application to support tuber development."
-//         },
-//         {
-//           stage: "Tuber Bulking",
-//           duration: "4-5 weeks",
-//           resources: {
-//             labor: "2 workers",
-//             water: "Controlled irrigation",
-//             equipment: "Moisture sensors",
-//             fertilizer: "10-15 kg P per acre",
-//           },
-//           scalableResources: { labor: [2, 2], fertilizer: [10, 15] },
-//           temperature: "16-22°C",
-//           description : "Monitor soil moisture closely to prevent water stress during tuber bulking."
-//         },
-//       ],
-//     },
-//     "rice (paddy)": {
-//       name: "Rice (Paddy)",
-//       growthPeriod: "120-150 days",
-//       timeline: [
-//         {
-//           stage: "Land Preparation",
-//           duration: "15-20 days",
-//           resources: {
-//             labor: "3-4 workers",
-//             water: "Flooding required",
-//             equipment: "Puddler",
-//             fertilizer: "15-20 kg/acre",
-//           },
-//           scalableResources: { labor: [3, 4], fertilizer: [15, 20] },
-//           temperature: "20-30°C",
-//           description: "Prepare the field by puddling to create a suitable environment for rice transplantation."
-//         },
-//         {
-//           stage: "Vegetative Phase",
-//           duration: "40-50 days",
-//           resources: {
-//             labor: "4 workers",
-//             water: "Continuous flooding",
-//             equipment: "Transplanter",
-//             fertilizer: "25-30 kg N per acre",
-//           },
-//           scalableResources: { labor: [4, 4], fertilizer: [25, 30] },
-//           temperature: "25-35°C",
-//           description: "Maintain continuous flooding to support healthy plant growth."
-//         },
-//         {
-//           stage: "Reproductive Phase",
-//           duration: "30-35 days",
-//           resources: {
-//             labor: "3 workers",
-//             water: "Controlled drainage",
-//             equipment: "Sprayers",
-//             fertilizer: "15-20 kg P per acre",
-//           },
-//           scalableResources: { labor: [3, 3], fertilizer: [15, 20] },
-//           temperature: "28-32°C",
-//           description: "Implement controlled drainage to optimize water use during flowering and grain filling."
-//         },
-//         {
-//           stage: "Ripening Phase",
-//           duration: "25-30 days",
-//           resources: {
-//             labor: "2 workers",
-//             water: "Field drying",
-//             equipment: "Combine harvester",
-//             fertilizer: "10-15 kg K per acre",
-//           },
-//           scalableResources: { labor: [2, 2], fertilizer: [10, 15] },
-//           temperature: "20-25°C",
-//           description: "Allow the field to dry before harvesting to ensure optimal grain quality."
-//         },
-//       ],
-//     },
-//     sorghum: {
-//       name: "Sorghum",
-//       growthPeriod: "100-130 days",
-//       timeline: [
-//         {
-//           stage: "Seedling Emergence",
-//           duration: "3-14 days",
-//           resources: {
-//             labor: "1-2 workers",
-//             water: "Light irrigation",
-//             equipment: "Planter",
-//             fertilizer: "10-15 kg/acre",
-//           },
-//           scalableResources: { labor: [1, 2], fertilizer: [10, 15] },
-//           temperature: "20-30°C",
-//           description: "Ensure soil moisture is adequate for seed germination."
-//         },
-//         {
-//           stage: "Tillering",
-//           duration: "20-25 days",
-//           resources: {
-//             labor: "2 workers",
-//             water: "Moderate irrigation",
-//             equipment: "Cultivator",
-//             fertilizer: "15-20 kg N per acre",
-//           },
-//           scalableResources: { labor: [2, 2], fertilizer: [15, 20] },
-//           temperature: "25-35°C",
-//           description: "Maintain consistent moisture and nutrient levels for healthy tiller development."
-//         },
-//         {
-//           stage: "Stem Elongation",
-//           duration: "25-30 days",
-//           resources: {
-//             labor: "3 workers",
-//             water: "Regular irrigation",
-//             equipment: "Sprayers",
-//             fertilizer: "20-25 kg NPK per acre",
-//           },
-//           scalableResources: { labor: [3, 3], fertilizer: [20, 25] },
-//           temperature: "25-30°C",
-//           description: "Increase nitrogen application to support rapid stem growth."
-//         },
-//         {
-//           stage: "Grain Maturation",
-//           duration: "30-40 days",
-//           resources: {
-//             labor: "1 worker",
-//             water: "Reduced irrigation",
-//             equipment: "Combine harvester",
-//             fertilizer: "5-10 kg K per acre",
-//           },
-//           scalableResources: { labor: [1, 1], fertilizer: [5, 10] },
-//           temperature: "20-25°C",
-//           description: "Gradually reduce irrigation to allow grains to mature and harden."
-//         },
-//       ],
-//     },
-//     soybeans: {
-//       name: "Soybeans",
-//       growthPeriod: "80-120 days",
-//       timeline: [
-//         {
-//           stage: "Seed Treatment",
-//           duration: "1-2 days",
-//           resources: {
-//             labor: "1 worker per acre",
-//             water: "Light irrigation",
-//             equipment: "Seed treater",
-//             fertilizer: "5-10 kg inoculant per acre"
-//           },
-//           scalableResources: { labor: [1, 1], fertilizer: [5, 10] },
-//           temperature: "20-25°C",
-//           description: "Treat seeds with inoculants to enhance nitrogen fixation."
-//         },
-//         {
-//           stage: "Germination",
-//           duration: "5-10 days",
-//           resources: {
-//             labor: "1 worker",
-//             water: "Moderate irrigation",
-//             equipment: "Planter",
-//             fertilizer: "10-15 kg N per acre"
-//           },
-//           scalableResources: { labor: [1, 1], fertilizer: [10, 15] },
-//           temperature: "25-30°C",
-//           description: "Ensure consistent moisture for seed germination and early growth."
-//         },
-//         {
-//           stage: "Vegetative Growth",
-//           duration: "30-40 days",
-//           resources: {
-//             labor: "2 workers",
-//             water: "Regular irrigation",
-//             equipment: "Sprayers",
-//             fertilizer: "15-20 kg P per acre"
-//           },
-//           scalableResources: { labor: [2, 2], fertilizer: [15, 20] },
-//           temperature: "25-35°C",
-//           description: "Maintain soil moisture and apply phosphorus to support healthy vegetative growth."
-//         },
-//         {
-//           stage: "Pod Formation",
-//           duration: "25-35 days",
-//           resources: {
-//             labor: "2 workers",
-//             water: "Controlled irrigation",
-//             equipment: "Moisture sensors",
-//             fertilizer: "10-15 kg K per acre"
-//           },
-//           scalableResources: { labor: [2, 2], fertilizer: [10, 15] },
-//           temperature: "20-30°C",
-//           description: "Monitor soil moisture closely to prevent water stress during pod formation."
-//         }
-//       ]
-//     },
-//     wheat: {
-//       name: "Wheat",
-//       growthPeriod: "120-150 days",
-//       timeline: [
-//         {
-//           stage: "Seedbed Preparation",
-//           duration: "10-15 days",
-//           resources: {
-//             labor: "2-3 workers",
-//             water: "Light irrigation",
-//             equipment: "Plow, harrow",
-//             fertilizer: "15-20 kg DAP per acre"
-//           },
-//           scalableResources: { labor: [2, 3], fertilizer: [15, 20] },
-//           temperature: "15-20°C",
-//           description: "Prepare a fine seedbed to ensure good seed-to-soil contact."
-//         },
-//         {
-//           stage: "Tillering",
-//           duration: "30-40 days",
-//           resources: {
-//             labor: "2 workers",
-//             water: "Moderate irrigation",
-//             equipment: "Sprayers",
-//             fertilizer: "20-25 kg N per acre"
-//           },
-//           scalableResources: { labor: [2, 2], fertilizer: [20, 25] },
-//           temperature: "18-25°C",
-//           description: "Maintain consistent moisture and nutrient levels for healthy tiller development."
-//         },
-//         {
-//           stage: "Stem Extension",
-//           duration: "25-30 days",
-//           resources: {
-//             labor: "3 workers",
-//             water: "Regular irrigation",
-//             equipment: "Fertilizer applicator",
-//             fertilizer: "15-20 kg NPK per acre"
-//           },
-//           scalableResources: { labor: [3, 3], fertilizer: [15, 20] },
-//           temperature: "20-28°C",
-//           description: "Increase nitrogen application to support rapid stem growth."
-//         },
-//         {
-//           stage: "Grain Filling",
-//           duration: "35-45 days",
-//           resources: {
-//             labor: "1 worker",
-//             water: "Reduced irrigation",
-//             equipment: "Combine harvester",
-//             fertilizer: "5-10 kg K per acre"
-//           },
-//           scalableResources: { labor: [1, 1], fertilizer: [5, 10] },
-//           temperature: "15-22°C",
-//           description: "Gradually reduce irrigation to allow grains to mature and harden."
-//         }
-//       ]
-//     },
-//     cassava: {
-//       name: "Cassava",
-//       growthPeriod: "8-18 months",
-//       timeline: [
-//         {
-//           stage: "Stem Selection",
-//           duration: "5-7 days",
-//           resources: {
-//             labor: "2 workers",
-//             water: "Light irrigation",
-//             equipment: "Cutting tools",
-//             fertilizer: "10-15 kg NPK per acre"
-//           },
-//           scalableResources: { labor: [2, 2], fertilizer: [10, 15] },
-//           temperature: "25-30°C",
-//           description: "Select healthy stems for planting to ensure good crop establishment."
-//         },
-//         {
-//           stage: "Planting",
-//           duration: "10-15 days",
-//           resources: {
-//             labor: "3-4 workers",
-//             water: "Moderate irrigation",
-//             equipment: "Planting sticks",
-//             fertilizer: "15-20 kg N per acre"
-//           },
-//           scalableResources: { labor: [3, 4], fertilizer: [15, 20] },
-//           temperature: "27-35°C",
-//           description: "Ensure proper planting depth and spacing for optimal growth."
-//         },
-//         {
-//           stage: "Vegetative Growth",
-//           duration: "4-6 months",
-//           resources: {
-//             labor: "2 workers",
-//             water: "Regular irrigation",
-//             equipment: "Weeders",
-//             fertilizer: "20-25 kg P per acre"
-//           },
-//           scalableResources: { labor: [2, 2], fertilizer: [20, 25] },
-//           temperature: "25-35°C",
-//           description: "Maintain soil moisture and apply phosphorus to support healthy vegetative growth."
-//         },
-//         {
-//           stage: "Tuber Bulking",
-//           duration: "3-5 months",
-//           resources: {
-//             labor: "3 workers",
-//             water: "Controlled irrigation",
-//             equipment: "Moisture meters",
-//             fertilizer: "15-20 kg K per acre"
-//           },
-//           scalableResources: { labor: [3, 3], fertilizer: [15, 20] },
-//           temperature: "25-32°C",
-//           description: "Monitor soil moisture closely to prevent water stress during tuber bulking."
-//         }
-//       ]
-//     },
-//     "sweet potatoes": {
-//       name: "Sweet Potatoes",
-//       growthPeriod: "90-150 days",
-//       timeline: [
-//         {
-//           stage: "Vine Preparation",
-//           duration: "10-15 days",
-//           resources: {
-//             labor: "2 workers",
-//             water: "Moderate irrigation",
-//             equipment: "Cutting tools",
-//             fertilizer: "10-15 kg NPK per acre"
-//           },
-//           scalableResources: { labor: [2, 2], fertilizer: [10, 15] },
-//           temperature: "25-30°C",
-//           description: "Prepare healthy vine cuttings for planting to ensure good crop establishment."
-//         },
-//         {
-//           stage: "Planting",
-//           duration: "5-7 days",
-//           resources: {
-//             labor: "3-4 workers",
-//             water: "Regular irrigation",
-//             equipment: "Planting machine",
-//             fertilizer: "15-20 kg N per acre"
-//           },
-//           scalableResources: { labor: [3, 4], fertilizer: [15, 20] },
-//           temperature: "27-35°C",
-//           description: "Ensure proper planting depth and spacing for optimal growth."
-//         },
-//         {
-//           stage: "Vine Development",
-//           duration: "40-60 days",
-//           resources: {
-//             labor: "2 workers",
-//             water: "Controlled irrigation",
-//             equipment: "Sprayers",
-//             fertilizer: "20-25 kg P per acre"
-//           },
-//           scalableResources: { labor: [2, 2], fertilizer: [20, 25] },
-//           temperature: "25-32°C",
-//           description: "Maintain soil moisture and apply phosphorus to support healthy vine growth."
-//         },
-//         {
-//           stage: "Tuber Formation",
-//           duration: "50-70 days",
-//           resources: {
-//             labor: "1 worker",
-//             water: "Reduced irrigation",
-//             equipment: "Moisture sensors",
-//             fertilizer: "10-15 kg K per acre"
-//           },
-//           scalableResources: { labor: [1, 1], fertilizer: [10, 15] },
-//           temperature: "20-28°C",
-//           description: "Monitor soil moisture closely to prevent water stress during tuber formation."
-//         }
-//       ]
-//     },
-//     "plantains & others": {
-//       name: "Plantains & Others",
-//       growthPeriod: "9-12 months",
-//       timeline: [
-//         {
-//           stage: "Sucker Selection",
-//           duration: "10-15 days",
-//           resources: {
-//             labor: "2 workers",
-//             water: "Moderate irrigation",
-//             equipment: "Cutting tools",
-//             fertilizer: "15-20 kg NPK per acre"
-//           },
-//           scalableResources: { labor: [2, 2], fertilizer: [15, 20] },
-//           temperature: "25-30°C",
-//           description: "Select healthy suckers for planting to ensure good crop establishment."
-//         },
-//         {
-//           stage: "Planting",
-//           duration: "15-20 days",
-//           resources: {
-//             labor: "3-4 workers",
-//             water: "Heavy irrigation",
-//             equipment: "Digging tools",
-//             fertilizer: "20-25 kg N per acre"
-//           },
-//           scalableResources: { labor: [3, 4], fertilizer: [20, 25] },
-//           temperature: "27-35°C",
-//           description: "Ensure proper planting depth and spacing for optimal growth."
-//         },
-//         {
-//           stage: "Vegetative Growth",
-//           duration: "5-7 months",
-//           resources: {
-//             labor: "2 workers",
-//             water: "Regular irrigation",
-//             equipment: "Pruning tools",
-//             fertilizer: "25-30 kg P per acre"
-//           },
-//           scalableResources: { labor: [2, 2], fertilizer: [25, 30] },
-//           temperature: "25-35°C",
-//           description: "Maintain soil moisture and apply phosphorus to support healthy vegetative growth."
-//         },
-//         {
-//           stage: "Bunch Development",
-//           duration: "3-4 months",
-//           resources: {
-//             labor: "3 workers",
-//             water: "Controlled irrigation",
-//             equipment: "Support poles",
-//             fertilizer: "15-20 kg K per acre"
-//           },
-//           scalableResources: { labor: [3, 3], fertilizer: [15, 20] },
-//           temperature: "25-32°C",
-//           description: "Monitor soil moisture closely to prevent water stress during bunch development."
-//         }
-//       ]
-//     },
-//     yams: {
-//       name: "Yams",
-//       growthPeriod: "8-12 months",
-//       timeline: [
-//         {
-//           stage: "Seed Yam Preparation",
-//           duration: "15-20 days",
-//           resources: {
-//             labor: "2 workers",
-//             water: "Light irrigation",
-//             equipment: "Cutting tools",
-//             fertilizer: "10-15 kg NPK per acre"
-//           },
-//           scalableResources: { labor: [2, 2], fertilizer: [10, 15] },
-//           temperature: "25-30°C",
-//           description: "Prepare healthy seed yams for planting to ensure good crop establishment."
-//         },
-//         {
-//           stage: "Planting",
-//           duration: "10-15 days",
-//           resources: {
-//             labor: "3-4 workers",
-//             water: "Moderate irrigation",
-//             equipment: "Digging tools",
-//             fertilizer: "20-25 kg N per acre"
-//           },
-//           scalableResources: { labor: [3, 4], fertilizer: [20, 25] },
-//           temperature: "27-35°C",
-//           description: "Ensure proper planting depth and spacing for optimal growth."
-//         },
-//         {
-//           stage: "Vine Training",
-//           duration: "2-3 months",
-//           resources: {
-//             labor: "2 workers",
-//             water: "Regular irrigation",
-//             equipment: "Support trellis",
-//             fertilizer: "15-20 kg P per acre"
-//           },
-//           scalableResources: { labor: [2, 2], fertilizer: [15, 20] },
-//           temperature: "25-32°C",
-//           description: "Train vines to grow on the trellis for better sunlight exposure."
-//         },
-//         {
-//           stage: "Tuber Maturation",
-//           duration: "4-6 months",
-//           resources: {
-//             labor: "1 worker",
-//             water: "Reduced irrigation",
-//             equipment: "Moisture meters",
-//             fertilizer: "10-15 kg K per acre"
-//           },
-//           scalableResources: { labor: [1, 1], fertilizer: [10, 15] },
-//           temperature: "20-28°C",
-//           description: "Monitor soil moisture closely to prevent water stress during tuber maturation."
-//         }
-//       ]
-//     }
-//   };
-
-//   export default cropData;
-
-
-
 import type { CropDataType } from "@/components/cropTimeLine/types";
 
 const cropData: CropDataType = {
@@ -612,10 +10,10 @@ const cropData: CropDataType = {
         stage: "Soil Preparation",
         duration: "10-15 days",
         resources: {
-          labor: "1-2 workers per acre",
+          labor: "1-2 workers",
           water: "Minimal (just to get workable moisture)",
           equipment: "Plow/harrow or hand hoes",
-          fertilizer: "Basal: 15-20 kg Nitrogen mix per acre (split as needed)",
+          fertilizer: "Basal: 15-20 kg Nitrogen mix (split as needed)",
         },
         scalableResources: { labor: [1, 2], fertilizer: [15, 20] },
         temperature: "15-25°C",
@@ -633,10 +31,10 @@ const cropData: CropDataType = {
         stage: "Emergence",
         duration: "4-10 days",
         resources: {
-          labor: "1 worker per acre",
+          labor: "1-2 workers",
           water: "Moderate irrigation until emergence",
           equipment: "Seed drill or hand broadcasting followed by light raking",
-          fertilizer: "Light starter: 5-10 kg Nitrogen per acre",
+          fertilizer: "Light starter: 5-10 kg Nitrogen",
         },
         scalableResources: { labor: [1, 1], fertilizer: [5, 10] },
         temperature: "20-30°C",
@@ -653,10 +51,10 @@ const cropData: CropDataType = {
         stage: "Weaning (4-5 leaf)",
         duration: "14-21 days",
         resources: {
-          labor: "1-2 workers per acre",
+          labor: "1-2 workers",
           water: "Regular irrigation as needed",
           equipment: "Sprayers for fertilizer or minor sprays",
-          fertilizer: "10-15 kg Phosphorus per acre (if soil needs it)",
+          fertilizer: "10-15 kg Phosphorus (if soil needs it)",
         },
         scalableResources: { labor: [1, 2], fertilizer: [10, 15] },
         temperature: "25-35°C",
@@ -674,10 +72,10 @@ const cropData: CropDataType = {
         stage: "Tassel Visible",
         duration: "7-10 days",
         resources: {
-          labor: "2-3 workers per acre",
+          labor: "2-3 workers",
           water: "Heavier irrigation during rapid growth (but avoid waterlogging)",
           equipment: "Spreader or applicator if applying top dress fertilizer",
-          fertilizer: "Top-dress Nitrogen 20-25 kg per acre",
+          fertilizer: "Top-dress Nitrogen 20-25 kg",
         },
         scalableResources: { labor: [2, 3], fertilizer: [20, 25] },
         temperature: "25-30°C",
@@ -695,10 +93,10 @@ const cropData: CropDataType = {
         stage: "Grain Maturation",
         duration: "30-40 days",
         resources: {
-          labor: "1 worker per acre",
+          labor: "1-2 workers",
           water: "Reduce irrigation gradually",
           equipment: "Moisture meter (optional) or observe kernels",
-          fertilizer: "Light potassium 5-10 kg per acre if needed",
+          fertilizer: "Light potassium 5-10 kg if needed",
         },
         scalableResources: { labor: [1, 1], fertilizer: [5, 10] },
         temperature: "20-25°C",
@@ -725,10 +123,10 @@ const cropData: CropDataType = {
         stage: "Sprout Development",
         duration: "2-6 weeks",
         resources: {
-          labor: "2-4 workers per acre",
+          labor: "2-4 workers",
           water: "Moderate moisture",
           equipment: "Planter or hand-planting tools",
-          fertilizer: "10-15 kg balanced fertilizer per acre at planting",
+          fertilizer: "10-15 kg balanced fertilizer at planting",
         },
         scalableResources: { labor: [2, 4], fertilizer: [10, 15] },
         temperature: "15-20°C",
@@ -746,10 +144,10 @@ const cropData: CropDataType = {
         stage: "Vegetative Growth",
         duration: "4-5 weeks",
         resources: {
-          labor: "2-3 workers per acre",
+          labor: "2-3 workers",
           water: "Regular irrigation",
           equipment: "Cultivator/weeder",
-          fertilizer: "15-20 kg Nitrogen per acre split across early growth",
+          fertilizer: "15-20 kg Nitrogen split across early growth",
         },
         scalableResources: { labor: [2, 3], fertilizer: [15, 20] },
         temperature: "18-25°C",
@@ -766,10 +164,10 @@ const cropData: CropDataType = {
         stage: "Tuber Formation",
         duration: "5-6 weeks",
         resources: {
-          labor: "3-4 workers per acre",
+          labor: "3-4 workers",
           water: "Higher water needs during tuber set",
           equipment: "Hillers or manual earthing up",
-          fertilizer: "20-25 kg Potassium per acre to support tubers",
+          fertilizer: "20-25 kg Potassium to support tubers",
         },
         scalableResources: { labor: [3, 4], fertilizer: [20, 25] },
         temperature: "15-20°C",
@@ -786,10 +184,10 @@ const cropData: CropDataType = {
         stage: "Tuber Bulking",
         duration: "4-5 weeks",
         resources: {
-          labor: "2-3 workers per acre",
+          labor: "2-3 workers",
           water: "Controlled irrigation—do not water excessively close to harvest",
           equipment: "Moisture probe (optional)",
-          fertilizer: "10-15 kg Phosphorus per acre if soil is low",
+          fertilizer: "10-15 kg Phosphorus if soil is low",
         },
         scalableResources: { labor: [2, 3], fertilizer: [10, 15] },
         temperature: "16-22°C",
@@ -815,10 +213,10 @@ const cropData: CropDataType = {
         stage: "Land Preparation",
         duration: "15-20 days",
         resources: {
-          labor: "3-5 workers per acre",
+          labor: "3-5 workers",
           water: "Flooding/puddling required for transplanted rice",
           equipment: "Puddler/rotavator or manual puddling tools",
-          fertilizer: "15-20 kg balanced per acre at field prep",
+          fertilizer: "15-20 kg balanced at field prep",
         },
         scalableResources: { labor: [3, 5], fertilizer: [15, 20] },
         temperature: "20-30°C",
@@ -835,10 +233,10 @@ const cropData: CropDataType = {
         stage: "Vegetative Phase",
         duration: "40-50 days",
         resources: {
-          labor: "4-6 workers per acre",
+          labor: "4-6 workers",
           water: "Continuous shallow flooding for transplanted rice",
           equipment: "Transplanter or manual transplant tools",
-          fertilizer: "25-30 kg Nitrogen per acre in split doses",
+          fertilizer: "25-30 kg Nitrogen in split doses",
         },
         scalableResources: { labor: [4, 6], fertilizer: [25, 30] },
         temperature: "25-35°C",
@@ -855,10 +253,10 @@ const cropData: CropDataType = {
         stage: "Reproductive Phase",
         duration: "30-35 days",
         resources: {
-          labor: "3-4 workers per acre",
+          labor: "3-4 workers",
           water: "Controlled drainage around flowering (avoid extreme stress)",
           equipment: "Sprayers for foliar applications",
-          fertilizer: "15-20 kg Phosphorus per acre if needed",
+          fertilizer: "15-20 kg Phosphorus if needed",
         },
         scalableResources: { labor: [3, 4], fertilizer: [15, 20] },
         temperature: "28-32°C",
@@ -875,10 +273,10 @@ const cropData: CropDataType = {
         stage: "Ripening Phase",
         duration: "25-30 days",
         resources: {
-          labor: "2-3 workers per acre",
+          labor: "2-3 workers",
           water: "Field drying prior to harvest",
           equipment: "Combine harvester or sickles",
-          fertilizer: "Low potassium as needed (10-15 kg K per acre)",
+          fertilizer: "Low potassium as needed (5-10 kg)",
         },
         scalableResources: { labor: [2, 3], fertilizer: [10, 15] },
         temperature: "20-25°C",
@@ -904,10 +302,10 @@ const cropData: CropDataType = {
         stage: "Seedling Emergence",
         duration: "3-14 days",
         resources: {
-          labor: "1-2 workers per acre",
+          labor: "1-2 workers",
           water: "Light irrigation until emergence",
           equipment: "Planter or hand sowing",
-          fertilizer: "10-15 kg balanced fertilizer per acre at sowing",
+          fertilizer: "10-15 kg balanced fertilizer at sowing",
         },
         scalableResources: { labor: [1, 2], fertilizer: [10, 15] },
         temperature: "20-30°C",
@@ -923,10 +321,10 @@ const cropData: CropDataType = {
         stage: "Tillering",
         duration: "20-25 days",
         resources: {
-          labor: "2-3 workers per acre",
+          labor: "2-3 workers",
           water: "Moderate irrigation",
           equipment: "Weeder/cultivator",
-          fertilizer: "15-20 kg Nitrogen per acre",
+          fertilizer: "15-20 kg Nitrogen",
         },
         scalableResources: { labor: [2, 3], fertilizer: [15, 20] },
         temperature: "25-35°C",
@@ -940,10 +338,10 @@ const cropData: CropDataType = {
         stage: "Stem Elongation",
         duration: "25-30 days",
         resources: {
-          labor: "2-3 workers per acre",
+          labor: "2-3 workers",
           water: "Regular irrigation if possible",
           equipment: "Sprayers for nutrients/pest checks",
-          fertilizer: "20-25 kg NPK per acre",
+          fertilizer: "20-25 kg NPK",
         },
         scalableResources: { labor: [2, 3], fertilizer: [20, 25] },
         temperature: "25-30°C",
@@ -957,7 +355,7 @@ const cropData: CropDataType = {
         stage: "Grain Maturation",
         duration: "30-40 days",
         resources: {
-          labor: "1-2 workers per acre",
+          labor: "1-2 workers",
           water: "Reduce irrigation as grains fill",
           equipment: "Combine or sickles",
           fertilizer: "5-10 kg Potassium if soil low",
@@ -983,10 +381,10 @@ const cropData: CropDataType = {
         stage: "Seed Treatment",
         duration: "1-2 days",
         resources: {
-          labor: "1-2 workers per acre",
+          labor: "1-2 workers",
           water: "Light",
           equipment: "Seed treater or simple soaking setup",
-          fertilizer: "Seed inoculant (biological) 5-10 kg equivalent per acre (if not used before)",
+          fertilizer: "Seed inoculant (biological) 5-10 kg equivalent (if not used before)",
         },
         scalableResources: { labor: [1, 2], fertilizer: [5, 10] },
         temperature: "20-25°C",
@@ -1000,7 +398,7 @@ const cropData: CropDataType = {
         stage: "Germination",
         duration: "5-10 days",
         resources: {
-          labor: "1 worker per acre",
+          labor: "1-2 workers",
           water: "Moderate",
           equipment: "Planter",
           fertilizer: "10-15 kg Nitrogen if soil low (often not needed if inoculated)",
@@ -1017,10 +415,10 @@ const cropData: CropDataType = {
         stage: "Vegetative Growth",
         duration: "30-40 days",
         resources: {
-          labor: "2-3 workers per acre",
+          labor: "2-3 workers",
           water: "Regular irrigation",
           equipment: "Sprayers for nutrients/pest control",
-          fertilizer: "15-20 kg Phosphorus per acre if soil low",
+          fertilizer: "15-20 kg Phosphorus if soil low",
         },
         scalableResources: { labor: [2, 3], fertilizer: [15, 20] },
         temperature: "25-35°C",
@@ -1034,10 +432,10 @@ const cropData: CropDataType = {
         stage: "Pod Formation",
         duration: "25-35 days",
         resources: {
-          labor: "2-3 workers per acre",
+          labor: "2-3 workers",
           water: "Controlled irrigation to keep pods forming",
           equipment: "Moisture sensors optional",
-          fertilizer: "10-15 kg Potassium per acre if soil low",
+          fertilizer: "10-15 kg Potassium if soil low",
         },
         scalableResources: { labor: [2, 3], fertilizer: [10, 15] },
         temperature: "20-30°C",
@@ -1060,10 +458,10 @@ const cropData: CropDataType = {
         stage: "Seedbed Preparation",
         duration: "10-15 days",
         resources: {
-          labor: "2-3 workers per acre",
+          labor: "2-3 workers",
           water: "Light for seedbed if dry",
           equipment: "Plow/harrow, leveling tools",
-          fertilizer: "15-20 kg starter fertilizer per acre",
+          fertilizer: "15-20 kg starter fertilizer",
         },
         scalableResources: { labor: [2, 3], fertilizer: [15, 20] },
         temperature: "15-20°C",
@@ -1076,10 +474,10 @@ const cropData: CropDataType = {
         stage: "Tillering",
         duration: "30-40 days",
         resources: {
-          labor: "2-3 workers per acre",
+          labor: "2-3 workers",
           water: "Moderate irrigation",
           equipment: "Weeder/sprayer",
-          fertilizer: "20-25 kg Nitrogen per acre top-dress",
+          fertilizer: "20-25 kg Nitrogen top-dress",
         },
         scalableResources: { labor: [2, 3], fertilizer: [20, 25] },
         temperature: "18-25°C",
@@ -1092,10 +490,10 @@ const cropData: CropDataType = {
         stage: "Stem Extension",
         duration: "25-30 days",
         resources: {
-          labor: "3-4 workers per acre",
+          labor: "3-4 workers",
           water: "Regular irrigation during growth",
           equipment: "Fertilizer applicator if needed",
-          fertilizer: "15-20 kg NPK per acre",
+          fertilizer: "15-20 kg NPK",
         },
         scalableResources: { labor: [3, 4], fertilizer: [15, 20] },
         temperature: "20-28°C",
@@ -1108,10 +506,10 @@ const cropData: CropDataType = {
         stage: "Grain Filling",
         duration: "35-45 days",
         resources: {
-          labor: "1-2 workers per acre",
+          labor: "1-2 workers",
           water: "Reduce irrigation gradually before harvest",
           equipment: "Combine harvester or sickles",
-          fertilizer: "5-10 kg Potassium per acre if low",
+          fertilizer: "5-10 kg Potassium if low",
         },
         scalableResources: { labor: [1, 2], fertilizer: [5, 10] },
         temperature: "15-22°C",
@@ -1133,10 +531,10 @@ const cropData: CropDataType = {
         stage: "Stem Selection",
         duration: "5-7 days",
         resources: {
-          labor: "2-3 workers per acre",
+          labor: "2-3 workers",
           water: "Light for cuttings",
           equipment: "Cutting tools",
-          fertilizer: "10-15 kg NPK per acre at planting",
+          fertilizer: "10-15 kg NPK at planting",
         },
         scalableResources: { labor: [2, 3], fertilizer: [10, 15] },
         temperature: "25-30°C",
@@ -1149,10 +547,10 @@ const cropData: CropDataType = {
         stage: "Planting",
         duration: "10-15 days",
         resources: {
-          labor: "3-5 workers per acre",
+          labor: "3-5 workers",
           water: "Moderate after planting",
           equipment: "Planting sticks or manual planting",
-          fertilizer: "15-20 kg Nitrogen per acre",
+          fertilizer: "15-20 kg Nitrogen",
         },
         scalableResources: { labor: [3, 5], fertilizer: [15, 20] },
         temperature: "27-35°C",
@@ -1165,10 +563,10 @@ const cropData: CropDataType = {
         stage: "Vegetative Growth",
         duration: "4-6 months",
         resources: {
-          labor: "2-3 workers per acre",
+          labor: "2-3 workers",
           water: "Regular irrigation during dry spells",
           equipment: "Weeders",
-          fertilizer: "20-25 kg Phosphorus per acre if soil low",
+          fertilizer: "20-25 kg Phosphorus if soil low",
         },
         scalableResources: { labor: [2, 3], fertilizer: [20, 25] },
         temperature: "25-35°C",
@@ -1181,10 +579,10 @@ const cropData: CropDataType = {
         stage: "Tuber Bulking",
         duration: "3-5 months",
         resources: {
-          labor: "3-4 workers per acre",
+          labor: "3-4 workers",
           water: "Controlled irrigation to avoid stress during bulking",
           equipment: "Moisture meters optional",
-          fertilizer: "15-20 kg Potassium per acre",
+          fertilizer: "15-20 kg Potassium",
         },
         scalableResources: { labor: [3, 4], fertilizer: [15, 20] },
         temperature: "25-32°C",
@@ -1207,10 +605,10 @@ const cropData: CropDataType = {
         stage: "Vine Preparation",
         duration: "10-15 days",
         resources: {
-          labor: "2-3 workers per acre",
+          labor: "2-3 workers",
           water: "Moderate",
           equipment: "Cutting tools",
-          fertilizer: "10-15 kg NPK per acre at planting",
+          fertilizer: "10-15 kg NPK at planting",
         },
         scalableResources: { labor: [2, 3], fertilizer: [10, 15] },
         temperature: "25-30°C",
@@ -1223,10 +621,10 @@ const cropData: CropDataType = {
         stage: "Planting",
         duration: "5-7 days",
         resources: {
-          labor: "3-4 workers per acre",
+          labor: "3-4 workers",
           water: "Regular irrigation after planting",
           equipment: "Planter or hand",
-          fertilizer: "15-20 kg Nitrogen per acre",
+          fertilizer: "15-20 kg Nitrogen",
         },
         scalableResources: { labor: [3, 4], fertilizer: [15, 20] },
         temperature: "27-35°C",
@@ -1239,10 +637,10 @@ const cropData: CropDataType = {
         stage: "Vine Development",
         duration: "40-60 days",
         resources: {
-          labor: "2-3 workers per acre",
+          labor: "2-3 workers",
           water: "Controlled irrigation",
           equipment: "Sprayers for pests",
-          fertilizer: "20-25 kg Phosphorus per acre if required",
+          fertilizer: "20-25 kg Phosphorus if required",
         },
         scalableResources: { labor: [2, 3], fertilizer: [20, 25] },
         temperature: "25-32°C",
@@ -1255,10 +653,10 @@ const cropData: CropDataType = {
         stage: "Tuber Formation",
         duration: "50-70 days",
         resources: {
-          labor: "1-2 workers per acre",
+          labor: "1-2 workers",
           water: "Reduced irrigation before harvest",
           equipment: "Moisture sensor optional",
-          fertilizer: "10-15 kg Potassium per acre",
+          fertilizer: "10-15 kg Potassium",
         },
         scalableResources: { labor: [1, 2], fertilizer: [10, 15] },
         temperature: "20-28°C",
@@ -1280,10 +678,10 @@ const cropData: CropDataType = {
         stage: "Sucker Selection",
         duration: "10-15 days",
         resources: {
-          labor: "2-3 workers per acre-equivalent (planting area)",
+          labor: "2-3 workers",
           water: "Moderate",
           equipment: "Cutting tools",
-          fertilizer: "15-20 kg NPK per acre-equivalent during establishment",
+          fertilizer: "15-20 kg NPK",
         },
         scalableResources: { labor: [2, 3], fertilizer: [15, 20] },
         temperature: "25-30°C",
@@ -1299,7 +697,7 @@ const cropData: CropDataType = {
           labor: "3-4 workers per planting area",
           water: "Heavy irrigation initially if dry",
           equipment: "Shovels and digging tools",
-          fertilizer: "20-25 kg Nitrogen per acre-equivalent at establishment",
+          fertilizer: "20-25 kg Nitrogen",
         },
         scalableResources: { labor: [3, 4], fertilizer: [20, 25] },
         temperature: "27-35°C",
@@ -1315,7 +713,7 @@ const cropData: CropDataType = {
           labor: "2-3 workers per area",
           water: "Regular irrigation",
           equipment: "Pruning tools",
-          fertilizer: "25-30 kg Phosphorus per acre-equivalent if needed",
+          fertilizer: "25-30 kg Phosphorus",
         },
         scalableResources: { labor: [2, 3], fertilizer: [25, 30] },
         temperature: "25-35°C",
@@ -1331,7 +729,7 @@ const cropData: CropDataType = {
           labor: "3-4 workers per area",
           water: "Controlled irrigation to support bunch filling",
           equipment: "Support poles and moisture meters optional",
-          fertilizer: "15-20 kg Potassium per acre-equivalent",
+          fertilizer: "15-20 kg Potassium",
         },
         scalableResources: { labor: [3, 4], fertilizer: [15, 20] },
         temperature: "25-32°C",
@@ -1353,10 +751,10 @@ const cropData: CropDataType = {
         stage: "Seed Yam Preparation",
         duration: "15-20 days",
         resources: {
-          labor: "2-3 workers per acre",
+          labor: "2-3 workers",
           water: "Light irrigation to keep cut sets healthy",
           equipment: "Cutting tools",
-          fertilizer: "10-15 kg NPK per acre at planting",
+          fertilizer: "10-15 kg NPK at planting",
         },
         scalableResources: { labor: [2, 3], fertilizer: [10, 15] },
         temperature: "25-30°C",
@@ -1369,10 +767,10 @@ const cropData: CropDataType = {
         stage: "Planting",
         duration: "10-15 days",
         resources: {
-          labor: "3-4 workers per acre",
+          labor: "3-4 workers",
           water: "Moderate irrigation initially",
           equipment: "Digging tools",
-          fertilizer: "20-25 kg Nitrogen per acre",
+          fertilizer: "20-25 kg Nitrogen",
         },
         scalableResources: { labor: [3, 4], fertilizer: [20, 25] },
         temperature: "27-35°C",
@@ -1385,10 +783,10 @@ const cropData: CropDataType = {
         stage: "Vine Training",
         duration: "2-3 months",
         resources: {
-          labor: "2-3 workers per acre",
+          labor: "2-3 workers",
           water: "Regular irrigation",
           equipment: "Support trellis or stakes if needed",
-          fertilizer: "15-20 kg Phosphorus per acre",
+          fertilizer: "15-20 kg Phosphorus",
         },
         scalableResources: { labor: [2, 3], fertilizer: [15, 20] },
         temperature: "25-32°C",
@@ -1401,10 +799,10 @@ const cropData: CropDataType = {
         stage: "Tuber Maturation",
         duration: "4-6 months",
         resources: {
-          labor: "1-2 workers per acre",
+          labor: "1-2 workers",
           water: "Reduce irrigation nearer harvest",
           equipment: "Moisture meters optional",
-          fertilizer: "10-15 kg Potassium per acre if needed",
+          fertilizer: "10-15 kg Potassium if needed",
         },
         scalableResources: { labor: [1, 2], fertilizer: [10, 15] },
         temperature: "20-28°C",
