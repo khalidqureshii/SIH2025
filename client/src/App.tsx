@@ -1,5 +1,5 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Suspense } from "react";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { Suspense, useEffect } from "react";
 import Home from "./pages/Home";
 import Weather from "./pages/Weather";
 import Navbar from "./components/common/Navbar";
@@ -12,11 +12,34 @@ import ProtectedRoute from "./components/common/ProtectedRoute";
 import Feedback from "./pages/Feedback";
 import ChatSidebar from "./components/chatbot/ChatSidebar";
 import Footer from "./components/common/Footer";
+import Scheme from "./pages/Scheme";
+import PlantIdentifier from "./pages/PlantIdentifier";
+import Loader from "./components/common/Loader";
+import Alternate from "./pages/Alternate";
 // import DirectionHandler from "./components/DirectionHandler";
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null; // nothing to render
+}
 
 function App() {
   return (
-    <Suspense fallback={<div>Loading translations...</div>}>
+    <Suspense
+      fallback={
+        <div>
+          <Loader
+            src="https://lottie.host/bdccc051-2094-4d92-981a-6d6a9c7ef85d/EcgjRlUVTm.lottie"
+            className="w-[300px] h-[300px]"
+          />
+        </div>
+      }
+    >
       {/* <DirectionHandler /> */}
       <BrowserRouter>
         <Navbar />
@@ -40,13 +63,29 @@ function App() {
             element={
               <ProtectedRoute>
                 <>
-                  <div className="min-h-screen bg-[url('/images/thunder.jpg')] bg-cover bg-center bg-no-repeat">
+                  <div className="min-h-screen bg-[url('/images/weather_new.jpg')] bg-cover bg-center bg-no-repeat">
                     <div className="min-h-screen bg-white/30 backdrop-blur-sm">
                       <Weather />
                     </div>
                   </div>
                 </>
               </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/testing"
+            element={
+              <>
+                <ProtectedRoute>
+                  <div className="min-h-screen bg-[url('/images/bg-diseasedetect.jpg')] bg-cover bg-center bg-no-repeat bg-fixed">
+                    <div className="flex flex-col min-h-screen bg-white/30 backdrop-blur-sm overflow-hidden">
+                      <div className="flex-1">
+                        <Alternate />
+                      </div>
+                    </div>
+                  </div>
+                </ProtectedRoute>
+              </>
             }
           />
           <Route path="/auth" element={<AuthPage />} />
@@ -124,9 +163,38 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route
+            path="/scheme"
+            element={
+              <ProtectedRoute>
+                <>
+                  <div className="min-h-screen bg-[url('/images/soil-advisory.jpg')] bg-cover bg-center bg-no-repeat bg-fixed">
+                    <div className="min-h-screen backdrop-blur-sm">
+                      <Scheme />
+                    </div>
+                  </div>
+                </>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/plant-identifier"
+            element={
+              <ProtectedRoute>
+                <>
+                  <div className="min-h-screen bg-[url('/images/plant-identifier.jpeg')] bg-cover bg-center bg-no-repeat bg-fixed">
+                    <div className="min-h-screen backdrop-blur-sm">
+                      <PlantIdentifier />
+                    </div>
+                  </div>
+                </>
+              </ProtectedRoute>
+            }
+          />
         </Routes>
         <ChatSidebar />
         <Footer />
+        <ScrollToTop />
       </BrowserRouter>
     </Suspense>
   );

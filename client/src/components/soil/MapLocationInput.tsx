@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { MapPin, Trash2 } from "lucide-react";
 import { LocationInput } from "./LocationInput";
+import { useTranslation } from "react-i18next";
 
 interface MapLocationInputProps {
   latitude: string;
@@ -21,6 +22,9 @@ const MapLocationInput: React.FC<MapLocationInputProps> = ({
   setLatitude,
   setLongitude,
 }) => {
+
+  const { t } = useTranslation();
+
   const mapRef = useRef<HTMLDivElement>(null);
   const markersRef = useRef<any[]>([]);
   const polygonRef = useRef<any>(null);
@@ -219,7 +223,7 @@ const MapLocationInput: React.FC<MapLocationInputProps> = ({
 
   const finishDrawing = () => {
     if (points.length < 3) {
-      alert("Please select at least 3 points to create a polygon");
+      alert(t("map_location.alert"));
       return;
     }
     setDrawing(false);
@@ -262,74 +266,74 @@ const MapLocationInput: React.FC<MapLocationInputProps> = ({
     />
   );
 
-  const MapInterface = () => (
-    <div className="space-y-4">
-      <div className="flex gap-2 flex-wrap">
-        <Button
-          onClick={startDrawing}
-          disabled={drawing}
-          className="bg-blue-600 hover:bg-blue-700"
-          size="sm"
-        >
-          {drawing ? "Drawing..." : "Start Drawing Area"}
-        </Button>
-        {drawing && points.length >= 3 && (
-          <Button
-            onClick={finishDrawing}
-            className="bg-green-600 hover:bg-green-700"
-            size="sm"
-          >
-            Finish Area ({points.length} points)
-          </Button>
-        )}
-        {latitude && longitude && (
-          <Button
-            onClick={clearArea}
-            variant="outline"
-            size="sm"
-            className="text-red-600 hover:text-red-700"
-          >
-            <Trash2 className="h-4 w-4 mr-1" />
-            Clear
-          </Button>
-        )}
-      </div>
+  // const MapInterface = () => (
+  //   <div className="space-y-4">
+  //     <div className="flex gap-2 flex-wrap">
+  //       <Button
+  //         onClick={startDrawing}
+  //         disabled={drawing}
+  //         className="bg-blue-600 hover:bg-blue-700"
+  //         size="sm"
+  //       >
+  //         {drawing ? "Drawing..." : "Start Drawing Area"}
+  //       </Button>
+  //       {drawing && points.length >= 3 && (
+  //         <Button
+  //           onClick={finishDrawing}
+  //           className="bg-green-600 hover:bg-green-700"
+  //           size="sm"
+  //         >
+  //           Finish Area ({points.length} points)
+  //         </Button>
+  //       )}
+  //       {latitude && longitude && (
+  //         <Button
+  //           onClick={clearArea}
+  //           variant="outline"
+  //           size="sm"
+  //           className="text-red-600 hover:text-red-700"
+  //         >
+  //           <Trash2 className="h-4 w-4 mr-1" />
+  //           Clear
+  //         </Button>
+  //       )}
+  //     </div>
 
-      <div
-        ref={mapRef}
-        className="w-full h-80 rounded-lg border-2 border-gray-300"
-        style={{ minHeight: "320px" }}
-      />
+  //     <div
+  //       ref={mapRef}
+  //       className="w-full h-80 rounded-lg border-2 border-gray-300"
+  //       style={{ minHeight: "320px" }}
+  //     />
 
-      {drawing && (
-        <div className="p-3 bg-blue-50 rounded-lg text-sm text-blue-700">
-          Click on the map to mark your farm boundaries. You need at least 3
-          points.
-          {points.length > 0 && ` Points added: ${points.length}`}
-        </div>
-      )}
+  //     {drawing && (
+  //       <div className="p-3 bg-blue-50 rounded-lg text-sm text-blue-700">
+  //         Click on the map to mark your farm boundaries. You need at least 3
+  //         points.
+  //         {points.length > 0 && ` Points added: ${points.length}`}
+  //       </div>
+  //     )}
 
-      {latitude && longitude && (
-        <div className="p-3 bg-green-50 rounded-lg">
-          <p className="text-sm text-green-700">
-            ✓ Farm center coordinates: {parseFloat(latitude).toFixed(6)},{" "}
-            {parseFloat(longitude).toFixed(6)}
-          </p>
-        </div>
-      )}
-    </div>
-  );
+  //     {latitude && longitude && (
+  //       <div className="p-3 bg-green-50 rounded-lg">
+  //         <p className="text-sm text-green-700">
+  //           ✓ Farm center coordinates: {parseFloat(latitude).toFixed(6)},{" "}
+  //           {parseFloat(longitude).toFixed(6)}
+  //         </p>
+  //       </div>
+  //     )}
+  //   </div>
+  // );
 
   const MapPlaceholder = () => (
     <div className="w-full h-80 bg-gray-200 rounded-lg border-2 border-dashed border-gray-400 flex flex-col items-center justify-center">
       <MapPin className="h-12 w-12 text-gray-400 mb-3" />
-      <p className="text-gray-500 text-center mb-2">Loading Map...</p>
+      <p className="text-gray-500 text-center mb-2">{t("map_location.loading")}</p>
       <Button
         onClick={() => setUseManualInput(true)}
         variant="outline"
         size="sm"
       >
-        Use Manual Input
+        {t("map_location.buttons.manual")}
       </Button>
     </div>
   );
@@ -339,14 +343,14 @@ const MapLocationInput: React.FC<MapLocationInputProps> = ({
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-lg font-medium flex items-center">
           <MapPin className="h-5 w-5 mr-2 text-green-600" />
-          Farm Location
+          {t("map_location.farm_location")}
         </h3>
         <Button
           onClick={() => setUseManualInput(!useManualInput)}
           variant="outline"
           size="sm"
         >
-          {useManualInput ? "Use Map" : "Manual Input"}
+          {useManualInput ? t("map_location.buttons.map") : t("map_location.buttons.manual_input")}
         </Button>
       </div>
 
@@ -355,13 +359,13 @@ const MapLocationInput: React.FC<MapLocationInputProps> = ({
       ) : mapError ? (
         <div className="space-y-4">
           <div className="p-4 bg-red-50 rounded-lg border border-red-200">
-            <p className="text-red-600 text-sm mb-2">Map could not be loaded</p>
+            <p className="text-red-600 text-sm mb-2">{t("map_location.map_no_load")}</p>
             <Button
               onClick={() => setUseManualInput(true)}
               className="bg-green-600 hover:bg-green-700"
               size="sm"
             >
-              Use Manual Input
+              {t("map_location.buttons.manual")}
             </Button>
           </div>
         </div>
@@ -375,7 +379,7 @@ const MapLocationInput: React.FC<MapLocationInputProps> = ({
               className="bg-blue-600 hover:bg-blue-700"
               size="sm"
             >
-              {drawing ? "Drawing..." : "Start Drawing Area"}
+              {drawing ? t("map_location.buttons.drawing") : t("map_location.buttons.start_draw")}
             </Button>
             {drawing && points.length >= 3 && (
               <Button
@@ -383,7 +387,7 @@ const MapLocationInput: React.FC<MapLocationInputProps> = ({
                 className="bg-green-600 hover:bg-green-700"
                 size="sm"
               >
-                Finish Area ({points.length} points)
+                {t("map_location.buttons.finish_area")} ({points.length} {t("map_location.buttons.points")})
               </Button>
             )}
             {latitude && longitude && (
@@ -394,7 +398,7 @@ const MapLocationInput: React.FC<MapLocationInputProps> = ({
                 className="text-red-600 hover:text-red-700"
               >
                 <Trash2 className="h-4 w-4 mr-1" />
-                Clear
+                {t("map_location.buttons.clear")}
               </Button>
             )}
           </div>
@@ -405,15 +409,14 @@ const MapLocationInput: React.FC<MapLocationInputProps> = ({
           />
           {drawing && (
             <div className="p-3 bg-blue-50 rounded-lg text-sm text-blue-700">
-              Click on the map to mark your farm boundaries. You need at least 3
-              points.
-              {points.length > 0 && ` Points added: ${points.length}`}
+              {t("map_location.draw_instruction")}
+              {points.length > 0 && `${t("map_location.points_added")} ${points.length}`}
             </div>
           )}
           {latitude && longitude && (
             <div className="p-3 bg-green-50 rounded-lg">
               <p className="text-sm text-green-700">
-                ✓ Farm center coordinates: {parseFloat(latitude).toFixed(6)},{" "}
+                {t("map_location.farm_center")} {parseFloat(latitude).toFixed(6)},{" "}
                 {parseFloat(longitude).toFixed(6)}
               </p>
             </div>

@@ -195,7 +195,7 @@ const Graphs: React.FC<{
   if (loading) {
     return (
       <Loader
-        src="https://lottie.host/59bd733b-8f3d-490e-a778-6f91b97d5ffb/2t8ay63ll6.lottie"
+        src="https://lottie.host/2e87f684-6d24-4ea6-944a-a1eafe942056/bRhcBCiAo6.lottie"
         message={t("graph.loader_message")}
       />
     );

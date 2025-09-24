@@ -62,10 +62,10 @@ const useVoices = () => {
     const loadVoices = () => {
       const voicesList = window.speechSynthesis.getVoices();
       setVoices(voicesList);
-      console.log("Available voices:");
-      voicesList.forEach((v, i) =>
-        console.log(`${i + 1}. ${v.name} — ${v.lang}`)
-      );
+      // console.log("Available voices:");
+      // voicesList.forEach((v, i) =>
+      //   console.log(`${i + 1}. ${v.name} — ${v.lang}`)
+      // );
     };
 
     loadVoices();
@@ -143,14 +143,33 @@ const CarouselCard: React.FC<CarouselCardProps> = (props) => {
 
       <div className="grid grid-cols-2 gap-4 text-xs text-gray-700">
         {[
-          { icon: "🌡️", label: t("card.max_temp"), value: `${dayData.maxtemp_c}°C` },
-          { icon: "❄️", label: t("card.min_temp"), value: `${dayData.mintemp_c}°C` },
-          { icon: "🌬️", label: t("card.wind"), value: `${dayData.maxwind_kph} kph` },
-          { icon: "💧", label: t("card.humidity"), value: `${dayData.avghumidity}%` },
+          {
+            icon: "🌡️",
+            label: t("card.max_temp"),
+            value: `${dayData.maxtemp_c}°C`,
+          },
+          {
+            icon: "❄️",
+            label: t("card.min_temp"),
+            value: `${dayData.mintemp_c}°C`,
+          },
+          {
+            icon: "🌬️",
+            label: t("card.wind"),
+            value: `${dayData.maxwind_kph} kph`,
+          },
+          {
+            icon: "💧",
+            label: t("card.humidity"),
+            value: `${dayData.avghumidity}%`,
+          },
         ].map((item, idx) => (
           <motion.div
             key={idx}
-            whileHover={{ scale: 1.05, boxShadow: "0px 4px 15px rgba(14,165,233,0.3)" }}
+            whileHover={{
+              scale: 1.05,
+              boxShadow: "0px 4px 15px rgba(14,165,233,0.3)",
+            }}
             className="flex flex-col items-center justify-center p-3 rounded-xl bg-gradient-to-br from-sky-50 to-blue-100 shadow-sm text-center"
           >
             <p className="text-lg">{item.icon}</p>

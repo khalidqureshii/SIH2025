@@ -143,7 +143,7 @@ const Home = () => {
           >
             <div>
               <img
-                src="/images/weather.jpg"
+                src="/images/thunder.jpg"
                 alt="Weather"
                 className="w-full h-36 object-cover"
               />
@@ -230,8 +230,52 @@ const Home = () => {
             </div>
           </div>
 
-        </div>
+          <div
+            onClick={() => navigate("/scheme")}
+            className="rounded-xl shadow-lg bg-white/70 backdrop-blur-md 
+               flex flex-col overflow-hidden hover:shadow-2xl hover:scale-[1.02] 
+               transition cursor-pointer"
+          >
+            <div>
+              <img
+                src="/images/scheme2.jpg"
+                alt="Crop Growth Timeline"
+                className="w-full h-36 object-cover"
+              />
+            </div>
+            <div className="flex flex-col flex-1 px-4 py-4">
+              <h3 className="text-lg font-bold text-[rgb(84,10,88)] mb-2">
+                {t("home.shortcut_labels.scheme")}
+              </h3>
+              <p className="text-sm text-gray-600">
+                {t("home.descriptions.scheme")}
+              </p>
+            </div>
+          </div>
 
+          <div
+            onClick={() => navigate("/plant-identifier")}
+            className="rounded-xl shadow-lg bg-white/70 backdrop-blur-md 
+               flex flex-col overflow-hidden hover:shadow-2xl hover:scale-[1.02] 
+               transition cursor-pointer"
+          >
+            <div>
+              <img
+                src="/images/plant-identifier.jpeg"
+                alt="Crop Growth Timeline"
+                className="w-full h-36 object-cover"
+              />
+            </div>
+            <div className="flex flex-col flex-1 px-4 py-4">
+              <h3 className="text-lg font-bold text-[rgb(184,20,20)] mb-2">
+                {t("home.shortcut_labels.plant-identifier")}
+              </h3>
+              <p className="text-sm text-gray-600">
+                {t("home.descriptions.plant-identifier")}
+              </p>
+            </div>
+          </div>
+        </div>
 
         {/* <div
           dir="ltr"
