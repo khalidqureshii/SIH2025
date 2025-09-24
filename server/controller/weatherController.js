@@ -1,6 +1,5 @@
 // ## Gemini Final
 
-
 // import axios from "axios";
 // import { GoogleGenerativeAI } from "@google/generative-ai";
 
@@ -50,8 +49,8 @@
 //     const forecastSummary = data.forecast.forecastday
 //       .map((day) => {
 //         const { maxtemp_c, mintemp_c, avgtemp_c, daily_chance_of_rain, condition } = day.day;
-//         return `Date: ${day.date}  
-//         Max Temp: ${maxtemp_c}°C | Min Temp: ${mintemp_c}°C | Avg Temp: ${avgtemp_c}°C  
+//         return `Date: ${day.date}
+//         Max Temp: ${maxtemp_c}°C | Min Temp: ${mintemp_c}°C | Avg Temp: ${avgtemp_c}°C
 //         Rain Chance: ${daily_chance_of_rain}% | Condition: ${condition.text}`;
 //       })
 //       .join("\n\n");
@@ -60,7 +59,7 @@
 
 //     // --- Build strict AI prompt ---
 //     const prompt = `
-//                     You are a farming advisor. Provide advice in ${language} using ${scriptInfo}. 
+//                     You are a farming advisor. Provide advice in ${language} using ${scriptInfo}.
 //                     Do NOT use Roman characters or any other script.
 
 //                     Provide a JSON array with the following structure:
@@ -124,7 +123,6 @@
 //   }
 // };
 
-
 // ## Gemma Final
 
 import axios from "axios";
@@ -178,14 +176,14 @@ export const getWeatherAdvisory = async (req, res) => {
           daily_chance_of_rain,
           condition,
         } = day.day;
-        return `Date: ${day.date}  
-        Max Temp: ${maxtemp_c}°C | Min Temp: ${mintemp_c}°C | Avg Temp: ${avgtemp_c}°C  
+        return `Date: ${day.date}
+        Max Temp: ${maxtemp_c}°C | Min Temp: ${mintemp_c}°C | Avg Temp: ${avgtemp_c}°C
         Rain Chance: ${daily_chance_of_rain}% | Condition: ${condition.text}`;
       })
       .join("\n\n");
 
     // const prompt = `
-    //   You are a farming advisor. Provide advice in ${language} using ${scriptInfo}. 
+    //   You are a farming advisor. Provide advice in ${language} using ${scriptInfo}.
     //   Do NOT use Roman characters or any other script.
 
     //   Provide a JSON array with the following structure:
@@ -200,11 +198,11 @@ export const getWeatherAdvisory = async (req, res) => {
     // `;
 
     const prompt = `
-                    You are a farming advisor. Provide advice in ${language} using ${scriptInfo}. 
+                    You are a farming advisor. Provide advice in ${language} using ${scriptInfo}.
 
                     ⚠️ STRICT RULES:
                     - Do NOT use Roman characters, English letters, or transliterations (e.g., Hinglish).
-                    - Only use ${scriptInfo} for text. 
+                    - Only use ${scriptInfo} for text.
                     - Do NOT include parentheses, phonetic spellings, or any text outside the specified script.
                     - The output must be a valid JSON array only.
 
