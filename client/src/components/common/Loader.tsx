@@ -34,16 +34,18 @@ interface LoaderProp{
     message?: string;
     className?: string;
     animationClassName?: string;
+    size?: string;
+    bgWhiteBlur?: boolean;
 }
 
 const Loader: React.FC<LoaderProp> = (props) => {
-    const {src, message, className, animationClassName} = props;
+    const {src, message, className, animationClassName, size, bgWhiteBlur} = props;
 
     return (
         <>
             <div className={`flex flex-col justify-center items-center w-full h-[50vh] ${className}`}>
-                <div className="flex flex-col justify-center items-center">
-                    <div className={`w-64 md:w-80 ${animationClassName}`}>
+                <div className={`flex flex-col justify-center items-center ${bgWhiteBlur ? 'bg-white/60 p-6 rounded-xl shadow-lg' : ''}`}>
+                    <div className={`${size} ${animationClassName}`}>
                             <DotLottieReact
                                 // Rain
                                 // src='https://lottie.host/f2784c2b-d89d-4b1d-9176-2c3c43a1f57e/eI03PSK8Bi.lottie'
