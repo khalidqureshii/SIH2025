@@ -6,7 +6,7 @@ import DiseaseDetectionPage from "./DiseaseDetectionPage"; // ✅ import your co
 const CropAssistantPage: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col items-center py-6">
-  <h1 className="text-3xl font-semibold text-center p-4 sm:text-base">
+  <h1 className="text-3xl font-semibold text-center p-4">
     🌾Crop Identification & Disease Detection
   </h1>
 <Tabs defaultValue="plant" className="w-full max-w-5xl flex flex-col items-center">
