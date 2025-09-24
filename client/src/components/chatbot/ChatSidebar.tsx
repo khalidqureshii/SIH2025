@@ -33,7 +33,6 @@ const ChatSidebar = () => {
   const [loading, setLoading] = useState(false);
   const { pathname } = useLocation();
   const sendMessage = async (inp: string) => {
-    console.log("Here");
     // if (!input.trim()) return;
 
     const userMessage: Message = { sender: "user", text: inp };
