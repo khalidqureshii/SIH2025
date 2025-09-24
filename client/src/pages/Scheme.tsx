@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { FaLeaf, FaSeedling, FaWater, FaLayerGroup } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
+import { LINK } from "@/store/Link";
 
 // --- INTERFACES ---
 interface Scheme {
@@ -79,8 +80,8 @@ export default function Scheme() {
         const apiValue = stateApiMap[stateKey] || "All";
 
         const res = await fetch(
-          `http://localhost:3000/api/scheme/getScheme?state=${apiValue}&language=${lang}`
-          // `${LINK}/api/scheme/getScheme?state=${apiValue}&language=${lang}`
+          // `http://localhost:3000/api/scheme/getScheme?state=${apiValue}&language=${lang}`
+          `${LINK}/api/scheme/getScheme?state=${apiValue}&language=${lang}`
         );
         if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
         const json = await res.json();

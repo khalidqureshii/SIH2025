@@ -112,9 +112,15 @@ const MarketResults: React.FC<Props> = ({ filters }) => {
 
       {status === "pending" && (
         // <div className="py-8 text-center">Loading market data…</div>
+        // <Loader
+        //   src="https://lottie.host/51bf7e3a-7e4d-4666-9528-180a22e144a0/ePlh0H1Vu8.lottie"
+        //   message="Loading market prices…"
+        // />
         <Loader
           src="https://lottie.host/51bf7e3a-7e4d-4666-9528-180a22e144a0/ePlh0H1Vu8.lottie"
           message="Loading market prices…"
+          size="w-96 md:w-[32rem]"
+          bgWhiteBlur={true}
         />
       )}
 

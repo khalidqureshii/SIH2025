@@ -121,16 +121,17 @@ const DiseaseDetectionPage = () => {
       {/* Card */}
       <Card
         className={`w-full ${
-          result ? "max-w-5xl" : "max-w-md"
-        }  shadow-lg rounded-2xl border border-white/20 
-        bg-white/60 backdrop-blur-md transition-all duration-500 m-7`}
+            result ? "max-w-5xl" : "max-w-md"
+          } shadow-lg border border-white/20 
+          bg-white/60 backdrop-blur-md transition-all duration-500 mx-2 sm:mx-7 mt-0 
+          rounded-none sm:rounded-2xl`}
       >
         <div className="flex flex-col items-center pt-4">
           <h1 className="text-2xl font-semibold mb-4 flex items-center gap-2">
             <Leaf className="w-6 h-6 text-green-600" />{" "}
             {t("disease_page.header.title")}
           </h1>
-          <p className=" mb-6 text-center max-w-md">
+          <p className=" mb-6 text-center max-w-md px-5">
             {t("disease_page.header.description")}
           </p>
         </div>
@@ -141,7 +142,7 @@ const DiseaseDetectionPage = () => {
             <label className="cursor-pointer flex flex-col items-center justify-center border-2 border-dashed border-green-400 bg-green-50 p-8 rounded-xl w-full hover:bg-green-100 transition">
               {" "}
               <Upload className="h-12 w-12 mb-3 text-green-600" />{" "}
-              <p className="text-sm text-gray-600 font-medium">
+              <p className="text-sm text-gray-600 font-medium text-center">
                 {" "}
                 {t("disease_page.uploadSection.tapToUpload")}{" "}
               </p>{" "}
@@ -160,7 +161,7 @@ const DiseaseDetectionPage = () => {
               <img
                 src={preview}
                 alt={t("disease_page.previewSection.altPreview")}
-                className="w-56 h-56 object-cover rounded-xl border-2 border-green-300 shadow-md"
+                className="w-56 h-56 object-cover rounded-xl border-2 border-green-300 shadow-md text-center"
               />{" "}
               <Button
                 onClick={handleSubmit}
