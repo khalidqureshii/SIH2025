@@ -118,9 +118,10 @@ All values (except numbers and dates) MUST be translated into ${targetLanguage}.
 
 Dates must remain in YYYY-MM-DD format and reflect today’s actual date.
 
-Return at least 5 unique market records.
+Return at least 9 unique market records.
 
 Prices must represent the per quintal value (₹/quintal) and FETCH ACTUAL DATA DO NOT MANIPULATE ACTUAL PRICE GIVE AS IT IS for the given commodity and location.
+ALSO MAKE SURE ALL THE MARKETS ARE DISTINCT.
 
 Required JSON Structure:
 
