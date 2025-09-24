@@ -53,7 +53,9 @@ export default function VoiceInput({ onTranscribe }: VoiceInputProps) {
       onClick={toggleRecording}
       className={`
 text-white flex items-center justify-center w-12 sm:w-16 h-12 rounded-none md:rounded-l-lg ${
-        isRecording ? "bg-red-500 animate-pulse" : "bg-green-500"
+        isRecording
+          ? "bg-red-600 hover:bg-red-700 animate-pulse"
+          : "bg-green-600 hover:bg-green-700"
       } text-white`}
     >
       {isRecording ? <FaStop size={18} /> : <FaMicrophone size={18} />}
