@@ -353,7 +353,7 @@
       "temperature": "Temperature (°C)",
       "rainfall": "Rainfall (mm)",
       "humidity": "Humidity (%)",
-      "moisture": "Soil Moisture",
+      "moisture": "Soil Moisture (%)",
       "p":"Phosphorus (P)",
       "k":"Potassium (K)",
       "n":"Nitrogen (N)",
