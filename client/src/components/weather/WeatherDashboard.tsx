@@ -135,7 +135,7 @@ const WeatherDashboard: React.FC<WeatherDashboardProp> = ({
           className="flex flex-col w-full gap-0"
         >
           <div className="w-full">
-            <div className="rounded-lg border border-slate-700/40 bg-gradient-to-b from-white/3 to-white/2 p-3">
+            <div className="rounded-lg border border-slate-700/40 bg-gradient-to-b from-white/3 to-white/2">
               <div className="flex flex-wrap items-center gap-2 justify-center">
                 <div className="flex-1 min-w-[120px] max-w-[300px]">
                   <InputField
