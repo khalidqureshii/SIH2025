@@ -23,7 +23,7 @@ const ChatSidebar = () => {
   const lang = i18n.language || 'en';
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { sender: "bot", text: "Hello I am Bhoomiबंधु, how can I help you?" },
+    { sender: "bot", text: "Hello I am बंधु, how can I help you?" },
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);

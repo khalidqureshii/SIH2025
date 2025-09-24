@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import cropData from "@/components/cropTimeLine/timeline";
 import type { CropInfo} from "@/components/cropTimeLine/types";
 import { Input } from "@/components/ui/input";
+import { ChevronDown, ChevronUp } from "lucide-react";
+
 import {
   Select,
   SelectTrigger,
@@ -317,63 +319,112 @@ const CropTimeline: React.FC = () => {
         {currentCrop.timeline.map((stage, index) => (
           <div key={index} className="relative">
             <div
-              className={`flex items-start cursor-pointer ${
-                selectedStage === index ? "mb-4" : ""
-              }`}
-              onClick={() => handleStageClick(index)}
-            >
-              <div
-                className={`z-10 flex items-center justify-center w-8 h-8 rounded-full border-2 ${
-                  selectedStage === index
-                    ? "bg-lime-500 border-lime-600"
-                    : "bg-white border-lime-400"
-                }`}
-              >
-                <span className="text-sm font-medium">{index + 1}</span>
-              </div>
-              <div className="ml-4">
-                <h3 className="text-lg font-medium text-lime-800">
-                  {stage.stage}
-                </h3>
-                <p className="text-sm text-lime-600">{stage.duration}</p>
-              </div>
-            </div>
+  className={`flex items-start cursor-pointer ${
+    selectedStage === index ? "mb-4" : ""
+  }`}
+  onClick={() => handleStageClick(index)}
+>
+  {/* Arrow icon instead of numbers */}
+  <div
+     className={`z-10 flex items-center justify-center w-8 h-8 rounded-full border-2 transition-colors duration-300 ${
+    selectedStage === index
+      ? "bg-lime-500 border-lime-600 text-white"
+      : "bg-white border-lime-400 text-lime-600"
+  }`}
+>
+  {selectedStage === index ? (
+    <ChevronUp className="w-5 h-5" />
+  ) : (
+    <ChevronDown className="w-5 h-5" />
+  )}
+  </div>
+
+  {/* Stage title + duration */}
+  <div className="ml-4">
+    <h3 className="text-lg font-medium text-lime-800">{stage.stage}</h3>
+    <p className="text-sm text-lime-600">{stage.duration}</p>
+  </div>
+</div>
 
             {selectedStage === index && (
-              <div className="ml-12 p-4 bg-white/70 rounded-lg border border-lime-200 shadow-sm">
-                <div className="mb-3">
-                  <div className="flex items-center text-sm text-amber-600 mb-1">
-                    {/* icon */}
-                    {t("timeline_page.messages.optimalTemperature")}
-                  </div>
-                  <p className="ml-7 text-gray-700">{stage.temperature}</p>
-                </div>
+  <div className="ml-12 p-4 bg-white/70 rounded-lg border border-lime-200 shadow-sm space-y-4">
+    {/* Temperature */}
+    <div>
+      <div className="flex items-center text-sm text-amber-600 mb-1">
+        {t("timeline_page.messages.optimalTemperature")}
+      </div>
+      <p className="ml-7 text-gray-700">{stage.temperature}</p>
+    </div>
 
-                <h4 className="font-medium text-lime-700 mb-2">
-                  {t("timeline_page.messages.resourcesNeeded")}
-                </h4>
-                <ul className="space-y-2">
-                  {Object.entries(stage.resources).map(([key, value]) => (
-                    <li key={key} className="flex items-center">
-                      {getResourceIcon(key)}
-                      <span className="text-gray-700">
-                        <span className="font-medium">{key}: </span>
-                        {stage.scalableResources && stage.scalableResources[key]
-                          ? getScaledResource(
-                              value,
-                              stage.scalableResources[key]
-                            )
-                          : value}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-                <h4 className="font-medium text-green-700 mb-2 mt-4">
-                  {t("timeline_page.messages.processToFollow")}
-                </h4>
-                <p className="ml-7 text-gray-700">{stage.description}</p>
-              </div>
-            )}
+    {/* Resources */}
+    <div>
+      <h4 className="font-medium text-lime-700 mb-2">
+        {t("timeline_page.messages.resourcesNeeded")}
+      </h4>
+      <ul className="space-y-2">
+        {Object.entries(stage.resources).map(([key, value]) => (
+          <li key={key} className="flex items-center">
+            {getResourceIcon(key)}
+            <span className="text-gray-700">
+              <span className="font-medium">{key.charAt(0).toUpperCase() + key.slice(1)}: </span>
+              {stage.scalableResources && stage.scalableResources[key]
+                ? getScaledResource(value, stage.scalableResources[key])
+                : value}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    {/* Process to follow */}
+    <div>
+      <h4 className="font-medium text-green-700 mb-2">
+        🪜{t("timeline_page.messages.processToFollow")}
+      </h4>
+      <p className="ml-7 text-gray-700">{stage.description}</p>
+    </div>
+
+    {/* ✅ What to do */}
+    <div>
+      <h4 className="font-medium text-blue-700 mb-2">✅ What to do</h4>
+      <p className="ml-7 text-gray-700">{stage.what_to_do}</p>
+    </div>
+
+    {/* 💡 Tips */}
+    <div>
+      <h4 className="font-medium text-purple-700 mb-2">💡 Tips</h4>
+      <p className="ml-7 text-gray-700">{stage.tips}</p>
+    </div>
+
+    {/* 🔎 Indicators */}
+    <div>
+      <h4 className="font-medium text-orange-700 mb-2">🔎 Indicators</h4>
+      <p className="ml-7 text-gray-700">{stage.indicators}</p>
+    </div>
+
+    {/* 🐛 Pests & Diseases */}
+    {stage.pests_and_diseases && stage.pests_and_diseases.length > 0 && (
+      <div>
+        <h4 className="font-medium text-red-700 mb-2">🐛 Pests & Diseases</h4>
+        <ul className="list-disc ml-7 space-y-1 text-gray-700">
+          {stage.pests_and_diseases.map((pd, i) => (
+            <li key={i}>
+              <span className="font-medium">{pd.name}:</span> {pd.control}
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    {/* 🌾 Harvest Notes */}
+    {stage.harvest_notes && (
+      <div>
+        <h4 className="font-medium text-emerald-700 mb-2">🌾 Harvest Notes</h4>
+        <p className="ml-7 text-gray-700">{stage.harvest_notes}</p>
+      </div>
+    )}
+  </div>
+)}
           </div>
         ))}
       </div>
@@ -392,3 +443,5 @@ const CropTimeline: React.FC = () => {
 };
 
 export default CropTimeline;
+
+
