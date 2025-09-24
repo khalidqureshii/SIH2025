@@ -13,7 +13,6 @@ import Feedback from "./pages/Feedback";
 import ChatSidebar from "./components/chatbot/ChatSidebar";
 import Footer from "./components/common/Footer";
 import Scheme from "./pages/Scheme";
-import PlantIdentifier from "./pages/PlantIdentifier";
 import CropAssistantPage from "./pages/DiseaseAndPlantIdentifier";
 import Loader from "./components/common/Loader";
 import Alternate from "./pages/Alternate";

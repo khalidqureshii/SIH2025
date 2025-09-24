@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import InputField from "../components/weather/InputField";
 import Button from "../components/weather/Button";
 import WeatherDashboard from "../components/weather/WeatherDashboard";
 import Loader from "@/components/common/Loader";

@@ -49,20 +49,26 @@ const CropTimeline: React.FC = () => {
   const normalizedArea: number = landArea * unitConversions[areaUnit];
 
   const getScaledResource = (
-    resource: string,
-    range: [number, number]
-  ): string => {
-    if (!range || range.length !== 2) return resource;
+  resource: string,
+  range: [number, number]
+): string => {
+  if (!range || range.length !== 2) return resource;
 
-    if (Array.isArray(range)) {
-      const [min, max] = range;
-      return `${Math.round(min * normalizedArea)}-${Math.round(
-        max * normalizedArea
-      )} ${resource.split(" ").slice(2).join(" ")}`;
-    }
+  // Find the first number/number-range + unit (e.g., "5-10 kg" or "20-25 kg")
+  const match = resource.match(/(\d+\s*-\s*\d+|\d+)\s*[a-zA-Z]+/);
+  if (!match) return resource;
 
-    return resource;
-  };
+  const [min, max] = range;
+  // Extract the unit from the matched string
+  const unitMatch = match[0].match(/[a-zA-Z]+/);
+  const unit = unitMatch ? unitMatch[0] : "";
+
+  // Build the scaled string
+  const scaled = `${Math.round(min * normalizedArea)}-${Math.round(max * normalizedArea)} ${unit}`;
+
+  // Replace only the matched part with the scaled value
+  return resource.replace(match[0], scaled);
+};
 
   const getResourceIcon = (resourceType: string): JSX.Element => {
     switch (resourceType.toLowerCase()) {
@@ -327,38 +333,38 @@ const CropTimeline: React.FC = () => {
               {t("timeline_page.messages.growthTimeline")} {currentCrop.name}
             </h2>
 
-    <div className="relative">
-      <div className="absolute top-0 bottom-0 left-[15px] w-0.5 bg-lime-300"></div>
-      <div className="space-y-6">
-        {currentCrop.timeline.map((stage, index) => (
-          <div key={index} className="relative">
-            <div
-        className={`flex items-start cursor-pointer ${
-          selectedStage === index ? "mb-4" : ""
-        }`}
-        onClick={() => handleStageClick(index)}
-      >
-        {/* Arrow icon instead of numbers */}
-        <div
-          className={`z-10 flex items-center justify-center w-8 h-8 rounded-full border-2 transition-colors duration-300 ${
-          selectedStage === index
-            ? "bg-lime-500 border-lime-600 text-white"
-            : "bg-white border-lime-400 text-lime-600"
-        }`}
-      >
-        {selectedStage === index ? (
-          <ChevronUp className="w-5 h-5" />
-        ) : (
-          <ChevronDown className="w-5 h-5" />
-        )}
-        </div>
+            <div className="relative">
+              <div className="absolute top-0 bottom-0 left-[15px] w-0.5 bg-lime-300"></div>
+              <div className="space-y-6">
+                {currentCrop.timeline.map((stage, index) => (
+                  <div key={index} className="relative">
+                    <div
+                className={`flex items-start cursor-pointer ${
+                  selectedStage === index ? "mb-4" : ""
+                }`}
+                onClick={() => handleStageClick(index)}
+              >
+                {/* Arrow icon instead of numbers */}
+                <div
+                  className={`z-10 flex items-center justify-center w-8 h-8 rounded-full border-2 transition-colors duration-300 ${
+                  selectedStage === index
+                    ? "bg-lime-500 border-lime-600 text-white"
+                    : "bg-white border-lime-400 text-lime-600"
+                }`}
+              >
+                {selectedStage === index ? (
+                  <ChevronUp className="w-5 h-5" />
+                ) : (
+                  <ChevronDown className="w-5 h-5" />
+                )}
+                </div>
 
-        {/* Stage title + duration */}
-        <div className="ml-4">
-          <h3 className="text-lg font-medium text-lime-800">{stage.stage}</h3>
-          <p className="text-sm text-lime-600">{stage.duration}</p>
-        </div>
-      </div>
+                {/* Stage title + duration */}
+                <div className="ml-4">
+                  <h3 className="text-lg font-medium text-lime-800">{stage.stage}</h3>
+                  <p className="text-sm text-lime-600">{stage.duration}</p>
+                </div>
+              </div>
 
             {selectedStage === index && (
             <div className="ml-12 p-4 bg-white/70 rounded-lg border border-lime-200 shadow-sm space-y-4">
@@ -376,16 +382,20 @@ const CropTimeline: React.FC = () => {
                   {t("timeline_page.messages.resourcesNeeded")}
                 </h4>
                 <ul className="space-y-2">
-                  {Object.entries(stage.resources).map(([key, value]) => (
-                    <li key={key} className="flex items-center">
-                      {getResourceIcon(key)}
-                      <span className="text-gray-700">
-                        <span className="font-medium">{key.charAt(0).toUpperCase() + key.slice(1)}: </span>
-                        {value}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
+                    {Object.entries(stage.resources).map(([key, value]) => (
+                      <li key={key} className="flex items-center">
+                        {getResourceIcon(key)}
+                        <span className="text-gray-700">
+                          <span className="font-medium">
+                            {key.charAt(0).toUpperCase() + key.slice(1)}:{" "}
+                          </span>
+                          {stage.scalableResources && stage.scalableResources[key]
+                            ? getScaledResource(value, stage.scalableResources[key])
+                            : value}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* Process to follow */}

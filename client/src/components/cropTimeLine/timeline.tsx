@@ -36,7 +36,7 @@ const cropData: CropDataType = {
           equipment: "Seed drill or hand broadcasting followed by light raking",
           fertilizer: "Light starter: 5-10 kg Nitrogen",
         },
-        scalableResources: { labor: [1, 1], fertilizer: [5, 10] },
+        scalableResources: { labor: [1, 2], fertilizer: [5, 10] },
         temperature: "20-30°C",
         description: "Keep the seedbed lightly moist to allow seeds to germinate and sprout uniformly.",
         what_to_do:
@@ -98,7 +98,7 @@ const cropData: CropDataType = {
           equipment: "Moisture meter (optional) or observe kernels",
           fertilizer: "Light potassium 5-10 kg if needed",
         },
-        scalableResources: { labor: [1, 1], fertilizer: [5, 10] },
+        scalableResources: { labor: [1, 2], fertilizer: [5, 10] },
         temperature: "20-25°C",
         description: "Allow the grain to fill and dry; reduce watering before harvest so grains harden.",
         what_to_do:
@@ -278,7 +278,7 @@ const cropData: CropDataType = {
           equipment: "Combine harvester or sickles",
           fertilizer: "Low potassium as needed (5-10 kg)",
         },
-        scalableResources: { labor: [2, 3], fertilizer: [10, 15] },
+        scalableResources: { labor: [2, 3], fertilizer: [5, 10] },
         temperature: "20-25°C",
         description: "Allow grain to mature and dry in the field before harvest to ensure quality.",
         what_to_do:
@@ -403,7 +403,7 @@ const cropData: CropDataType = {
           equipment: "Planter",
           fertilizer: "10-15 kg Nitrogen if soil low (often not needed if inoculated)",
         },
-        scalableResources: { labor: [1, 1], fertilizer: [10, 15] },
+        scalableResources: { labor: [1, 2], fertilizer: [10, 15] },
         temperature: "25-30°C",
         description: "Keep moisture steady to support sprouting and root nodule formation.",
         what_to_do: "Irrigate lightly if dry, avoid overwatering, and check for even rows.",
