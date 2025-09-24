@@ -248,16 +248,19 @@ import { Label } from "@/components/ui/label";
 //   SelectValue,
 // } from "@/components/ui/select";
 import { SoilSelector } from "@/components/soil/SoilSelector";
+import ReactMarkdown from "react-markdown";
 
 interface SensorData {
-  temperature: number | "";
-  humidity: number | "";
-  rainfall: number | "";
-  soilMoisture: number | "";
-  pH: number | "";
-  n: number | "";
-  p: number | "";
-  k: number | "";
+  temperature: number | null;
+  humidity: number | null;
+  rainfall: number | null;
+  soilMoisture: number | null;
+  pH: number | null;
+  n: number | null;
+  p: number | null;
+  k: number | null;
+  nvdi: number | null;
+  ndwi: number | null;
 }
 
 interface ApiResponse {
@@ -303,14 +306,16 @@ export default function Alternate() {
   const [farmSize, setFarmSize] = useState("");
   const [useSensor, setUseSensor] = useState(true);
   const [sensorData, setSensorData] = useState<SensorData>({
-    temperature: "",
-    humidity: "",
-    rainfall: "",
-    soilMoisture: "",
-    pH: "",
-    n: "",
-    p: "",
-    k: "",
+    nvdi: null,
+    ndwi: null,
+    temperature: null,
+    humidity: null,
+    rainfall: null,
+    soilMoisture: null,
+    pH: null,
+    n: null,
+    p: null,
+    k: null,
   });
 
   const [loading, setLoading] = useState(false);
@@ -353,57 +358,42 @@ export default function Alternate() {
 
       if (response.data.success) {
         const backendResult = response.data.data;
-        // Replace the if (useSensor) { ... } block with this:
         if (useSensor) {
-          // helper: return a number if value is numeric, otherwise return "" to match SensorData type
-          const parseNumOrEmpty = (v: any): number | "" => {
-            if (v === null || v === undefined || v === "") return "";
-            const n = Number(v);
-            return Number.isFinite(n) ? n : "";
-          };
-
-          // Map backend fields into SensorData shape (only fields present)
-          const backendMapped: Partial<SensorData> = {};
-          const w = backendResult?.weather_data;
-          if (w?.temperature !== undefined && w.temperature !== null) {
-            backendMapped.temperature = parseNumOrEmpty(w.temperature);
+          if (sensorData.nvdi === null) {
+            sensorData.nvdi = backendResult.satellite_data.ndvi;
           }
-          if (w?.humidity !== undefined && w.humidity !== null) {
-            backendMapped.humidity = parseNumOrEmpty(w.humidity);
+          if (sensorData.ndwi === null) {
+            sensorData.ndwi = backendResult.satellite_data.ndwi;
           }
-          if (w?.rainfall !== undefined && w.rainfall !== null) {
-            backendMapped.rainfall = parseNumOrEmpty(w.rainfall);
+          if (sensorData.temperature === null) {  
+            sensorData.temperature = backendResult.weather_data.temperature;
           }
-
-          const s = backendResult?.satellite_data;
-          if (s?.soil_moisture !== undefined && s.soil_moisture !== null) {
-            backendMapped.soilMoisture = parseNumOrEmpty(s.soil_moisture);
+          if (sensorData.humidity === null) {
+            sensorData.humidity = backendResult.weather_data.humidity;
           }
-          if (s?.soil_ph !== undefined && s.soil_ph !== null) {
-            backendMapped.pH = parseNumOrEmpty(s.soil_ph);
+          if (sensorData.rainfall === null) {
+            sensorData.rainfall = backendResult.weather_data.rainfall;
           }
-
-          const nVals = backendResult?.npk_estimates;
-          if (nVals?.nitrogen !== undefined && nVals.nitrogen !== null) {
-            backendMapped.n = parseNumOrEmpty(nVals.nitrogen);
+          if (sensorData.soilMoisture === null) {
+            sensorData.soilMoisture = backendResult.satellite_data.soil_moisture;
           }
-          if (nVals?.phosphorus !== undefined && nVals.phosphorus !== null) {
-            backendMapped.p = parseNumOrEmpty(nVals.phosphorus);
+          if (sensorData.pH === null) {
+            sensorData.pH = backendResult.satellite_data.soil_ph;
           }
-          if (nVals?.potassium !== undefined && nVals.potassium !== null) {
-            backendMapped.k = parseNumOrEmpty(nVals.potassium);
+          if (sensorData.n === null) {
+            sensorData.n = backendResult.npk_estimates.nitrogen;
+          }
+          if (sensorData.p === null) {
+            sensorData.p = backendResult.npk_estimates.phosphorus;
+          }
+          if (sensorData.k === null) {
+            sensorData.k = backendResult.npk_estimates.potassium;
           }
 
-          // Merge so user-entered values in current state override backend values
-          const mergedSensor: SensorData = {
-            ...backendMapped,
-            ...sensorData,
-          } as SensorData;
+          console.log("Merged Sensor Data:", sensorData);
+          setSensorData(sensorData);
 
-          // Update UI and immediately send merged data to handleSubmit2 (no stale-state)
-          setSensorData(mergedSensor);
-
-          await handleSubmit2(mergedSensor);
+          await handleSubmit2(sensorData);
           return;
         } else {
           setResult({
@@ -442,25 +432,29 @@ export default function Alternate() {
 
   // Replace your handleSubmit2 with this version (accepts optional payload)
   // paste this in your component (replace existing handleSubmit2)
-  const handleSubmit2 = async (
-    overrideSensorData?: SensorData
-  ): Promise<void> => {
+  const handleSubmit2 = async (data: SensorData): Promise<void> => {
     setLoading(true);
     try {
-      // prefer overrideSensorData when provided to avoid stale-state issues
-      const payloadSensor: SensorData = overrideSensorData ?? sensorData;
-
-      const response = await axios.post(`${LINK2}/sensor-analyze`, {
-        ...payloadSensor,
-        latitude: latitude !== "" ? Number(latitude) : undefined,
-        longitude: longitude !== "" ? Number(longitude) : undefined,
+      const formBody = {
+        ...data,
+        latitude: latitude,
+        longitude: longitude,
         waterSource,
         farmSize,
-        language: lang,
+        language: i18n.language,
+      }
+
+      console.log("Submitting to Gemini with body:", formBody);
+      
+      const response = await axios.post(`${LINK2}/sensor-analyze`, {
+        ...formBody
       });
 
       console.log("Gemini response:", response.data);
-      setGeminiResponse(response.data.message || JSON.stringify(response.data));
+      var temp = response.data.advice;
+      console.log("Display Text:", temp);
+
+      setGeminiResponse(temp);
     } catch (err) {
       console.error("Error with Gemini fetch:", err);
       setGeminiResponse("An error occurred while fetching Gemini response.");
@@ -542,7 +536,7 @@ export default function Alternate() {
                 <Label>{label}</Label>
                 <Input
                   type="text"
-                  value={sensorData[field as keyof SensorData]}
+                  value={sensorData[field as keyof SensorData] ?? ""}
                   onChange={(e) =>
                     handleSensorChange(
                       field as keyof SensorData,
@@ -577,7 +571,10 @@ export default function Alternate() {
         {geminiResponse && (
           <div className="mt-6 p-4 border rounded-lg bg-gray-50">
             <h4 className="font-semibold mb-2">Gemini Advisory</h4>
-            <p className="whitespace-pre-line">{geminiResponse}</p>
+            {/* <p className="whitespace-pre-line">{geminiResponse}</p> */}
+            <ReactMarkdown className="prose prose-lg max-w-none">
+              {geminiResponse}
+            </ReactMarkdown>
           </div>
         )}
       </Card>
