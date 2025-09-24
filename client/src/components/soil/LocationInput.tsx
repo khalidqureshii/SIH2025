@@ -27,7 +27,7 @@ export function LocationInput({ latitude, longitude, setLatitude, setLongitude }
       <label className="block text-sm font-medium mb-2">{t("location_input.labels.longitude")}</label>
       <Input
         type="text"
-        placeholder={t("location_input.placeholders.latitude")}
+        placeholder={t("location_input.placeholders.longitude")}
         value={longitude}
         onChange={(e) => setLongitude(e.target.value)}
       />

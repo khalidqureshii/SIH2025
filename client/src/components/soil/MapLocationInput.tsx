@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { MapPin, Trash2 } from "lucide-react";
+import { LocationInput } from "./LocationInput";
 
 interface MapLocationInputProps {
   latitude: string;
@@ -26,7 +27,7 @@ const MapLocationInput: React.FC<MapLocationInputProps> = ({
 
   const [drawing, setDrawing] = useState(false);
   const [points, setPoints] = useState<[number, number][]>([]);
-  const [useManualInput, setUseManualInput] = useState(true);
+  const [useManualInput, setUseManualInput] = useState(false);
   const [mapLoaded, setMapLoaded] = useState(false);
   const [mapError, setMapError] = useState(false);
 
@@ -72,96 +73,119 @@ const MapLocationInput: React.FC<MapLocationInputProps> = ({
     loadLeaflet();
   }, [useManualInput]);
 
-  // Initialize map only once
+  // Initialize map only once, with geolocation support
   useEffect(() => {
     if (!mapLoaded || !mapRef.current || useManualInput) return;
 
     let mapInstance: any = null;
-    try {
-      const L = (window as any).L;
-      mapInstance = L.map(mapRef.current).setView([20.5937, 78.9629], 5);
+    let initialCoords: [number, number] = [20.5937, 78.9629]; // Default: India
+    let initialZoom = 5;
 
-      // Add tile layer with multiple fallback options
-      const tileLayers = [
-        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-        "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-        "https://{s}.tile.osm.org/{z}/{x}/{y}.png",
-      ];
-      let currentLayerIndex = 0;
-      const addTileLayer = (index: number) => {
-        if (index >= tileLayers.length) return;
-        const tileLayer = L.tileLayer(tileLayers[index], {
-          attribution: "",
-          maxZoom: 18,
-        }).addTo(mapInstance);
-        tileLayer.on("tileerror", () => {
-          if (currentLayerIndex < tileLayers.length - 1) {
-            currentLayerIndex++;
-            mapInstance.removeLayer(tileLayer);
-            addTileLayer(currentLayerIndex);
+    const setupMap = (coords: [number, number], zoom: number) => {
+      try {
+        const L = (window as any).L;
+        mapInstance = L.map(mapRef.current).setView(coords, zoom);
+
+        // Add tile layer with multiple fallback options
+        const tileLayers = [
+          "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+          "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+          "https://{s}.tile.osm.org/{z}/{x}/{y}.png",
+        ];
+        let currentLayerIndex = 0;
+        const addTileLayer = (index: number) => {
+          if (index >= tileLayers.length) return;
+          const tileLayer = L.tileLayer(tileLayers[index], {
+            attribution: "",
+            maxZoom: 18,
+          }).addTo(mapInstance);
+          tileLayer.on("tileerror", () => {
+            if (currentLayerIndex < tileLayers.length - 1) {
+              currentLayerIndex++;
+              mapInstance.removeLayer(tileLayer);
+              addTileLayer(currentLayerIndex);
+            }
+          });
+        };
+        addTileLayer(0);
+
+        // Store map instance in ref for later use
+        (mapRef as any).current.mapInstance = mapInstance;
+
+        // Add click handler
+        mapInstance.on("click", (e: any) => {
+          if (drawingRef.current) {
+            const newPoint: [number, number] = [e.latlng.lat, e.latlng.lng];
+            // Add marker and store in ref
+            const markerIcon = L.divIcon({
+              html: '<div style="background-color: #22c55e; width: 12px; height: 12px; border-radius: 50%; border: 2px solid #16a34a; box-shadow: 0 2px 4px rgba(0,0,0,0.3);"></div>',
+              iconSize: [16, 16],
+              iconAnchor: [8, 8],
+              className: "custom-div-icon",
+            });
+            const marker = L.marker([e.latlng.lat, e.latlng.lng], {
+              icon: markerIcon,
+            }).addTo(mapInstance);
+            markersRef.current.push(marker);
+
+            // Add point to pointsRef
+            pointsRef.current.push(newPoint);
+            setPoints([...pointsRef.current]);
+
+            // Draw polygon if we have enough points
+            if (pointsRef.current.length >= 3) {
+              // Remove existing polygon
+              if (polygonRef.current) {
+                mapInstance.removeLayer(polygonRef.current);
+              }
+              // Add new polygon
+              const polygon = L.polygon(pointsRef.current, {
+                fillColor: "#22c55e",
+                fillOpacity: 0.3,
+                color: "#16a34a",
+                weight: 2,
+              }).addTo(mapInstance);
+              polygonRef.current = polygon;
+
+              // Calculate centroid
+              const centroid = calculateCentroid(
+                pointsRef.current.map((p) => ({ lat: p[0], lng: p[1] }))
+              );
+              setLatitude(centroid.lat.toString());
+              setLongitude(centroid.lng.toString());
+            }
           }
         });
-      };
-      addTileLayer(0);
 
-      // Store map instance in ref for later use
-      (mapRef as any).current.mapInstance = mapInstance;
-
-      // Add click handler
-      mapInstance.on("click", (e: any) => {
-        if (drawingRef.current) {
-          const newPoint: [number, number] = [e.latlng.lat, e.latlng.lng];
-          // Add marker and store in ref
-          const markerIcon = L.divIcon({
-            html: '<div style="background-color: #22c55e; width: 12px; height: 12px; border-radius: 50%; border: 2px solid #16a34a; box-shadow: 0 2px 4px rgba(0,0,0,0.3);"></div>',
-            iconSize: [16, 16],
-            iconAnchor: [8, 8],
-            className: "custom-div-icon",
-          });
-          const marker = L.marker([e.latlng.lat, e.latlng.lng], {
-            icon: markerIcon,
-          }).addTo(mapInstance);
-          markersRef.current.push(marker);
-
-          // Add point to pointsRef
-          pointsRef.current.push(newPoint);
-          setPoints([...pointsRef.current]);
-
-          // Draw polygon if we have enough points
-          if (pointsRef.current.length >= 3) {
-            // Remove existing polygon
-            if (polygonRef.current) {
-              mapInstance.removeLayer(polygonRef.current);
-            }
-            // Add new polygon
-            const polygon = L.polygon(pointsRef.current, {
-              fillColor: "#22c55e",
-              fillOpacity: 0.3,
-              color: "#16a34a",
-              weight: 2,
-            }).addTo(mapInstance);
-            polygonRef.current = polygon;
-
-            // Calculate centroid
-            const centroid = calculateCentroid(
-              pointsRef.current.map((p) => ({ lat: p[0], lng: p[1] }))
-            );
-            setLatitude(centroid.lat.toString());
-            setLongitude(centroid.lng.toString());
+        // Cleanup
+        return () => {
+          if (mapInstance) {
+            mapInstance.remove();
           }
-        }
-      });
+        };
+      } catch (error) {
+        console.error("Error initializing map:", error);
+        setMapError(true);
+      }
+    };
 
-      // Cleanup
-      return () => {
-        if (mapInstance) {
-          mapInstance.remove();
+    // Try to get geolocation
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          initialCoords = [position.coords.latitude, position.coords.longitude];
+          initialZoom = 14;
+          setupMap(initialCoords, initialZoom);
+        },
+        () => {
+          // User denied or error, use default
+          setupMap(initialCoords, initialZoom);
         }
-      };
-    } catch (error) {
-      console.error("Error initializing map:", error);
-      setMapError(true);
+      );
+    } else {
+      setupMap(initialCoords, initialZoom);
     }
+    // No cleanup here, handled in setupMap
   }, [mapLoaded, useManualInput]);
 
   // Refs for drawing and points to avoid re-initialization
@@ -206,43 +230,36 @@ const MapLocationInput: React.FC<MapLocationInputProps> = ({
     setDrawing(false);
     setLatitude("");
     setLongitude("");
+    pointsRef.current = [];
+    // Remove markers from map
+    if (
+      markersRef.current.length &&
+      mapRef.current &&
+      (mapRef.current as any).mapInstance
+    ) {
+      markersRef.current.forEach((marker) => {
+        (mapRef.current as any).mapInstance.removeLayer(marker);
+      });
+      markersRef.current = [];
+    }
+    // Remove polygon from map
+    if (
+      polygonRef.current &&
+      mapRef.current &&
+      (mapRef.current as any).mapInstance
+    ) {
+      (mapRef.current as any).mapInstance.removeLayer(polygonRef.current);
+      polygonRef.current = null;
+    }
   };
 
   const ManualInputs = () => (
-    <div className="space-y-4">
-      <div className="grid grid-cols-2 gap-4">
-        <div>
-          <label className="block text-sm font-medium mb-2">Latitude</label>
-          <input
-            type="number"
-            step="any"
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-            value={latitude}
-            onChange={(e) => setLatitude(e.target.value)}
-            placeholder="e.g. 20.5937"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium mb-2">Longitude</label>
-          <input
-            type="number"
-            step="any"
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
-            value={longitude}
-            onChange={(e) => setLongitude(e.target.value)}
-            placeholder="e.g. 78.9629"
-          />
-        </div>
-      </div>
-      {latitude && longitude && (
-        <div className="p-3 bg-green-50 rounded-lg">
-          <p className="text-sm text-green-700">
-            Coordinates: {parseFloat(latitude).toFixed(6)},{" "}
-            {parseFloat(longitude).toFixed(6)}
-          </p>
-        </div>
-      )}
-    </div>
+    <LocationInput
+      latitude={latitude}
+      longitude={longitude}
+      setLatitude={setLatitude}
+      setLongitude={setLongitude}
+    />
   );
 
   const MapInterface = () => (
