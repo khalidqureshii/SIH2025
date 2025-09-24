@@ -98,35 +98,44 @@ export const getCommodityPrice = async (req, res) => {
     const prompt = `
 You are an agricultural data assistant.
 
-Generate daily market price records for the following filters:
-- State: ${state}
-- District: ${district}
-- Commodity: ${commodity}
+Generate current-day (today’s date) market price records for the following filters:
 
-⚠ Output rules:
-- Respond strictly in JSON array format only, with no extra text or explanation.
-- All keys MUST remain in English exactly as shown.
-- All values (except numbers and dates) MUST be translated into ${targetLanguage}.
-- Dates must remain in YYYY-MM-DD format.
-- Return at least 5 records.
+State: ${state}
 
-Example of required structure:
+District: ${district}
+
+Commodity: ${commodity}
+
+⚠ Output Rules:
+
+Respond strictly in JSON array format only, with no extra text, explanation, or markdown.
+
+All keys MUST remain in English exactly as shown.
+
+All values (except numbers and dates) MUST be translated into ${targetLanguage}.
+
+Dates must remain in YYYY-MM-DD format and reflect today’s actual date.
+
+Return at least 5 unique market records.
+
+Prices must represent the per quintal value (₹/quintal) and FETCH ACTUAL DATA DO NOT MANIPULATE ACTUAL PRICE GIVE AS IT IS for the given commodity and location.
+
+Required JSON Structure:
+
 [
   {
-    "state": "ಕರ್ನಾಟಕ",
-    "district": "ಮೈಸೂರು",
-    "market": "ಮೈಸೂರು ಮಾರುಕಟ್ಟೆ",
-    "commodity": "ಈರುಳ್ಳಿ",
-    "variety": "ಕೆಂಪು ಈರುಳ್ಳಿ",
+    "state": "Translated State",
+    "district": "Translated District",
+    "market": "Translated Market Name",
+    "commodity": "Translated Commodity",
+    "variety": "Translated Variety",
     "grade": "A",
     "arrival_date": "2025-09-24",
-    "min_price": 1200,
-    "max_price": 1800,
-    "modal_price": 1500
+    "min_price": <price>,
+    "max_price": <price>,
+    "modal_price": <price>
   }
 ]
-Note: Give me the price of the commodity per quintal
-Now generate the JSON for the given inputs. Keep in mind that the data is accurate, and if not close to accurate, but it should be of the present day
 `;
 
     const model = genAI.getGenerativeModel({ model: "gemma-3-27b-it" });
