@@ -239,7 +239,8 @@ export default function Alternate() {
 
   return (
     <div className="flex flex-col items-center">
-      <Card className="w-full max-w-2xl bg-white shadow-lg p-6 rounded-none md:rounded-2xl mb-6 mt-10">
+      {/* <Card className="w-full max-w-2xl bg-white shadow-lg p-6 rounded-none md:rounded-2xl mb-6 mt-10"> */}
+      <Card className="w-full max-w-4xl bg-white shadow-lg p-6 rounded-none md:rounded-2xl mb-6 mt-10">
         <div className="flex flex-col sm:flex-row justify-between items-center mb-4">
           <h1 className="text-3xl font-semibold text-center p-4">
             {t("soil_page.headings.title")}
