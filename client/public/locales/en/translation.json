@@ -334,7 +334,8 @@
       "recommendationsTitle": "✅ Recommendations",
       "listenToAdvice": "Listen to Advice",
       "uploadAnotherImage": "Upload Another Image"
-    }
+    },
+    "warn": "Sorry, your browser does not support text-to-speech."
   },
 
   "soil_page": {
@@ -417,6 +418,13 @@
       "optimalTemperature": "Optimal Temperature",
       "resourcesNeeded": "Resources Needed:",
       "processToFollow": "Process to Follow:"
+    },
+    "process":{
+      "what_to_do": "✅ What to do",
+      "tips": "💡 Tips",
+      "indicators": "🔎 Indicators",
+      "pests": "🐛 Pests & Diseases",
+      "harvest": "🌾 Harvest Notes"
     }
   },
 
@@ -428,11 +436,13 @@
       "select_filters": "Please choose filters and click Search to see prices.",
       "no_data": "No price data found for the selected filters.",
       "unknown_market": "Unknown market",
-      "standard": "Standard"
+      "standard": "Standard",
+      "loader": "Loading market prices…"
     },
     "form": {
       "title": "Market Price Finder",
       "search": "Fetch Market Prices",
+      "noResults": "No results found.",
       "placeholders": {
         "state": "Enter State",
         "district": "Enter District",
@@ -452,7 +462,7 @@
       "p2": "how can I help you?"
     },
     "alert": "Sorry, your browser does not support text-to-speech.",
-    "process_error": "Sorry, I couldn’t process that.",
+    "process_error": "Sorry, I couldn't process that.",
     "server_error": "⚠️ Error connecting to server."
   },
 
@@ -570,6 +580,41 @@
       "p2": "We are a passionate team of developers, researchers, and innovators working together to make agriculture smarter, sustainable, and more efficient."
     },
     "meet": "Meet the Team"
+  },
+
+  "disease_plant": {
+    "title": "🌾Crop Identification & Disease Detection",
+    "tabs": {
+      "identify_crops": "🌱 Identify Crop",
+      "detect_disease": "🍂 Detect Disease"
+    }
+  },
+
+  "terms_conditions": {
+    "header":{
+      "title": "Terms and Conditions",
+      "description":{
+        "p1": "By accessing and using",
+        "p2": ", you agree to the following terms and conditions. Please read them carefully before using our services."
+      }
+    },
+    "terms": {
+      "titles": {
+        "use_of_services": "1. Use of Services",
+        "data_privacy": "2. Data Privacy",
+        "accuracy_of_information": "3. Accuracy of Information",
+        "limitation_of_liability": "4. Limitation of Liability",
+        "changes_to_terms": "5. Changes to Terms"
+      },
+      "descriptions": {
+        "use_of_services": "Our platform provides advisory and information services including weather updates, crop advisory, disease detection, and government schemes. These are for informational purposes only and should not be considered as a substitute for professional agricultural consultation.",
+        "data_privacy": "We value your privacy. Any data you provide (such as location or crop details) will be used only for enhancing your experience and will not be sold or misused.",
+        "accuracy_of_information": "While we strive to provide accurate and updated information, Bhoomiबंधु does not guarantee 100% accuracy of weather forecasts, government schemes, or crop advisories.",
+        "limitation_of_liability": "Bhoomiबंधु will not be held responsible for any losses or damages resulting from reliance on the information provided on this platform.",
+        "changes_to_terms": "We reserve the right to update these terms and conditions at any time. Continued use of our platform indicates your acceptance of any changes."
+      }
+    },
+    "question": "If you have any questions about these Terms, please contact us at"
   },
 
   "home": {

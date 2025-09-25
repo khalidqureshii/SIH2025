@@ -111,7 +111,7 @@ const MarketResults: React.FC<Props> = ({ filters }) => {
         </div>
       )}
 
-      {status === "pending" && (
+      {/* {status === "pending" && (
         // <div className="py-8 text-center">Loading market data…</div>
         // <Loader
         //   src="https://lottie.host/51bf7e3a-7e4d-4666-9528-180a22e144a0/ePlh0H1Vu8.lottie"
@@ -119,8 +119,17 @@ const MarketResults: React.FC<Props> = ({ filters }) => {
         // />
         <Loader
           src="https://lottie.host/51bf7e3a-7e4d-4666-9528-180a22e144a0/ePlh0H1Vu8.lottie"
-          message="Loading market prices…"
+          message={t("market.results.loader")}
           size="w-96 md:w-[32rem]"
+          bgWhiteBlur={true}
+        />
+      )} */}
+
+      {status === "pending" && (
+        <Loader
+          src="https://lottie.host/51bf7e3a-7e4d-4666-9528-180a22e144a0/ePlh0H1Vu8.lottie"
+          message={t("market.results.loader")}
+          size="w-[80%] max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg h-auto"
           bgWhiteBlur={true}
         />
       )}
