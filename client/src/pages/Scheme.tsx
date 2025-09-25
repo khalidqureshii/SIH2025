@@ -179,7 +179,7 @@ export default function Scheme() {
           <div className="flex flex-col items-center justify-center py-20">
             <div className="w-20 h-20 border-4 border-green-200 border-t-green-600 rounded-full animate-spin"></div>
             <div className="mt-6 text-center">
-              <h3 className="text-xl font-semibold text-gray-700 mb-2">
+              <h3 className="text-xl font-semibold text-white mb-2">
                 {t("scheme.list.loading")}
               </h3>
               <p className="text-gray-500">{t("scheme.list.fetching")}</p>
