@@ -93,17 +93,19 @@ export default function Alternate() {
   const [soilType, setSoilType] = useState("");
   const [farmSize, setFarmSize] = useState("");
   const [useSensor, setUseSensor] = useState(true);
+
+  // ✅ Default values set to 50% midpoint
   const [sensorData, setSensorData] = useState<SensorData>({
-    nvdi: null,
-    ndwi: null,
-    temperature: null,
-    humidity: null,
-    rainfall: null,
-    soilMoisture: null,
-    pH: null,
-    n: null,
-    p: null,
-    k: null,
+    nvdi: 0.5,          // midpoint of 0 → 1 (normalized index)
+    ndwi: 0.5,          // midpoint of 0 → 1
+    temperature: 10,    // midpoint of -40 → 60
+    humidity: 50,       // midpoint of 0 → 100
+    rainfall: 250,      // midpoint of 0 → 500
+    soilMoisture: 50,   // midpoint of 0 → 100
+    pH: 7,              // midpoint of 0 → 14
+    n: 100,             // midpoint of 0 → 200
+    p: 100,             // midpoint of 0 → 200
+    k: 100,             // midpoint of 0 → 200
   });
 
   const [loading, setLoading] = useState(false);
@@ -118,25 +120,17 @@ export default function Alternate() {
   ) => {
     let num = parseFloat(value);
     if (isNaN(num)) {
-      setSensorData((prev) => ({ ...prev, [field]: "" }));
+      setSensorData((prev) => ({ ...prev, [field]: null }));
       return;
     }
     if (num < min) {
-      // alert(`${field} cannot be less than ${min}. Automatically adjusted.`);
-      toast.info(
-        `${field} cannot be less than ${min}. Automatically adjusted.`
-      );
+      toast.info(`${field} cannot be less than ${min}. Automatically adjusted.`);
       num = min;
     } else if (num > max) {
-      // alert(`${field} cannot be greater than ${max}. Automatically adjusted.`);
-      toast.info(
-        `${field} cannot be greater than ${max}. Automatically adjusted.`
-      );
+      toast.info(`${field} cannot be greater than ${max}. Automatically adjusted.`);
       num = max;
     }
     setSensorData((prev) => ({ ...prev, [field]: num }));
-
-    console.log(sensorData);
   };
 
   const handleSubmit = async (): Promise<void> => {
@@ -144,49 +138,26 @@ export default function Alternate() {
     setGeminiResponse("");
     try {
       const response = await axios.post<ApiResponse>(`${LINK2}/analyze`, {
-        latitude: latitude,
-        longitude: longitude,
+        latitude,
+        longitude,
         language: lang,
       });
 
       if (response.data.success) {
         const backendResult = response.data.data;
         if (useSensor) {
-          if (sensorData.nvdi === null) {
-            sensorData.nvdi = backendResult.satellite_data.ndvi;
-          }
-          if (sensorData.ndwi === null) {
-            sensorData.ndwi = backendResult.satellite_data.ndwi;
-          }
-          if (sensorData.temperature === null) {
-            sensorData.temperature = backendResult.weather_data.temperature;
-          }
-          if (sensorData.humidity === null) {
-            sensorData.humidity = backendResult.weather_data.humidity;
-          }
-          if (sensorData.rainfall === null) {
-            sensorData.rainfall = backendResult.weather_data.rainfall;
-          }
-          if (sensorData.soilMoisture === null) {
-            sensorData.soilMoisture =
-              backendResult.satellite_data.soil_moisture;
-          }
-          if (sensorData.pH === null) {
-            sensorData.pH = backendResult.satellite_data.soil_ph;
-          }
-          if (sensorData.n === null) {
-            sensorData.n = backendResult.npk_estimates.nitrogen;
-          }
-          if (sensorData.p === null) {
-            sensorData.p = backendResult.npk_estimates.phosphorus;
-          }
-          if (sensorData.k === null) {
-            sensorData.k = backendResult.npk_estimates.potassium;
-          }
+          if (sensorData.nvdi === null) sensorData.nvdi = backendResult.satellite_data.ndvi;
+          if (sensorData.ndwi === null) sensorData.ndwi = backendResult.satellite_data.ndwi;
+          if (sensorData.temperature === null) sensorData.temperature = backendResult.weather_data.temperature;
+          if (sensorData.humidity === null) sensorData.humidity = backendResult.weather_data.humidity;
+          if (sensorData.rainfall === null) sensorData.rainfall = backendResult.weather_data.rainfall;
+          if (sensorData.soilMoisture === null) sensorData.soilMoisture = backendResult.satellite_data.soil_moisture;
+          if (sensorData.pH === null) sensorData.pH = backendResult.satellite_data.soil_ph;
+          if (sensorData.n === null) sensorData.n = backendResult.npk_estimates.nitrogen;
+          if (sensorData.p === null) sensorData.p = backendResult.npk_estimates.phosphorus;
+          if (sensorData.k === null) sensorData.k = backendResult.npk_estimates.potassium;
 
-          console.log("Merged Sensor Data:", sensorData);
           setSensorData(sensorData);
-
           await handleSubmit2(sensorData);
           return;
         }
@@ -251,7 +222,9 @@ export default function Alternate() {
       }
     } catch (error: unknown) {
       console.error("Error fetching recommendations:", error);
-      alert(t("soil_page.alerts.fetchError"));
+      toast.warn(t("soil_page.alerts.noRecommendations"));
+      console.error("Error fetching recommendations:", error);
+      toast.error(t("soil_page.alerts.fetchError"));
       setResult(null);
     } finally {
       setLoading(false);
@@ -264,23 +237,16 @@ export default function Alternate() {
     try {
       const formBody = {
         ...data,
-        latitude: latitude,
-        longitude: longitude,
+        latitude,
+        longitude,
         waterSource,
         farmSize,
         language: i18n.language,
       };
 
-      console.log("Submitting to Gemini with body:", formBody);
+      const response = await axios.post(`${LINK2}/sensor-analyze`, formBody);
 
-      const response = await axios.post(`${LINK2}/sensor-analyze`, {
-        ...formBody,
-      });
-
-      console.log("Gemini response:", response.data);
       var temp = response.data.advice;
-      console.log("Display Text:", temp);
-
       setGeminiResponse(temp);
     } catch (err) {
       console.error("Error with Gemini fetch:", err);
@@ -292,7 +258,7 @@ export default function Alternate() {
 
   return (
     <div className="flex flex-col items-center">
-      <Card className="w-full max-w-2xl bg-white shadow-lg p-6 rounded-none md:rounded-2xl mb-6 mt-10">
+      <Card className="w-full max-w-4xl bg-white shadow-lg p-6 rounded-none md:rounded-2xl mb-6 mt-10">
         <div className="flex flex-col sm:flex-row justify-between items-center mb-4">
           <h1 className="text-3xl font-semibold text-center p-4">
             {t("soil_page.headings.title")}
@@ -303,24 +269,14 @@ export default function Alternate() {
               onCheckedChange={setUseSensor}
               className="data-[state=checked]:bg-green-500"
             />
-            <span
-              className={`${useSensor ? "text-gray-900" : "text-gray-400"}`}
-            >
+            <span className={`${useSensor ? "text-gray-900" : "text-gray-400"}`}>
               {t("soil_page.labels.useSensor")}
             </span>
           </div>
         </div>
 
-        <MapLocationInput
-          latitude={latitude}
-          longitude={longitude}
-          setLatitude={setLatitude}
-          setLongitude={setLongitude}
-        />
-        <WaterSourceSelector
-          waterSource={waterSource}
-          setWaterSource={setWaterSource}
-        />
+        <MapLocationInput latitude={latitude} longitude={longitude} setLatitude={setLatitude} setLongitude={setLongitude} />
+        <WaterSourceSelector waterSource={waterSource} setWaterSource={setWaterSource} />
         <SoilSelector soilType={soilType} setSoilType={setSoilType} />
         <FarmSizeInput farmSize={farmSize} setFarmSize={setFarmSize} />
 
@@ -330,15 +286,13 @@ export default function Alternate() {
               <Label className="mb-2 flex items-center space-x-2">
                 <span>{t("soil_page.labels.rainfall")}</span>
                 <span className="text-sm font-medium text-gray-700">
-                  : {sensorData.rainfall ?? 0} mm
+                  : {sensorData.rainfall} mm
                 </span>
               </Label>
               <Input
                 type="number"
                 value={sensorData.rainfall ?? ""}
-                onChange={(e) =>
-                  handleSensorChange("rainfall", e.target.value, 0, 500)
-                }
+                onChange={(e) => handleSensorChange("rainfall", e.target.value, 0, 500)}
                 placeholder="0 - 500"
               />
             </div>
@@ -346,16 +300,15 @@ export default function Alternate() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="flex flex-col space-y-6">
                 {[
-                  { field: "ph", min: 0, max: 14, step: 0.1, unit: "" },
+                  { field: "pH", min: 0, max: 14, step: 0.1, unit: "" },
                   { field: "humidity", min: 0, max: 100, step: 1, unit: "%" },
-                  { field: "moisture", min: 0, max: 100, step: 0.5, unit: "%" },
+                  { field: "soilMoisture", min: 0, max: 100, step: 0.5, unit: "%" },
                 ].map(({ field, min, max, step, unit }) => (
                   <div key={field}>
                     <Label className="mb-2 flex items-center space-x-2">
                       <span>{t(`soil_page.labels.${field}`)}</span>
                       <span className="text-sm font-medium text-gray-700">
-                        : {sensorData[field as keyof SensorData] ?? 0}
-                        {unit}
+                        : {sensorData[field as keyof SensorData]}{unit}
                       </span>
                     </Label>
                     <div className="flex items-center space-x-2">
@@ -366,16 +319,11 @@ export default function Alternate() {
                         step={step}
                         value={[
                           sensorData[field as keyof SensorData] !== null
-                            ? (sensorData[field as keyof SensorData] as number)
+                            ? Number(sensorData[field as keyof SensorData])
                             : min,
                         ]}
-                        onValueChange={(val: any[]) =>
-                          handleSensorChange(
-                            field as keyof SensorData,
-                            String(val[0]),
-                            min,
-                            max
-                          )
+                        onValueChange={(val: number[]) =>
+                          handleSensorChange(field as keyof SensorData, String(val[0]), min, max)
                         }
                         className="flex-1"
                       />
@@ -391,7 +339,7 @@ export default function Alternate() {
                     <Label className="mb-2 flex items-center space-x-2">
                       <span>{t(`soil_page.labels.${field}`)}</span>
                       <span className="text-sm font-medium text-gray-700">
-                        : {sensorData[field as keyof SensorData] ?? 0}
+                        : {sensorData[field as keyof SensorData]}
                       </span>
                     </Label>
                     <div className="flex items-center space-x-2">
@@ -401,16 +349,10 @@ export default function Alternate() {
                         max={200}
                         step={1}
                         value={[
-                          (sensorData[field as keyof SensorData] as number) ||
-                            0,
+                          (sensorData[field as keyof SensorData] as number) || 0,
                         ]}
-                        onValueChange={(val: any[]) =>
-                          handleSensorChange(
-                            field as keyof SensorData,
-                            String(val[0]),
-                            0,
-                            200
-                          )
+                        onValueChange={(val: number[]) =>
+                          handleSensorChange(field as keyof SensorData, String(val[0]), 0, 200)
                         }
                         className="flex-1"
                       />
@@ -425,7 +367,7 @@ export default function Alternate() {
               <Label className="mb-2 flex items-center space-x-2">
                 <span>{t("soil_page.labels.temperature")}</span>
                 <span className="text-sm font-medium text-gray-700">
-                  : {sensorData.temperature ?? 25}°C
+                  : {sensorData.temperature}°C
                 </span>
               </Label>
               <div className="flex items-center space-x-2">
@@ -434,8 +376,8 @@ export default function Alternate() {
                   min={-40}
                   max={60}
                   step={0.5}
-                  value={[sensorData.temperature ?? 25]}
-                  onValueChange={(val: any[]) =>
+                  value={[sensorData.temperature ?? 10]}
+                  onValueChange={(val: number[]) =>
                     handleSensorChange("temperature", String(val[0]), -40, 60)
                   }
                   className="flex-1"

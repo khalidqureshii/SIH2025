@@ -12,7 +12,7 @@
       "chooseSoilType": "Choose Soil Type"
     },
     "labels": {
-      "soilSource": "Soil Source"
+      "soilSource": "Soil Type"
     }
   },
   "card": {
