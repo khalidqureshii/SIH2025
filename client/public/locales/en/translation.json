@@ -442,6 +442,7 @@
     "form": {
       "title": "Market Price Finder",
       "search": "Fetch Market Prices",
+      "noResults": "No results found.",
       "placeholders": {
         "state": "Enter State",
         "district": "Enter District",
