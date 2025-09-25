@@ -6,7 +6,7 @@ export default function AboutUs() {
     {
       name: "Khalid Qureshi",
       linkedin: "https://www.linkedin.com/in/khalid-qureshi-4a2b8b282/",
-      github: "https://github.com/khalidqureshi",
+      github: "https://github.com/khalidqureshii",
       email: "khalidqureshi1198@gmail.com",
     },
     {
