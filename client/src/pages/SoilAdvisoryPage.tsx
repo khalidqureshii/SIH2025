@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { SoilSelector } from "@/components/soil/SoilSelector";
 import ReactMarkdown from "react-markdown";
+import { Slider } from "@/components/ui/slider";
 
 interface SensorData {
   temperature: number | null;
@@ -130,7 +131,7 @@ export default function Alternate() {
           if (sensorData.ndwi === null) {
             sensorData.ndwi = backendResult.satellite_data.ndwi;
           }
-          if (sensorData.temperature === null) {  
+          if (sensorData.temperature === null) {
             sensorData.temperature = backendResult.weather_data.temperature;
           }
           if (sensorData.humidity === null) {
@@ -140,7 +141,8 @@ export default function Alternate() {
             sensorData.rainfall = backendResult.weather_data.rainfall;
           }
           if (sensorData.soilMoisture === null) {
-            sensorData.soilMoisture = backendResult.satellite_data.soil_moisture;
+            sensorData.soilMoisture =
+              backendResult.satellite_data.soil_moisture;
           }
           if (sensorData.pH === null) {
             sensorData.pH = backendResult.satellite_data.soil_ph;
@@ -195,8 +197,6 @@ export default function Alternate() {
     }
   };
 
-  // Replace your handleSubmit2 with this version (accepts optional payload)
-  // paste this in your component (replace existing handleSubmit2)
   const handleSubmit2 = async (data: SensorData): Promise<void> => {
     setLoading(true);
     try {
@@ -207,12 +207,12 @@ export default function Alternate() {
         waterSource,
         farmSize,
         language: i18n.language,
-      }
+      };
 
       console.log("Submitting to Gemini with body:", formBody);
-      
+
       const response = await axios.post(`${LINK2}/sensor-analyze`, {
-        ...formBody
+        ...formBody,
       });
 
       console.log("Gemini response:", response.data);
@@ -230,11 +230,10 @@ export default function Alternate() {
 
   return (
     <div className="flex flex-col items-center">
-      <Card className="w-full max-w-2xl bg-white shadow-lg p-6 rounded-2xl mb-6 mt-10">
-        {/* Title and switch */}
+      <Card className="w-full max-w-2xl bg-white shadow-lg p-6 rounded-none md:rounded-2xl mb-6 mt-10">
         <div className="flex flex-col sm:flex-row justify-between items-center mb-4">
           <h1 className="text-3xl font-semibold text-center p-4">
-            {t("soil_page.title")}
+            {t("soil_page.headings.title")}
           </h1>
           <div className="flex items-center space-x-3">
             <Switch
@@ -250,10 +249,6 @@ export default function Alternate() {
           </div>
         </div>
 
-        <h3 className="text-md mb-4 text-center p-2 pb-4">
-          {t("soil_page.headings.subtitle")}
-        </h3>
-
         <MapLocationInput
           latitude={latitude}
           longitude={longitude}
@@ -264,51 +259,128 @@ export default function Alternate() {
           waterSource={waterSource}
           setWaterSource={setWaterSource}
         />
-
         <SoilSelector soilType={soilType} setSoilType={setSoilType} />
-
         <FarmSizeInput farmSize={farmSize} setFarmSize={setFarmSize} />
 
-        {/* Extra inputs only if using sensor data */}
         {useSensor && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
-            {[
-              {
-                field: "temperature",
-                label: "Temperature (°C)",
-                min: -50,
-                max: 60,
-              },
-              { field: "humidity", label: t("soil_page.labels.humidity"), min: 0, max: 100 },
-              { field: "rainfall", label: t("soil_page.labels.rainfall"), min: 0, max: 500 },
-              {
-                field: "soilMoisture",
-                label: t("soil_page.labels.moisture"),
-                min: 0,
-                max: 100,
-              },
-              { field: "pH", label: t("soil_page.labels.ph"), min: 0, max: 14 },
-              { field: "n", label: t("soil_page.labels.n"), min: 0, max: 200 },
-              { field: "p", label: t("soil_page.labels.p"), min: 0, max: 200 },
-              { field: "k", label: t("soil_page.labels.k"), min: 0, max: 200 },
-            ].map(({ field, label, min, max }) => (
-              <div key={field}>
-                <Label>{label}</Label>
-                <Input
-                  type="text"
-                  value={sensorData[field as keyof SensorData] ?? ""}
-                  onChange={(e) =>
-                    handleSensorChange(
-                      field as keyof SensorData,
-                      e.target.value,
-                      min,
-                      max
-                    )
-                  }
-                  placeholder={`Enter ${label}`}
-                />
+          <div className="mt-6 space-y-6">
+            <div>
+              <Label className="mb-2 flex items-center space-x-2">
+                <span>{t("soil_page.labels.rainfall")}</span>
+                <span className="text-sm font-medium text-gray-700">
+                  : {sensorData.rainfall ?? 0} mm
+                </span>
+              </Label>
+              <Input
+                type="number"
+                value={sensorData.rainfall ?? ""}
+                onChange={(e) =>
+                  handleSensorChange("rainfall", e.target.value, 0, 500)
+                }
+                placeholder="0 - 500"
+              />
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="flex flex-col space-y-6">
+                {[
+                  { field: "ph", min: 0, max: 14, step: 0.1, unit: "" },
+                  { field: "humidity", min: 0, max: 100, step: 1, unit: "%" },
+                  { field: "moisture", min: 0, max: 100, step: 0.5, unit: "%" },
+                ].map(({ field, min, max, step, unit }) => (
+                  <div key={field}>
+                    <Label className="mb-2 flex items-center space-x-2">
+                      <span>{t(`soil_page.labels.${field}`)}</span>
+                      <span className="text-sm font-medium text-gray-700">
+                        : {sensorData[field as keyof SensorData] ?? 0}
+                        {unit}
+                      </span>
+                    </Label>
+                    <div className="flex items-center space-x-2">
+                      <span className="text-xs text-gray-500">{min}</span>
+                      <Slider
+                        min={min}
+                        max={max}
+                        step={step}
+                        value={[
+                          sensorData[field as keyof SensorData] !== null
+                            ? (sensorData[field as keyof SensorData] as number)
+                            : min,
+                        ]}
+                        onValueChange={(val: any[]) =>
+                          handleSensorChange(
+                            field as keyof SensorData,
+                            String(val[0]),
+                            min,
+                            max
+                          )
+                        }
+                        className="flex-1"
+                      />
+                      <span className="text-xs text-gray-500">{max}</span>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
+
+              <div className="flex flex-col space-y-6">
+                {["n", "p", "k"].map((field) => (
+                  <div key={field}>
+                    <Label className="mb-2 flex items-center space-x-2">
+                      <span>{t(`soil_page.labels.${field}`)}</span>
+                      <span className="text-sm font-medium text-gray-700">
+                        : {sensorData[field as keyof SensorData] ?? 0}
+                      </span>
+                    </Label>
+                    <div className="flex items-center space-x-2">
+                      <span className="text-xs text-gray-500">0</span>
+                      <Slider
+                        min={0}
+                        max={200}
+                        step={1}
+                        value={[
+                          (sensorData[field as keyof SensorData] as number) ||
+                            0,
+                        ]}
+                        onValueChange={(val: any[]) =>
+                          handleSensorChange(
+                            field as keyof SensorData,
+                            String(val[0]),
+                            0,
+                            200
+                          )
+                        }
+                        className="flex-1"
+                      />
+                      <span className="text-xs text-gray-500">200</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <Label className="mb-2 flex items-center space-x-2">
+                <span>{t("soil_page.labels.temperature")}</span>
+                <span className="text-sm font-medium text-gray-700">
+                  : {sensorData.temperature ?? 25}°C
+                </span>
+              </Label>
+              <div className="flex items-center space-x-2">
+                <span className="text-xs text-gray-500">-40</span>
+                <Slider
+                  min={-40}
+                  max={60}
+                  step={0.5}
+                  value={[sensorData.temperature ?? 25]}
+                  onValueChange={(val: any[]) =>
+                    handleSensorChange("temperature", String(val[0]), -40, 60)
+                  }
+                  className="flex-1"
+                />
+                <span className="text-xs text-gray-500">60</span>
+              </div>
+            </div>
           </div>
         )}
 
@@ -324,13 +396,10 @@ export default function Alternate() {
           )}
         </Button>
 
-        {/* Normal advisory result */}
         {result && <AdvisoryResult result={result} />}
 
-        {/* Gemini response block */}
         {geminiResponse && (
           <div className="mt-6 p-4 border rounded-lg bg-gray-50">
-            {/* <p className="whitespace-pre-line">{geminiResponse}</p> */}
             <ReactMarkdown className="prose prose-lg max-w-none">
               {geminiResponse}
             </ReactMarkdown>
