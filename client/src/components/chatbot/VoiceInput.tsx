@@ -52,7 +52,7 @@ export default function VoiceInput({ onTranscribe }: VoiceInputProps) {
     <button
       onClick={toggleRecording}
       className={`
-text-white flex items-center justify-center w-12 sm:w-16 h-12 rounded-none md:rounded-l-lg ${
+text-white flex items-center justify-center w-16 h-12 rounded-none md:rounded-l-lg ${
         isRecording
           ? "bg-red-600 hover:bg-red-700 animate-pulse"
           : "bg-green-600 hover:bg-green-700"
