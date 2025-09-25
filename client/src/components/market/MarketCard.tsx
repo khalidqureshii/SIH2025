@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion, Variants } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 interface MarketCardProps {
   market: string;
@@ -49,6 +50,8 @@ const MarketCard: React.FC<MarketCardProps & { setMaxHeight?: (h: number) => voi
 }) => {
   const ref = useRef<HTMLDivElement>(null);
 
+  const {t} = useTranslation();
+
   useEffect(() => {
     if (ref.current && setMaxHeight) {
       setMaxHeight(ref.current.offsetHeight);
@@ -83,7 +86,7 @@ const MarketCard: React.FC<MarketCardProps & { setMaxHeight?: (h: number) => voi
               ))
             ) : (
               <span className="px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-xs">
-                Standard
+                {t("market.card.standard")}
               </span>
             )}
           </div>

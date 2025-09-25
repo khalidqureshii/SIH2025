@@ -83,30 +83,31 @@ const Weather: React.FC = () => {
         <div className="flex justify-center items-center mx-auto px-4 min-h-screen w-full">
           <form
             onSubmit={handleSubmit}
-            className="flex flex-col items-center gap-4 sm:gap-6 py-6 px-6 rounded-2xl shadow-md w-auto bg-white/60"
+            className="flex flex-col items-center gap-4 sm:gap-6 py-6 px-6 rounded-2xl shadow-md bg-white/60"
           >
-            {/* Header fixed at top */}
-            <h1 className="text-lg sm:text-xl font-semibold text-center">
-              🌦️ {t("weather.form_header")}
-            </h1>
+            <div className="w-64 sm:w-72 md:w-80 flex flex-col gap-4">
+              <h1 className="text-left font-semibold truncate 
+                            text-[clamp(1.25rem,2.5vw,1.5rem)] leading-tight">
+                <span className="inline-block text-[clamp(1.25rem,2.5vw,1.5rem)]">🌦️</span>{" "}
+                {t("weather.form_header")}
+              </h1>
 
-            {/* Input field */}
-            <Input
-              id="city"
-              className="w-64 text-sm sm:text-base placeholder:text-sm sm:placeholder:text-base"
-              placeholder={t("weather.placeholder")}
-              value={city}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setCity(e.target.value)
-              }
-            />
+              <Input
+                id="city"
+                className="w-full text-sm sm:text-base placeholder:text-sm sm:placeholder:text-base"
+                placeholder={t("weather.placeholder")}
+                value={city}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setCity(e.target.value)
+                }
+              />
 
-            {/* Submit button */}
-            <Button
-              type="submit"
-              name={t("weather.submit")}
-              className="w-64 bg-green-600 hover:bg-green-700 text-white text-sm sm:text-base"
-            />
+              <Button
+                type="submit"
+                name={t("weather.submit")}
+                className="w-full bg-green-600 hover:bg-green-700 text-white text-sm sm:text-base"
+              />
+            </div>
           </form>
         </div>
       ) : (
