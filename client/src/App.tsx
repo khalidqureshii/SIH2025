@@ -16,6 +16,7 @@ import CropAssistantPage from "./pages/DiseaseAndPlantIdentifier";
 import Loader from "./components/common/Loader";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import AboutUs from "./pages/AboutUs";
+import { ToastContainer } from "react-toastify";
 // import DirectionHandler from "./components/DirectionHandler";
 
 function ScrollToTop() {
@@ -41,6 +42,18 @@ function App() {
       }
     >
       {/* <DirectionHandler /> */}
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        toastStyle={{ zIndex: 9999 }} // ensure it's on top
+      />
       <BrowserRouter>
         <Routes>
           <Route

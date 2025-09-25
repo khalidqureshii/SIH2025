@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { MapPin, Trash2 } from "lucide-react";
 import { LocationInput } from "./LocationInput";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 
 interface MapLocationInputProps {
   latitude: string;
@@ -22,7 +23,6 @@ const MapLocationInput: React.FC<MapLocationInputProps> = ({
   setLatitude,
   setLongitude,
 }) => {
-
   const { t } = useTranslation();
 
   const mapRef = useRef<HTMLDivElement>(null);
@@ -223,7 +223,8 @@ const MapLocationInput: React.FC<MapLocationInputProps> = ({
 
   const finishDrawing = () => {
     if (points.length < 3) {
-      alert(t("map_location.alert"));
+      // alert(t("map_location.alert"));
+      toast.success(t("map_location.alert"));
       return;
     }
     setDrawing(false);
@@ -327,7 +328,9 @@ const MapLocationInput: React.FC<MapLocationInputProps> = ({
   const MapPlaceholder = () => (
     <div className="w-full h-80 bg-gray-200 rounded-lg border-2 border-dashed border-gray-400 flex flex-col items-center justify-center">
       <MapPin className="h-12 w-12 text-gray-400 mb-3" />
-      <p className="text-gray-500 text-center mb-2">{t("map_location.loading")}</p>
+      <p className="text-gray-500 text-center mb-2">
+        {t("map_location.loading")}
+      </p>
       <Button
         onClick={() => setUseManualInput(true)}
         variant="outline"
@@ -350,7 +353,9 @@ const MapLocationInput: React.FC<MapLocationInputProps> = ({
           variant="outline"
           size="sm"
         >
-          {useManualInput ? t("map_location.buttons.map") : t("map_location.buttons.manual_input")}
+          {useManualInput
+            ? t("map_location.buttons.map")
+            : t("map_location.buttons.manual_input")}
         </Button>
       </div>
 
@@ -359,7 +364,9 @@ const MapLocationInput: React.FC<MapLocationInputProps> = ({
       ) : mapError ? (
         <div className="space-y-4">
           <div className="p-4 bg-red-50 rounded-lg border border-red-200">
-            <p className="text-red-600 text-sm mb-2">{t("map_location.map_no_load")}</p>
+            <p className="text-red-600 text-sm mb-2">
+              {t("map_location.map_no_load")}
+            </p>
             <Button
               onClick={() => setUseManualInput(true)}
               className="bg-green-600 hover:bg-green-700"
@@ -379,7 +386,9 @@ const MapLocationInput: React.FC<MapLocationInputProps> = ({
               className="bg-blue-600 hover:bg-blue-700"
               size="sm"
             >
-              {drawing ? t("map_location.buttons.drawing") : t("map_location.buttons.start_draw")}
+              {drawing
+                ? t("map_location.buttons.drawing")
+                : t("map_location.buttons.start_draw")}
             </Button>
             {drawing && points.length >= 3 && (
               <Button
@@ -387,7 +396,8 @@ const MapLocationInput: React.FC<MapLocationInputProps> = ({
                 className="bg-green-600 hover:bg-green-700"
                 size="sm"
               >
-                {t("map_location.buttons.finish_area")} ({points.length} {t("map_location.buttons.points")})
+                {t("map_location.buttons.finish_area")} ({points.length}{" "}
+                {t("map_location.buttons.points")})
               </Button>
             )}
             {latitude && longitude && (
@@ -410,13 +420,15 @@ const MapLocationInput: React.FC<MapLocationInputProps> = ({
           {drawing && (
             <div className="p-3 bg-blue-50 rounded-lg text-sm text-blue-700">
               {t("map_location.draw_instruction")}
-              {points.length > 0 && `${t("map_location.points_added")} ${points.length}`}
+              {points.length > 0 &&
+                `${t("map_location.points_added")} ${points.length}`}
             </div>
           )}
           {latitude && longitude && (
             <div className="p-3 bg-green-50 rounded-lg">
               <p className="text-sm text-green-700">
-                {t("map_location.farm_center")} {parseFloat(latitude).toFixed(6)},{" "}
+                {t("map_location.farm_center")}{" "}
+                {parseFloat(latitude).toFixed(6)},{" "}
                 {parseFloat(longitude).toFixed(6)}
               </p>
             </div>

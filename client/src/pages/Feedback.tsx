@@ -9,6 +9,8 @@ import {
   SelectContent,
   SelectItem,
 } from "@/components/ui/select";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Feedback = () => {
   const [loading, setLoading] = useState(true);
@@ -49,7 +51,8 @@ const Feedback = () => {
       setFeedbackData([...feedbackData, formData]);
       setFormData({ issueType: "", subject: "", description: "" });
       setLoading(false);
-      alert(t("feedback_page.alert"));
+      // alert(t("feedback_page.alert"));
+      toast.success(t("feedback_page.alert"));
     }, 2000);
   };
 

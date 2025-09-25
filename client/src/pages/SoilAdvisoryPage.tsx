@@ -15,6 +15,7 @@ import { Label } from "@/components/ui/label";
 import { SoilSelector } from "@/components/soil/SoilSelector";
 import ReactMarkdown from "react-markdown";
 import { Slider } from "@/components/ui/slider";
+import { toast } from "react-toastify";
 
 interface SensorData {
   temperature: number | null;
@@ -100,10 +101,16 @@ export default function Alternate() {
       return;
     }
     if (num < min) {
-      alert(`${field} cannot be less than ${min}. Automatically adjusted.`);
+      // alert(`${field} cannot be less than ${min}. Automatically adjusted.`);
+      toast.info(
+        `${field} cannot be less than ${min}. Automatically adjusted.`
+      );
       num = min;
     } else if (num > max) {
-      alert(`${field} cannot be greater than ${max}. Automatically adjusted.`);
+      // alert(`${field} cannot be greater than ${max}. Automatically adjusted.`);
+      toast.info(
+        `${field} cannot be greater than ${max}. Automatically adjusted.`
+      );
       num = max;
     }
     setSensorData((prev) => ({ ...prev, [field]: num }));
@@ -186,11 +193,13 @@ export default function Alternate() {
         }
       } else {
         setResult(null);
-        alert(t("soil_page.alerts.noRecommendations"));
+        // alert(t("soil_page.alerts.noRecommendations"));
+        toast.warn(t("soil_page.alerts.noRecommendations"));
       }
     } catch (error: unknown) {
       console.error("Error fetching recommendations:", error);
-      alert(t("soil_page.alerts.fetchError"));
+      // alert(t("soil_page.alerts.fetchError"));
+      toast.error(t("soil_page.alerts.fetchError"));
       setResult(null);
     } finally {
       setLoading(false);

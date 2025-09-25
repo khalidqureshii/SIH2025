@@ -8,6 +8,7 @@ import type { AppDispatch } from "@/store/Store";
 import { storeToken, authenticateUser } from "@/store/features/authSlice";
 import { LINK } from "@/store/Link";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const AuthPage = () => {
   const { t } = useTranslation();
@@ -57,7 +58,8 @@ const AuthPage = () => {
       navigate("/");
     } catch (err) {
       console.error("Login/Register error:", err);
-      alert(t("auth_page.errors.alert"));
+      // alert(t("auth_page.errors.alert"));
+      toast.error(t("auth_page.errors.alert"));
     }
   };
 
