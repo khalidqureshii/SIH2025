@@ -35,11 +35,6 @@ interface ApiResponse {
   data: BackendResult;
 }
 
-interface BackendResult {
-  weather_data: WeatherData;
-  satellite_data: SatelliteData;
-  npk_estimates: NPKEstimates;
-}
 
 interface WeatherData {
   temperature: number;
@@ -55,11 +50,37 @@ interface SatelliteData {
   soil_ph: number;
 }
 
+interface CropRecommendation {
+  crop: string;
+  confidence: number;
+  expected_yield: string;
+  suitability: string;
+  seasonal_match: string;
+  recommendation_score: number;
+}
+
+interface BackendResult {
+  weather_data: WeatherData;
+  satellite_data: SatelliteData;
+  npk_estimates: NPKEstimates;
+  crop_recommendations: CropRecommendation[];
+  advanced_insights: string;
+  fertilizer_guidance?: string[] | string;
+}
+
 interface NPKEstimates {
   nitrogen: number;
   phosphorus: number;
   potassium: number;
   confidence: number;
+}
+
+interface ProcessedCrop {
+  Confidence: number;
+  "Expected Yield": string;
+  Suitability: string;
+  "Seasonal Match": string;
+  "Overall Score": number;
 }
 
 export default function Alternate() {
@@ -120,13 +141,12 @@ export default function Alternate() {
 
   const handleSubmit = async (): Promise<void> => {
     setLoading(true);
+    setGeminiResponse("");
     try {
       const response = await axios.post<ApiResponse>(`${LINK2}/analyze`, {
         latitude: latitude,
         longitude: longitude,
         language: lang,
-        waterSource,
-        farmSize,
       });
 
       if (response.data.success) {
@@ -169,37 +189,69 @@ export default function Alternate() {
 
           await handleSubmit2(sensorData);
           return;
-        } else {
-          setResult({
-            weather: {
-              temperature: backendResult.weather_data.temperature,
-              humidity: backendResult.weather_data.humidity,
-              rainfall: backendResult.weather_data.rainfall,
-              season: backendResult.weather_data.season,
-            },
-            satellite: {
-              ndvi: backendResult.satellite_data.ndvi,
-              ndwi: backendResult.satellite_data.ndwi,
-              soilMoisture: backendResult.satellite_data.soil_moisture,
-              ph: backendResult.satellite_data.soil_ph,
-            },
-            nutrients: {
-              n: backendResult.npk_estimates.nitrogen,
-              p: backendResult.npk_estimates.phosphorus,
-              k: backendResult.npk_estimates.potassium,
-              confidence: backendResult.npk_estimates.confidence,
-            },
-          });
         }
+        
+        console.log("Backend Result:", backendResult);
+        setResult({
+          weather: {
+            temperature: backendResult.weather_data.temperature,
+            humidity: backendResult.weather_data.humidity,
+            rainfall: backendResult.weather_data.rainfall,
+            season: backendResult.weather_data.season,
+          },
+          satellite: {
+            ndvi: backendResult.satellite_data.ndvi,
+            ndwi: backendResult.satellite_data.ndwi,
+            soilMoisture: backendResult.satellite_data.soil_moisture,
+            ph: backendResult.satellite_data.soil_ph,
+          },
+          nutrients: {
+            n: backendResult.npk_estimates.nitrogen,
+            p: backendResult.npk_estimates.phosphorus,
+            k: backendResult.npk_estimates.potassium,
+            confidence: backendResult.npk_estimates.confidence,
+          },
+          recommendations: {
+            confidence: Math.round(
+              backendResult.crop_recommendations.reduce(
+                (acc: number, crop: CropRecommendation) =>
+                  acc + crop.confidence,
+                0
+              ) / backendResult.crop_recommendations.length
+            ), // average confidence
+            crops: backendResult.crop_recommendations.reduce(
+              (
+                acc: { [cropName: string]: ProcessedCrop },
+                crop: CropRecommendation
+              ) => {
+                acc[crop.crop] = {
+                  Confidence: crop.confidence,
+                  "Expected Yield": crop.expected_yield,
+                  Suitability: crop.suitability,
+                  "Seasonal Match": crop.seasonal_match,
+                  "Overall Score": crop.recommendation_score,
+                };
+                return acc;
+              },
+              {}
+            ),
+          },
+          advanced_insights: Array.isArray(backendResult.advanced_insights)
+            ? backendResult.advanced_insights // Keep as array if it's already an array
+            : [backendResult.advanced_insights], // Convert string to single-item array
+          fertilizer_guidance: Array.isArray(backendResult.fertilizer_guidance)
+            ? backendResult.fertilizer_guidance
+            : backendResult.fertilizer_guidance
+            ? [backendResult.fertilizer_guidance]
+            : undefined,
+        });
       } else {
         setResult(null);
-        // alert(t("soil_page.alerts.noRecommendations"));
-        toast.warn(t("soil_page.alerts.noRecommendations"));
+        alert(t("soil_page.alerts.noRecommendations"));
       }
     } catch (error: unknown) {
       console.error("Error fetching recommendations:", error);
-      // alert(t("soil_page.alerts.fetchError"));
-      toast.error(t("soil_page.alerts.fetchError"));
+      alert(t("soil_page.alerts.fetchError"));
       setResult(null);
     } finally {
       setLoading(false);
@@ -207,6 +259,7 @@ export default function Alternate() {
   };
 
   const handleSubmit2 = async (data: SensorData): Promise<void> => {
+    setResult(null);
     setLoading(true);
     try {
       const formBody = {
