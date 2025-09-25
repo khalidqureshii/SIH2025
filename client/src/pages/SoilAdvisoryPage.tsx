@@ -312,6 +312,26 @@ export default function Alternate() {
                         max={max}
                         step={step}
                         value={[
+                          sensorData[field as keyof SensorData] !== null &&
+                          sensorData[field as keyof SensorData] !== undefined
+                            ? Number(sensorData[field as keyof SensorData])
+                            : min,
+                        ]}
+                        onValueChange={(val: number[]) =>
+                          handleSensorChange(
+                            field as keyof SensorData,
+                            String(val[0]),
+                            min,
+                            max
+                          )
+                        }
+                        className="flex-1"
+                      />
+                      {/* <Slider
+                        min={min}
+                        max={max}
+                        step={step}
+                        value={[
                           sensorData[field as keyof SensorData] !== null
                             ? (sensorData[field as keyof SensorData] as number)
                             : min,
@@ -325,7 +345,7 @@ export default function Alternate() {
                           )
                         }
                         className="flex-1"
-                      />
+                      /> */}
                       <span className="text-xs text-gray-500">{max}</span>
                     </div>
                   </div>
