@@ -234,7 +234,7 @@ export default function Alternate() {
         {/* Title and switch */}
         <div className="flex flex-col sm:flex-row justify-between items-center mb-4">
           <h1 className="text-3xl font-semibold text-center p-4">
-            {t("soil_page.title")}
+            {t("soil_page.headings.title")}
           </h1>
           <div className="flex items-center space-x-3">
             <Switch
