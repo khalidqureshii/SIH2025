@@ -417,6 +417,13 @@
       "optimalTemperature": "Optimal Temperature",
       "resourcesNeeded": "Resources Needed:",
       "processToFollow": "Process to Follow:"
+    },
+    "process":{
+      "what_to_do": "✅ What to do",
+      "tips": "💡 Tips",
+      "indicators": "🔎 Indicators",
+      "pests": "🐛 Pests & Diseases",
+      "harvest": "🌾 Harvest Notes"
     }
   },
 
