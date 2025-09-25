@@ -429,6 +429,9 @@
         "district": "Enter District",
         "commodity": "Enter Commodity"
       }
+    },
+    "card":{
+      "standard": "Standard"
     }
   },
 
