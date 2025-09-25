@@ -275,7 +275,10 @@ const ChatSidebar = () => {
   const lang = i18n.language || "en";
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { sender: "bot", text: "Hello I am बंधु, how can I help you?" },
+    {
+      sender: "bot",
+      text: `${t("chat_sidebar.opening_text.p1")} बंधु, ${t("chat_sidebar.opening_text.p2")}`
+    }
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -294,7 +297,7 @@ const ChatSidebar = () => {
       utterance.pitch = 1;
       speechSynthesis.speak(utterance);
     } else {
-      alert("Sorry, your browser does not support text-to-speech.");
+      alert(t("chat_sidebar.alert"));
     }
   };
 
@@ -316,7 +319,7 @@ const ChatSidebar = () => {
 
       const botMessage: Message = {
         sender: "bot",
-        text: data.reply || "Sorry, I couldn’t process that.",
+        text: data.reply || t("chat_sidebar.process_error"),
       };
 
       setMessages((prev) => [...prev, botMessage]);
@@ -328,7 +331,7 @@ const ChatSidebar = () => {
     } catch (error) {
       setMessages((prev) => [
         ...prev,
-        { sender: "bot", text: "⚠️ Error connecting to server." },
+        { sender: "bot", text: t("chat_sidebar.server_error") },
       ]);
     } finally {
       setLoading(false);

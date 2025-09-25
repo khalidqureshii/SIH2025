@@ -434,7 +434,14 @@
 
   "chat_sidebar": {
     "thinking": "Thinking...",
-    "placeholder": "Ask Bandhu..."
+    "placeholder": "Ask Bandhu...",
+    "opening_text": {
+      "p1": "Hello I am",
+      "p2": "how can I help you?"
+    },
+    "alert": "Sorry, your browser does not support text-to-speech.",
+    "process_error": "Sorry, I couldn’t process that.",
+    "server_error": "⚠️ Error connecting to server."
   },
 
   "footer": {
