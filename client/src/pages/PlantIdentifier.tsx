@@ -4,6 +4,7 @@ import { Loader2, Upload, Sprout } from "lucide-react";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { LINK2 } from "@/store/Link";
+import { toast } from "react-toastify";
 
 type PlantResult = {
   crop: string;
@@ -51,7 +52,8 @@ const PlantIdentifier: React.FC = () => {
       });
     } catch (e) {
       console.log("Error while uploading the file", e);
-      alert(t("plant-identifier-page.alert"));
+      // alert(t("plant-identifier-page.alert"));
+      toast.error(t("plant-identifier-page.alert"));
     } finally {
       setLoading(false);
     }
@@ -141,7 +143,6 @@ const PlantIdentifier: React.FC = () => {
               </Button>
             </div>
           )}
-
         </CardContent>
       </Card>
     </div>
