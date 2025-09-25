@@ -103,7 +103,7 @@ const CarouselCard: React.FC<CarouselCardProps> = (props) => {
       speechSynthesis.speak(utterance);
     } else {
       // alert("Sorry, your browser does not support text-to-speech.");
-      toast.warn("Sorry, your browser does not support text-to-speech.");
+      toast.warn(t("carousel_card.warn"));
     }
   };
 

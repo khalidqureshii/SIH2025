@@ -366,6 +366,10 @@
     "listen": "Listen"
   },
 
+  "carousel_card": {
+    "warn": "Sorry, your browser does not support text-to-speech."
+  },
+
   "plant-identifier-page": {
     "alert": "Failed to identify the crop. Please try again!",
     "header": {
