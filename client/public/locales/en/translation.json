@@ -433,7 +433,8 @@
   },
 
   "chat_sidebar": {
-    "thinking": "Thinking..."
+    "thinking": "Thinking...",
+    "placeholder": "Ask Bandhu..."
   },
 
   "footer": {

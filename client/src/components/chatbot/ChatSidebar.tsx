@@ -146,7 +146,7 @@ const ChatSidebar = () => {
           />
           <input
             type="text"
-            placeholder="Ask BhoomiBandhu..."
+            placeholder={t("chat_sidebar.placeholder")}
             className="flex-1 px-3 py-2 focus:outline-none border h-12 text-sm sm:text-base"
             value={input}
             onChange={(e) => setInput(e.target.value)}
