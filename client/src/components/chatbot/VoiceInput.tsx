@@ -52,13 +52,15 @@ export default function VoiceInput({ onTranscribe }: VoiceInputProps) {
     <button
       onClick={toggleRecording}
       className={`
-text-white flex items-center justify-center w-16 h-12 rounded-none md:rounded-l-lg ${
+text-green-600 flex items-center justify-center w-12 h-12 rounded-none ${
         isRecording
-          ? "bg-red-600 hover:bg-red-700 animate-pulse"
-          : "bg-green-600 hover:bg-green-700"
-      } text-white`}
+          ? "text-red-600 hover:text-red-700 animate-pulse"
+          : "text-green-600 hover:text-green-700"
+        // ? "bg-red-600 hover:bg-red-700 animate-pulse"
+        // : "bg-green-600 hover:bg-green-700"
+      } bg-white`}
     >
-      {isRecording ? <FaStop size={18} /> : <FaMicrophone size={18} />}
+      {isRecording ? <FaStop size={18} /> : <FaMicrophone size={20} />}
     </button>
   );
 }
