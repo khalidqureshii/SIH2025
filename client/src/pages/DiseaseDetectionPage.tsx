@@ -113,7 +113,7 @@ const DiseaseDetectionPage = () => {
       speechSynthesis.speak(utterance);
     } else {
       // alert("Sorry, your browser does not support text-to-speech.");
-      toast.warn("Sorry, your browser does not support text-to-speech.");
+      toast.warn(t("disease_page.warn"));
     }
   };
 

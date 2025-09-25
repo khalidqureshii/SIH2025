@@ -334,7 +334,8 @@
       "recommendationsTitle": "✅ Recommendations",
       "listenToAdvice": "Listen to Advice",
       "uploadAnotherImage": "Upload Another Image"
-    }
+    },
+    "warn": "Sorry, your browser does not support text-to-speech."
   },
 
   "soil_page": {
