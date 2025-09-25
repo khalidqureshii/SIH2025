@@ -562,6 +562,16 @@
     }
   },
 
+  "about_us":{
+    "title": "About Us",
+    "welcome": "Welcome to",
+    "description": {
+      "p1": ", a platform dedicated to empowering farmers with technology-driven solutions. Our mission is to simplify farming decisions by providing insights on weather, crop health, schemes, and real-time advisories tailored to their location.",
+      "p2": "We are a passionate team of developers, researchers, and innovators working together to make agriculture smarter, sustainable, and more efficient."
+    },
+    "meet": "Meet the Team"
+  },
+
   "home": {
     "header_title": "🌾 Smart Crop Advisory",
     "subheader": "Your trusted friend for smarter farming!",
