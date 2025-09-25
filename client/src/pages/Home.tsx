@@ -173,7 +173,7 @@ const Home = () => {
           >
             <div>
               <img
-                src="/images/scheme2.jpg"
+                src="/images/scheme.jpg"
                 alt="Crop Growth Timeline"
                 className="w-full h-36 object-cover"
               />

@@ -2,7 +2,13 @@ import { useEffect, useState } from "react";
 import { FaSpinner } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import { Input } from "@/components/ui/input";
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "@/components/ui/select";
 
 const Feedback = () => {
   const [loading, setLoading] = useState(true);
@@ -13,7 +19,7 @@ const Feedback = () => {
     description: "",
   });
 
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   useEffect(() => {
     setTimeout(() => {
@@ -56,8 +62,8 @@ const Feedback = () => {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="bg-white/60 shadow-lg rounded-xl w-full max-w-3xl mt-6 p-6">
+    <div className="min-h-screen flex items-center justify-center mb-2">
+      <div className="bg-white/60 shadow-lg rounded-none md:rounded-xl lg:rounded-xl w-full max-w-3xl mt-6 p-6">
         {/* increased width */}
         <h2 className="text-3xl font-semibold mb-4 text-center">
           🗒️ {t("feedback_page.title")}
@@ -71,18 +77,26 @@ const Feedback = () => {
               </label>
 
               <Select
-              value={formData.issueType}
-              onValueChange={(val) => setFormData({ ...formData, issueType: val })}
-            >
-              <SelectTrigger className="mt-2">
-                <SelectValue placeholder={t("feedback_page.options.title")}/>
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="feature request">{t("feedback_page.options.feature_request")}</SelectItem>
-                <SelectItem value="complaint">{t("feedback_page.options.complaint")}</SelectItem>
-                <SelectItem value="general">{t("feedback_page.options.general")}</SelectItem>
-              </SelectContent>
-            </Select>
+                value={formData.issueType}
+                onValueChange={(val) =>
+                  setFormData({ ...formData, issueType: val })
+                }
+              >
+                <SelectTrigger className="mt-2">
+                  <SelectValue placeholder={t("feedback_page.options.title")} />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Feature Request">
+                    {t("feedback_page.options.feature_request")}
+                  </SelectItem>
+                  <SelectItem value="Complaint">
+                    {t("feedback_page.options.complaint")}
+                  </SelectItem>
+                  <SelectItem value="General">
+                    {t("feedback_page.options.general")}
+                  </SelectItem>
+                </SelectContent>
+              </Select>
             </div>
 
             <div className="col-span-12 md:col-span-8">
@@ -134,13 +148,16 @@ const Feedback = () => {
                   {t("feedback_page.list.title")} {i + 1}
                 </h3>
                 <p>
-                  <strong>{t("feedback_page.list.type")}</strong> {feedback.issueType}
+                  <strong>{t("feedback_page.list.type")}</strong>{" "}
+                  {feedback.issueType}
                 </p>
                 <p>
-                  <strong>{t("feedback_page.list.subject")}</strong> {feedback.subject}
+                  <strong>{t("feedback_page.list.subject")}</strong>{" "}
+                  {feedback.subject}
                 </p>
                 <p>
-                  <strong>{t("feedback_page.list.description")}</strong> {feedback.description}
+                  <strong>{t("feedback_page.list.description")}</strong>{" "}
+                  {feedback.description}
                 </p>
               </div>
             ))}

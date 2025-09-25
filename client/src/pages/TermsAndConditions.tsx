@@ -1,7 +1,7 @@
 export default function TermsAndConditions() {
   return (
-    <div className="min-h-screen py-12 px-6 md:px-20">
-      <div className="max-w-5xl mx-auto bg-white shadow-lg bg-white/60 backdrop-blur-md rounded-xl p-8 md:p-12">
+    <div className="min-h-screen py-12 md:px-20">
+      <div className="max-w-5xl mx-auto bg-white shadow-lg bg-white/60 backdrop-blur-md rounded-none md:rounded-xl lg:rounded-xl p-8 md:p-12">
         <h1 className="text-3xl md:text-4xl font-bold text-green-700 mb-6">
           Terms and Conditions
         </h1>

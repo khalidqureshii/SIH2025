@@ -42,7 +42,6 @@ function App() {
     >
       {/* <DirectionHandler /> */}
       <BrowserRouter>
-        <Navbar />
         <Routes>
           <Route
             path="/"
@@ -51,7 +50,9 @@ function App() {
                 <>
                   <div className="min-h-screen bg-[url('/images/bg-homepage.jpg')] bg-cover bg-center bg-no-repeat">
                     <div className="min-h-screen bg-white/30 backdrop-blur-sm">
+                      <Navbar />
                       <Home />
+                      <Footer />
                     </div>
                   </div>
                 </>
@@ -65,7 +66,9 @@ function App() {
                 <>
                   <div className="min-h-screen bg-[url('/images/weather_new.jpg')] bg-cover bg-center bg-no-repeat">
                     <div className="min-h-screen bg-white/30 backdrop-blur-sm">
+                      <Navbar />
                       <Weather />
+                      <Footer />
                     </div>
                   </div>
                 </>
@@ -73,7 +76,7 @@ function App() {
             }
           />
           <Route path="/auth" element={<AuthPage />} />
-          
+
           <Route
             path="/crop-identification-disease-detection"
             element={
@@ -81,8 +84,10 @@ function App() {
                 <>
                   <div className="min-h-screen bg-[url('/images/plant-identifier.jpeg')] bg-cover bg-center bg-no-repeat bg-fixed">
                     <div className="min-h-screen backdrop-blur-sm">
+                      <Navbar />
                       {/* <PlantIdentifier /> */}
                       <CropAssistantPage />
+                      <Footer />
                     </div>
                   </div>
                 </>
@@ -96,7 +101,9 @@ function App() {
                 <>
                   <div className="min-h-screen bg-[url('/images/soil-advisory.jpg')] bg-cover bg-center bg-no-repeat bg-fixed">
                     <div className="min-h-screen bg-white/30 backdrop-blur-sm">
+                      <Navbar />
                       <SoilAdvisoryPage />
+                      <Footer />
                     </div>
                   </div>
                 </>
@@ -110,7 +117,9 @@ function App() {
                 <>
                   <div className="min-h-screen bg-[url('/images/market1.jpg')] bg-cover bg-center bg-no-repeat bg-fixed">
                     <div className="min-h-screen bg-white/30 backdrop-blur-sm">
+                      <Navbar />
                       <MarketPage />
+                      <Footer />
                     </div>
                   </div>
                 </>
@@ -125,7 +134,9 @@ function App() {
                 <>
                   <div className="min-h-screen bg-[url('/images/timeline_bg.jpg')] bg-cover bg-center bg-no-repeat bg-fixed">
                     <div className="min-h-screen bg-white/30 backdrop-blur-sm">
+                      <Navbar />
                       <CropTimeline />
+                      <Footer />
                     </div>
                   </div>
                 </>
@@ -140,7 +151,9 @@ function App() {
                 <>
                   <div className="min-h-screen bg-[url('/images/feedback.jpg')] bg-cover bg-center bg-no-repeat bg-fixed">
                     <div className="min-h-screen backdrop-blur-sm">
+                      <Navbar />
                       <Feedback />
+                      <Footer />
                     </div>
                   </div>
                 </>
@@ -154,14 +167,16 @@ function App() {
                 <>
                   <div className="min-h-screen bg-[url('/images/soil-advisory.jpg')] bg-cover bg-center bg-no-repeat bg-fixed">
                     <div className="min-h-screen backdrop-blur-sm">
+                      <Navbar />
                       <Scheme />
+                      <Footer />
                     </div>
                   </div>
                 </>
               </ProtectedRoute>
             }
           />
-          
+
           <Route
             path="/terms"
             element={
@@ -169,7 +184,9 @@ function App() {
                 <>
                   <div className="min-h-screen bg-[url('/images/bg-homepage.jpg')] bg-cover bg-center bg-no-repeat bg-fixed">
                     <div className="min-h-screen backdrop-blur-sm">
+                      <Navbar />
                       <TermsAndConditions />
+                      <Footer />
                     </div>
                   </div>
                 </>
@@ -183,7 +200,9 @@ function App() {
                 <>
                   <div className="min-h-screen bg-[url('/images/bg-homepage.jpg')] bg-cover bg-center bg-no-repeat bg-fixed">
                     <div className="min-h-screen backdrop-blur-sm">
+                      <Navbar />
                       <AboutUs />
+                      <Footer />
                     </div>
                   </div>
                 </>
@@ -192,7 +211,6 @@ function App() {
           />
         </Routes>
         <ChatSidebar />
-        <Footer />
         <ScrollToTop />
       </BrowserRouter>
     </Suspense>

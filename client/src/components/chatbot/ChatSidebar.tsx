@@ -70,8 +70,18 @@ const ChatSidebar = () => {
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
-        <button className="fixed bottom-6 right-6 bg-green-600 hover:bg-green-700 text-white p-4 rounded-full shadow-lg z-50">
-          🌱
+        {/* <button className="fixed bottom-6 right-6 bg-green-600 hover:bg-green-700 text-white p-4 rounded-full shadow-lg z-50">
+         🌱 
+        </button> */}
+        <button
+          className="fixed bottom-6 right-6 bg-green-600 hover:bg-green-700 p-2 rounded-full shadow-lg z-50
+                       w-16 h-16 md:w-20 md:h-20 flex items-center justify-center"
+        >
+          <img
+            src="/gifs/chatbot-gif.gif"
+            alt="Chatbot"
+            className="w-10 h-10 md:w-14 md:h-14 object-contain"
+          />
         </button>
       </SheetTrigger>
 

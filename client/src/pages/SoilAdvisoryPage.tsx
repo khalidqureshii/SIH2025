@@ -131,7 +131,7 @@ export default function Alternate() {
           if (sensorData.ndwi === null) {
             sensorData.ndwi = backendResult.satellite_data.ndwi;
           }
-          if (sensorData.temperature === null) {  
+          if (sensorData.temperature === null) {
             sensorData.temperature = backendResult.weather_data.temperature;
           }
           if (sensorData.humidity === null) {
@@ -141,7 +141,8 @@ export default function Alternate() {
             sensorData.rainfall = backendResult.weather_data.rainfall;
           }
           if (sensorData.soilMoisture === null) {
-            sensorData.soilMoisture = backendResult.satellite_data.soil_moisture;
+            sensorData.soilMoisture =
+              backendResult.satellite_data.soil_moisture;
           }
           if (sensorData.pH === null) {
             sensorData.pH = backendResult.satellite_data.soil_ph;
@@ -206,12 +207,12 @@ export default function Alternate() {
         waterSource,
         farmSize,
         language: i18n.language,
-      }
+      };
 
       console.log("Submitting to Gemini with body:", formBody);
 
       const response = await axios.post(`${LINK2}/sensor-analyze`, {
-        ...formBody
+        ...formBody,
       });
 
       console.log("Gemini response:", response.data);
@@ -227,11 +228,9 @@ export default function Alternate() {
     }
   };
 
-
   return (
     <div className="flex flex-col items-center">
-      <Card className="w-full max-w-2xl bg-white shadow-lg p-6 rounded-2xl mb-6 mt-10">
-
+      <Card className="w-full max-w-2xl bg-white shadow-lg p-6 rounded-none md:rounded-2xl mb-6 mt-10">
         <div className="flex flex-col sm:flex-row justify-between items-center mb-4">
           <h1 className="text-3xl font-semibold text-center p-4">
             {t("soil_page.headings.title")}
@@ -242,7 +241,9 @@ export default function Alternate() {
               onCheckedChange={setUseSensor}
               className="data-[state=checked]:bg-green-500"
             />
-            <span className={`${useSensor ? "text-gray-900" : "text-gray-400"}`}>
+            <span
+              className={`${useSensor ? "text-gray-900" : "text-gray-400"}`}
+            >
               {t("soil_page.labels.useSensor")}
             </span>
           </div>
@@ -263,7 +264,6 @@ export default function Alternate() {
 
         {useSensor && (
           <div className="mt-6 space-y-6">
-
             <div>
               <Label className="mb-2 flex items-center space-x-2">
                 <span>{t("soil_page.labels.rainfall")}</span>
@@ -292,7 +292,8 @@ export default function Alternate() {
                     <Label className="mb-2 flex items-center space-x-2">
                       <span>{t(`soil_page.labels.${field}`)}</span>
                       <span className="text-sm font-medium text-gray-700">
-                        : {sensorData[field as keyof SensorData] ?? 0}{unit}
+                        : {sensorData[field as keyof SensorData] ?? 0}
+                        {unit}
                       </span>
                     </Label>
                     <div className="flex items-center space-x-2">
@@ -338,7 +339,8 @@ export default function Alternate() {
                         max={200}
                         step={1}
                         value={[
-                          sensorData[field as keyof SensorData] as number || 0,
+                          (sensorData[field as keyof SensorData] as number) ||
+                            0,
                         ]}
                         onValueChange={(val: any[]) =>
                           handleSensorChange(
