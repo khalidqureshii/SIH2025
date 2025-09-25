@@ -169,7 +169,7 @@ export default function Alternate() {
                             ? (sensorData[field as keyof SensorData] as number)
                             : min,
                         ]}
-                        onValueChange={(val) =>
+                        onValueChange={(val: any[]) =>
                           handleSensorChange(
                             field as keyof SensorData,
                             String(val[0]),
@@ -203,7 +203,7 @@ export default function Alternate() {
                         value={[
                           sensorData[field as keyof SensorData] as number || 0,
                         ]}
-                        onValueChange={(val) =>
+                        onValueChange={(val: any[]) =>
                           handleSensorChange(
                             field as keyof SensorData,
                             String(val[0]),
@@ -234,7 +234,7 @@ export default function Alternate() {
                   max={60}
                   step={0.5}
                   value={[sensorData.temperature ?? 25]}
-                  onValueChange={(val) =>
+                  onValueChange={(val: any[]) =>
                     handleSensorChange("temperature", String(val[0]), -50, 60)
                   }
                   className="flex-1"
