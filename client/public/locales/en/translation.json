@@ -418,8 +418,13 @@
 
   "market": {
     "results": {
-      "header": "Showing results for",
-      "in": "in"
+      "error": "Failed to fetch prices",
+      "quintal": "quintal",
+      "price" : "Price",
+      "select_filters": "Please choose filters and click Search to see prices.",
+      "no_data": "No price data found for the selected filters.",
+      "unknown_market": "Unknown market",
+      "standard": "Standard"
     },
     "form": {
       "title": "Market Price Finder",
