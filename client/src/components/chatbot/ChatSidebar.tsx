@@ -453,11 +453,11 @@ const ChatSidebar = () => {
         </div>
 
         {/* Input area */}
-        <div className="flex items-center border-t border-gray-300 bg-green-200 pt-3 px-0 md:p-4">
+        <div className="flex items-center border-t border-gray-300 bg-green-200 pt-3 px-4 py-4">
           <input
             type="text"
             placeholder={t("chat_sidebar.placeholder")}
-            className="flex-1 px-3 py-2 rounded-none md:rounded-l-lg focus:outline-none border h-12 text-sm sm:text-base"
+            className="flex-1 px-3 py-2 rounded-l-lg focus:outline-none border h-12 text-sm sm:text-base"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={
@@ -475,7 +475,7 @@ const ChatSidebar = () => {
             onClick={() => {
               sendMessage(input, false); // 👈 text input → autoSpeak = false
             }}
-            className="bg-green-600 hover:bg-green-700 text-white flex items-center justify-center w-12 h-12 rounded-none md:rounded-r-lg"
+            className="bg-green-600 hover:bg-green-700 text-white flex items-center justify-center w-16 h-12 rounded-r-lg"
           >
             <Send className="sm:w-6 sm:h-6" />
           </button>
