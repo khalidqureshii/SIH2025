@@ -20,13 +20,45 @@ interface SensorData {
   temperature: number | null;
   humidity: number | null;
   rainfall: number | null;
-  moisture: number | null;
-  ph: number | null;
+  soilMoisture: number | null;
+  pH: number | null;
   n: number | null;
   p: number | null;
   k: number | null;
   nvdi: number | null;
   ndwi: number | null;
+}
+
+interface ApiResponse {
+  success: boolean;
+  data: BackendResult;
+}
+
+interface BackendResult {
+  weather_data: WeatherData;
+  satellite_data: SatelliteData;
+  npk_estimates: NPKEstimates;
+}
+
+interface WeatherData {
+  temperature: number;
+  humidity: number;
+  rainfall: number;
+  season: string;
+}
+
+interface SatelliteData {
+  ndvi: number;
+  ndwi: number;
+  soil_moisture: number;
+  soil_ph: number;
+}
+
+interface NPKEstimates {
+  nitrogen: number;
+  phosphorus: number;
+  potassium: number;
+  confidence: number;
 }
 
 export default function Alternate() {
@@ -45,8 +77,8 @@ export default function Alternate() {
     temperature: null,
     humidity: null,
     rainfall: null,
-    moisture: null,
-    ph: null,
+    soilMoisture: null,
+    pH: null,
     n: null,
     p: null,
     k: null,
@@ -54,7 +86,7 @@ export default function Alternate() {
 
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<any>(null);
-  const [geminiResponse] = useState<string>("");
+  const [geminiResponse, setGeminiResponse] = useState<string>("");
 
   const handleSensorChange = (
     field: keyof SensorData,
@@ -63,33 +95,138 @@ export default function Alternate() {
     max: number
   ) => {
     let num = parseFloat(value);
-    if (isNaN(num)) return;
-    if (num < min) num = min;
-    if (num > max) num = max;
+    if (isNaN(num)) {
+      setSensorData((prev) => ({ ...prev, [field]: "" }));
+      return;
+    }
+    if (num < min) {
+      alert(`${field} cannot be less than ${min}. Automatically adjusted.`);
+      num = min;
+    } else if (num > max) {
+      alert(`${field} cannot be greater than ${max}. Automatically adjusted.`);
+      num = max;
+    }
     setSensorData((prev) => ({ ...prev, [field]: num }));
+
+    console.log(sensorData);
   };
 
   const handleSubmit = async (): Promise<void> => {
     setLoading(true);
     try {
-      const response = await axios.post(`${LINK2}/analyze`, {
-        latitude,
-        longitude,
+      const response = await axios.post<ApiResponse>(`${LINK2}/analyze`, {
+        latitude: latitude,
+        longitude: longitude,
         language: lang,
         waterSource,
         farmSize,
       });
 
       if (response.data.success) {
-        setResult(response.data.data);
+        const backendResult = response.data.data;
+        if (useSensor) {
+          if (sensorData.nvdi === null) {
+            sensorData.nvdi = backendResult.satellite_data.ndvi;
+          }
+          if (sensorData.ndwi === null) {
+            sensorData.ndwi = backendResult.satellite_data.ndwi;
+          }
+          if (sensorData.temperature === null) {  
+            sensorData.temperature = backendResult.weather_data.temperature;
+          }
+          if (sensorData.humidity === null) {
+            sensorData.humidity = backendResult.weather_data.humidity;
+          }
+          if (sensorData.rainfall === null) {
+            sensorData.rainfall = backendResult.weather_data.rainfall;
+          }
+          if (sensorData.soilMoisture === null) {
+            sensorData.soilMoisture = backendResult.satellite_data.soil_moisture;
+          }
+          if (sensorData.pH === null) {
+            sensorData.pH = backendResult.satellite_data.soil_ph;
+          }
+          if (sensorData.n === null) {
+            sensorData.n = backendResult.npk_estimates.nitrogen;
+          }
+          if (sensorData.p === null) {
+            sensorData.p = backendResult.npk_estimates.phosphorus;
+          }
+          if (sensorData.k === null) {
+            sensorData.k = backendResult.npk_estimates.potassium;
+          }
+
+          console.log("Merged Sensor Data:", sensorData);
+          setSensorData(sensorData);
+
+          await handleSubmit2(sensorData);
+          return;
+        } else {
+          setResult({
+            weather: {
+              temperature: backendResult.weather_data.temperature,
+              humidity: backendResult.weather_data.humidity,
+              rainfall: backendResult.weather_data.rainfall,
+              season: backendResult.weather_data.season,
+            },
+            satellite: {
+              ndvi: backendResult.satellite_data.ndvi,
+              ndwi: backendResult.satellite_data.ndwi,
+              soilMoisture: backendResult.satellite_data.soil_moisture,
+              ph: backendResult.satellite_data.soil_ph,
+            },
+            nutrients: {
+              n: backendResult.npk_estimates.nitrogen,
+              p: backendResult.npk_estimates.phosphorus,
+              k: backendResult.npk_estimates.potassium,
+              confidence: backendResult.npk_estimates.confidence,
+            },
+          });
+        }
+      } else {
+        setResult(null);
+        alert(t("soil_page.alerts.noRecommendations"));
       }
-    } catch (error) {
-      console.error(error);
+    } catch (error: unknown) {
+      console.error("Error fetching recommendations:", error);
       alert(t("soil_page.alerts.fetchError"));
+      setResult(null);
     } finally {
       setLoading(false);
     }
   };
+
+  const handleSubmit2 = async (data: SensorData): Promise<void> => {
+    setLoading(true);
+    try {
+      const formBody = {
+        ...data,
+        latitude: latitude,
+        longitude: longitude,
+        waterSource,
+        farmSize,
+        language: i18n.language,
+      }
+
+      console.log("Submitting to Gemini with body:", formBody);
+
+      const response = await axios.post(`${LINK2}/sensor-analyze`, {
+        ...formBody
+      });
+
+      console.log("Gemini response:", response.data);
+      var temp = response.data.advice;
+      console.log("Display Text:", temp);
+
+      setGeminiResponse(temp);
+    } catch (err) {
+      console.error("Error with Gemini fetch:", err);
+      setGeminiResponse("An error occurred while fetching Gemini response.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
 
   return (
     <div className="flex flex-col items-center">
@@ -169,7 +306,7 @@ export default function Alternate() {
                             ? (sensorData[field as keyof SensorData] as number)
                             : min,
                         ]}
-                        onValueChange={(val) =>
+                        onValueChange={(val: any[]) =>
                           handleSensorChange(
                             field as keyof SensorData,
                             String(val[0]),
@@ -203,7 +340,7 @@ export default function Alternate() {
                         value={[
                           sensorData[field as keyof SensorData] as number || 0,
                         ]}
-                        onValueChange={(val) =>
+                        onValueChange={(val: any[]) =>
                           handleSensorChange(
                             field as keyof SensorData,
                             String(val[0]),
@@ -228,14 +365,14 @@ export default function Alternate() {
                 </span>
               </Label>
               <div className="flex items-center space-x-2">
-                <span className="text-xs text-gray-500">-10</span>
+                <span className="text-xs text-gray-500">-40</span>
                 <Slider
-                  min={-10}
+                  min={-40}
                   max={60}
                   step={0.5}
                   value={[sensorData.temperature ?? 25]}
-                  onValueChange={(val) =>
-                    handleSensorChange("temperature", String(val[0]), -50, 60)
+                  onValueChange={(val: any[]) =>
+                    handleSensorChange("temperature", String(val[0]), -40, 60)
                   }
                   className="flex-1"
                 />
