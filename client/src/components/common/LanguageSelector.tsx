@@ -17,7 +17,11 @@ const languages = [
   { code: "ne", displayLabel: "Nepali (नेपाली)", englishLabel: "Nepali" },
   { code: "or", displayLabel: "Odia (ଓଡ଼ିଆ)", englishLabel: "Odia" },
   { code: "pa", displayLabel: "Punjabi (ਪੰਜਾਬੀ)", englishLabel: "Punjabi" },
-  { code: "sa", displayLabel: "Sanskrit (संस्कृतम्)", englishLabel: "Sanskrit" },
+  {
+    code: "sa",
+    displayLabel: "Sanskrit (संस्कृतम्)",
+    englishLabel: "Sanskrit",
+  },
   { code: "ta", displayLabel: "Tamil (தமிழ்)", englishLabel: "Tamil" },
   { code: "te", displayLabel: "Telugu (తెలుగు)", englishLabel: "Telugu" },
 ];
@@ -86,9 +90,9 @@ function LanguageSelector({ fullWidth = false }: { fullWidth?: boolean }) {
   return (
     <Menu as="div" className="relative w-full">
       <Menu.Button
-        className={`flex items-center gap-2 bg-white/60 backdrop-blur-md 
+        className={`flex items-center gap-2 bg-green-200/60 backdrop-blur-md 
                     text-green-700 font-medium px-4 py-2 rounded-lg shadow 
-                    hover:bg-white/80 transition justify-between
+                    hover:bg-green-300/80 transition justify-between
                     focus:outline-none focus:ring-0
                     ${fullWidth ? "w-full" : "w-52"}`}
       >
@@ -100,10 +104,11 @@ function LanguageSelector({ fullWidth = false }: { fullWidth?: boolean }) {
       </Menu.Button>
 
       <Menu.Items
-        className="absolute right-0 z-10 mt-2 w-full origin-top-right 
-                   rounded-md bg-white/90 backdrop-blur-md shadow-lg
-                   focus:outline-none max-h-[20rem] overflow-y-auto scroll-smooth
-                   scrollbar-thin scrollbar-thumb-green-300 scrollbar-track-gray-100"
+        className="absolute right-0 z-10 mt-2 w-full origin-top-right
+             rounded-md bg-white shadow-lg
+             ring-1 ring-gray-300
+             focus:outline-none max-h-[20rem] overflow-y-auto scroll-smooth
+             scrollbar-thin scrollbar-thumb-green-300 scrollbar-track-gray-100"
       >
         <div className="py-1">
           {languages.map((lng) => (

@@ -5,6 +5,7 @@ import { Loader2, Upload, Volume2, Leaf } from "lucide-react";
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { LINK2 } from "@/store/Link";
+import { toast } from "react-toastify";
 
 const useVoices = () => {
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
@@ -83,7 +84,8 @@ const DiseaseDetectionPage = () => {
       });
     } catch (e) {
       console.log("Error while uploading the file", e);
-      alert(t("disease_page.errors.alertDetectionFailed"));
+      // alert(t("disease_page.errors.alertDetectionFailed"));
+      toast.error(t("disease_page.errors.alertDetectionFailed"));
     } finally {
       setLoading(false);
     }
@@ -110,7 +112,8 @@ const DiseaseDetectionPage = () => {
       utterance.pitch = 1;
       speechSynthesis.speak(utterance);
     } else {
-      alert("Sorry, your browser does not support text-to-speech.");
+      // alert("Sorry, your browser does not support text-to-speech.");
+      toast.warn("Sorry, your browser does not support text-to-speech.");
     }
   };
 
@@ -121,8 +124,8 @@ const DiseaseDetectionPage = () => {
       {/* Card */}
       <Card
         className={`w-full ${
-            result ? "max-w-5xl" : "max-w-md"
-          } shadow-lg border border-white/20 
+          result ? "max-w-5xl" : "max-w-md"
+        } shadow-lg border border-white/20 
           bg-white/60 backdrop-blur-md transition-all duration-500 mx-2 sm:mx-7 mt-0 
           rounded-none sm:rounded-2xl`}
       >

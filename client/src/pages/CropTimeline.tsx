@@ -234,7 +234,7 @@ const CropTimeline: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           {/* Search Crop */}
-          <div className="bg-white/60  p-4 rounded-lg shadow-sm border border-lime-200 relative">
+          <div className="p-4 rounded-lg border border-lime-200 relative">
             <label
               htmlFor="crop-search"
               className="block text-sm font-medium text-lime-900 mb-2"
@@ -275,7 +275,7 @@ const CropTimeline: React.FC = () => {
           </div>
 
           {/* Land Area + Unit */}
-          <div className="bg-white/60 p-4 rounded-lg shadow-sm border border-lime-200">
+          <div className="p-4 rounded-lg border border-lime-200">
             <div className="flex space-x-4">
               <div className="flex-1">
                 <label

@@ -119,9 +119,9 @@ function Navbar() {
 
         <button
           onClick={handleLogOut}
-          className="flex items-center gap-2 bg-white
-                     text-green-700 font-medium px-4 py-2 rounded-lg shadow
-                     hover:bg-white/80 transition w-40 justify-center
+          className="flex items-center gap-2 bg-green-200/60
+                     text-green-700 font-medium px-4 py-2 rounded-lg 
+                     hover:bg-green-300/80 transition w-40 justify-center
                      ltr:order-2 rtl:order-1"
         >
           <LogOut className="w-5 h-5 rtl:rotate-180" />

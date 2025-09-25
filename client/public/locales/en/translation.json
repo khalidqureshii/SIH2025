@@ -349,15 +349,15 @@
       "noRecommendations": "No recommendations found.",
       "fetchError": "Failed to fetch recommendations. Please try again."
     },
-    "labels":{
+    "labels": {
       "temperature": "Temperature (°C)",
       "rainfall": "Rainfall (mm)",
       "humidity": "Humidity (%)",
       "moisture": "Soil Moisture (%)",
-      "p":"Phosphorus (P)",
-      "k":"Potassium (K)",
-      "n":"Nitrogen (N)",
-      "ph":"Soil pH",
+      "p": "Phosphorus (P)",
+      "k": "Potassium (K)",
+      "n": "Nitrogen (N)",
+      "ph": "Soil pH",
       "useSensor": "Use Sensor Data"
     }
   },
@@ -560,14 +560,14 @@
       "scheme": "Explore Government Schemes"
     },
     "descriptions": {
-      "crop": "Personalized recommendations on crop selection and best farming practices to maximize yield and sustainability",
-      "weather": "Accurate forecasts and timely alerts to help you plan irrigation, harvesting, and protect crops from extreme conditions",
-      "crop_and_disease": "Identify crops instantly by uploading an image and early detection of crop diseases with AI-powered analysis",
-      "market": "Aggregated daily price data for a wide range of commodities, sourced directly from markets across every state in India.",
-      "plant-identifier": "Identify plants instantly by uploading a photo and get quick insights about them.",
-      "feedback": "Share your thoughts and help us improve! Submit feedback, report issues, or suggest new features — we value every opinion",
-      "timeline": "Shows each stage of development with its duration, resource needs, and ideal conditions for healthy growth",
-      "scheme": "Stay informed about the latest government initiatives, their benefits, and deadlines to maximize the support available for your farm or rural project"
+      "crop": "Get the best crop choices and tips for higher yield and sustainable farming.",
+      "weather": "Plan better with accurate forecasts and timely weather alerts.",
+      "crop_and_disease": "Upload a photo to identify your crop and detect diseases early with AI.",
+      "market": "Check daily mandi prices for crops across different states.",
+      "plant-identifier": "Know your plants instantly by just uploading a photo.",
+      "feedback": "Tell us your ideas, problems, or suggestions to make this app better for you.",
+      "timeline": "See crop growth stages with duration, resources, and ideal conditions.",
+      "scheme": "Find government schemes for your area and get benefits on time."
     }
   }
 }

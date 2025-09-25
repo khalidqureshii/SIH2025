@@ -6,6 +6,7 @@ import CarouselWeather from "./CarouselWeather";
 import Graphs from "./Graphs";
 import { Button } from "@/components/ui/button";
 import { MapPin, Send } from "lucide-react";
+import { toast } from "react-toastify";
 
 interface WeatherApiResponse {
   location: {
@@ -90,7 +91,8 @@ const WeatherDashboard: React.FC<WeatherDashboardProp> = ({
 
   const handleDetectLocation = () => {
     if (!("geolocation" in navigator)) {
-      alert(t("dashboard.alerts.geolocation"));
+      // alert(t("dashboard.alerts.geolocation"));
+      toast.info(t("dashboard.alerts.geolocation"));
       return;
     }
 
@@ -112,30 +114,31 @@ const WeatherDashboard: React.FC<WeatherDashboardProp> = ({
             setNewCity(detectedCity);
             cityChanged(detectedCity);
           } else {
-            alert(t("dashboard.alerts.detect_failed1"));
+            // alert(t("dashboard.alerts.detect_failed1"));
+            toast.error(t("dashboard.alerts.detect_failed1"));
           }
         } catch (err) {
           console.error("Reverse geocoding failed:", err);
-          alert(t("dashboard.alerts.detect_failed2"));
+          // alert(t("dashboard.alerts.detect_failed2"));
+          toast.error(t("dashboard.alerts.detect_failed2"));
         }
       },
       (error) => {
         console.error("Geolocation error:", error);
-        alert(t("dashboard.alerts.detect_failed3"));
+        // alert(t("dashboard.alerts.detect_failed3"));
+        toast.error(t("dashboard.alerts.detect_failed3"));
       }
     );
   };
 
   return (
     <div className="w-full max-w-6xl mx-auto flex flex-col gap-6 px-2 md:px-4 py-6">
-      
       <div className="w-full flex justify-center">
         <div className="w-full px-5">
           <form onSubmit={handleSubmit} className="flex flex-col w-full gap-0">
             <div className="w-full">
               <div className="rounded-lg border border-slate-700/40 bg-gradient-to-b from-white/3 to-white/2">
                 <div className="flex flex-wrap items-center gap-2 justify-center">
-
                   <div className="flex-1 min-w-[120px] max-w-[300px]">
                     <InputField
                       placeHolder={t("dashboard.placeholder")}

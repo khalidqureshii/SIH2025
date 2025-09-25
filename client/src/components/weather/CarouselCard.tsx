@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Volume2 } from "lucide-react";
 import { motion } from "framer-motion";
+import { toast } from "react-toastify";
 
 const safeParseDate = (v: any) => {
   if (v instanceof Date) return v;
@@ -101,7 +102,8 @@ const CarouselCard: React.FC<CarouselCardProps> = (props) => {
       utterance.pitch = 1;
       speechSynthesis.speak(utterance);
     } else {
-      alert("Sorry, your browser does not support text-to-speech.");
+      // alert("Sorry, your browser does not support text-to-speech.");
+      toast.warn("Sorry, your browser does not support text-to-speech.");
     }
   };
 
