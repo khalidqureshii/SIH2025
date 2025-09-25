@@ -412,9 +412,14 @@ const MapLocationInput: React.FC<MapLocationInputProps> = ({
               </Button>
             )}
           </div>
-          <div
+          {/* <div
             ref={mapRef}
             className="w-full h-80 rounded-lg border-2 border-gray-300"
+            style={{ minHeight: "320px" }}
+          /> */}
+          <div
+            ref={mapRef}
+            className="w-full h-80 rounded-lg border-2 border-gray-300 relative z-0"
             style={{ minHeight: "320px" }}
           />
           {drawing && (
