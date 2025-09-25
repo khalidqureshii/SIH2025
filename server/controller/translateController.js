@@ -6,7 +6,7 @@ export const translateText = async (req, res) => {
   const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
   try {
     const { language, content } = req.body;
-
+    console.log(req.body);
     if (!language || !content) {
       return res
         .status(400)
@@ -20,7 +20,7 @@ Return only the translated text, no explanations or extra words.
 Text: "${content}"`;
 
     // Call Gemini
-    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" }); // or 2.5 if you want
+    const model = genAI.getGenerativeModel({ model: "gemma-3-27b-it" }); // or 2.5 if you want
     const result = await model.generateContent(prompt);
     const translated = result.response.text().trim();
 
