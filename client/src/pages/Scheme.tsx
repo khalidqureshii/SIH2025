@@ -182,7 +182,7 @@ export default function Scheme() {
               <h3 className="text-xl font-semibold text-white mb-2">
                 {t("scheme.list.loading")}
               </h3>
-              <p className="text-gray-500">{t("scheme.list.fetching")}</p>
+              <p className="text-white">{t("scheme.list.fetching")}</p>
             </div>
           </div>
         ) : schemes.length === 0 ? (
