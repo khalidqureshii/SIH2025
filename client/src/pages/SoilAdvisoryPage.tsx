@@ -365,14 +365,14 @@ export default function Alternate() {
                 </span>
               </Label>
               <div className="flex items-center space-x-2">
-                <span className="text-xs text-gray-500">-10</span>
+                <span className="text-xs text-gray-500">-40</span>
                 <Slider
-                  min={-10}
+                  min={-40}
                   max={60}
                   step={0.5}
                   value={[sensorData.temperature ?? 25]}
                   onValueChange={(val: any[]) =>
-                    handleSensorChange("temperature", String(val[0]), -50, 60)
+                    handleSensorChange("temperature", String(val[0]), -40, 60)
                   }
                   className="flex-1"
                 />
