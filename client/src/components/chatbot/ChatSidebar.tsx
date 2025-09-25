@@ -234,7 +234,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Loader2, Send, Volume2 } from "lucide-react";
+import { Loader2, Pause, Send, Volume2 } from "lucide-react";
 import { LINK2 } from "@/store/Link";
 import ReactMarkdownType from "react-markdown";
 import { useTranslation } from "react-i18next";
@@ -277,13 +277,20 @@ const ChatSidebar = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       sender: "bot",
-      text: `${t("chat_sidebar.opening_text.p1")} बंधु, ${t("chat_sidebar.opening_text.p2")}`
-    }
+      text: `${t("chat_sidebar.opening_text.p1")} बंधु, ${t(
+        "chat_sidebar.opening_text.p2"
+      )}`,
+    },
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const { pathname } = useLocation();
   const voices = useVoices();
+
+  //soham
+  const [speakingMessageIdx, setSpeakingMessageIdx] = useState<number | null>(
+    null
+  );
 
   const speakText = (text: string, lang = "en-IN") => {
     if ("speechSynthesis" in window) {
@@ -394,13 +401,39 @@ const ChatSidebar = () => {
                 {msg.sender === "bot" ? (
                   <div className="flex flex-col gap-1">
                     <ReactMarkdown>{msg.text}</ReactMarkdown>
-                    {/* Listen button only for bot messages */}
-                    <button
-                      onClick={() => speakText(msg.text, lang)}
-                      className="mt-1 text-green-600 hover:text-green-800 text-sm flex items-center gap-1"
-                    >
-                      <Volume2 size={18} />
-                    </button>
+
+                    {/* Toggle Play/Pause button */}
+                    {speakingMessageIdx !== idx ? (
+                      <button
+                        onClick={() => {
+                          // Stop previous speech if any
+                          speechSynthesis.cancel();
+
+                          speakText(msg.text, lang);
+                          setSpeakingMessageIdx(idx);
+
+                          const checkEnd = setInterval(() => {
+                            if (!speechSynthesis.speaking) {
+                              setSpeakingMessageIdx(null);
+                              clearInterval(checkEnd);
+                            }
+                          }, 200);
+                        }}
+                        className="mt-1 text-green-600 hover:text-green-800 text-sm flex items-center gap-1"
+                      >
+                        <Volume2 size={18} />
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => {
+                          speechSynthesis.cancel(); // stop immediately
+                          setSpeakingMessageIdx(null);
+                        }}
+                        className="mt-1 text-red-600 hover:text-red-800 text-sm flex items-center gap-1"
+                      >
+                        <Pause size={18} />
+                      </button>
+                    )}
                   </div>
                 ) : (
                   msg.text
