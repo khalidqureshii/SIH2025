@@ -293,6 +293,7 @@ const ChatSidebar = () => {
   );
 
   const speakText = (text: string, lang = "en-IN") => {
+    lang = i18n.language === "hi" ? "hi-IN" : "en-IN";
     if ("speechSynthesis" in window) {
       const utterance = new SpeechSynthesisUtterance(text);
       const selectedVoice = voices.find((v) => v.lang === lang);

@@ -106,7 +106,7 @@ const Footer = () => {
               <Twitter size={18} />
             </a>
           </div>
-          <p>{t("footer.connect.email")} support@bb.com</p>
+          <p>{t("footer.connect.email")} feedback.bhoomibandhu@gmail.com</p>
         </div>
       </div>
 

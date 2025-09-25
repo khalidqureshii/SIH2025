@@ -436,11 +436,13 @@
       "select_filters": "Please choose filters and click Search to see prices.",
       "no_data": "No price data found for the selected filters.",
       "unknown_market": "Unknown market",
-      "standard": "Standard"
+      "standard": "Standard",
+      "loader": "Loading market prices…"
     },
     "form": {
       "title": "Market Price Finder",
       "search": "Fetch Market Prices",
+      "noResults": "No results found.",
       "placeholders": {
         "state": "Enter State",
         "district": "Enter District",
@@ -460,7 +462,7 @@
       "p2": "how can I help you?"
     },
     "alert": "Sorry, your browser does not support text-to-speech.",
-    "process_error": "Sorry, I couldn’t process that.",
+    "process_error": "Sorry, I couldn't process that.",
     "server_error": "⚠️ Error connecting to server."
   },
 
