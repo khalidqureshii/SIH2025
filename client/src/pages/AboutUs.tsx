@@ -24,13 +24,13 @@ export default function AboutUs() {
     {
       name: "Aishani Chauhan",
       linkedin: "https://www.linkedin.com/in/aishani-chauhan-325453326/",
-      github: "https://github.com/aishanichauhan",
+      github: "https://github.com/Aishani22",
       email: "aishanichauhan23@gmail.com",
     },
     {
       name: "Leena Vasyani",
       linkedin: "https://www.linkedin.com/in/leena-vasyani/",
-      github: "https://github.com/leenavasyani",
+      github: "https://github.com/Leena-Vasyani",
       email: "vasyanileena28@gmail.com",
     },
     {
