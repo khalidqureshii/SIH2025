@@ -61,7 +61,7 @@ export default function TermsAndConditions() {
             href="mailto:support@bb.com"
             className="text-green-600 hover:underline"
           >
-            support@bb.com
+            feedback.bhoomibandhu@gmail.com
           </a>
           .
         </p>
