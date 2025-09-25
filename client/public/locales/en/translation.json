@@ -334,7 +334,8 @@
       "recommendationsTitle": "✅ Recommendations",
       "listenToAdvice": "Listen to Advice",
       "uploadAnotherImage": "Upload Another Image"
-    }
+    },
+    "warn": "Sorry, your browser does not support text-to-speech."
   },
 
   "soil_page": {
@@ -364,6 +365,10 @@
 
   "carousel": {
     "listen": "Listen"
+  },
+
+  "carousel_card": {
+    "warn": "Sorry, your browser does not support text-to-speech."
   },
 
   "plant-identifier-page": {
@@ -413,13 +418,25 @@
       "optimalTemperature": "Optimal Temperature",
       "resourcesNeeded": "Resources Needed:",
       "processToFollow": "Process to Follow:"
+    },
+    "process":{
+      "what_to_do": "✅ What to do",
+      "tips": "💡 Tips",
+      "indicators": "🔎 Indicators",
+      "pests": "🐛 Pests & Diseases",
+      "harvest": "🌾 Harvest Notes"
     }
   },
 
   "market": {
     "results": {
-      "header": "Showing results for",
-      "in": "in"
+      "error": "Failed to fetch prices",
+      "quintal": "quintal",
+      "price" : "Price",
+      "select_filters": "Please choose filters and click Search to see prices.",
+      "no_data": "No price data found for the selected filters.",
+      "unknown_market": "Unknown market",
+      "standard": "Standard"
     },
     "form": {
       "title": "Market Price Finder",
@@ -550,6 +567,24 @@
         "nodal_ministry": "Nodal Ministry:",
         "beneficiary_states": "Beneficiary States:"
       }
+    }
+  },
+
+  "about_us":{
+    "title": "About Us",
+    "welcome": "Welcome to",
+    "description": {
+      "p1": ", a platform dedicated to empowering farmers with technology-driven solutions. Our mission is to simplify farming decisions by providing insights on weather, crop health, schemes, and real-time advisories tailored to their location.",
+      "p2": "We are a passionate team of developers, researchers, and innovators working together to make agriculture smarter, sustainable, and more efficient."
+    },
+    "meet": "Meet the Team"
+  },
+
+  "disease_plant": {
+    "title": "🌾Crop Identification & Disease Detection",
+    "tabs": {
+      "identify_crops": "🌱 Identify Crop",
+      "detect_disease": "🍂 Detect Disease"
     }
   },
 

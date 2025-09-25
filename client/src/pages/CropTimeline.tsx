@@ -431,26 +431,26 @@ const CropTimeline: React.FC = () => {
 
               {/* ✅ What to do */}
               <div className="bg-gradient-to-br from-green-200  to-lime-100 rounded-lg shadow-lg p-3">
-                <h4 className="font-medium text-blue-700 mb-2">✅ What to do</h4>
+                <h4 className="font-medium text-blue-700 mb-2">{t("timeline_page.process.what_to_do")}</h4>
                 <p className="ml-7 text-gray-700">{stage.what_to_do}</p>
               </div>
 
               {/* 💡 Tips */}
               <div className="bg-gradient-to-br from-green-200  to-lime-100 rounded-lg shadow-lg p-3">
-                <h4 className="font-medium text-purple-700 mb-2">💡 Tips</h4>
+                <h4 className="font-medium text-purple-700 mb-2">{t("timeline_page.process.tips")}</h4>
                 <p className="ml-7 text-gray-700">{stage.tips}</p>
               </div>
 
               {/* 🔎 Indicators */}
               <div className="bg-gradient-to-br from-green-200  to-lime-100 rounded-lg shadow-lg p-3">
-                <h4 className="font-medium text-orange-700 mb-2">🔎 Indicators</h4>
+                <h4 className="font-medium text-orange-700 mb-2">{t("timeline_page.process.indicators")}</h4>
                 <p className="ml-7 text-gray-700">{stage.indicators}</p>
               </div>
 
               {/* 🐛 Pests & Diseases */}
               {stage.pests_and_diseases && stage.pests_and_diseases.length > 0 && (
                 <div className="bg-gradient-to-br from-green-200  to-lime-100 rounded-lg shadow-lg p-3">
-                  <h4 className="font-medium text-red-700 mb-2">🐛 Pests & Diseases</h4>
+                  <h4 className="font-medium text-red-700 mb-2">{t("timeline_page.process.pests")}</h4>
                   <ul className="list-disc ml-7 space-y-1 text-gray-700">
                     {stage.pests_and_diseases.map((pd, i) => (
                       <li key={i}>
@@ -464,7 +464,7 @@ const CropTimeline: React.FC = () => {
               {/* 🌾 Harvest Notes */}
               {stage.harvest_notes && (
                 <div>
-                  <h4 className="font-medium text-emerald-700 mb-2">🌾 Harvest Notes</h4>
+                  <h4 className="font-medium text-emerald-700 mb-2">{t("timeline_page.process.harvest")}</h4>
                   <p className="ml-7 text-gray-700">{stage.harvest_notes}</p>
                 </div>
               )}

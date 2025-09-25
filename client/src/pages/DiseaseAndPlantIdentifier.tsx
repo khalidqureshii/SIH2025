@@ -2,12 +2,16 @@ import React from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import PlantIdentifier from "./PlantIdentifier"; // ✅ import your component
 import DiseaseDetectionPage from "./DiseaseDetectionPage"; // ✅ import your component
+import { useTranslation } from "react-i18next";
 
 const CropAssistantPage: React.FC = () => {
+
+  const {t} = useTranslation();
+
   return (
     <div className="min-h-screen flex flex-col items-center py-6">
   <h1 className="text-3xl font-semibold text-center p-4">
-    🌾Crop Identification & Disease Detection
+    {t("disease_plant.title")}
   </h1>
 <Tabs defaultValue="plant" className="w-full max-w-5xl flex flex-col items-center">
   {/* Tabs Header */}
@@ -19,7 +23,7 @@ const CropAssistantPage: React.FC = () => {
       className="data-[state=active]:bg-green-600 data-[state=active]:text-white 
       text-sm sm:text-base md:text-lg"
     >
-      🌱 Identify Crop
+      {t("disease_plant.tabs.identify_crops")}
     </TabsTrigger>
 
     <TabsTrigger
@@ -27,7 +31,7 @@ const CropAssistantPage: React.FC = () => {
       className="data-[state=active]:bg-green-600 data-[state=active]:text-white 
       text-sm sm:text-base md:text-lg"
     >
-      🍂 Detect Disease
+      {t("disease_plant.tabs.detect_disease")}
     </TabsTrigger>
   </TabsList>
 

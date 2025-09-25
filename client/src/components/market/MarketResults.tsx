@@ -5,6 +5,7 @@ import MarketCard from "@/components/market/MarketCard";
 // import { useTranslation } from "react-i18next";
 import { LINK } from "@/store/Link";
 import Loader from "../common/Loader";
+import { useTranslation } from "react-i18next";
 
 interface Filters {
   state: string;
@@ -32,7 +33,7 @@ interface Props {
 type Status = "idle" | "pending" | "success" | "error";
 
 const MarketResults: React.FC<Props> = ({ filters }) => {
-  // const { t } = useTranslation();
+  const { t } = useTranslation();
   const [records, setRecords] = useState<PriceRecord[]>([]);
   const [error, setError] = useState<string | null>(null);
 
@@ -73,7 +74,7 @@ const MarketResults: React.FC<Props> = ({ filters }) => {
           setError(
             err?.response?.data?.error ??
               err.message ??
-              "Failed to fetch prices"
+              t("market.results.error")
           );
           setStatus("error");
         }
@@ -86,10 +87,10 @@ const MarketResults: React.FC<Props> = ({ filters }) => {
   }, [filters]);
 
   const renderPrice = (r: PriceRecord) => {
-    if (r.modal_price) return `₹${r.modal_price} / quintal`;
+    if (r.modal_price) return `₹${r.modal_price} / ${t("market.results.quintal")}`;
     if (r.min_price || r.max_price)
       return `₹${r.min_price ?? "—"} - ₹${r.max_price ?? "—"}`;
-    return "Price N/A";
+    return `${t("market.results.price")} N/A`;
   };
 
   return (
@@ -106,7 +107,7 @@ const MarketResults: React.FC<Props> = ({ filters }) => {
 
       {status === "idle" && (
         <div className="py-8 text-black text-center">
-          Please choose filters and click Search to see prices.
+          {t("market.results.select_filters")}
         </div>
       )}
 
@@ -130,7 +131,7 @@ const MarketResults: React.FC<Props> = ({ filters }) => {
 
       {status === "success" && records.length === 0 && (
         <div className="py-8 text-black text-center">
-          No price data found for the selected filters.
+          {t("market.results.no_data")}
         </div>
       )}
 
@@ -151,9 +152,9 @@ const MarketResults: React.FC<Props> = ({ filters }) => {
                   transition={{ duration: 0.3 }}
                 >
                   <MarketCard
-                    market={r.market ?? "Unknown market"}
+                    market={r.market ?? t("market.results.unknown_market")}
                     price={renderPrice(r)}
-                    variants={variants.length ? variants : ["Standard"]}
+                    variants={variants.length ? variants : [t("market.results.standard")]}
                     arrivalDate={r.arrival_date}
                     commodity={r.commodity}
                   />
