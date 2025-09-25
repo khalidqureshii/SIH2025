@@ -579,6 +579,14 @@
     "meet": "Meet the Team"
   },
 
+  "disease_plant": {
+    "title": "🌾Crop Identification & Disease Detection",
+    "tabs": {
+      "identify_crops": "🌱 Identify Crop",
+      "detect_disease": "🍂 Detect Disease"
+    }
+  },
+
   "home": {
     "header_title": "🌾 Smart Crop Advisory",
     "subheader": "Your trusted friend for smarter farming!",
