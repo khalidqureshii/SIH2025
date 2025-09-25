@@ -300,9 +300,9 @@ export default function Alternate() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="flex flex-col space-y-6">
                 {[
-                  { field: "pH", min: 0, max: 14, step: 0.1, unit: "" },
+                  { field: "ph", min: 0, max: 14, step: 0.1, unit: "" },
                   { field: "humidity", min: 0, max: 100, step: 1, unit: "%" },
-                  { field: "soilMoisture", min: 0, max: 100, step: 0.5, unit: "%" },
+                  { field: "moisture", min: 0, max: 100, step: 0.5, unit: "%" },
                 ].map(({ field, min, max, step, unit }) => (
                   <div key={field}>
                     <Label className="mb-2 flex items-center space-x-2">
