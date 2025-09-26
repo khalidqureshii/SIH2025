@@ -80,12 +80,13 @@ const Feedback = () => {
               </label>
 
               <Select
+                
                 value={formData.issueType}
                 onValueChange={(val) =>
                   setFormData({ ...formData, issueType: val })
                 }
               >
-                <SelectTrigger className="mt-2">
+                <SelectTrigger className="mt-2 bg-white">
                   <SelectValue placeholder={t("feedback_page.options.title")} />
                 </SelectTrigger>
                 <SelectContent>
@@ -112,7 +113,7 @@ const Feedback = () => {
                 value={formData.subject}
                 onChange={handleChange}
                 placeholder={t("feedback_page.placeholders.subject")}
-                className="mt-2"
+                className="mt-2 bg-white"
               />
             </div>
           </div>
@@ -127,7 +128,7 @@ const Feedback = () => {
               value={formData.description}
               onChange={handleChange}
               placeholder={t("feedback_page.placeholders.description")}
-              className="mt-1 w-full border border-green-400 bg-white/60 rounded-lg p-2 h-24 focus:outline-none focus:ring-1 focus:ring-black focus:border-black"
+              className="mt-1 w-full border border-green-400 bg-white rounded-lg p-2 h-24 focus:outline-none focus:ring-1 focus:ring-black focus:border-black"
             />
           </div>
 
