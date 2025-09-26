@@ -411,7 +411,7 @@ const CarouselCard: React.FC<CarouselCardProps> = (props) => {
           {loadingText ? (
             <>
               <Loader2 className="w-4 h-4 animate-spin text-gray-500" />
-              <span>{t("loading")}</span>
+              {/* <span>{t("loading")}</span> */}
             </>
           ) : (
             conditionText
