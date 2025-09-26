@@ -93,20 +93,29 @@ export const getCommodityPrice = async (req, res) => {
       sd: "Sindhi script (سنڌي Unicode / Arabic or Devanagari)",
       ta: "Tamil script (தமிழ் Unicode)",
       te: "Telugu script (తెలుగు Unicode)",
-      ur: "Urdu script (اردو Unicode)",
+      ur: "Urdu script (اردو Unicode)",
     };
     const targetLanguage = languageMap[language] || "English";
+
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+
+    const formattedDate = `${yyyy}-${mm}-${dd}`;
 
     const prompt = `
                     You are an agricultural data assistant.
 
-Generate current-day (today’s date) market price records for the following filters:
+Generate current-day/present day (today's date) market price records for the following filters:
 
 State: ${state}
 
 District: ${district}
 
 Commodity: ${commodity}
+
+Date: ${formattedDate}
 
 ⚠ Output Rules:
 
@@ -116,12 +125,11 @@ All keys MUST remain in English exactly as shown.
 
 All values (except numbers and dates) MUST be translated into ${targetLanguage}.
 
-Dates must remain in YYYY-MM-DD format and reflect today’s actual date.
+Dates must remain in YYYY-MM-DD format and reflect today's actual date as per India Time (IST).
 
 Return at least 9 unique market records.
 
-Prices must represent the per quintal value (₹/quintal) and FETCH ACTUAL DATA DO NOT MANIPULATE ACTUAL PRICE GIVE AS IT IS for the given commodity and location.
-ALSO MAKE SURE ALL THE MARKETS ARE DISTINCT.
+Prices must represent the per quintal value (₹/quintal) and FETCH ACTUAL DATA. DO NOT MANIPULATE ACTUAL PRICE GIVE IT AS IT IS for the given commodity and location. THE PRICES SHOULD BE THAT OF THE CURRENT/PRESENT DAY'S DATE. IF DATA FOR THE PRESENT DAY IS NOT AVAILABLE IT SHOULD SHOW GIVE THE DATA OF THE PREVIOUS DAYS DATE. FALLBACK COULD BE TO ANY OF THE PAST 7 DAYS, BUT IT SHOULD BE THE MOST RECENT ONES. ALSO MAKE SURE ALL THE MARKETS ARE DISTINCT.
 
 Required JSON Structure:
 
@@ -133,7 +141,7 @@ Required JSON Structure:
     "commodity": "Translated Commodity",
     "variety": "Translated Variety",
     "grade": "A",
-    "arrival_date": "2025-09-24",
+    "arrival_date": "YYYY-MM-DD",
     "min_price": <price>,
     "max_price": <price>,
     "modal_price": <price>
