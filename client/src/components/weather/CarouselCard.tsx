@@ -362,7 +362,7 @@ const CarouselCard: React.FC<CarouselCardProps> = (props) => {
     fetchCondition();
   }, [lang, dayData.condition.text]);
 
-  const speakText = (text: string, lang = "en-IN") => {
+  const speakText = (text: string, lang = "hi-IN") => {
     if ("speechSynthesis" in window) {
       const utterance = new SpeechSynthesisUtterance(text);
       const selectedVoice = voices.find((v) => v.lang === lang);
