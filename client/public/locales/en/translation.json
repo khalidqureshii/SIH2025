@@ -536,41 +536,73 @@
     }
   },
 
-  "scheme": {
-    "states": {
-      "all": "All",
-      "andhraPradesh": "Andhra Pradesh",
-      "karnataka": "Karnataka",
-      "maharashtra": "Maharashtra",
-      "tamilNadu": "Tamil Nadu"
-    },
-    "days_left": "days left",
-    "deadline": "Deadline passed",
-    "title": {
-      "government": "Government",
-      "scheme": "Scheme"
-    },
-    "description": "Discover government initiatives designed to empower farmers and support agricultural development across India",
-    "pan_india": "🌍 Pan India Coverage",
-    "daily_update": "🔄 Updated Daily",
-    "filters": {
-      "title": "Filter Schemes",
-      "description": "Find schemes relevant to your state",
-      "label": "Select State:"
-    },
-    "list": {
-      "loading": "Loading Schemes...",
-      "fetching": "Fetching the latest government schemes for you",
-      "no_schemes": "No Schemes Found",
-      "no_scheme_msg": "We couldn't find any schemes for",
-      "deadline": "⏰ Deadline:",
-      "info_row": {
-        "scheme_for": "Scheme For:",
-        "nodal_ministry": "Nodal Ministry:",
-        "beneficiary_states": "Beneficiary States:"
-      }
-    }
+ "scheme": {
+  "states": {
+    "all": "All",
+    "andhraPradesh": "Andhra Pradesh",
+    "arunachalPradesh": "Arunachal Pradesh",
+    "assam": "Assam",
+    "bihar": "Bihar",
+    "chhattisgarh": "Chhattisgarh",
+    "goa": "Goa",
+    "gujarat": "Gujarat",
+    "haryana": "Haryana",
+    "himachalPradesh": "Himachal Pradesh",
+    "jharkhand": "Jharkhand",
+    "karnataka": "Karnataka",
+    "kerala": "Kerala",
+    "madhyaPradesh": "Madhya Pradesh",
+    "maharashtra": "Maharashtra",
+    "manipur": "Manipur",
+    "meghalaya": "Meghalaya",
+    "mizoram": "Mizoram",
+    "nagaland": "Nagaland",
+    "odisha": "Odisha",
+    "punjab": "Punjab",
+    "rajasthan": "Rajasthan",
+    "sikkim": "Sikkim",
+    "tamilNadu": "Tamil Nadu",
+    "telangana": "Telangana",
+    "tripura": "Tripura",
+    "uttarPradesh": "Uttar Pradesh",
+    "uttarakhand": "Uttarakhand",
+    "westBengal": "West Bengal",
+    "delhi": "Delhi",
+    "jammuKashmir": "Jammu & Kashmir",
+    "ladakh": "Ladakh",
+    "puducherry": "Puducherry",
+    "chandigarh": "Chandigarh",
+    "andamanNicobar": "Andaman & Nicobar",
+    "dadraNagarHaveli": "Dadra & Nagar Haveli",
+    "damanDiu": "Daman & Diu"
   },
+  "days_left": "days left",
+  "deadline": "Deadline passed",
+  "title": {
+    "government": "Government",
+    "scheme": "Scheme"
+  },
+  "description": "Discover government initiatives designed to empower farmers and support agricultural development across India",
+  "pan_india": "🌍 Pan India Coverage",
+  "daily_update": "🔄 Updated Daily",
+  "filters": {
+    "title": "Filter Schemes",
+    "description": "Find schemes relevant to your state",
+    "label": "Select State:"
+  },
+  "list": {
+    "loading": "Loading Schemes...",
+    "fetching": "Fetching the latest government schemes for you",
+    "no_schemes": "No Schemes Found",
+    "no_scheme_msg": "We couldn't find any schemes for",
+    "deadline": "⏰ Deadline:",
+    "info_row": {
+      "scheme_for": "Scheme For:",
+      "nodal_ministry": "Nodal Ministry:",
+      "beneficiary_states": "Beneficiary States:"
+    }
+  }
+},
 
   "about_us":{
     "title": "About Us",
