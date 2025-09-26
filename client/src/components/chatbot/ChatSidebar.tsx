@@ -274,14 +274,42 @@ const ChatSidebar = () => {
   const { t, i18n } = useTranslation();
   const lang = i18n.language || "en";
   const [open, setOpen] = useState(false);
+  // const [messages, setMessages] = useState<Message[]>([
+  //   {
+  //     sender: "bot",
+  //     text: `${t("chat_sidebar.opening_text.p1")} बंधु, ${t(
+  //       "chat_sidebar.opening_text.p2"
+  //     )}`,
+  //   },
+  // ]);
+
   const [messages, setMessages] = useState<Message[]>([
-    {
-      sender: "bot",
-      text: `${t("chat_sidebar.opening_text.p1")} बंधु, ${t(
-        "chat_sidebar.opening_text.p2"
-      )}`,
-    },
-  ]);
+  {
+    sender: "bot",
+    text: `${t("chat_sidebar.opening_text.p1")} बंधु, ${t(
+      "chat_sidebar.opening_text.p2"
+    )}`,
+  },
+]);
+
+useEffect(() => {
+  // Update only the first bot message on language change
+  setMessages((prev) => {
+    if (prev.length === 0) return prev;
+
+    const updated = [...prev];
+    if (updated[0].sender === "bot") {
+      updated[0] = {
+        ...updated[0],
+        text: `${t("chat_sidebar.opening_text.p1")} बंधु, ${t(
+          "chat_sidebar.opening_text.p2"
+        )}`,
+      };
+    }
+    return updated;
+  });
+}, [i18n.language, t]);
+
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const { pathname } = useLocation();
