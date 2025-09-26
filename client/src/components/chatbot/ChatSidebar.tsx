@@ -320,8 +320,7 @@ useEffect(() => {
     null
   );
 
-  const speakText = (text: string, lang = "en-IN") => {
-    lang = i18n.language === "hi" ? "hi-IN" : "en-IN";
+  const speakText = (text: string, lang = "hi-IN") => {
     if ("speechSynthesis" in window) {
       const utterance = new SpeechSynthesisUtterance(text);
       const selectedVoice = voices.find((v) => v.lang === lang);
