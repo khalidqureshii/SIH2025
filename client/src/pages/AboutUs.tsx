@@ -6,10 +6,22 @@ export default function AboutUs() {
   const {t} = useTranslation();
   const team = [
     {
+      name: "Aishani Chauhan",
+      linkedin: "https://www.linkedin.com/in/aishani-chauhan-325453326/",
+      github: "https://github.com/Aishani22",
+      email: "aishanichauhan23@gmail.com",
+    },
+    {
       name: "Khalid Qureshi",
       linkedin: "https://www.linkedin.com/in/khalid-qureshi-4a2b8b282/",
       github: "https://github.com/khalidqureshii",
       email: "khalidqureshi1198@gmail.com",
+    },
+    {
+      name: "Leena Vasyani",
+      linkedin: "https://www.linkedin.com/in/leena-vasyani/",
+      github: "https://github.com/Leena-Vasyani",
+      email: "vasyanileena28@gmail.com",
     },
     {
       name: "Pankaj Parihar",
@@ -22,18 +34,6 @@ export default function AboutUs() {
       linkedin: "https://www.linkedin.com/in/shawn-d-costa-432034249/",
       github: "https://github.com/shawn-dcosta",
       email: "dcostashawn@gmail.com",
-    },
-    {
-      name: "Aishani Chauhan",
-      linkedin: "https://www.linkedin.com/in/aishani-chauhan-325453326/",
-      github: "https://github.com/Aishani22",
-      email: "aishanichauhan23@gmail.com",
-    },
-    {
-      name: "Leena Vasyani",
-      linkedin: "https://www.linkedin.com/in/leena-vasyani/",
-      github: "https://github.com/Leena-Vasyani",
-      email: "vasyanileena28@gmail.com",
     },
     {
       name: "Soham Amare",
